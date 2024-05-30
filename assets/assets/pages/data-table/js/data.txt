@@ -1,0 +1,26 @@
+{
+    "data": [
+      {
+        "ID": 1,
+        "CODE": "ABC",
+        "DESCRIPTION": "Sample Description 1",
+        "CREATION_DATE": "2024-05-29",
+        "DATE_UPDATED": "2024-05-30"
+      },
+      {
+        "ID": 2,
+        "CODE": "DEF",
+        "DESCRIPTION": "Sample Description 2",
+        "CREATION_DATE": "2024-06-01",
+        "DATE_UPDATED": "2024-06-02"
+      },
+      {
+        "ID": 3,
+        "CODE": "GHI",
+        "DESCRIPTION": "Sample Description 3",
+        "CREATION_DATE": "2024-06-03",
+        "DATE_UPDATED": "2024-06-04"
+      }
+    ]
+  }
+  
