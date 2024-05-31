@@ -40,7 +40,7 @@
                         </li>
                         <li class="pcoded-hasmenu">
                             <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                                <span class="pcoded-micon"><i class="fa fa-truck"></i></span>
                                 <span class="pcoded-mtext">Supplier</span>
                             </a>
                             <ul class="pcoded-submenu">

@@ -1,3 +1,4 @@
+<?php include("modals.php");?>
 <div class="pcoded-content">
 
     <div class="page-header card">
@@ -37,6 +38,9 @@
                         <div class="card table-card">
                                 <div class="card-header">
                                     <h5>Supplier List</h5>
+                                </div>
+                                <div class="card-block" style="text-align: right;">
+                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addSupModal"><i class="feather icon-plus"></i>Add New Supplier</button>
                                 </div>
                                 <div class="card-block">
                                     <div class="table-responsive">

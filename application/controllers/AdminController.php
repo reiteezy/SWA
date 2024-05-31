@@ -35,9 +35,6 @@ class AdminController extends CI_Controller
         $this->load->view('admin/require/sidebar');
         $this->load->view('admin/view/dashboard');
         $this->load->view('admin/require/footer');
-		// if (!$this->session->userdata('logged_in'))
-        //     redirect(base_url(), 'refresh'); 
-		// $this->dashboard();
 	}
 
 	public function dashboard() 

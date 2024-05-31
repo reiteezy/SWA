@@ -1,7 +1,9 @@
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/jquery/js/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/jquery/js/jquery-3.7.1.min.js"></script> -->
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/jquery-ui/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/popper.js/js/popper.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/bootstrap/js/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/bootstrap/js/bootstrap-4.5.2.min.js"></script> -->
 
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
 
@@ -53,7 +55,14 @@
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/multiselect/js/jquery.multi-select.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/jquery.quicksearch.js"></script>
 
-<script type="text/javascript" src="<?= base_url('assets/'); ?>assets/pages/advance-elements/select2-custom.js"></script>
+<script type="text/javascript" src="<?= base_url('assets/'); ?>assets/pages/advance-elements/select2-custom.js"></script>|
+
+
+<script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/modal.js"></script>
+
+
+<script src="<?= base_url('assets/'); ?>assets/js/classie.js"></script>
+<script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/modalEffects.js"></script>
 
 </body>
 

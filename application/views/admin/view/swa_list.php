@@ -1,3 +1,4 @@
+<?php include("modals.php");?>
 <div class="pcoded-content">
 
     <div class="page-header card">
@@ -33,10 +34,11 @@
                     <div class="row">
                         <div class="col-sm-12">
 
-
                             <div class="card table-card">
                                 <div class="card-header">
                                     <h5>SWA List</h5>
+                                    <button type="button" class="btn btn-primary waves-effect md-trigger" data-bs-toggle="modal" data-bs-target="#swaFormModal">Add New SWA</button>
+
                                 </div>
                                 <div class="card-block">
                                     <div class="table-responsive">
@@ -62,21 +64,23 @@
                                                     <td><?php echo $data->DOCUMENT_DATE; ?></td>
                                                     <td><?php echo $data->NAME; ?></td>
                                                     <td> <?php  if($data->SWA_MIS_STATUS == 'cancelled'){ ?>
-                                                        <label
-                                                            class="user-status form-label badge badge-inverse-danger"
+                                                        <label class="user-status form-label badge badge-inverse-danger"
                                                             data-user-id="<?php echo $data->SWA_ID?>">Cancelled</label>
                                                         <?php } else { ?>
-                                                        <label class="user-status form-label badge badge-inverse-warning"
-                                                            data-user-id="<?php echo $data->SWA_ID?>">Pending</label>
-                                                        <?php } ?></td>
-                                                    <td> <?php  if($data->SWA_ACCTG_STATUS == 'pending'){ ?>
                                                         <label
-                                                            class="user-status form-label badge badge-inverse-danger"
+                                                            class="user-status form-label badge badge-inverse-warning"
+                                                            data-user-id="<?php echo $data->SWA_ID?>">Pending</label>
+                                                        <?php } ?>
+                                                    </td>
+                                                    <td> <?php  if($data->SWA_ACCTG_STATUS == 'pending'){ ?>
+                                                        <label class="user-status form-label badge badge-inverse-danger"
                                                             data-user-id="<?php echo $data->SWA_ID?>">Pending</label>
                                                         <?php } else { ?>
-                                                        <label class="user-status form-label badge badge-inverse-success"
+                                                        <label
+                                                            class="user-status form-label badge badge-inverse-success"
                                                             data-user-id="<?php echo $data->SWA_ID?>">Received</label>
-                                                        <?php } ?></td>
+                                                        <?php } ?>
+                                                    </td>
                                                     <td><a href="#!"><i
                                                                 class="icon feather icon-edit f-w-600 f-16 m-r-15 text-c-blue"></i></a><a
                                                             href="#!"><i
