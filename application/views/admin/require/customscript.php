@@ -46,7 +46,7 @@
                         $("#dropdown").append(option);
                     }
 
-                    $("#dropdown").show();
+                    $("#dropdown").show();++
                 },
                 error: function(error) {
                     console.error("Error:", error);

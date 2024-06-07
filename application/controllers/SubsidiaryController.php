@@ -40,7 +40,7 @@ class SubsidiaryController extends CI_Controller
 	
 public function new_subsidiary()
 	{
-		$response = $this->SBM->add_subsidiary();
+		$response = $this->Subsidiary_model->add_subsidiary();
 		if ($response) {
 			$result = array('status' => 'success', 'message' => 'Data saved successfully!');
 		} else {
@@ -58,7 +58,7 @@ public function new_subsidiary()
 		'DESCRIPTION' => $this->input->post('sub_descript')
 		);
 
-		$response = $this->SBM->edit_subsidiary($sub_id, $update_data);
+		$response = $this->Subsidiary_model>edit_subsidiary($sub_id, $update_data);
 
 		if ($response) {
 			$result = array('status' => 'success', 'message' => 'Data updated successfully!');

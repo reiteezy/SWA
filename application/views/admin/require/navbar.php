@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>bower_components/sweetalert/css/sweetalert2.css">
 <div class="loader-bg">
     <div class="loader-bar"></div>
 </div>
@@ -126,7 +127,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="#" >
                                             <i class="feather icon-user"></i> Profile
                                         </a>
                                     </li>

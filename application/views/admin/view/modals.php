@@ -13,50 +13,35 @@
                             <form role="form" method="POST" action="" enctype="multipart/form-data" id="swaForm">
                                 <!-- <div class="card-body"> -->
                                 <!-- <div class="form-group"> -->
-                                <div class="row">
-                                    <div class="col-md-4 col-xs-12">
-                                        <label>From</label><span style="color: red;">*</span>
-                                        <div class="input-group">
-                                            <?php  
+                                <div class="mb-3 row">
+                                    <label class="form-label col-sm-2 col-form-label">From</label>
+                                    <?php  
                                                 $location = $this->db->get('location_tbl')->result_array();
                                                 ?>
-                                            <select class="form-control hide-select" name="loc" id="loc"
-                                                onchange="handleLocChange()">
-                                                <option value="" hidden selected></option>
-                                                <?php  foreach ($location as $loc): ?>
-                                                <option><?php echo $loc['LOCATION'] ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </div>
+                                    <div class="col-sm-5">
+                                        <select class="form-control hide-select" name="loc" id="loc"
+                                            onchange="handleLocChange()">
+                                            <option value="" hidden selected></option>
+                                            <?php  foreach ($location as $loc): ?>
+                                            <option><?php echo $loc['LOCATION'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
-                                    <div class="col-md-4 col-xs-12">
-                                        <label>&nbsp;</label>
-                                        <input type="hidden" autocomplete="off" class="form-control">
+                                    <div class="col-sm-5">
+                                        <input type="text" id="otherDetails" name="otherDetails" class="form-control"
+                                            placeholder="Others, please specify" style="display: none;">
                                     </div>
-                                    <div class="col-md-4 col-xs-12">
-                                        <label>Control No.</label>
-                                        <input type="text" readonly="readonly" id="control_no" name="control_no"
-                                            class="form-control">
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="form-label col-sm-2 col-form-label">Date</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" id="document_date" name="document_date" class="form-control">
                                     </div>
                                 </div>
                                 <!-- </div> -->
                                 <!-- <div class="form-group"> -->
-                                <div class="row">
-                                    <div class="col-md-4 col-xs-12">
-                                        <label>&nbsp;</label>
-                                        <input type="text" id="otherDetails" name="otherDetails" class="form-control"
-                                            placeholder="Others, please specify" style="display: none;">
-                                    </div>
-                                    <div class="col-md-4 col-xs-12">
-                                        <label>&nbsp;</label>
-                                        <input type="hidden" autocomplete="off" class="form-control">
-                                    </div>
-                                    <div class="col-md-4 col-xs-12">
-                                        <label>Date</label>
-                                        <input type="date" id="document_date" name="document_date" class="form-control">
-                                    </div>
 
-                                </div>
+
                                 <script>
                                 function getDate() {
                                     var today = new Date();
@@ -85,12 +70,13 @@
                                 </script>
                                 <!-- </div> -->
                                 <!-- <div class="form-group"> -->
-                                <div class="row">
-                                    <div class="col-md-4 col-xs-12">
-                                        <label>To</label><span style="color: red;">*</span><span
-                                            style="font-style: italic;"> (Click to select
-                                            subsidiary)</span>
-                                        <input type="hidden" id="sub_id" name="sub_id">
+                                <div class="mb-3 row">
+                                    <input type="hidden" id="sub_id" name="sub_id">
+                                    <label class="form-label col-sm-2 col-form-label">To</label>
+                                    <!-- <span style="color: red;">*</span> -->
+                                    <!-- <span style="font-style: italic;"> (Click to select
+                                            subsidiary)</span> -->
+                                    <div class="col-sm-5">
                                         <div class="input-group">
                                             <input type="text" class="form-control" data-toggle="modal"
                                                 data-target="#assignSubsidiaryModal" readonly="readonly" id="sub_code"
@@ -98,52 +84,14 @@
                                                 title="Search for subsidiary" style="cursor: pointer;">
                                         </div>
                                     </div>
-                                    <!-- <script>
-                                    $(document).ready(function() {
-                                        $(".subsidiary-input").on("click", function() {
-                                            $(".assign-subsidiary-btn").trigger("click");
-                                        });
-                                    });
-                                    </script> -->
-                                    <div class="col-md-4 col-xs-12">
-                                        <label>&nbsp;</label>
-                                        <input type="hidden" readonly="readonly" class="form-control">
-                                    </div>
-                                    <div class="col-md-4 col-xs-12">
-                                        <label>Trans No.</label>
-                                        <input type="text" id="trans_no" name="trans_no" class="form-control" disabled>
-                                    </div>
-                                </div>
-                                <!-- </div>
-                                  <div class="form-group"> -->
-                                <div class="row">
-                                    <div class="col-md-4 col-xs-12">
-                                        <label>&nbsp;</label>
+                                    <div class="col-sm-5">
                                         <input type="text" readonly="readonly" id="sub_descript" name="sub_descript"
                                             class="form-control">
                                     </div>
-                                    <div class="col-md-2 col-xs-12">
-                                        <label>&nbsp;</label>
-                                        <input type="hidden" readonly="readonly" class="form-control">
-                                    </div>
-                                    <div class="col-md-2 col-xs-12">
-                                        <label>&nbsp;</label>
-                                        <input type="hidden" readonly="readonly" class="form-control">
-                                    </div>
-                                    <div class="col-md-2 col-xs-12">
-                                        <label>Per No.</label>
-                                        <input type="text" readonly="readonly" id="per_no" name="per_no"
-                                            class="form-control">
-                                    </div>
-                                    <div class="col-md-2 col-xs-12">
-                                        <label>CRF/CV No.</label>
-                                        <input autocomplete="off" readonly="readonly" type="text" id="crfcv_no"
-                                            name="crfcv_no" class="form-control">
-                                    </div>
                                 </div>
+
                                 <!-- </div> -->
-                                <hr class="rounded">
-                                <div class="text-right">
+                                <div class="text-right" style="text-align: right;">
                                     <button class="btn btn-sm btn-dark btn-flat" type="button" onclick="addItem();"
                                         data-toggle="tooltip" title="Add row"
                                         style="color: #000; background-color: transparent; border-color: #fff;">
@@ -348,7 +296,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <hr class="rounded">
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-3 col-xs-12">
@@ -746,7 +693,7 @@
 
                         <div id="validationMessage" style="color: red;"></div>
                         <div id="validationUser" style="color: red;"></div>
-                       
+
                     </form>
                 </div>
             </div>

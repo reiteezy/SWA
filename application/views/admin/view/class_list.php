@@ -1,4 +1,3 @@
-<?php include("modals.php");?>
 <div class="pcoded-content">
 
     <div class="page-header card">

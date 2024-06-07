@@ -1,5 +1,5 @@
-<script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/jquery/js/jquery.min.js"></script>
-<!-- <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/jquery/js/jquery-3.7.1.min.js"></script> -->
+<!-- <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/jquery/js/jquery.min.js"></script> -->
+<script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/jquery/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/jquery-ui/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/popper.js/js/popper.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/bootstrap/js/bootstrap.min.js"></script>
@@ -12,14 +12,14 @@
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/modernizr/js/modernizr.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/modernizr/js/css-scrollbars.js"></script>
 
-<script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/switchery/js/switchery.min.js"></script>
+<!-- <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/switchery/js/switchery.min.js"></script> -->
 
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
 <script src="<?= base_url('assets/'); ?>bower_components/cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.min.js"></script>
 
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/bootstrap-maxlength/js/bootstrap-maxlength.js"></script>
 
-<script type="text/javascript" src="<?= base_url('assets/'); ?>assets/pages/advance-elements/switches.js"></script>
+<!-- <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/pages/advance-elements/switches.js"></script> -->
 <script src="<?= base_url('assets/'); ?>assets/js/pcoded.min.js"></script>
 <script src="<?= base_url('assets/'); ?>assets/js/vertical/vertical-layout.min.js"></script>
 <script src="<?= base_url('assets/'); ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
@@ -58,7 +58,7 @@
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/pages/advance-elements/select2-custom.js"></script>|
 
 
-<script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/modal.js"></script>
+<!-- <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/modal.js"></script> -->
 
 
 <script src="<?= base_url('assets/'); ?>assets/js/classie.js"></script>
