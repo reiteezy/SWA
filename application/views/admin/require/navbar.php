@@ -115,9 +115,10 @@
                         <li class="user-profile header-notification">
                             <div class="dropdown-primary dropdown">
                                 <div class="dropdown-toggle" data-bs-toggle="dropdown">
-                                    <img src="<?php echo base_url();?>assets/assets/images/avatar-4.jpg"
-                                        class="img-radius" alt="User-Profile-Image">
-                                    <span>Admin</span>
+                                <?php $emp_img = $this->session->userdata('login_image'); ?>
+                                <img src="http://172.16.161.34:8080/hrms<?php echo substr($emp_img, 2); ?>" alt="user image"
+                                class="img-radius">
+                                    <span><?php echo $this->session->userdata('login_empname'); ?></span>
                                     <i class="feather icon-chevron-down"></i>
                                 </div>
                                 <ul class="show-notification profile-notification dropdown-menu"

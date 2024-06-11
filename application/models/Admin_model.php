@@ -33,6 +33,7 @@ class Admin_model extends CI_Model
                     'login_empdept' => $row->EMP_DEPT,
                     'login_empbu' => $row->EMP_BU,
                     'login_status' => $row->STATUS,
+                    'login_image' => $row->EMP_PHOTO,
                     'login_class' => $row->CLASS,
                     'login_pass' => $row->PASSWORD,
                     'login_cd' => $row->DESCRIPTION,
