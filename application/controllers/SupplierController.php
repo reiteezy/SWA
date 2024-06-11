@@ -8,15 +8,9 @@ class SupplierController extends CI_Controller
         parent::__construct();
  		$this->load->database();
 		$this->load->model('Supplier_model');
-		
-        // $this->load->library('form_validation');
-        // $this->load->library('upload');
-		// $this->load->model('Supplier_model', 'SPM');
-		// $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
-		// $this->output->set_header('Pragma: no-cache');
-		// if (!$this->session->userdata('login_id')) {
-        //     redirect(base_url(), 'refresh');
-        // }
+		if (!$this->session->userdata('login_id')) {
+            redirect(base_url(), 'refresh');
+        }
     }
     
     public function supplier() 
@@ -43,7 +37,7 @@ class SupplierController extends CI_Controller
 
 public function new_supplier() 
 	{
-		$response = $this->SPM->add_supplier();
+		$response = $this->Supplier_model->add_supplier();
 		if ($response) {
 			$result = array('status' => 'success', 'message' => 'Data saved successfully!');
 		} else {
@@ -65,7 +59,7 @@ public function new_supplier()
 		'TEL_NO' => $this->input->post('sup_telno')
 		);
 
-		$response = $this->SPM->edit_supplier($sup_id, $update_data);
+		$response = $this->Supplier_model->edit_supplier($sup_id, $update_data);
 
 		if ($response) {
 			$result = array('status' => 'success', 'message' => 'Data updated successfully!');
@@ -78,7 +72,7 @@ public function new_supplier()
 
 	public function del_supplier($sup_id) 
 	{
-		$del_supplier = $this->SPM->del_supplier($sup_id); 
+		$del_supplier = $this->Supplier_model->del_supplier($sup_id); 
 		if($del_supplier['deleted']=='done'){
 			$result = array('status' => 'success', 'message' => 'Data deleted successfully!');
 		}  else {
@@ -97,7 +91,7 @@ public function new_supplier()
 		$this->breadcrumb->add('Edit', base_url('supplier/edit'), true);
 		$data['menu'] = 'Supplier';
 		$data['sup_id'] = $sup_id;
-		$data['sup_data'] = $this->SPM->get_supplier($sup_id);
+		$data['sup_data'] = $this->Supplier_model->get_supplier($sup_id);
 		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
 		$this->load->view('admin/edit_supplier', $data);
 		} else {
@@ -111,7 +105,7 @@ public function new_supplier()
 		{
 		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
 		$this->breadcrumb->add('Supplier', base_url('supplier'));
-		$view_sup = $this->SPM->view_supplier();
+		$view_sup = $this->Supplier_model->view_supplier();
 		$data['menu'] = 'Supplier';
 		$data['suppliers'] = $view_sup;
 		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();

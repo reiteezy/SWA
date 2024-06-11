@@ -481,8 +481,8 @@
     </div>
 </div>
 <!------------------------ END OF ADD SUBSIDIARY MODAL------------------>
-<!------------------------ SUPPLIER MODAL------------------>
-<div class="modal fade" id="addSupModal" tabindex="-1" role="dialog">
+<!-- ---------------------- SUPPLIER MODAL------------------>
+<!-- <div class="modal fade" id="addSupModal" tabindex="-1" role="dialog">
     <div class="modal-dialog-centered modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -549,12 +549,12 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
-<!------------------------ END OF ADD SUPPLIER MODAL------------------>
+<!------------------------ END OF ADD SUPPLIER MODAL---------------- -->
 
 <!------------------------ USER TYPE MODAL------------------>
-
+<!-- 
 <div class="modal fade" id="addTypeModal" tabindex="-1" role="dialog">
     <div class="modal-dialog-centered modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -590,11 +590,11 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!------------------------ END OF ADD USER TYPE MODAL------------------>
 <!------------------------ USERS MODAL------------------>
 
-<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog">
+<!-- <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog">
     <div class="modal-dialog-centered modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -703,5 +703,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!------------------------ END OF ADD USERS MODAL------------------>

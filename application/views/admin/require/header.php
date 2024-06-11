@@ -14,8 +14,8 @@
 
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
 
-<link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>bower_components/bootstrap/css/bootstrap.min.css">
-<!-- <link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>bower_components/bootstrap/css/bootstrap-4.5.2.min.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>bower_components/bootstrap/css/bootstrap.min.css"> -->
+<link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>bower_components/bootstrap/css/bootstrap-4.5.2.min.css">
 
 <link rel="stylesheet" href="<?= base_url('assets/'); ?>assets/pages/waves/css/waves.min.css" type="text/css" media="all">
 

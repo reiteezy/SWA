@@ -34,12 +34,14 @@
                         <div class="col-sm-12">
 
 
-                        <div class="card table-card">
+                            <div class="card table-card">
                                 <div class="card-header">
                                     <h5>User Type List</h5>
                                 </div>
                                 <div class="card-block" style="text-align: right;">
-                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addTypeModal"><i class="feather icon-plus"></i>Add New User Type</button>
+                                    <button type="button" class="btn" data-bs-toggle="modal"
+                                        data-bs-target="#addTypeModal"><i class="feather icon-plus"></i>Add New User
+                                        Type</button>
                                 </div>
                                 <div class="card-block">
                                     <div class="table-responsive">
@@ -83,3 +85,150 @@
         </div>
     </div>
 </div>
+<!------------------------ USER TYPE MODAL------------------>
+
+<div class="modal fade" id="addTypeModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog-centered modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add New User Type</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card-block">
+                    <form role="form" id="classForm" method="POST" action="<?php echo base_url() ?>ClassController/new_type" enctype="multipart/form-data">
+                        <div class="mb-3 row">
+                            <label class="form-label col-sm-2 col-form-label"> Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="user_class" id="user_class"
+                                    placeholder="Enter class name">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="form-label col-sm-2 col-form-label"> Description</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="user_descript" name="user_descript"
+                                    placeholder="Enter description">
+                            </div>
+                        </div>
+                        <span id="validationMessage" class="messages" style="color: red"></span>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect " data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light" id="classSaveButton">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------ END OF ADD USER TYPE MODAL------------------>
+<script>
+$(document).ready(function() {
+    var classForm = $('#classForm');
+    var classSaveButton = $('#classSaveButton');
+    var initialClassValue = $('[name="user_class"]').val();
+    var initialDescriptionValue = $('[name="user_descript"]').val();
+
+    classSaveButton.on('click', function() {
+        var classInput = $('[name="user_class"]');
+        var descriptionInput = $('[name="user_descript"]');
+        var validationMessage = $('#validationMessage');
+
+        if (classInput.val().trim() === '' || descriptionInput.val().trim() === '') {
+            validationMessage.text('Please fill in all required fields.');
+            return;
+        }
+
+        // Check if values have changed
+        if (classInput.val() === initialClassValue && descriptionInput.val() ===
+            initialDescriptionValue) {
+            // Display a Swal message for no changes
+            Swal.fire({
+                title: 'No changes made',
+                text: 'You haven\'t made any changes.',
+                icon: 'info',
+            });
+            return;
+        }
+
+        validationMessage.text('');
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You want to save this data?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit the form using AJAX
+                $.ajax({
+                    url: classForm.attr('action'),
+                    type: classForm.attr('method'),
+                    data: new FormData(classForm[0]),
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        console.log("Response:", response);
+                        var responseData = response;
+
+                        Swal.fire({
+                            title: responseData.status === 'success' ?
+                                'Success' : 'Error',
+                            text: responseData.message,
+                            icon: responseData.status === 'success' ?
+                                'success' : 'error'
+                        }).then(() => {
+                            location.reload(true);
+                        });
+                    },
+                    error: function(error) {
+                        console.log("Error: " + error);
+                    }
+                });
+            }
+        });
+    });
+
+    $('.deleteButton').on('click', function() {
+        var deleteUrl = $(this).data('delete-url');
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You want to delete this data?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: deleteUrl,
+                    type: 'GET',
+                    success: function(response) {
+                        console.log("Response:", response);
+                        var responseData = response;
+
+                        Swal.fire({
+                            title: responseData.status === 'success' ?
+                                'Success' : 'Error',
+                            text: responseData.message,
+                            icon: responseData.status === 'success' ?
+                                'success' : 'error'
+                        }).then(() => {
+                            location.reload(true);
+                        });
+                    },
+                    error: function(error) {
+                        console.log("Error: " + error);
+                    }
+                });
+            }
+        });
+    });
+});
+</script>

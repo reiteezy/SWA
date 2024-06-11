@@ -8,6 +8,9 @@ class ClassController extends CI_Controller
         parent::__construct();
  		$this->load->database();
 		$this->load->model('Class_model');
+		if (!$this->session->userdata('login_id')) {
+            redirect(base_url(), 'refresh');
+        }
     }
 
     public function class_list()
@@ -71,7 +74,7 @@ class ClassController extends CI_Controller
 
 	public function del_type($class_id)
 	{
-		$del_type = $this->CLM->del_type($class_id); 
+		$del_type = $this->Class_model->del_type($class_id); 
 		if($del_type['deleted']=='done'){
 			$result = array('status' => 'success', 'message' => 'Data deleted successfully!');
 		}  else {
@@ -94,7 +97,7 @@ class ClassController extends CI_Controller
 		$this->breadcrumb->add('User type', base_url('type'));
 		if ($this->session->userdata('priv_ut') == 1)
 		{
-		$view_type = $this->CLM->view_type();
+		$view_type = $this->Class_model->view_type();
 		$data['menu'] = 'Type';
 		$data['types'] = $view_type;
 		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
@@ -113,7 +116,7 @@ class ClassController extends CI_Controller
 		{
 		$data['menu'] = 'Type';
 		$data['class_id'] = $class_id;
-		$data['class_data'] = $this->CLM->get_type($class_id);
+		$data['class_data'] = $this->Class_model->get_type($class_id);
 		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
 		// var_dump($data);
 		$this->load->view('admin/edit_type', $data);

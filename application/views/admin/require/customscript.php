@@ -1,275 +1,236 @@
 
-<script>$(document).ready(function() {
-    $("#emp_name").on("input", function() {
-        var emp_name = $(this).val();
+<script>
+$(document).ready(function() {
+//     $("#emp_name").on("input", function() {
+//         var emp_name = $(this).val();
 
-        if (emp_name.length > 0) {
-            $.ajax({
-                url: 'http://172.16.161.34/api/hrms/filter/employee/name/',
-                type: 'GET',
-                data: {
-                    'q': emp_name
-                },
-                success: function(response) {
-                    // console.log("Response:", response);
-                    var response = JSON.parse(response);
-                    var employeeData = response.data.employee;
+//         if (emp_name.length > 0) {
+//             $.ajax({
+//                 url: 'http://172.16.161.34/api/hrms/filter/employee/name/',
+//                 type: 'GET',
+//                 data: {
+//                     'q': emp_name
+//                 },
+//                 success: function(response) {
+//                     // console.log("Response:", response);
+//                     var response = JSON.parse(response);
+//                     var employeeData = response.data.employee;
 
-                    $("#dropdown").html("");
-                    for (var c = 0; c < employeeData.length; c++) {
-                        // console.log(employeeData)
-                        var name = employeeData[c].employee_name;
-                        var id = employeeData[c].employee_id;
-                        var pos = employeeData[c].employee_position;
-                        var dept = employeeData[c].employee_dept;
-                        var bu = employeeData[c].employee_bunit;
-                        var img = employeeData[c].employee_photo;
-                        var pass = 'alturas2023';
+//                     $("#dropdown").html("");
+//                     for (var c = 0; c < employeeData.length; c++) {
+//                         // console.log(employeeData)
+//                         var name = employeeData[c].employee_name;
+//                         var id = employeeData[c].employee_id;
+//                         var pos = employeeData[c].employee_position;
+//                         var dept = employeeData[c].employee_dept;
+//                         var bu = employeeData[c].employee_bunit;
+//                         var img = employeeData[c].employee_photo;
+//                         var pass = 'alturas2023';
 
-                        var option = $('<div>')
-                            .addClass('dropdown-item')
-                            .css('cursor', 'pointer')
-                            .text(name)
-                            .click((function(name, id, pos, dept, bu) {
-                                return function() {
-                                    $("#emp_name").val(name);
-                                    $("#emp_pos").val(pos);
-                                    $("#emp_dept").val(dept);
-                                    $("#emp_bu").val(bu);
-                                    $("#emp_id, #username").val(id);
-                                    $("#password").val(pass);
-                                    $("#emp_photo").val(img);
-                                    $("#dropdown").hide();
-                                };
-                            })(name, id, pos, dept, bu));
+//                         var option = $('<div>')
+//                             .addClass('dropdown-item')
+//                             .css('cursor', 'pointer')
+//                             .text(name)
+//                             .click((function(name, id, pos, dept, bu) {
+//                                 return function() {
+//                                     $("#emp_name").val(name);
+//                                     $("#emp_pos").val(pos);
+//                                     $("#emp_dept").val(dept);
+//                                     $("#emp_bu").val(bu);
+//                                     $("#emp_id, #username").val(id);
+//                                     $("#password").val(pass);
+//                                     $("#emp_photo").val(img);
+//                                     $("#dropdown").hide();
+//                                 };
+//                             })(name, id, pos, dept, bu));
 
-                        $("#dropdown").append(option);
-                    }
+//                         $("#dropdown").append(option);
+//                     }
 
-                    $("#dropdown").show();++
-                },
-                error: function(error) {
-                    console.error("Error:", error);
-                }
-            });
-        } else {
-            $("#dropdown").hide();
-            $("#emp_pos").val("");
-            $("#emp_dept").val("");
-            $("#emp_bu").val("");
-            $("#emp_id").val("");
-            $("#username").val("");
-            $("#password").val("");
-            $("#emp_photo").val("");
-        }
-
-
-    });
-    document.getElementById('dropdown').addEventListener('click', function() {
-        var empName = document.getElementById('emp_name').value;
-        checkNameAvailability(empName);
-    });
-
-    document.getElementById('emp_name').addEventListener('input', function() {
-        var empName = this.value;
-        checkNameAvailability(empName);
-    });
-
-    document.getElementById('emp_name').addEventListener('click', function() {
-        var empName = this.value;
-        checkNameAvailability(empName);
-    });
-
-    var validationMessage = document.getElementById('validationMessage');
+//                     $("#dropdown").show();++
+//                 },
+//                 error: function(error) {
+//                     console.error("Error:", error);
+//                 }
+//             });
+//         } else {
+//             $("#dropdown").hide();
+//             $("#emp_pos").val("");
+//             $("#emp_dept").val("");
+//             $("#emp_bu").val("");
+//             $("#emp_id").val("");
+//             $("#username").val("");
+//             $("#password").val("");
+//             $("#emp_photo").val("");
+//         }
 
 
-$("#user_class").change(function() {
-    var selectedClassID = $(this).val();
+//     });
+//     document.getElementById('dropdown').addEventListener('click', function() {
+//         var empName = document.getElementById('emp_name').value;
+//         checkNameAvailability(empName);
+//     });
 
-    $.ajax({
-        type: "POST",
-        url: "<?php echo base_url('AdminController/get_description'); ?>",
-        data: {
-            class_id: selectedClassID
-        },
-        dataType: "json",
-        success: function(response) {
-            $("#class_description").val(response);
-        },
-        error: function(xhr, status, error) {
-            console.error(xhr.responseText);
-        }
-    });
-});
+//     document.getElementById('emp_name').addEventListener('input', function() {
+//         var empName = this.value;
+//         checkNameAvailability(empName);
+//     });
 
-document.getElementById('dropdown').addEventListener('click', function() {
-    var empName = document.getElementById('emp_name').value;
-    checkNameAvailability(empName);
-});
+//     document.getElementById('emp_name').addEventListener('click', function() {
+//         var empName = this.value;
+//         checkNameAvailability(empName);
+//     });
 
-document.getElementById('emp_name').addEventListener('input', function() {
-    var empName = this.value;
-    checkNameAvailability(empName);
-});
-
-document.getElementById('emp_name').addEventListener('click', function() {
-    var empName = this.value;
-    checkNameAvailability(empName);
-});
-var validationMessage = document.getElementById('validationMessage');
-
-function checkNameAvailability(emp_name) {
-    console.log(emp_name)
-    $.ajax({
-        type: 'GET',
-        url: '<?php echo base_url() ?>AdminController/check_name_availability',
-        data: {
-            emp_name: emp_name
-        },
-
-        success: function(data) {
-            console.log(data.taken)
-            if (data.taken === true) {
-                validationNameAvailability.textContent = 'User already exists.';
-            } else {
-                validationNameAvailability.textContent = '';
-            }
-            return;
-        },
-        error: function() {}
-    });
-};
+//     var validationMessage = document.getElementById('validationMessage');
 
 
-//USER CLASS, DESCRIPTION---------------------------
+// $("#user_class").change(function() {
+//     var selectedClassID = $(this).val();
 
-    $("#user_class").change(function() {
-        var selectedClassID = $(this).val();
+//     $.ajax({
+//         type: "POST",
+//         url: "<?php echo base_url('AdminController/get_description'); ?>",
+//         data: {
+//             class_id: selectedClassID
+//         },
+//         dataType: "json",
+//         success: function(response) {
+//             $("#class_description").val(response);
+//         },
+//         error: function(xhr, status, error) {
+//             console.error(xhr.responseText);
+//         }
+//     });
+// });
 
-        $.ajax({
-            type: "POST",
-            url: "<?php echo base_url('AdminController/get_description'); ?>",
-            data: {
-                class_id: selectedClassID
-            },
-            dataType: "json",
-            success: function(response) {
-                $("#class_description").val(response);
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
-            }
-        });
-    });
+// document.getElementById('dropdown').addEventListener('click', function() {
+//     var empName = document.getElementById('emp_name').value;
+//     checkNameAvailability(empName);
+// });
 
+// document.getElementById('emp_name').addEventListener('input', function() {
+//     var empName = this.value;
+//     checkNameAvailability(empName);
+// });
 
+// document.getElementById('emp_name').addEventListener('click', function() {
+//     var empName = this.value;
+//     checkNameAvailability(empName);
+// });
+// var validationMessage = document.getElementById('validationMessage');
 
+// function checkNameAvailability(emp_name) {
+//     console.log(emp_name)
+//     $.ajax({
+//         type: 'GET',
+//         url: '<?php echo base_url() ?>AdminController/check_name_availability',
+//         data: {
+//             emp_name: emp_name
+//         },
 
-document.getElementById('dropdown').addEventListener('click', function() {
-    var empName = document.getElementById('emp_name').value;
-    checkNameAvailability(empName);
-});
-
-document.getElementById('emp_name').addEventListener('input', function() {
-    var empName = this.value;
-    checkNameAvailability(empName);
-});
-
-document.getElementById('emp_name').addEventListener('click', function() {
-    var empName = this.value;
-    checkNameAvailability(empName);
-});
-var validationMessage = document.getElementById('validationMessage');
-
-function checkNameAvailability(emp_name) {
-    console.log(emp_name)
-    $.ajax({
-        type: 'GET',
-        url: '<?php echo base_url() ?>AdminController/check_name_availability',
-        data: {
-            emp_name: emp_name
-        },
-
-        success: function(data) {
-            console.log(data.taken)
-            if (data.taken === true) {
-                validationNameAvailability.textContent = 'User already exists.';
-            } else {
-                validationNameAvailability.textContent = '';
-            }
-            return;
-        },
-        error: function() {}
-    });
-};
+//         success: function(data) {
+//             console.log(data.taken)
+//             if (data.taken === true) {
+//                 validationNameAvailability.textContent = 'User already exists.';
+//             } else {
+//                 validationNameAvailability.textContent = '';
+//             }
+//             return;
+//         },
+//         error: function() {}
+//     });
+// };
 
 
-    var saveButton = document.getElementById('saveButton');
+// //USER CLASS, DESCRIPTION---------------------------
 
+//     $("#user_class").change(function() {
+//         var selectedClassID = $(this).val();
 
-    saveButton.addEventListener('click', function() {
-        var empNameInput = document.querySelector('[name="emp_name"]');
-        var userClassInput = document.querySelector('[name="user_class"]');
-        var usernameInput = document.querySelector('[name="username"]');
+//         $.ajax({
+//             type: "POST",
+//             url: "<?php echo base_url('AdminController/get_description'); ?>",
+//             data: {
+//                 class_id: selectedClassID
+//             },
+//             dataType: "json",
+//             success: function(response) {
+//                 $("#class_description").val(response);
+//             },
+//             error: function(xhr, status, error) {
+//                 console.error(xhr.responseText);
+//             }
+//         });
+//     });
 
 
 
-        if (empNameInput.value.trim() === '' || userClassInput.value.trim() === '') {
-            validationMessage.textContent = 'Please fill in all required fields.';
-            return;
-        } else {
-            validationMessage.textContent = '';
-        }
-        if (usernameInput.value.trim() === '') {
-            validationUser.textContent = 'Invalid user';
-            return;
-        } else {
-            validationUser.textContent = '';
-        }
-        checkNameAvailability(empNameInput.value.trim());
+//     var saveButton = document.getElementById('saveButton');
 
-        if (validationNameAvailability.textContent !== '') {
-            return;
-        }
-        validationMessage.textContent = '';
-        Swal.fire({
-            title: 'Are you sure?',
-            text: 'You want to save this data?',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: document.getElementById('form1').action,
-                    type: document.getElementById('form1').method,
-                    data: new FormData(document.getElementById('form1')),
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        console.log("Response:", response);
-                        var responseData = response;
 
-                        Swal.fire({
-                            title: responseData.status === 'success' ?
-                                'Success' : 'Error',
-                            text: responseData.message,
-                            icon: responseData.status === 'success' ?
-                                'success' : 'error'
-                        }).then(() => {
-                            window.location.href =
-                                '<?php echo base_url() ?>user/user_list';
-                        });
-                    },
-                    error: function(error) {
-                        console.log("Error:", error);
-                    }
-                });
-            }
-        });
-    });
+//     saveButton.addEventListener('click', function() {
+//         var empNameInput = document.querySelector('[name="emp_name"]');
+//         var userClassInput = document.querySelector('[name="user_class"]');
+//         var usernameInput = document.querySelector('[name="username"]');
+
+
+
+//         if (empNameInput.value.trim() === '' || userClassInput.value.trim() === '') {
+//             validationMessage.textContent = 'Please fill in all required fields.';
+//             return;
+//         } else {
+//             validationMessage.textContent = '';
+//         }
+//         if (usernameInput.value.trim() === '') {
+//             validationUser.textContent = 'Invalid user';
+//             return;
+//         } else {
+//             validationUser.textContent = '';
+//         }
+//         checkNameAvailability(empNameInput.value.trim());
+
+//         if (validationNameAvailability.textContent !== '') {
+//             return;
+//         }
+//         validationMessage.textContent = '';
+//         Swal.fire({
+//             title: 'Are you sure?',
+//             text: 'You want to save this data?',
+//             icon: 'question',
+//             showCancelButton: true,
+//             confirmButtonColor: '#3085d6',
+//             cancelButtonColor: '#d33',
+//             confirmButtonText: 'Yes'
+//         }).then((result) => {
+//             if (result.isConfirmed) {
+//                 $.ajax({
+//                     url: document.getElementById('form1').action,
+//                     type: document.getElementById('form1').method,
+//                     data: new FormData(document.getElementById('form1')),
+//                     processData: false,
+//                     contentType: false,
+//                     success: function(response) {
+//                         console.log("Response:", response);
+//                         var responseData = response;
+
+//                         Swal.fire({
+//                             title: responseData.status === 'success' ?
+//                                 'Success' : 'Error',
+//                             text: responseData.message,
+//                             icon: responseData.status === 'success' ?
+//                                 'success' : 'error'
+//                         }).then(() => {
+//                             window.location.href =
+//                                 '<?php echo base_url() ?>user/user_list';
+//                         });
+//                     },
+//                     error: function(error) {
+//                         console.log("Error:", error);
+//                     }
+//                 });
+//             }
+//         });
+//     });
    
 
     // View User Button

@@ -9,6 +9,9 @@ class UserController extends CI_Controller
  		$this->load->database();
 		$this->load->model('User_model');
 		$this->load->model('Class_model');
+		if (!$this->session->userdata('login_id')) {
+            redirect(base_url(), 'refresh');
+        }
     }
 
     public function users() 
@@ -21,7 +24,7 @@ class UserController extends CI_Controller
 		$this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
         $this->load->view('admin/require/sidebar');
-        $this->load->view('admin/require/customscript');
+        // $this->load->view('admin/require/customscript');
         $this->load->view('admin/view/user_list', $data);
         $this->load->view('admin/require/footer');
 	}
@@ -36,14 +39,14 @@ class UserController extends CI_Controller
 		$this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
         $this->load->view('admin/require/sidebar');
-        $this->load->view('admin/require/customscript');
+        // $this->load->view('admin/require/customscript');
         $this->load->view('admin/view/add_user', $data);
         $this->load->view('admin/require/footer');
 	}
 
     public function new_user() 
 	{
-		$response = $this->UM->add_user();
+		$response = $this->User_model->add_user();
 		if ($response) {
 			$result = array('status' => 'success', 'message' => 'Data saved successfully!');
 		} else {
@@ -56,7 +59,7 @@ class UserController extends CI_Controller
 	public function edit_user()
 	{
 		$user_class_id = $this->input->post('user_class');
-        $class_data = $this->UM->get_user_data($user_class_id);
+        $class_data = $this->User_model->get_user_data($user_class_id);
 		$user_id = $this->input->post('user_id');
 
 			$data = array(
@@ -71,7 +74,7 @@ class UserController extends CI_Controller
 		
 		);
 			
-		$response = $this->UM->update_user_data($user_id, $data);
+		$response = $this->User_model->update_user_data($user_id, $data);
 
 		if ($response) {
 			$result = array('status' => 'success', 'message' => 'Data updated successfully!');
@@ -89,8 +92,8 @@ class UserController extends CI_Controller
 		if ($this->session->userdata('priv_users') == 1)
 		{
 		$data['menu'] = 'Users';
-		$data['users'] = $this->UM->get_user_list();
-		$data['classes'] = $this->CLM->get_class_data();
+		$data['users'] = $this->User_model->get_user_list();
+		$data['classes'] = $this->Class_model->get_class_data();
 		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
         $this->load->view('admin/users', $data);
 		} else {
@@ -102,12 +105,12 @@ class UserController extends CI_Controller
 	{
 		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
 		$this->breadcrumb->add('Users', base_url('users'));
-		$this->breadcrumb->add('Edit', base_url('users'), true); 
+		$this->breadcrumb->add('Edit', base_url('users'), true);
 		if ($this->session->userdata('priv_users') == 1)
 		{
-		$data['menu'] = 'Users';	
+		$data['menu'] = 'Users';
 		$data['user_id'] = $user_id;
-		$data['user_data'] = $this->UM->get_user_data($user_id);
+		$data['user_data'] = $this->User_model->get_user_data($user_id);
 		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
 		// var_dump($data);
 		$this->load->view('admin/edit_user', $data);

@@ -3,7 +3,7 @@
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/jquery-ui/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/popper.js/js/popper.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/bootstrap/js/bootstrap.min.js"></script>
-<!-- <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/bootstrap/js/bootstrap-4.5.2.min.js"></script> -->
+<script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/bootstrap/js/bootstrap-4.5.2.min.js"></script>
 
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
 
@@ -41,8 +41,9 @@
 
 <script src="<?= base_url('assets/'); ?>assets/pages/data-table/js/data-swa-custom.js"></script>
 
-<script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/sweetalert/js/sweetalert.min.js"></script>
+<!-- <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/sweetalert/js/sweetalert.min.js"></script> -->
 
+<script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/sweetalert/js/sweetalert2.min.js"></script>
 
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/pages/toolbar/jquery.toolbar.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/pages/toolbar/custom-toolbar.js"></script>

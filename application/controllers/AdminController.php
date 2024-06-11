@@ -8,15 +8,11 @@ class AdminController extends CI_Controller
         parent::__construct();
  		$this->load->database();
 		//  $this->load->database('odbc');
-        // $this->load->library('form_validation');
-        // $this->load->library('upload');
 		$this->load->model('Admin_model');
-		// $this->load->model('User_model');
-		// $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
-		// $this->output->set_header('Pragma: no-cache');
-		// if (!$this->session->userdata('login_id')) {
-        //     redirect(base_url(), 'refresh');
-        // }
+		$this->load->model('User_model');
+		if (!$this->session->userdata('login_id')) {
+            redirect(base_url(), 'refresh');
+        }
     }
 
 	public function error404()
@@ -43,9 +39,9 @@ class AdminController extends CI_Controller
             redirect(base_url(), 'refresh'); 
 
 		$this->breadcrumb->add('', base_url('home'));
-		$swa_data = $this->AM->view_swa_data();
+		$swa_data = $this->Admin_model->view_swa_data();
 		$noSwaDataFound = empty($swa_data);
-		$per_data = $this->AM->view_per_data();
+		$per_data = $this->Admin_model->view_per_data();
 		$noPerDataFound = empty($per_data);
 		$data['per_datas'] = $per_data;
 		$data['noPerDataFound'] = $noPerDataFound;
@@ -72,7 +68,7 @@ class AdminController extends CI_Controller
 		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
 		$this->breadcrumb->add('User Filtering', base_url('filter'));
 		$data['menu'] = 'Filtering';
-		$data['users'] = $this->UM->get_user_list();
+		$data['users'] = $this->User_model->get_user_list();
 		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
         $this->load->view('admin/user_filtering', $data);
 		} else {
@@ -91,7 +87,7 @@ class AdminController extends CI_Controller
 
 	public function new_swa()
 	{
-		$swa_id = $this->AM->add_swa();
+		$swa_id = $this->Admin_model->add_swa();
 		if ($swa_id) {
 			$response = array('status' => 'success', 'message' => 'Data saved successfully!', 'swaId' => $swa_id);
 		} else {
@@ -103,7 +99,7 @@ class AdminController extends CI_Controller
 	}
 	public function new_per()
 	{
-		$per_id = $this->AM->add_per();
+		$per_id = $this->Admin_model->add_per();
 		if ($per_id) {
 			$response = array('status' => 'success', 'message' => 'Data saved successfully!', 'perId' => $per_id);
 		} else {
@@ -119,7 +115,7 @@ class AdminController extends CI_Controller
 		if ($this->session->userdata('priv_swavo') == 1 ){
 		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
 		$this->breadcrumb->add('Stock Withdrawal Advice', base_url('swa'));
-			$swa_data = $this->AM->view_swa_data();
+			$swa_data = $this->Admin_model->view_swa_data();
 			$noDataFound = empty($swa_data);
 			$data['menu'] = 'swa';
 			$data['swa_datas'] = $swa_data;
@@ -136,7 +132,7 @@ class AdminController extends CI_Controller
 	{
 		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
 		$this->breadcrumb->add('Reports', base_url('reports')); 
-		$swa_data = $this->AM->view_swa_data();
+		$swa_data = $this->Admin_model->view_swa_data();
 		$noDataFound = empty($swa_data);
 		$data['menu'] = 'swa_reports';
 		$data['swa_datas'] = $swa_data;
@@ -154,7 +150,7 @@ class AdminController extends CI_Controller
 		$this->breadcrumb->add('View', base_url('swa/view'), true); 
 		$data['menu'] = 'swa';
 		$data['swa_id'] = $swa_id;
-		$data['swa_data'] = $this->AM->get_swa_data($swa_id);
+		$data['swa_data'] = $this->Admin_model->get_swa_data($swa_id);
 		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
 				$this->load->view('admin/view_swa', $data);
 			} else {
@@ -184,7 +180,7 @@ class AdminController extends CI_Controller
 		$this->breadcrumb->add('View', base_url('per/view'), true); 
 		$data['menu'] = 'per';
 		$data['per_id'] = $per_id;
-		$data['per_data'] = $this->AM->get_per_data($per_id);
+		$data['per_data'] = $this->Admin_model->get_per_data($per_id);
 		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
 				$this->load->view('admin/view_per', $data);
 	}
@@ -194,7 +190,7 @@ class AdminController extends CI_Controller
 		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
 		$this->breadcrumb->add('MIS', base_url('mis'));
 		if ($this->session->userdata('priv_swamis') == 1){
-			$swa_data = $this->AM->view_swa_data();
+			$swa_data = $this->Admin_model->view_swa_data();
 			$noDataFound = empty($swa_data);
 			$data['menu'] = 'swa_mis';
 			$data['swa_datas'] = $swa_data;
@@ -211,7 +207,7 @@ class AdminController extends CI_Controller
 		$this->breadcrumb->add('<i class="fas fa-home"></i>  Home', base_url());
 		$this->breadcrumb->add('Accounting', base_url('accounting'));
 		if ($this->session->userdata('priv_swaacctg') == 1){
-		$swa_data = $this->AM->view_swa_data();
+		$swa_data = $this->Admin_model->view_swa_data();
 		$noDataFound = empty($swa_data);
 		$data['swa_datas'] = $swa_data;
 		$data['noDataFound'] = $noDataFound;
@@ -239,20 +235,20 @@ class AdminController extends CI_Controller
 	
 	public function get_itemfile() 
 	{
-		$response['data'] = $this->AM->get_itemfile_data();
+		$response['data'] = $this->Admin_model->get_itemfile_data();
 		echo json_encode($response);
 	}
 	
 	public function get_swa_per() 
 	{
-		$response['data'] = $this->AM->per_swa_details();
+		$response['data'] = $this->Admin_model->per_swa_details();
 		echo json_encode($response);
 	}
 	
 		
 	public function get_swa_per_details() {
         $swa_id = $this->input->get('swa_id');
-        $response['data'] = $this->AM->get_swa_details($swa_id);
+        $response['data'] = $this->Admin_model->get_swa_details($swa_id);
         echo json_encode($response);
     }
 
@@ -261,7 +257,7 @@ class AdminController extends CI_Controller
 		$this->breadcrumb->add('<i class="fas fa-home"></i>  Home', base_url());
 		$this->breadcrumb->add('Promo Execution Report', base_url('per'));
 		if ($this->session->userdata('priv_per') == 1 || $this->session->userdata('priv_pervo') == 1 ){
-		$per_data = $this->AM->view_per_data();
+		$per_data = $this->Admin_model->view_per_data();
 		$noDataFound = empty($per_data);
 		$data['menu'] = 'per';
 		$data['per_datas'] = $per_data;
@@ -396,7 +392,7 @@ public function acctg_status_changed()
 	{
 		$user_id = $this->input->post('user_id');
 		$new_password = $this->input->post('new_password'); 
-		$response = $this->AM->updatePassword($user_id, $new_password);
+		$response = $this->Admin_model->updatePassword($user_id, $new_password);
 		if ($response) {
 			$result = array('status' => 'success', 'message' => 'Password changed!');
 			
@@ -409,7 +405,7 @@ public function acctg_status_changed()
 	public function check_username_availability() 
 	{
         $username = $this->input->get('username');
-        $is_taken = $this->AM->is_username_taken($username);
+        $is_taken = $this->Admin_model->is_username_taken($username);
         $response = ['taken' => $is_taken];
         $this->output
             ->set_content_type('application/json')
@@ -419,7 +415,7 @@ public function acctg_status_changed()
 	public function check_name_availability() 
 	{
         $emp_name = $this->input->get('emp_name');
-        $is_taken = $this->AM->is_name_taken($emp_name);
+        $is_taken = $this->Admin_model->is_name_taken($emp_name);
         $response = ['taken' => $is_taken];
         $this->output
             ->set_content_type('application/json')
@@ -434,7 +430,7 @@ public function acctg_status_changed()
 		$this->breadcrumb->add('User Menu', base_url('privilege'));
 		if ($this->session->userdata('priv_um') == 1){
 		$data['menu'] = 'User_menu';			
-		$data['classes'] = $this->AM->view_class_privilege();
+		$data['classes'] = $this->Admin_model->view_class_privilege();
 		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
 
 		$this->load->view('admin/user_menu', $data);
@@ -447,14 +443,14 @@ public function acctg_status_changed()
 	public function view_update_privilege($class_id)
 	{
 		$data['class_id'] = $class_id;
-		$data['classes'] = $this->AM->get_privilege_data($class_id);
+		$data['classes'] = $this->Admin_model->get_privilege_data($class_id);
 		$this->output->set_content_type('application/json')->set_output(json_encode($data));
 	}
 
 	public function savePrivileges() {
 		$classId = $this->input->post('classId');
 		$privileges = $this->input->post('privileges');
-		$result = $this->AM->updatePrivileges($classId, $privileges);
+		$result = $this->Admin_model->updatePrivileges($classId, $privileges);
 		if ($result) {
 			$response = array('status' => 'success', 'message' => 'Changes saved!');
 		} else {
@@ -493,7 +489,7 @@ public function acctg_status_changed()
 			return false;
 		}
 		
-		$result = $this->AM->updateTN($swa_id, $update_data);
+		$result = $this->Admin_model->updateTN($swa_id, $update_data);
 	
 		if ($result !== false && $this->db->affected_rows() > 0) {
 			$response = array('status' => 'success', 'message' => 'Changes saved!');
@@ -512,7 +508,7 @@ public function acctg_status_changed()
 		'SWA_CRFCV_DATE' => $this->input->post('crfcv_date'),
 		'SWA_CRFCV_AMOUNT' => $this->input->post('crfcv_amount')
 		);
-		$result = $this->AM->updateTN($swa_id, $update_data);
+		$result = $this->Admin_model->updateTN($swa_id, $update_data);
 		if ($result){
 			$response = array('status' => 'success', 'message' => 'Changes saved!');
 		} else {
@@ -522,7 +518,7 @@ public function acctg_status_changed()
 	}
 	
 	public function printSwa($swa_id){
-		$swaData['data'] = $this->AM->get_swa_data($swa_id);
+		$swaData['data'] = $this->Admin_model->get_swa_data($swa_id);
 		if (!$swaData) {
 		show_error('Data not found for the provided swa_id.');
 		}
@@ -538,7 +534,7 @@ public function acctg_status_changed()
 	}  
 
 	public function printPer($per_id){
-		$perData['data'] = $this->AM->get_per_data($per_id);
+		$perData['data'] = $this->Admin_model->get_per_data($per_id);
 		if (!$perData) {
 		show_error('Data not found for the provided swa_id.'); 
 		}

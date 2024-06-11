@@ -1,4 +1,5 @@
-<link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>bower_components/sweetalert/css/sweetalert2.css">
+<link rel="stylesheet" type="text/css"
+    href="<?= base_url('assets/'); ?>bower_components/sweetalert/css/sweetalert2.css">
 <div class="loader-bg">
     <div class="loader-bar"></div>
 </div>
@@ -127,7 +128,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" >
+                                        <a href="#">
                                             <i class="feather icon-user"></i> Profile
                                         </a>
                                     </li>
@@ -300,32 +301,34 @@
             </div>
         </div>
 
-        <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/jquery/js/jquery.min.js"></script>
-<script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/sweetalert/js/sweetalert2.min.js"></script>
-<script>
-    $(document).ready(function() {
-        var logoutButton = $('#logoutButton');
+        <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/jquery/js/jquery.min.js">
+        </script>
+        <script type="text/javascript"
+            src="<?= base_url('assets/'); ?>bower_components/sweetalert/js/sweetalert2.min.js"></script>
+        <script>
+        $(document).ready(function() {
+            var logoutButton = $('#logoutButton');
 
-        logoutButton.on('click', function(event) {
-            console.log("button clicked");
-            event.preventDefault();
-            confirmLogout();
-        });
-
-        function confirmLogout() {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'You will be logged out.',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, log out!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = '<?php echo base_url() ?>LoginController/logout';
-                }
+            logoutButton.on('click', function(event) {
+                console.log("button clicked");
+                event.preventDefault();
+                confirmLogout();
             });
-        }
-    });
-</script>
+
+            function confirmLogout() {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You will be logged out.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, log out!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '<?php echo base_url() ?>LoginController/logout';
+                    }
+                });
+            }
+        });
+        </script>

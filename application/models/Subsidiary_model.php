@@ -29,8 +29,8 @@ class Subsidiary_model extends CI_Model
     
     public function view_subsidiary() 
     {
-        $this->db->order_by('DESCRIPTION', 'ASC');
         $result = $this->db->get('sub_tbl')->result();
+        $this->db->order_by('DESCRIPTION', 'DESC');
         return $result;
     }
     

@@ -22,6 +22,7 @@ class User_model extends CI_Model
         $emp_photo = $this->input->post('emp_photo');
         $class_data = $this->Admin_model->get_user_class($user_class_id);
         // $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+        // var_dump($emp_pos);
         $user_data = array(
             'USERNAME' => $username,
             'CLASS_ID' => $user_class_id,

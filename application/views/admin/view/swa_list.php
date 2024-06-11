@@ -36,8 +36,10 @@
                             <div class="card table-card">
                                 <div class="card-header">
                                     <h5>SWA List</h5>
-                                    <button type="button" class="btn btn-primary waves-effect md-trigger" data-bs-toggle="modal" data-bs-target="#swaFormModal">Add New SWA</button>
-
+                                </div>
+                                <div class="card-block" style="text-align: right;">
+                                    <button type="button" class="btn" data-bs-toggle="modal"
+                                        data-bs-target="#swaFormModal"><i class="feather icon-plus"></i>Add New SWA</button>
                                 </div>
                                 <div class="card-block">
                                     <div class="table-responsive">
@@ -119,8 +121,6 @@
                     <div class="row">
                         <div class="col-md-12">
                             <form role="form" method="POST" action="" enctype="multipart/form-data" id="swaForm">
-                                <!-- <div class="card-body"> -->
-                                <!-- <div class="form-group"> -->
                                 <div class="mb-3 row">
                                     <label class="form-label col-sm-2 col-form-label">From</label>
                                     <?php  
@@ -286,7 +286,7 @@
                                                     "datas[" + rowIndex +
                                                     "][unit_cost]")[0];
                                                 var amtInput = document.getElementsByName(
-                                                    "datas[" +
+                                                    "datas[" +  
                                                     rowIndex +
                                                     "][amt]")[0];
 
@@ -562,7 +562,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
 
                 $.ajax({
-                    url: '<?php echo base_url() ?>admin/get_item',
+                    url: '<?php echo base_url() ?>AdminController/get_item',
                     type: 'POST',
                     data: dataToSend,
                     success: function(response) {

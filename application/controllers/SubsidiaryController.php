@@ -8,20 +8,24 @@ class SubsidiaryController extends CI_Controller
         parent::__construct();
  		$this->load->database();
         $this->load->model('Subsidiary_model');
+		if (!$this->session->userdata('login_id')) {
+            redirect(base_url(), 'refresh');
+        }
     }
 
     public function subsidiary()
-	{
-		$view_sub = $this->Subsidiary_model->view_subsidiary();
-		$data['menu'] = 'Subsidiary';
-		$data['subsidiaries'] = $view_sub;
-		
-        $this->load->view('admin/require/header');
-        $this->load->view('admin/require/navbar');
-        $this->load->view('admin/require/sidebar');
-        $this->load->view('admin/view/subsidiary_list', $data);
-        $this->load->view('admin/require/footer');
-	}
+{
+    $view_sub = $this->Subsidiary_model->view_subsidiary();
+    $data['menu'] = 'Subsidiary';
+    $data['subsidiaries'] = $view_sub;
+    
+    $this->load->view('admin/require/header');
+    $this->load->view('admin/require/navbar');
+    $this->load->view('admin/require/sidebar');
+    $this->load->view('admin/view/subsidiary_list', $data);
+    $this->load->view('admin/require/footer');
+}
+
 
     public function subsidiary_ajax()
 	{
@@ -71,7 +75,7 @@ public function new_subsidiary()
 		
 	public function del_subsidiary($sub_id) 
 	{
-		$del_subsidiary = $this->SBM->del_subsidiary($sub_id); 
+		$del_subsidiary = $this->Subsidiary_model->del_subsidiary($sub_id); 
 		if($del_subsidiary['deleted']=='done'){
 			$result = array('status' => 'success', 'message' => 'Data deleted successfully!');
 		}  else {
@@ -97,8 +101,8 @@ public function new_subsidiary()
 	public function get_subsidiary() {
         $sub_id = $this->input->post('sub_id');
   
-        $description = $this->SBM->get_subsidiary($sub_id);
-		$code = $this->SBM->get_subsidiary($sub_id);
+        $description = $this->Subsidiary_model->get_subsidiary($sub_id);
+		$code = $this->Subsidiary_model->get_subsidiary($sub_id);
   
         $data = array(
 			'description' => $result['DESCRIPTION'],
@@ -117,7 +121,7 @@ public function new_subsidiary()
 		$this->breadcrumb->add('Edit', base_url('subsidiary/edit'), true); 
 		$data['menu'] = 'Subsidiary';
 		$data['sub_id'] = $sub_id;
-		$data['sub_data'] = $this->SBM->get_subsidiary($sub_id);
+		$data['sub_data'] = $this->Subsidiary_model->get_subsidiary($sub_id);
 		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
 		// var_dump($data);
 		$this->load->view('admin/edit_subsidiary', $data);
@@ -132,7 +136,7 @@ public function new_subsidiary()
 		{
 		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
 		$this->breadcrumb->add('Subsidiary', base_url('subsidiary'));
-		$view_sub = $this->SBM->view_subsidiary();
+		$view_sub = $this->Subsidiary_model->view_subsidiary();
 		$data['menu'] = 'Subsidiary';
 		$data['subsidiaries'] = $view_sub;
 		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
