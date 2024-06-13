@@ -93,7 +93,7 @@
     </div>
 </div>
 <!--------------------------- PER MODAL-------------------------->
-<div class="modal fade" id="perFormModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="perFormModal" tabindex="-1" role="dialog" >
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -104,7 +104,7 @@
                 <div class="card-block">
                     <div class="row">
                         <div class="col-md-12">
-                            <form role="form" id="perForm" method="POST" action="" enctype="multipart/form-data">
+                            <form class="perForm" role="form" id="perForm" method="POST" action="" enctype="multipart/form-data">
                                 <!-- <div class="card-body"> -->
                                 <!-- <div class="form-group"> -->
                                 <div class="row">
@@ -112,14 +112,13 @@
                                         <label>Subsidiary</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control" id="sub_code" name="sub_code"
-                                                readonly="readonly" placeholder="Subsidiary"
-                                                style="border-radius: 0px; font-size: 16px; color: blue;">
+                                                readonly="readonly" placeholder="Subsidiary">
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label>&nbsp;</label>
                                         <input type="text" readonly="readonly" id="sub_descript" name="sub_descript"
-                                            class="form-control" style="font-size: 16px; color: blue;">
+                                            class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label>&nbsp;</label>
@@ -128,14 +127,14 @@
                                     <div class="col-md-3 col-xs-12">
                                         <label>Control No.</label>
                                         <input type="text" readonly="readonly" id="control_no" name="control_no"
-                                            class="form-control" style="font-size: 16px; color: blue;">
+                                            class="form-control">
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top: -15px;">
                                     <div class="col-md-6 col-xs-12">
                                         <label>Promo Title</label>
                                         <input type="text" readonly="readonly" id="promo_title" name="promo_title"
-                                            class="form-control" style="font-size: 16px; color: blue;">
+                                            class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label>&nbsp;</label>
@@ -144,7 +143,7 @@
                                     <div class="col-md-3 col-xs-12">
                                         <label for="document_date" style="cursor: pointer;">Date</label>
                                         <input type="date" id="document_date" name="document_date" class="form-control"
-                                            style="font-size: 16px; color: blue;">
+                                           >
                                     </div>
                                 </div>
                                 <script>
@@ -164,7 +163,7 @@
                                     <div class="col-md-6 col-xs-12">
                                         <label>Mechanics</label>
                                         <input autocomplete="off" type="text" readonly="readonly" id="mechanics"
-                                            name="mechanics" class="form-control" style="font-size: 16px; color: blue;">
+                                            name="mechanics" class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label>&nbsp;</label>
@@ -175,7 +174,7 @@
                                         <div style="position: relative;">
                                             <input autocomplete="off" type="text" id="swa_series_no"
                                                 name="swa_series_no" class="form-control"
-                                                style="font-size: 16px; color: blue;">
+                                               >
                                             <div class="swaDropdown" id="swaDropdown"
                                                 style="position: absolute; width: 100%; max-height: 200px; overflow-y: auto; border: 1px solid #d1d3e2; background-color: #F5F5F5; display: none; z-index: 999;">
                                             </div>
@@ -186,12 +185,12 @@
                                     <div class="col-md-3 col-xs-12">
                                         <label>Promo Period</label>
                                         <input type="date" readonly="readonly" id="promo_start" name="promo_start"
-                                            class="form-control" style="font-size: 16px; color: blue;">
+                                            class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label>&nbsp;</label>
                                         <input type="date" readonly="readonly" value="" id="promo_end" name="promo_end"
-                                            class="form-control" style="font-size: 16px; color: blue;">
+                                            class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label>&nbsp;</label>
@@ -200,14 +199,14 @@
                                     <div class="col-md-3 col-xs-12">
                                         <label>MIS Ref. No. 1</label>
                                         <input autocomplete="off" readonly="readonly" type="text" id="mis_ref_1"
-                                            name="mis_ref_1" class="form-control" style="font-size: 16px; color: blue;">
+                                            name="mis_ref_1" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3 col-xs-12">
                                         <label>Sponsor</label>
                                         <input type="text" readonly="readonly" value="" id="sup_code" name="sup_code"
-                                            class="form-control" style="font-size: 16px; color: blue;">
+                                            class="form-control">
                                     </div>
                                     <div class="col-md-6 col-xs-12">
                                         <label>&nbsp;</label>
@@ -216,14 +215,14 @@
                                     <div class="col-md-3 col-xs-12">
                                         <label>MIS Ref. No. 2</label>
                                         <input autocomplete="off" readonly="readonly" type="text" id="mis_ref_2"
-                                            name="mis_ref_2" class="form-control" style="font-size: 16px; color: blue;">
+                                            name="mis_ref_2" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-xs-12">
                                         <label>&nbsp;</label>
                                         <input autocomplete="off" readonly="readonly" type="text" id="sup_name"
-                                            name="sup_name" class="form-control" style="font-size: 16px; color: blue;">
+                                            name="sup_name" class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label>&nbsp;</label>
@@ -232,7 +231,7 @@
                                     <div class="col-md-3 col-xs-12">
                                         <label>MIS Ref. No. 3</label>
                                         <input autocomplete="off" readonly="readonly" type="text" id="mis_ref_3"
-                                            name="mis_ref_3" class="form-control" style="font-size: 16px; color: blue;">
+                                            name="mis_ref_3" class="form-control">
                                     </div>
                                 </div>
                                 <hr class="rounded">
