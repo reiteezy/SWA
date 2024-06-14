@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="card-block">
                                     <div class="table-responsive">
-                                        <table id="scr-vtr-dynamic" class="table table-hover m-b-0 sub-table">
+                                        <table id="pertable" class="table table-hover m-b-0">
                                             <thead>
                                                 <tr>
                                                     <!-- <th></th> -->
@@ -88,12 +88,10 @@
                 </div>
             </div>
         </div>
-        <div id="styleSelector">
-        </div>
     </div>
 </div>
 <!--------------------------- PER MODAL-------------------------->
-<div class="modal fade" id="perFormModal" tabindex="-1" role="dialog" >
+<div class="modal fade" id="perFormModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -104,7 +102,8 @@
                 <div class="card-block">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="perForm" role="form" id="perForm" method="POST" action="" enctype="multipart/form-data">
+                            <form class="perForm" role="form" id="perForm" method="POST" action=""
+                                enctype="multipart/form-data">
                                 <!-- <div class="card-body"> -->
                                 <!-- <div class="form-group"> -->
                                 <div class="row">
@@ -142,8 +141,7 @@
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label for="document_date" style="cursor: pointer;">Date</label>
-                                        <input type="date" id="document_date" name="document_date" class="form-control"
-                                           >
+                                        <input type="date" id="document_date" name="document_date" class="form-control">
                                     </div>
                                 </div>
                                 <script>
@@ -173,8 +171,7 @@
                                         <label>SWA Series No.</label>
                                         <div style="position: relative;">
                                             <input autocomplete="off" type="text" id="swa_series_no"
-                                                name="swa_series_no" class="form-control"
-                                               >
+                                                name="swa_series_no" class="form-control">
                                             <div class="swaDropdown" id="swaDropdown"
                                                 style="position: absolute; width: 100%; max-height: 200px; overflow-y: auto; border: 1px solid #d1d3e2; background-color: #F5F5F5; display: none; z-index: 999;">
                                             </div>
@@ -292,6 +289,11 @@
                                 </div>
                             </form>
                             <script>
+                            $('#assignSignatoriesModal').click(function() {
+                                // Code to open the second modal
+                                event.stopPropagation();
+                                $('#perFormModal').focus();
+                            });
                             document.addEventListener('DOMContentLoaded', function() {
                                 var clearForm = document.getElementById('clearForm');
                                 clearForm.addEventListener('click', function() {
@@ -398,8 +400,8 @@
                                     class="form-control" placeholder="Date">
                             </div>
                             <div class="modal-footer">
-                                <button type="button" data-bs-dismiss="modal" class="btn btn-primary waves-effect waves-light"
-                                    id="saveSignatoriesValues">Save
+                                <button type="button" data-bs-dismiss="modal"
+                                    class="btn btn-primary waves-effect waves-light" id="saveSignatoriesValues">Save
                                     changes</button>
                             </div>
                         </div>
@@ -784,4 +786,8 @@ function calculateDifferenceAmt(inputField) {
         unusedValue.val("");
     }
 }
+
+$(document).ready(function() {
+            $("#pertable").DataTable();
+        });
 </script>

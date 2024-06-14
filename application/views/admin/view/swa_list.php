@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="card-block">
                                     <div class="table-responsive">
-                                        <table id="scr-vtr-dynamic" class="table table-hover m-b-0">
+                                        <table id="swatable" class="table table-hover m-b-0">
                                             <thead>
                                                 <tr>
                                                     <!-- <th></th> -->
@@ -105,12 +105,10 @@
                 </div>
             </div>
         </div>
-        <div id="styleSelector">
-        </div>
     </div>
 </div>
 <!--------------------------- SWA MODAL-------------------------->
-<div class="modal fade" id="swaFormModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="swaFormModal" tabindex="-1" role="dialog" style="z-index: 1060;">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -203,8 +201,8 @@
                                         <div class="input-group">
                                             <input type="text" class="form-control" data-toggle="modal"
                                                 data-target="#assignSubsidiaryModal" readonly="readonly" id="sub_code"
-                                                name="sub_code" placeholder="Subsidiary"
-                                                title="Search for subsidiary" style="cursor: pointer;">
+                                                name="sub_code" placeholder="Subsidiary" title="Search for subsidiary"
+                                                style="cursor: pointer;">
                                         </div>
                                     </div>
                                     <!-- <script>
@@ -467,8 +465,9 @@
                                                 <label>Supplier Name </label><span style="color: red;">*</span>
                                                 <input type="hidden" id="sup_id" name="sup_id">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" data-toggle="modal" id="sup_code"
-                                                        name="sup_code" placeholder="Supplier" readonly="readonly" title="Search for supplier"
+                                                    <input type="text" class="form-control" data-toggle="modal"
+                                                        id="sup_code" name="sup_code" placeholder="Supplier"
+                                                        readonly="readonly" title="Search for supplier"
                                                         style="cursor: pointer;">
                                                 </div>
                                             </div>
@@ -759,7 +758,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function saveFormData() {
         var formData = new FormData(swaForm);
         $.ajax({
-            url: '<?php echo base_url() ?>admin/new_swa',
+            url: '<?php echo base_url() ?>SwaController/new_swa',
             type: 'POST',
             data: formData,
             processData: false,
@@ -791,7 +790,7 @@ document.addEventListener('DOMContentLoaded', function() {
             cancelButtonText: 'Not Now'
         }).then((result) => {
             if (result.isConfirmed) {
-                var pdfUrl = '<?php echo base_url() ?>admin/printSwa/' + recordId;
+                var pdfUrl = '<?php echo base_url() ?>SwaController/printSwa/' + recordId;
                 var printWindow = window.open(pdfUrl, '_blank');
 
                 location.reload();
@@ -843,7 +842,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <!----------------------------------------      SUBSIDIARY MODAL         ------------------------------------>
-<div class="modal fade" id="assignSubsidiaryModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="assignSubsidiaryModal" tabindex="-1" role="dialog" style="z-index: 1070;">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -1019,8 +1018,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default waves-effect "
-                            data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -1466,5 +1464,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         recDateValue + '">');
                 }
             });
+        });
+        $(document).ready(function() {
+            $("#swatable").DataTable();
         });
         </script>

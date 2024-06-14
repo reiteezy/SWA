@@ -81,8 +81,6 @@
                 </div>
             </div>
         </div>
-        <div id="styleSelector">
-        </div>
     </div>
 </div>
 <!------------------------ USER TYPE MODAL------------------>

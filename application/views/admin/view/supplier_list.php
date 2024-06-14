@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="card-block">
                                     <div class="table-responsive">
-                                        <table id="scr-vtr-dynamic" class="table table-hover m-b-0 sub-table">
+                                        <table id="suptable" class="table table-hover m-b-0 sub-table">
                                             <thead>
                                                 <tr>
                                                     <!-- <th></th> -->
@@ -83,8 +83,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="styleSelector">
         </div>
     </div>
 </div>
@@ -253,4 +251,7 @@ $(document).ready(function() {
         });
     });
 });
+$(document).ready(function() {
+            $("#suptable").DataTable();
+        });
 </script>

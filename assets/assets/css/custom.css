@@ -8,3 +8,18 @@
 .modal-body label {
     font-weight: bold !important;
 }
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #084172;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #031b30;
+  }

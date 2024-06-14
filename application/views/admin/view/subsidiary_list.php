@@ -33,7 +33,6 @@
                     <div class="row">
                         <div class="col-sm-12">
 
-
                             <div class="card table-card">
                                 <div class="card-header">
                                     <h5>Subsidiary List</h5>
@@ -45,7 +44,7 @@
                                 </div>
                                 <div class="card-block">
                                     <div class="table-responsive">
-                                        <table id="scr-vtr-dynamic" class="table table-hover m-b-0 sub-table">
+                                        <table id="subtable" class="table table-hover m-b-0">
                                             <thead>
                                                 <tr>
                                                     <!-- <th></th> -->
@@ -88,8 +87,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="styleSelector">
         </div>
     </div>
 </div>
@@ -148,21 +145,20 @@
             </div>
             <div class="modal-body">
                 <div class="card-block">
-                    <form role="form" id="subEditForm" method="post" enctype="multipart/form-data"
-                        action="">
+                    <form role="form" id="subEditForm" method="post" enctype="multipart/form-data" action="">
                         <input type="hidden" id="sub_id" name="sub_id" value="">
                         <div class="mb-3 row">
                             <label class="form-label col-sm-2 col-form-label"> Code</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" value=""
-                                    name="sub_code" id="sub_code" placeholder="Enter code">
+                                <input type="text" class="form-control" value="" name="sub_code" id="sub_code"
+                                    placeholder="Enter code">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label class="form-label col-sm-2 col-form-label"> Description</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" value=""
-                                    id="sub_descript" name="sub_descript" placeholder="Enter description">
+                                <input type="text" class="form-control" value="" id="sub_descript" name="sub_descript"
+                                    placeholder="Enter description">
 
                             </div>
 
@@ -278,7 +274,8 @@ $(document).ready(function() {
         }).then(function(result) {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "<?php echo base_url(); ?>SubsidiaryController/edit_subsidiary/" + subsidiaryId,
+                    url: "<?php echo base_url(); ?>SubsidiaryController/edit_subsidiary/" +
+                        subsidiaryId,
                     type: subForm.attr('method'),
                     data: new FormData(subForm[0]),
                     processData: false,
@@ -345,5 +342,9 @@ $(document).ready(function() {
     });
 });
 
-
+$(document).ready(function() {
+    $("#subtable").DataTable({
+        pagingType: 'simple_numbers'
+    });
+});
 </script>
