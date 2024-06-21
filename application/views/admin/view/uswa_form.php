@@ -1,122 +1,19 @@
-<div class="pcoded-content">
+<div class="main-body">
+    <div class="page-wrapper">
+        <div class="page-body">
+            <div class="row">
+                <div class="col-sm-12">
 
-    <div class="page-header card">
-        <div class="row align-items-end">
-            <div class="col-lg-8">
-                <div class="page-header-title">
-                    <i class="feather icon-inbox bg-c-blue"></i>
-                    <div class="d-inline">
-                        <h5>Stock Withdrawal Advice</h5>
-                        <span>Stock Withdrawal Advice System</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="page-header-breadcrumb">
-                    <ul class=" breadcrumb breadcrumb-title breadcrumb-padding">
-                        <li class="breadcrumb-item">
-                            <a href="<?php echo base_url() ?>AdminController/dash"><i class="feather icon-home"></i></a>
-                        </li>
-                        <li class="breadcrumb-item"><a href="#!">SWA List</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="pcoded-inner-content">
-
-        <div class="main-body">
-            <div class="page-wrapper">
-                <div class="page-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-
-                            <div class="card table-card">
-                                <div class="card-header">
-                                    <h5>SWA List</h5>
-                                </div>
-                                        <div class="card-block" style="text-align: right;">
-                                            <button type="button" class="btn" data-bs-toggle="modal"
-                                                data-bs-target="#swaFormModal"><i class="feather icon-plus"></i>Add New
-                                                SWA</button>
-                                        </div>
-                                        <div class="card-block">
-                                            <div class="table-responsive">
-                                                <table id="swatable" class="table table-hover m-b-0">
-                                                    <thead>
-                                                        <tr>
-                                                            <!-- <th></th> -->
-                                                            <th>Control Number</th>
-                                                            <th>Document Date</th>
-                                                            <th>Supplier Name</th>
-                                                            <th>MIS Status</th>
-                                                            <th>Accounting Status</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php
-                              foreach ($swa_datas as $data):
-                              ?>
-                                                        <tr>
-                                                            <!-- <td></td> -->
-                                                            <td><?php echo $data->SWA_ID; ?></td>
-                                                            <td><?php echo $data->DOCUMENT_DATE; ?></td>
-                                                            <td><?php echo $data->NAME; ?></td>
-                                                            <td> <?php  if($data->SWA_MIS_STATUS == 'cancelled'){ ?>
-                                                        <label class="user-status form-label badge badge-inverse-danger"
-                                                                    data-user-id="<?php echo $data->SWA_ID?>">Cancelled</label>
-                                                                <?php } else { ?>
-                                                                <label
-                                                                    class="user-status form-label badge badge-inverse-warning"
-                                                                    data-user-id="<?php echo $data->SWA_ID?>">Pending</label>
-                                                                <?php } ?>
-                                                            </td>
-                                                            <td> <?php  if($data->SWA_ACCTG_STATUS == 'pending'){ ?>
-                                                        <label class="user-status form-label badge badge-inverse-danger"
-                                                                    data-user-id="<?php echo $data->SWA_ID?>">Pending</label>
-                                                                <?php } else { ?>
-                                                                <label
-                                                                    class="user-status form-label badge badge-inverse-success"
-                                                                    data-user-id="<?php echo $data->SWA_ID?>">Received</label>
-                                                                <?php } ?>
-                                                            </td>
-                                                            <td><a href="#!"><i
-                                                                        class="icon feather icon-edit f-w-600 f-16 m-r-15 text-c-blue"></i></a><a
-                                                                    href="#!"><i
-                                                                        class="feather icon-trash-2 f-w-600 f-16 text-c-red"></i></a>
-
-                                                            </td>
-                                                        </tr>
-                                                        <?php  
-                              endforeach;
-                              ?>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                            <!-- -->
+                    <div class="card table-card">
+                        <div class="card-header">
+                            <h5>Stock Withdrawal Advice List</h5>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--------------------------- SWA MODAL-------------------------->
-<div class="modal fade" id="swaFormModal" tabindex="-1" role="dialog" style="z-index: 1060;">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Stock Withdrawal Advice Form</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="card-block">
+                        <div class="floating-button">
+                            <a href="#" class="btn btn-primary">
+                                <i class="feather icon-plus"></i>
+                            </a>
+                        </div>
+                        <div class="card-block">
 
                     <div class="row">
                         <div class="col-md-12">
@@ -125,7 +22,7 @@
                                 <!-- <div class="form-group"> -->
                                 <div class="row">
                                     <div class="col-md-4 col-xs-12">
-                                        <label>From</label><span style="color: red;">*</span>
+                                        <label class="sm-label">From</label><span style="color: red;">*</span>
                                         <div class="input-group">
                                             <?php  
                                     $location = $this->db->get('location_tbl')->result_array();
@@ -144,7 +41,7 @@
                                         <input type="hidden" autocomplete="off" class="form-control">
                                     </div>
                                     <div class="col-md-4 col-xs-12">
-                                        <label>Control No.</label>
+                                        <label class="sm-label">Control No.</label>
                                         <input type="text" readonly="readonly" id="control_no" name="control_no"
                                             class="form-control">
                                     </div>
@@ -162,7 +59,7 @@
                                         <input type="hidden" autocomplete="off" class="form-control">
                                     </div>
                                     <div class="col-md-4 col-xs-12" style="margin-top: -15px;">
-                                        <label>Date</label>
+                                        <label class="sm-label">Date</label>
                                         <input type="date" id="document_date" name="document_date" class="form-control">
                                     </div>
 
@@ -195,7 +92,7 @@
                                 <!-- <div class="form-group"> -->
                                 <div class="row">
                                     <div class="col-md-4 col-xs-12" style="margin-top: -5px;">
-                                        <label>To</label><span style="color: red;">*</span><span
+                                        <label class="sm-label">To</label><span style="color: red;">*</span><span
                                             style="font-style: italic;"> (Click to select
                                             subsidiary)</span>
                                         <input type="hidden" id="sub_id" name="sub_id">
@@ -218,7 +115,7 @@
                                         <input type="hidden" readonly="readonly" class="form-control">
                                     </div>
                                     <div class="col-md-4 col-xs-12">
-                                        <label>Trans No.</label>
+                                        <label class="sm-label">Trans No.</label>
                                         <input type="text" id="trans_no" name="trans_no" class="form-control" disabled>
                                     </div>
                                 </div>
@@ -239,12 +136,12 @@
                                         <input type="hidden" readonly="readonly" class="form-control">
                                     </div>
                                     <div class="col-md-2 col-xs-12" style="margin-top: -12px;">
-                                        <label>Per No.</label>
+                                        <label class="sm-label">Per No.</label>
                                         <input type="text" readonly="readonly" id="per_no" name="per_no"
                                             class="form-control">
                                     </div>
                                     <div class="col-md-2 col-xs-12" style="margin-top: -12px;">
-                                        <label>CRF/CV No.</label>
+                                        <label class="sm-label">CRF/CV No.</label>
                                         <input autocomplete="off" readonly="readonly" type="text" id="crfcv_no"
                                             name="crfcv_no" class="form-control">
                                     </div>
@@ -453,7 +350,7 @@
                                             </div>
                                             <div class="col-md-3 col-xs-12">
                                                 <label for="total"
-                                                    style="display: inline-block; margin-right: 15px;">Total</label>
+                                                    style="display: inline-block; margin-right: 15px;" class="sm-label">Total</label>
                                                 <input type="text" readonly="readonly" id="total" name="total"
                                                     class="form-control"
                                                     style="width: 56%; display: inline-block; text-align: center; color: blue !important;">
@@ -463,10 +360,10 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-md-3 col-xs-12">
-                                                <label>Supplier Name </label><span style="color: red;">*</span>
+                                                <label class="sm-label">Supplier Name </label><span style="color: red;">*</span>
                                                 <input type="hidden" id="sup_id" name="sup_id">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" data-toggle="modal"
+                                                    <input type="text" class="form-control" data-toggle="modal" data-target="#assignSupplierModal"
                                                         id="sup_code" name="sup_code" placeholder="Supplier"
                                                         readonly="readonly" title="Search for supplier"
                                                         style="cursor: pointer;">
@@ -482,12 +379,12 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-md-6 col-xs-12">
-                                                <label>Accounting Instruction</label>
+                                                <label class="sm-label">Accounting Instruction</label>
                                                 <textarea autocomplete="on" type="text" name="acct_instruct"
                                                     id="acct_instruct" class="form-control" placeholder=""></textarea>
                                             </div>
                                             <div class="col-md-6 col-xs-12">
-                                                <label>Remarks</label>
+                                                <label class="sm-label">Remarks</label>
                                                 <textarea autocomplete="on" type="text" name="remark" id="remark"
                                                     class="form-control" placeholder=""></textarea>
                                             </div>
@@ -592,14 +489,15 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default waves-effect " data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light" id="saveButton">Save
-                    changes</button>
+                    </div>
+
+                    <!-- -->
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <!------------------------ END OF SWA MODAL------------------>
 <script>
@@ -843,8 +741,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <!----------------------------------------      SUBSIDIARY MODAL         ------------------------------------>
-<div class="modal fade" id="assignSubsidiaryModal" tabindex="-1" role="dialog" style="z-index: 1070;">
-    <div class="modal-dialog modal-md" role="document">
+<div class="modal fade" id="assignSubsidiaryModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Subsidiary</h4>
@@ -962,7 +860,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
     <!-- -------------------------------     SUPPLIER MODAL     --------------------------------------  -->
     <div class="modal fade" id="assignSupplierModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-md" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Supplier</h4>

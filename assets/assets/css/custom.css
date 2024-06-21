@@ -23,3 +23,125 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #031b30;
   }
+  .card-header {
+    margin-bottom: 20px;
+  }
+
+  .nav-tabs .nav-link {
+  color: #333;
+  }
+
+  .second-navbar .nav-link {
+    transition: all 0.1s ease;
+    font-weight: bold;
+    color: #909090;
+    /* padding: 8px 0 0 8px; */
+    border-bottom: 2px solid transparent;
+  }
+  
+  .second-navbar .nav-link:focus,
+  .second-navbar .nav-link:hover,
+  .second-navbar .nav-link.active {
+    font-weight: bold;
+    border-color: rgb(230, 100, 30);
+    color: #333;
+  }
+
+  .main-body .page-wrapper {
+    padding: 0;
+}
+
+
+  .card {
+    /* -webkit-box-shadow: none; */
+    /* box-shadow: none; */
+    border: none;
+    margin-bottom: 0;
+}
+
+.user-card
+{
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.card .card-header {
+  padding:  50px 0 20px 50px;
+}
+
+.card .card-block {
+  padding: 0 100px 50px 100px; /* top: 0, right: 50px, bottom: 50px, left: 50px */
+}
+
+/* Floating Button Style */
+.floating-button {
+  position: fixed;
+  bottom: 20px; /* Adjust this value to position the button vertically */
+  right: 20px;  /* Adjust this value to position the button horizontally */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.floating-button .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;  /* Adjust button size */
+  height: 60px; /* Adjust button size */
+  border-radius: 50%;
+  background-color: #007bff; /* Button color */
+  color: #fff; /* Icon color */
+  font-size: 24px; /* Icon size */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow effect */
+  transition: background-color 0.3s;
+}
+
+.floating-button .btn:hover {
+  background-color: #0056b3; /* Darken the button color on hover */
+}
+
+.floating-button .btn i {
+  pointer-events: none; /* Ensure the icon doesn't intercept clicks */
+}
+
+.sm-label {
+  font-size: 13px; /* Adjust font size as needed */
+  text-transform: uppercase; /* Capitalize the text */
+  font-weight: bold; /* Optional: Make the text bold */
+}
+
+.header-clock {
+  font-size: 16px;
+  color: #333; /* Adjust color based on your navbar theme */
+}
+
+.digital-clock {
+  border-radius: 5px;
+  text-align: center;
+}
+
+.nav-left .nav-item {
+  padding: 0;
+  display: inline-block;
+}
+
+.nav-left .nav-item a {
+  text-decoration: none;
+  padding: 8px 12px; /* Padding inside each link */
+  display: inline-block;
+  color: #333; /* Text color */
+  height: 78px;
+}
+
+.nav-left .nav-item a:hover {
+  background-color: #3c8dbc; /* Blue background color on hover */
+  color: #fff; /* Text color on hover */
+}
+
+.nav-left .nav-item a.active {
+  background-color: #3c8dbc; /* Blue background color on hover */
+  color: #fff; /* Text color on hover */
+}
+
+.header-navbar .navbar-wrapper .navbar-container .nav-left li{
+  padding: 0;
+}

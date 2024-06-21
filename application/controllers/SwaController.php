@@ -28,6 +28,27 @@ class SwaController extends CI_Controller
         $this->load->view('admin/require/footer');
 	}
 
+	public function uswa_list() 
+	{
+		$data['menu'] = 'uswa';
+		$data['swa_datas'] = $this->Swa_model->view_swa_data();
+
+		$this->load->view('admin/require/header');
+        $this->load->view('admin/require/unavbar', $data);
+        // $this->load->view('admin/require/sidebar');
+        $this->load->view('admin/view/uswa_list', $data);
+        $this->load->view('admin/require/footer');
+	}
+
+	public function uswa_form() 
+	{
+		$this->load->view('admin/require/header');
+        $this->load->view('admin/require/unavbar');
+        // $this->load->view('admin/require/sidebar');
+        $this->load->view('admin/view/uswa_form');
+        $this->load->view('admin/require/footer');
+	}
+
     public function swa_form() 
 	{
 		$this->load->view('admin/require/header');
