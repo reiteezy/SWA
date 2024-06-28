@@ -59,6 +59,20 @@ class Swa_model extends CI_Model
     }
     }
 
+    public function get_swa_daterange($start_date, $end_date) 
+    {
+        $this->db->select('swa_tbl.*, swa_tbl.DOCUMENT_DATE, swa_tbl.SWA_ID, sub_tbl.CODE AS SUB_CODE, sub_tbl.DESCRIPTION, sup_tbl.CODE AS SUP_CODE, sup_tbl.NAME');
+        $this->db->from('swa_tbl');
+        // $this->db->join('swa_details_tbl', 'swa_tbl.SWA_ID = swa_details_tbl.SWA_ID', 'left');
+        $this->db->join('sub_tbl', 'swa_tbl.SUB_ID = sub_tbl.ID', 'left');
+        $this->db->join('sup_tbl', 'swa_tbl.SUP_ID = sup_tbl.ID', 'left');
+        $this->db->where('swa_tbl.DOCUMENT_DATE >=', $start_date);
+        $this->db->where('swa_tbl.DOCUMENT_DATE <=', $end_date);
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function get_per_data($per_id) 
     {
         $this->db->select('per_tbl.*, per_details_tbl.PER_QUANTITY, per_details_tbl.PER_UNIT, per_details_tbl.PER_ITEM_DESCRIPTION, per_details_tbl.PER_ACTUAL_EXECUTE_QTY, per_details_tbl.PER_UNUSED_ALLOCATION');

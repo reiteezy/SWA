@@ -9,7 +9,7 @@
     <div class="pcoded-container navbar-wrapper">
 
         <!-- First Navbar -->
-        <nav class="navbar header-navbar pcoded-header" header-theme="theme6">
+        <nav class="navbar header-navbar pcoded-header">
             <div class="navbar-wrapper">
                 <div class="navbar-logo" style="width: 150px;">
                     <a href="index.html">
@@ -43,17 +43,17 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link <?php echo ($menu=='uswa') ? 'active' : '';?>" id="swa" href="#">STOCK
+                            <a class="nav-link <?php echo ($menu=='uswa') ? 'active' : '';?>" id="swa" href="<?php echo base_url('swacontroller/uswa_list')?>">STOCK
                                 WITHDRAWAL ADVICE</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="mis" href="#">MIS CONFIRMATION</a>
+                            <a class="nav-link <?php echo ($menu=='umis') ? 'active' : '';?>" id="mis" href="<?php echo base_url('swacontroller/umis')?>">MIS CONFIRMATION</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="per" href="#">PROMO EXECUTION REPORT</a>
+                            <a class="nav-link <?php echo ($menu=='uper') ? 'active' : '';?>" id="per" href="<?php echo base_url('swacontroller/uper_list')?>">PROMO EXECUTION REPORT</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="acctg" href="#">ACCOUNTING CONFIRMATION</a>
+                            <a class="nav-link <?php echo ($menu=='uacctg') ? 'active' : '';?>" id="acctg" href="<?php echo base_url('swacontroller/uacctg')?>">ACCOUNTING CONFIRMATION</a>
                         </li>
                     </ul>
 
@@ -156,7 +156,7 @@ $(document).ready(function() {
             }
         });
     }
-});
+
 
 function updateClock() {
     const now = new Date();
@@ -188,4 +188,5 @@ function updateClock() {
 
 setInterval(updateClock, 1000);
 updateClock();
+});
 </script>

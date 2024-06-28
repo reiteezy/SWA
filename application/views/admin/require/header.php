@@ -54,5 +54,6 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>assets/css/custom.css">
 
 
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 <body>

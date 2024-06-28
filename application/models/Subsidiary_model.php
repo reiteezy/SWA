@@ -35,6 +35,19 @@ class Subsidiary_model extends CI_Model
     }
     
 
+    public function get_swa_subsidiary() 
+    {
+        $this->db->select('sub_tbl.*');
+        $this->db->from('sub_tbl');
+        $query = $this->db->get();
+    
+        if ($query) {
+            return $query->result(); 
+        } else {
+            return array(); 
+        }
+    }
+
     function del_subsidiary($sub_id)
     {
         $this->db->where('ID', $sub_id);

@@ -67,6 +67,9 @@
 <script src="<?= base_url('assets/'); ?>assets/js/classie.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/modalEffects.js"></script>
 
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 </body>
 
 </html>

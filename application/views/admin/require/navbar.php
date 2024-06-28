@@ -305,8 +305,7 @@
                     }
                 });
             }
-        });
-
+            
         function updateClock() {
             const now = new Date();
 
@@ -337,4 +336,5 @@
 
         setInterval(updateClock, 1000);
         updateClock();
+    });
         </script>

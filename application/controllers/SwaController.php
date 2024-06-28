@@ -11,6 +11,7 @@ class SwaController extends CI_Controller
 		$this->load->model('Swa_model');
 		$this->load->model('User_model');
 		$this->load->model('Admin_model');
+		$this->load->model('Subsidiary_model');
 		if (!$this->session->userdata('login_id')) {
             redirect(base_url(), 'refresh');
         }
@@ -70,12 +71,61 @@ class SwaController extends CI_Controller
         $this->load->view('admin/require/footer');
 	}
 
+	public function uper_list() 
+	{
+		$data['menu'] = 'uper';
+		$data['per_datas'] = $this->Swa_model->view_per_data();
+
+		$this->load->view('admin/require/header');
+        $this->load->view('admin/require/unavbar', $data);
+        // $this->load->view('admin/require/sidebar');
+        $this->load->view('admin/view/uper_list', $data);
+        $this->load->view('admin/require/footer');
+	}
+
     public function per_form() 
 	{
 		$this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
         $this->load->view('admin/require/sidebar');
         $this->load->view('admin/view/per_form');
+        $this->load->view('admin/require/footer');
+	}
+
+	public function get_daterange_data() {
+        $start_date = $this->input->post('start_date');
+        $end_date = $this->input->post('end_date');
+
+        $data = $this->Swa_model->get_swa_daterange($start_date, $end_date);
+
+        echo json_encode(['data' => $data]);
+    }
+
+	public function umis() 
+	{
+		$data['menu'] = 'umis';
+		$swa_data = $this->Swa_model->view_swa_data();
+		$noDataFound = empty($swa_data);
+		$data['noDataFound'] = $noDataFound;
+		$data['swa_datas'] = $swa_data;
+		$this->load->view('admin/require/header');
+        $this->load->view('admin/require/unavbar', $data);
+        // $this->load->view('admin/require/sidebar');
+        $this->load->view('admin/view/umis', $data);
+        $this->load->view('admin/require/footer');
+	}
+	
+	public function uacctg() 
+	{
+		$data['menu'] = 'uacctg';
+		$swa_data = $this->Swa_model->view_swa_data();
+		$noDataFound = empty($swa_data);
+		$data['noDataFound'] = $noDataFound;
+		$data['swa_datas'] = $swa_data;
+		$this->load->view('admin/require/header');
+        $this->load->view('admin/require/unavbar', $data);
+        // $this->load->view('admin/require/sidebar');
+        $this->load->view('admin/view/uacctg', $data);
         $this->load->view('admin/require/footer');
 	}
 
@@ -120,20 +170,20 @@ class SwaController extends CI_Controller
 			redirect(base_url() . 'error');
 		}
 	}
-	
 
 	public function view_swa_reports()
 	{
-		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
-		$this->breadcrumb->add('Reports', base_url('reports')); 
-		$swa_data = $this->Admin_model->view_swa_data();
-		$noDataFound = empty($swa_data);
 		$data['menu'] = 'swa_reports';
-		$data['swa_datas'] = $swa_data;
-		$data['noDataFound'] = $noDataFound;
-		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
-				$this->load->view('admin/swa_report', $data);
-		
+		$this->load->view('admin/require/header');
+        $this->load->view('admin/require/navbar');
+        $this->load->view('admin/require/sidebar');
+		// $swa_data = $this->Admin_model->view_swa_data();
+		// $noDataFound = empty($swa_data);
+		// $data['swa_datas'] = $swa_data;
+		// $data['noDataFound'] = $noDataFound;
+		// $data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
+        $this->load->view('admin/view/swa_report', $data);
+        $this->load->view('admin/require/footer');
 	}
 
 	public function view_swa_form($swa_id)
@@ -239,7 +289,12 @@ class SwaController extends CI_Controller
 		echo json_encode($response);
 	}
 	
-		
+	public function get_subcode() 
+	{
+		$response['data'] = $this->Subsidiary_model->get_swa_subsidiary();
+		echo json_encode($response);
+	}	
+
 	public function get_swa_per_details() {
         $swa_id = $this->input->get('swa_id');
         $response['data'] = $this->Admin_model->get_swa_details($swa_id);

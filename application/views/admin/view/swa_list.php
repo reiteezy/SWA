@@ -37,67 +37,77 @@
                                 <div class="card-header">
                                     <h5>SWA List</h5>
                                 </div>
-                                        <div class="card-block" style="text-align: right;">
-                                            <button type="button" class="btn" data-bs-toggle="modal"
+
+                                <div class="card-block">
+                                    <div class="row" style="margin-bottom: 5px;">
+                                        <div class="col-auto">
+                                            <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                                 data-bs-target="#swaFormModal"><i class="feather icon-plus"></i>Add New
                                                 SWA</button>
                                         </div>
-                                        <div class="card-block">
-                                            <div class="table-responsive">
-                                                <table id="swatable" class="table table-hover m-b-0">
-                                                    <thead>
-                                                        <tr>
-                                                            <!-- <th></th> -->
-                                                            <th>Control Number</th>
-                                                            <th>Document Date</th>
-                                                            <th>Supplier Name</th>
-                                                            <th>MIS Status</th>
-                                                            <th>Accounting Status</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php
+                                        <div class="col-auto">
+                                            <a class="btn btn-primary"
+                                                href="<?php echo base_url() ?>SwaController/view_swa_reports">Generate
+                                                Report</a>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <table id="swatable" class="table table-hover m-b-0">
+                                            <thead>
+                                                <tr>
+                                                    <!-- <th></th> -->
+                                                    <th>Control Number</th>
+                                                    <th>Document Date</th>
+                                                    <th>Supplier Name</th>
+                                                    <th>MIS Status</th>
+                                                    <th>Accounting Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
                               foreach ($swa_datas as $data):
                               ?>
-                                                        <tr>
-                                                            <!-- <td></td> -->
-                                                            <td><?php echo $data->SWA_ID; ?></td>
-                                                            <td><?php echo $data->DOCUMENT_DATE; ?></td>
-                                                            <td><?php echo $data->NAME; ?></td>
-                                                            <td> <?php  if($data->SWA_MIS_STATUS == 'cancelled'){ ?>
+                                                <tr>
+                                                    <!-- <td></td> -->
+                                                    <td><?php echo $data->SWA_ID; ?></td>
+                                                    <td><?php echo $data->DOCUMENT_DATE; ?></td>
+                                                    <td><?php echo $data->NAME; ?></td>
+                                                    <td> <?php  if($data->SWA_MIS_STATUS == 'cancelled'){ ?>
                                                         <label class="user-status form-label badge badge-inverse-danger"
-                                                                    data-user-id="<?php echo $data->SWA_ID?>">Cancelled</label>
-                                                                <?php } else { ?>
-                                                                <label
-                                                                    class="user-status form-label badge badge-inverse-warning"
-                                                                    data-user-id="<?php echo $data->SWA_ID?>">Pending</label>
-                                                                <?php } ?>
-                                                            </td>
-                                                            <td> <?php  if($data->SWA_ACCTG_STATUS == 'pending'){ ?>
+                                                            data-user-id="<?php echo $data->SWA_ID?>">Cancelled</label>
+                                                        <?php } else { ?>
+                                                        <label
+                                                            class="user-status form-label badge badge-inverse-warning"
+                                                            data-user-id="<?php echo $data->SWA_ID?>">Pending</label>
+                                                        <?php } ?>
+                                                    </td>
+                                                    <td> <?php  if($data->SWA_ACCTG_STATUS == 'pending'){ ?>
                                                         <label class="user-status form-label badge badge-inverse-danger"
-                                                                    data-user-id="<?php echo $data->SWA_ID?>">Pending</label>
-                                                                <?php } else { ?>
-                                                                <label
-                                                                    class="user-status form-label badge badge-inverse-success"
-                                                                    data-user-id="<?php echo $data->SWA_ID?>">Received</label>
-                                                                <?php } ?>
-                                                            </td>
-                                                            <td><a href="#!"><i
-                                                                        class="icon feather icon-edit f-w-600 f-16 m-r-15 text-c-blue"></i></a><a
-                                                                    href="#!"><i
-                                                                        class="feather icon-trash-2 f-w-600 f-16 text-c-red"></i></a>
+                                                            data-user-id="<?php echo $data->SWA_ID?>">Pending</label>
+                                                        <?php } else { ?>
+                                                        <label
+                                                            class="user-status form-label badge badge-inverse-success"
+                                                            data-user-id="<?php echo $data->SWA_ID?>">Received</label>
+                                                        <?php } ?>
+                                                    </td>
+                                                    <td><a href="#!"><i
+                                                                class="icon feather icon-edit f-w-600 f-16 m-r-15 text-c-blue"></i></a><a
+                                                            href="#!"><i
+                                                                class="feather icon-trash-2 f-w-600 f-16 text-c-red"></i></a>
 
-                                                            </td>
-                                                        </tr>
-                                                        <?php  
+                                                    </td>
+                                                </tr>
+                                                <?php  
                               endforeach;
                               ?>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                                            </tbody>
+                                        </table>
                                     </div>
+                                </div>
+                            </div>
 
                             <!-- -->
                         </div>
@@ -601,6 +611,92 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js">
+</script>
+<script type="text/javascript">
+$(function() {
+    var start = moment();
+    var end = moment();
+
+    function cb(start, end) {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format(
+            'MMMM D, YYYY'));
+        fetchTableData(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'));
+    }
+
+    $('#reportrange').daterangepicker({
+        startDate: start,
+        endDate: end,
+        ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment()
+                .subtract(1, 'month').endOf('month')
+            ]
+        }
+    }, cb);
+
+    cb(start, end);
+
+    function fetchTableData(startDate, endDate) {
+        $('.table-loader').show();
+        $.ajax({
+            url: '<?= base_url("SwaController/get_daterange_data") ?>',
+            method: 'POST',
+            data: {
+                start_date: startDate,
+                end_date: endDate
+            },
+            success: function(response) {
+                try {
+                    response = JSON.parse(response);
+                } catch (e) {
+                    console.error('Invalid JSON response:', response);
+                    alert('Failed to load data: Invalid JSON response.');
+                    $('.table-loader').hide();
+                    return;
+                }
+                var tbody = $('#report-table tbody');
+                tbody.empty();
+                console.log(response);
+                response.data.forEach(function(row) {
+                    tbody.append(
+                        '<tr><td>' + row.SWA_ID + '</td><td>' + row
+                        .DOCUMENT_DATE +
+                        '</td><td>' + row.NAME + '</td><td>' + row
+                        .SWA_ACCOUNTING_INSTRUCT +
+                        '</td><td>' + row.LOCATION +
+                        '</td><td>' + row.SUB_CODE +
+                        '</td><td>' + row.SWA_REMARK +
+                        '</td><td>' + row.SWA_TOTAL +
+                        '</td><td>' + row.SWA_TRANS_NO1 +
+                        '</td><td>' + row.SWA_TRANS_NO1_DATE +
+                        '</td><td>' + row.SWA_TRANS_NO1_AMOUNT +
+                        '</td><td>' + row.SWA_CRFCV_NO +
+                        '</td><td>' + row.SWA_CRFCV_DATE +
+                        '</td><td>' + row.SWA_CRFCV_AMOUNT +
+                        '</td><td>' +
+                        '</td></tr>');
+                });
+
+                $('.table-loader').hide();
+            },
+            error: function() {
+                $('.table-loader').hide();
+                alert('Failed to fetch data.');
+            }
+        });
+    }
+});
+$(document).ready(function() {
+    $("#report-table").DataTable();
+});
+</script>
 <!------------------------ END OF SWA MODAL------------------>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -1464,6 +1560,20 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         $(document).ready(function() {
-            $("#swatable").DataTable();
+            $('#swatable').DataTable({
+                lengthChange: false,
+                language: {
+                    search: '',
+                    searchPlaceholder: 'Search...'
+                }
+            });
+        });
+
+
+        $('.dataTables_filter input[type="search"]').css({
+            'width': '300px',
+            'margin-right': '10px',
+            'padding': '5px',
+            'box-sizing': 'border-box'
         });
         </script>
