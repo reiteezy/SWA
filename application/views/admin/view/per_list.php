@@ -35,11 +35,11 @@
 
 
                             <div class="card table-card">
-                                <div class="card-header">
+                                <!-- <div class="card-header">
                                     <h5>PER List</h5>
-                                </div>
-                                <div class="card-block" style="text-align: right;">
-                                    <button type="button" class="btn" data-bs-toggle="modal"
+                                </div> -->
+                                <div class="card-block" style="padding-top: 50px;">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#perFormModal"><i class="feather icon-plus"></i>Add New
                                         PER</button>
                                 </div>
@@ -108,7 +108,7 @@
                                 <!-- <div class="form-group"> -->
                                 <div class="row">
                                     <div class="col-md-3 col-xs-12">
-                                        <label>Subsidiary</label>
+                                        <label class="sm-label">Subsidiary</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control" id="sub_code" name="sub_code"
                                                 readonly="readonly" placeholder="Subsidiary">
@@ -124,14 +124,14 @@
                                         <input type="hidden" class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
-                                        <label>Control No.</label>
+                                        <label class="sm-label">Control No.</label>
                                         <input type="text" readonly="readonly" id="control_no" name="control_no"
                                             class="form-control">
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top: -15px;">
                                     <div class="col-md-6 col-xs-12">
-                                        <label>Promo Title</label>
+                                        <label class="sm-label">Promo Title</label>
                                         <input type="text" readonly="readonly" id="promo_title" name="promo_title"
                                             class="form-control">
                                     </div>
@@ -140,7 +140,8 @@
                                         <input type="hidden" class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
-                                        <label for="document_date" style="cursor: pointer;">Date</label>
+                                        <label for="document_date" style="cursor: pointer;"
+                                            class="sm-label">Date</label>
                                         <input type="date" id="document_date" name="document_date" class="form-control">
                                     </div>
                                 </div>
@@ -159,7 +160,7 @@
                                 </script>
                                 <div class="row">
                                     <div class="col-md-6 col-xs-12">
-                                        <label>Mechanics</label>
+                                        <label class="sm-label">Mechanics</label>
                                         <input autocomplete="off" type="text" readonly="readonly" id="mechanics"
                                             name="mechanics" class="form-control">
                                     </div>
@@ -168,7 +169,7 @@
                                         <input type="hidden" class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
-                                        <label>SWA Series No.</label>
+                                        <label class="sm-label">SWA Series No.</label>
                                         <div style="position: relative;">
                                             <input autocomplete="off" type="text" id="swa_series_no"
                                                 name="swa_series_no" class="form-control">
@@ -180,7 +181,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3 col-xs-12">
-                                        <label>Promo Period</label>
+                                        <label class="sm-label">Promo Period</label>
                                         <input type="date" readonly="readonly" id="promo_start" name="promo_start"
                                             class="form-control">
                                     </div>
@@ -194,14 +195,14 @@
                                         <input type="hidden" class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
-                                        <label>MIS Ref. No. 1</label>
+                                        <label class="sm-label">MIS Ref. No. 1</label>
                                         <input autocomplete="off" readonly="readonly" type="text" id="mis_ref_1"
                                             name="mis_ref_1" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3 col-xs-12">
-                                        <label>Sponsor</label>
+                                        <label class="sm-label">Sponsor</label>
                                         <input type="text" readonly="readonly" value="" id="sup_code" name="sup_code"
                                             class="form-control">
                                     </div>
@@ -210,7 +211,7 @@
                                         <input type="hidden" class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
-                                        <label>MIS Ref. No. 2</label>
+                                        <label class="sm-label">MIS Ref. No. 2</label>
                                         <input autocomplete="off" readonly="readonly" type="text" id="mis_ref_2"
                                             name="mis_ref_2" class="form-control">
                                     </div>
@@ -226,7 +227,7 @@
                                         <input type="hidden" class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
-                                        <label>MIS Ref. No. 3</label>
+                                        <label class="sm-label">MIS Ref. No. 3</label>
                                         <input autocomplete="off" readonly="readonly" type="text" id="mis_ref_3"
                                             name="mis_ref_3" class="form-control">
                                     </div>
@@ -259,96 +260,88 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-6 col-xs-12">
-                                            <label>Promo Execution Summary</label>
+                                            <label class="sm-label">Promo Execution Summary</label>
                                             <textarea autocomplete="on" type="text" id="per_summary" name="per_summary"
                                                 class="form-control"></textarea>
                                         </div>
                                         <div class="col-md-6 col-xs-12">
-                                            <label>Post-promo Remarks</label>
+                                            <label class="sm-label">Post-promo Remarks</label>
                                             <textarea autocomplete="on" type="text" id="post_promo_remarks"
                                                 name="post_promo_remarks" class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-6 text-left">
-                                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#assignSignatoriesModal"
-                                                style="width: 150px; background-color: #3f9aad !important; border: none;">Signatories</button>
-                                        </div>
-                                        <div class="col-md-6 text-right">
-
-                                            <input type="reset" value="Clear" id="clearForm"
-                                                style="width: 150px; margin-right: 8px;"
-                                                class="btn btn-sm btn-secondary" data-toggle="tooltip"
-                                                title="Clear form">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                            <script>
-                            $('#assignSignatoriesModal').click(function() {
-                                // Code to open the second modal
-                                event.stopPropagation();
-                                $('#perFormModal').focus();
-                            });
-                            document.addEventListener('DOMContentLoaded', function() {
-                                var clearForm = document.getElementById('clearForm');
-                                clearForm.addEventListener('click', function() {
-                                    event.preventDefault();
-                                    checkIfEmpty();
+                                <script>
+                                $('#assignSignatoriesModal').click(function() {
+                                    // Code to open the second modal
+                                    event.stopPropagation();
+                                    $('#perFormModal').focus();
                                 });
-
-                                function checkIfEmpty() {
-                                    var form = document.getElementById('perForm');
-                                    var formData = new FormData(form);
-
-                                    var isFormEmpty = Array.from(formData.values()).every(
-                                        value => value ===
-                                        '');
-
-                                    if (isFormEmpty) {
-                                        Swal.fire({
-                                            title: 'Form is already empty!',
-                                            icon: 'info',
-                                            confirmButtonColor: '#3085d6',
-                                            confirmButtonText: 'Ok'
-                                        });
-                                    } else {
-                                        confirmReset();
-                                    }
-                                }
-
-                                function confirmReset() {
-                                    Swal.fire({
-                                        title: 'Are you sure?',
-                                        text: 'This will reset all text!',
-                                        icon: 'warning',
-                                        showCancelButton: true,
-                                        confirmButtonColor: '#3085d6',
-                                        cancelButtonColor: '#d33',
-                                        confirmButtonText: 'Yes, reset it!'
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            document.getElementById('perForm').reset();
-                                            clearTable();
-                                        }
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    var clearForm = document.getElementById('clearForm');
+                                    clearForm.addEventListener('click', function() {
+                                        event.preventDefault();
+                                        checkIfEmpty();
                                     });
-                                }
-                            });
-                            </script>
+
+                                    function checkIfEmpty() {
+                                        var form = document.getElementById('perForm');
+                                        var formData = new FormData(form);
+
+                                        var isFormEmpty = Array.from(formData.values()).every(
+                                            value => value ===
+                                            '');
+
+                                        if (isFormEmpty) {
+                                            Swal.fire({
+                                                title: 'Form is already empty!',
+                                                icon: 'info',
+                                                confirmButtonColor: '#3085d6',
+                                                confirmButtonText: 'Ok'
+                                            });
+                                        } else {
+                                            confirmReset();
+                                        }
+                                    }
+
+                                    function confirmReset() {
+                                        Swal.fire({
+                                            title: 'Are you sure?',
+                                            text: 'This will reset all text!',
+                                            icon: 'warning',
+                                            showCancelButton: true,
+                                            confirmButtonColor: '#3085d6',
+                                            cancelButtonColor: '#d33',
+                                            confirmButtonText: 'Yes, reset it!'
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                document.getElementById('perForm').reset();
+                                                clearTable();
+                                            }
+                                        });
+                                    }
+                                });
+                                </script>
                         </div>
                         <div class="col-md-2"></div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default waves-effect " data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light" id="saveButton">Save
-                    changes</button>
+                <div class="d-flex justify-content-start">
+                    <button type="button" class="btn btn-info waves-effect waves-light me-2" data-bs-toggle="modal"
+                        data-bs-target="#assignSignatoriesModal">Signatories</button>
+                    <input type="reset" value="Clear" id="clearForm" class="btn btn-secondary waves-effect waves-light me-2" data-toggle="tooltip"
+                        title="Clear form">
+                </div>
+                <div class="ms-auto">
+                    <button type="button" class="btn btn-default waves-effect me-2" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary waves-effect waves-light" id="saveButton">Save
+                        changes</button>
+                </div>
             </div>
+
+            </form>
         </div>
     </div>
 </div>
@@ -368,7 +361,7 @@
                     <form role="form" method="POST" action="<?php echo base_url() ?>#" enctype="multipart/form-data">
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Submitted by</label>
+                                <label class="sm-label">Submitted by</label>
                                 <input autocomplete="on" value="<?php ?>" type="text" id="sub_by" name="sub_by"
                                     class="form-control" placeholder="Submitted by">
                                 <label></label>
@@ -376,7 +369,7 @@
                                     class="form-control" placeholder="Date">
                             </div>
                             <div class="form-group">
-                                <label>Reviewed by</label>
+                                <label class="sm-label">Reviewed by</label>
                                 <input autocomplete="on" value="<?php ?>" type="text" id="rev_by" name="rev_by"
                                     class="form-control" placeholder="Reviewed by">
                                 <label></label>
@@ -384,7 +377,7 @@
                                     class="form-control" placeholder="Date">
                             </div>
                             <div class="form-group">
-                                <label>Audited by</label>
+                                <label class="sm-label">Audited by</label>
                                 <input autocomplete="on" value="<?php ?>" type="text" id="audit_by" name="audit_by"
                                     class="form-control" placeholder="Audited by">
                                 <label></label>
@@ -392,7 +385,7 @@
                                     class="form-control" placeholder="Date">
                             </div>
                             <div class="form-group">
-                                <label>Noted by</label>
+                                <label class="sm-label">Noted by</label>
                                 <input autocomplete="on" value="<?php ?>" type="text" id="note_by" name="note_by"
                                     class="form-control" placeholder="Noted by">
                                 <label></label>
@@ -788,6 +781,20 @@ function calculateDifferenceAmt(inputField) {
 }
 
 $(document).ready(function() {
-            $("#pertable").DataTable();
-        });
+    $('#pertable').DataTable({
+        lengthChange: false,
+        language: {
+            search: '',
+            searchPlaceholder: 'Search...'
+        }
+    });
+});
+
+
+$('.dataTables_filter input[type="search"]').css({
+    'width': '300px',
+    'margin-right': '10px',
+    'padding': '5px',
+    'box-sizing': 'border-box'
+});
 </script>

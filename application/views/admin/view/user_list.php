@@ -37,12 +37,12 @@
                                 <div class="card-header">
                                     <h5>Users List</h5>
                                 </div>
-                                <div class="card-block" style="text-align: right;">
-                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addUserModal"><i class="feather icon-plus"></i>Add New User</button>
+                                <div class="card-block">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal"><i class="feather icon-plus"></i>Add New User</button>
                                 </div>
                                 <div class="card-block">
                                     <div class="table-responsive">
-                                        <table id="simpletable" class="table table-hover m-b-0 sub-table">
+                                        <table id="usertable" class="table table-hover m-b-0 sub-table">
                                             <thead>
                                                 <tr>
                                                     <th>Employee Name</th>
@@ -395,5 +395,21 @@ function checkNameAvailability(emp_name) {
         error: function() {}
     });
 };
+$(document).ready(function() {
+            $('#usertable').DataTable({
+                lengthChange: false,
+                language: {
+                    search: '',
+                    searchPlaceholder: 'Search...'
+                }
+            });
+        });
 
+
+        $('.dataTables_filter input[type="search"]').css({
+            'width': '300px',
+            'margin-right': '10px',
+            'padding': '5px',
+            'box-sizing': 'border-box'
+        });
 </script>

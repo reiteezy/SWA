@@ -34,11 +34,11 @@
                         <div class="col-sm-12">
 
                             <div class="card table-card">
-                                <div class="card-header">
+                                <!-- <div class="card-header">
                                     <h5>Subsidiary List</h5>
-                                </div>
-                                <div class="card-block" style="text-align: right;">
-                                    <button type="button" class="btn" data-bs-toggle="modal"
+                                </div> -->
+                                <div class="card-block" style="padding-top: 50px;">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#addSubModal"><i class="feather icon-plus"></i>Add New
                                         Subsidiary</button>
                                 </div>
@@ -343,8 +343,20 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    $("#subtable").DataTable({
-        pagingType: 'simple_numbers'
-    });
-});
+            $('#subtable').DataTable({
+                lengthChange: false,
+                language: {
+                    search: '',
+                    searchPlaceholder: 'Search...'
+                }
+            });
+        });
+
+
+        $('.dataTables_filter input[type="search"]').css({
+            'width': '300px',
+            'margin-right': '10px',
+            'padding': '5px',
+            'box-sizing': 'border-box'
+        });
 </script>

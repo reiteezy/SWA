@@ -19,12 +19,12 @@ class SwaController extends CI_Controller
 
     public function swa_list() 
 	{
-		$data['menu'] = 'swa';
+		$data['menu'] = 'Swa';
 		$data['swa_datas'] = $this->Swa_model->view_swa_data();
 
 		$this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
-        $this->load->view('admin/require/sidebar');
+        $this->load->view('admin/require/sidebar', $data);
         $this->load->view('admin/view/swa_list', $data);
         $this->load->view('admin/require/footer');
 	}
@@ -66,7 +66,7 @@ class SwaController extends CI_Controller
 
 		$this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
-        $this->load->view('admin/require/sidebar');
+        $this->load->view('admin/require/sidebar', $data);
         $this->load->view('admin/view/per_list', $data);
         $this->load->view('admin/require/footer');
 	}
@@ -114,6 +114,20 @@ class SwaController extends CI_Controller
         $this->load->view('admin/view/umis', $data);
         $this->load->view('admin/require/footer');
 	}
+
+	public function swa_mis() 
+	{
+		$data['menu'] = 'swa_mis';
+		$swa_data = $this->Swa_model->view_swa_data();
+		// $noDataFound = empty($swa_data);
+		// $data['noDataFound'] = $noDataFound;
+		$data['swa_datas'] = $swa_data;
+		$this->load->view('admin/require/header');
+        $this->load->view('admin/require/navbar');
+        $this->load->view('admin/require/sidebar', $data);
+        $this->load->view('admin/view/swa_mis', $data);
+        $this->load->view('admin/require/footer');
+	}
 	
 	public function uacctg() 
 	{
@@ -126,6 +140,20 @@ class SwaController extends CI_Controller
         $this->load->view('admin/require/unavbar', $data);
         // $this->load->view('admin/require/sidebar');
         $this->load->view('admin/view/uacctg', $data);
+        $this->load->view('admin/require/footer');
+	}
+
+	public function swa_accounting() 
+	{
+		$data['menu'] = 'swa_accounting';
+		$swa_data = $this->Swa_model->view_swa_data();
+		// $noDataFound = empty($swa_data);
+		// $data['noDataFound'] = $noDataFound;
+		$data['swa_datas'] = $swa_data;
+		$this->load->view('admin/require/header');
+        $this->load->view('admin/require/navbar');
+        $this->load->view('admin/require/sidebar', $data);
+        $this->load->view('admin/view/swa_accounting', $data);
         $this->load->view('admin/require/footer');
 	}
 
@@ -176,7 +204,7 @@ class SwaController extends CI_Controller
 		$data['menu'] = 'swa_reports';
 		$this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
-        $this->load->view('admin/require/sidebar');
+        $this->load->view('admin/require/sidebar', $data);
 		// $swa_data = $this->Admin_model->view_swa_data();
 		// $noDataFound = empty($swa_data);
 		// $data['swa_datas'] = $swa_data;

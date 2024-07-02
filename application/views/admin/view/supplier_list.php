@@ -35,11 +35,11 @@
 
 
                             <div class="card table-card">
-                                <div class="card-header">
+                                <!-- <div class="card-header">
                                     <h5>Supplier List</h5>
-                                </div>
-                                <div class="card-block" style="text-align: right;">
-                                    <button type="button" class="btn" data-bs-toggle="modal"
+                                </div> -->
+                                <div class="card-block" style="padding-top: 50px;">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#addSupModal"><i class="feather icon-plus"></i>Add New
                                         Supplier</button>
                                 </div>
@@ -98,41 +98,41 @@
                 <div class="card-block">
                     <form role="form" id="supplierForm" method="POST" action="<?php echo base_url() ?>SupplierController/new_supplier" enctype="multipart/form-data">
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label"> Code</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label"> Code</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="sup_code" id="sup_code" placeholder="Enter code">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label"> Name</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label"> Name</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="sup_name" name="sup_name"
                                     placeholder="Enter name">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label"> Address</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label"> Address</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="sup_add" name="sup_add"
                                     placeholder="Enter address">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label">Contact Person</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label">Contact Person</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="sup_contact" name="sup_contact"
                                     placeholder="Enter contact person">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label">Phone Number</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label">Phone Number</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="sup_phoneno" name="sup_phoneno"
                                     placeholder="Enter phone number">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label">Telex Number</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label">Telex Number</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="sup_telno" name="sup_telno"
                                     placeholder="Enter telex number">
@@ -252,6 +252,20 @@ $(document).ready(function() {
     });
 });
 $(document).ready(function() {
-            $("#suptable").DataTable();
+            $('#suptable').DataTable({
+                lengthChange: false,
+                language: {
+                    search: '',
+                    searchPlaceholder: 'Search...'
+                }
+            });
+        });
+
+
+        $('.dataTables_filter input[type="search"]').css({
+            'width': '300px',
+            'margin-right': '10px',
+            'padding': '5px',
+            'box-sizing': 'border-box'
         });
 </script>

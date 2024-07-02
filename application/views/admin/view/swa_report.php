@@ -6,7 +6,7 @@
                 <div class="page-header-title">
                     <i class="feather icon-inbox bg-c-blue"></i>
                     <div class="d-inline">
-                        <h5>Stock Withdrawal Advice</h5>
+                        <h5>Generate Report</h5>
                         <span>Stock Withdrawal Advice System</span>
                     </div>
                 </div>
@@ -38,11 +38,11 @@
                         <div class="col-sm-12">
 
                             <div class="card table-card">
-                                <div class="card-header">
+                                <!-- <div class="card-header">
                                     <h5>Generate Report</h5>
-                                </div>
+                                </div>  -->
 
-                                <div class="card-block">
+                                <div class="card-block" style="padding-top: 50px;">
                                     <div class="row" style="margin-bottom: 5px;">
                                         <div class="col-auto">
                                             <div id="reportrange"

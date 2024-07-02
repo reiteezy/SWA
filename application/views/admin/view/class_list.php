@@ -38,14 +38,14 @@
                                 <div class="card-header">
                                     <h5>User Type List</h5>
                                 </div>
-                                <div class="card-block" style="text-align: right;">
-                                    <button type="button" class="btn" data-bs-toggle="modal"
+                                <div class="card-block">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#addTypeModal"><i class="feather icon-plus"></i>Add New User
                                         Type</button>
                                 </div>
                                 <div class="card-block">
                                     <div class="table-responsive">
-                                        <table class="table table-hover m-b-0 sub-table">
+                                        <table class="table table-hover m-b-0 sub-table" id="classtable">
                                             <thead>
                                                 <tr>
                                                     <th>Class</th>
@@ -229,4 +229,22 @@ $(document).ready(function() {
         });
     });
 });
+
+$(document).ready(function() {
+            $('#classtable').DataTable({
+                lengthChange: false,
+                language: {
+                    search: '',
+                    searchPlaceholder: 'Search...'
+                }
+            });
+        });
+
+
+        $('.dataTables_filter input[type="search"]').css({
+            'width': '300px',
+            'margin-right': '10px',
+            'padding': '5px',
+            'box-sizing': 'border-box'
+        });
 </script>
