@@ -32,16 +32,15 @@
                 <div class="page-body">
                     <div class="row">
                         <div class="col-sm-12">
-
                             <div class="card table-card">
-                                <!-- <div class="card-header">
-                                    <h5>Subsidiary List</h5>
-                                </div> -->
-                                <div class="card-block" style="padding-top: 50px;">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#addSubModal"><i class="feather icon-plus"></i>Add New
+                                <div class="card-header">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#addSubModal"><i class="feather icon-plus"></i>Add New
                                         Subsidiary</button>
+                                    <!-- <h5>Subsidiary List</h5> -->
                                 </div>
+                                <!-- <div class="card-block" style="padding-top: 50px;">
+                                </div> -->
                                 <div class="card-block">
                                     <div class="table-responsive">
                                         <table id="subtable" class="table table-hover m-b-0">
@@ -61,15 +60,23 @@
                                                     <!-- <td></td> -->
                                                     <td><?php echo $subsidiary->CODE; ?></td>
                                                     <td><?php echo $subsidiary->DESCRIPTION; ?></td>
-                                                    <td><a class="editSubsidiaryButton" title="edit"
+                                                    <td><button type="button" class="editSubsidiaryButton" title="edit"
                                                             data-sub-id="<?php echo $subsidiary->ID; ?>"
                                                             data-sub-code="<?php echo $subsidiary->CODE; ?>"
                                                             data-sub-descript="<?php echo $subsidiary->DESCRIPTION; ?>"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#editSubsidiaryModal"><i
-                                                                class="icon feather icon-edit f-w-600 f-16 m-r-15 text-c-blue"></i></a><a
-                                                            href="#!"><i
-                                                                class="feather icon-trash-2 f-w-600 f-16 text-c-red"></i></a>
+                                                            data-toggle="modal" data-target="#editSubsidiaryModal"
+                                                            style="background: #4099ff; border: #4099ff;">
+                                                            <i class="icon feather icon-edit f-w-600 f-16 m-r-15"
+                                                                style="color: #fff"></i><span
+                                                                style="color: #fff; font-size: 13px; margin-left: -8px;">Update</span>
+                                                        </button>
+                                                        <button type="button" class="deleteButton"
+                                                            data-delete-url="<?php echo base_url() ?>SubsidiaryController/del_subsidiary/<?php echo $subsidiary->ID; ?>"
+                                                            style="background: #ff5370; border: #ff5370;"><i
+                                                                class="feather icon-trash-2 f-w-600 f-16 m-r-15"
+                                                                style="color: #fff"></i><span
+                                                                style="color: #fff; font-size: 13px; margin-left: -8px;">Delete</span>
+                                                        </button>
 
                                                     </td>
                                                 </tr>
@@ -97,7 +104,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Add New Subsidiary</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="card-block">
@@ -105,16 +112,16 @@
                         action="<?php echo base_url() ?>SubsidiaryController/new_subsidiary"
                         enctype="multipart/form-data">
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label"> Code</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label"> Code</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="sub_code" id="sub_code"
                                     placeholder="Enter code">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label"> Description</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label"> Description</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="sub_descript" name="sub_descript"
+                                <input type="text" class="form-control" name="sub_descript" id="sub_descript"
                                     placeholder="Enter description">
 
                             </div>
@@ -126,9 +133,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default waves-effect " data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light" id="saveButton">Save
-                    changes</button>
+                <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light" id="saveButton">Save</button>
             </div>
         </div>
     </div>
@@ -141,37 +147,34 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Edit Subsidiary</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="card-block">
                     <form role="form" id="subEditForm" method="post" enctype="multipart/form-data" action="">
                         <input type="hidden" id="sub_id" name="sub_id" value="">
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label"> Code</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label">Code</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" value="" name="sub_code" id="sub_code"
+                                <input type="text" class="form-control" name="sub_code" id="sub_editcode"
                                     placeholder="Enter code">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label"> Description</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label">Description</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" value="" id="sub_descript" name="sub_descript"
+                                <input type="text" class="form-control" id="sub_editdescript" name="sub_descript"
                                     placeholder="Enter description">
-
                             </div>
-
                         </div>
                         <span id="validationMessage" class="messages" style="color: red"></span>
-
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default waves-effect " data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light" id="saveEditButton">Save
-                    changes</button>
+                <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light"
+                    id="saveEditButton">Update</button>
             </div>
         </div>
     </div>
@@ -179,6 +182,15 @@
 <!------------------------ END OF EDIT SUBSIDIARY MODAL------------------>
 <script>
 $(document).ready(function() {
+    var table = $('#subtable').DataTable({
+        lengthChange: false,
+        paging: true,
+        info: true,
+        language: {
+            search: '',
+            searchPlaceholder: 'Search...'
+        }
+    });
     var subForm = $('#subForm');
     var saveButton = $('#saveButton');
     var validationMessage = $('#validationMessage');
@@ -211,17 +223,57 @@ $(document).ready(function() {
                     contentType: false,
                     success: function(response) {
                         console.log("Response:", response);
-                        var responseData = response;
 
-                        Swal.fire({
-                            title: responseData.status === 'success' ?
-                                'Success' : 'Error',
-                            text: responseData.message,
-                            icon: responseData.status === 'success' ?
-                                'success' : 'error'
-                        }).then(() => {
-                            location.reload(true);
-                        });
+                        // Accessing nested properties
+                        if (response.status === 'success') {
+                            var newData = response.data;
+                            var newId = newData.insert_id;
+                            var newCode = newData.data.CODE;
+                            var newDescription = newData.data.DESCRIPTION;
+
+                            console.log("New ID:", newId);
+                            console.log("New Code:", newCode);
+                            console.log("New Description:", newDescription);
+
+                            // Add the new row to the table
+                            var newRow = table.row.add([
+                                newCode,
+                                newDescription,
+                                '<a class="editSubsidiaryButton" title="edit" data-sub-id="' +
+                                newId + '" data-sub-code="' + newCode +
+                                '" data-sub-descript="' + newDescription +
+                                '" data-toggle="modal" data-target="#editSubsidiaryModal">' +
+                                '<i class="icon feather icon-edit f-w-600 f-16 m-r-15 text-c-blue"></i></a>' +
+                                '<a type="button" href="#!" class="deleteButton" data-delete-url="<?php echo base_url() ?>SubsidiaryController/del_subsidiary/' +
+                                newId + '">' +
+                                '<i class="feather icon-trash-2 f-w-600 f-16 text-c-red"></i></a>'
+                            ]).draw(false).node();
+                            // Move to the first page and redraw the table
+                            table.page('first').draw(false);
+
+                            // Highlight the new row
+                            $(newRow).addClass('highlight-row');
+
+                            // Remove highlight after a short period
+                            setTimeout(function() {
+                                $(newRow).removeClass('highlight-row');
+                            }, 10000);
+
+                            $('#sub_code').val('');
+                            $('#sub_descript').val('');
+
+                            Swal.fire({
+                                title: 'Success',
+                                text: response.message,
+                                icon: 'success'
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.message,
+                                icon: 'error'
+                            });
+                        }
                     },
                     error: function(error) {
                         console.log("Error: " + error);
@@ -231,16 +283,16 @@ $(document).ready(function() {
         });
     });
 
-    $('.editSubsidiaryButton').on('click', function() {
+    $(document).on('click', '.editSubsidiaryButton', function() {
         // Get the data attributes from the clicked button
         var subsidiaryId = $(this).data('sub-id');
         var subsidiaryCode = $(this).data('sub-code');
         var subsidiaryDescription = $(this).data('sub-descript');
+        console.log(subsidiaryCode);
         // Populate the modal form fields with the data
         $('#sub_id').val(subsidiaryId);
-        $('#sub_code').val(subsidiaryCode);
-        $('#sub_descript').val(subsidiaryDescription);
-
+        $('#sub_editcode').val(subsidiaryCode);
+        $('#sub_editdescript').val(subsidiaryDescription);
     });
 
     // Optionally, handle the save button click if you need to perform validation or AJAX submit
@@ -248,12 +300,14 @@ $(document).ready(function() {
     var subEditForm = $('#subEditForm');
     var formChanged = false;
 
-    var formInputs = subForm.find('input, textarea, select');
+    var formInputs = subEditForm.find('input, textarea, select');
     formInputs.on('input', function() {
         formChanged = true;
     });
 
     saveEditButton.on('click', function() {
+        var subsidiaryId = $('#sub_id').val();
+        console.log(subsidiaryId);
         if (!formChanged) {
             Swal.fire({
                 title: 'No Changes Made',
@@ -276,8 +330,8 @@ $(document).ready(function() {
                 $.ajax({
                     url: "<?php echo base_url(); ?>SubsidiaryController/edit_subsidiary/" +
                         subsidiaryId,
-                    type: subForm.attr('method'),
-                    data: new FormData(subForm[0]),
+                    type: subEditForm.attr('method'),
+                    data: new FormData(subEditForm[0]),
                     processData: false,
                     contentType: false,
                     success: function(response) {
@@ -291,8 +345,8 @@ $(document).ready(function() {
                             icon: responseData.status === 'success' ?
                                 'success' : 'error'
                         }).then(function() {
-                            // window.location.href =
-                            //     '<?php echo base_url() ?>subsidiary/view_subsidiary';
+                            window.location.href =
+                                '<?php echo base_url() ?>SubsidiaryController/subsidiary';
                         });
                     },
                     error: function(error) {
@@ -303,8 +357,9 @@ $(document).ready(function() {
         });
     });
 
-    $('.deleteButton').click(function() {
+    $(document).on('click', '.deleteButton', function() {
         var deleteUrl = $(this).data('delete-url');
+        var row = $(this).closest('tr');
 
         Swal.fire({
             title: 'Are you sure?',
@@ -322,16 +377,21 @@ $(document).ready(function() {
                     success: function(response) {
                         console.log("Response:", response);
                         var responseData = response;
+                        if (responseData.status === 'success') {
+                            row.remove(); // Remove the row from the table
 
-                        Swal.fire({
-                            title: responseData.status ===
-                                'success' ? 'Success' : 'Error',
-                            text: responseData.message,
-                            icon: responseData.status ===
-                                'success' ? 'success' : 'error'
-                        }).then(() => {
-                            location.reload(true);
-                        });
+                            Swal.fire({
+                                title: 'Success',
+                                text: response.message,
+                                icon: 'success'
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.message,
+                                icon: 'error'
+                            });
+                        }
                     },
                     error: function(error) {
                         console.log("Error: " + error);
@@ -342,21 +402,10 @@ $(document).ready(function() {
     });
 });
 
-$(document).ready(function() {
-            $('#subtable').DataTable({
-                lengthChange: false,
-                language: {
-                    search: '',
-                    searchPlaceholder: 'Search...'
-                }
-            });
-        });
-
-
-        $('.dataTables_filter input[type="search"]').css({
-            'width': '300px',
-            'margin-right': '10px',
-            'padding': '5px',
-            'box-sizing': 'border-box'
-        });
+$('.dataTables_filter input[type="search"]').css({
+    'width': '300px',
+    'margin-right': '10px',
+    'padding': '5px',
+    'box-sizing': 'border-box'
+});
 </script>

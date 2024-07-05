@@ -38,8 +38,8 @@
                                 <!-- <div class="card-header">
                                     <h5>MIS Confirmation</h5>
                                 </div> -->
-                                
-                                <div class="card-block" style="padding-top: 50px;">
+
+                                <div class="card-block">
                                     <div class="table-responsive">
                                         <table class="table table-hover m-b-0" id="mistable">
                                             <thead>
@@ -79,41 +79,36 @@
                                                     <td><?php echo $data->SWA_TRANS_NO3; ?></td>
                                                     <td>
                                                         <?php  if ($data->SWA_MIS_STATUS == 'cancelled') { ?>
-                                                        <span class="badge badge-danger mis-status"
+                                                        <span class="form-label badge badge-inverse-danger mis-status"
                                                             sid="<?php echo $data->SWA_ID?>">Cancelled</span>
                                                         <?php } elseif ($data->SWA_MIS_STATUS == 'pending') { ?>
-                                                        <span class="badge badge-warning mis-status"
+                                                        <span class="form-label badge badge-inverse-warning mis-status"
                                                             sid="<?php echo $data->SWA_ID?>">Pending</span>
                                                         <?php } elseif ($data->SWA_MIS_STATUS == 'confirmed') { ?>
-                                                        <span class="badge badge-warning mis-status"
+                                                        <span class="form-label badge badge-inverse-success mis-status"
                                                             sid="<?php echo $data->SWA_ID?>">Confirmed</span>
                                                         <?php }  ?>
                                                     </td>
                                                     <td style="text-align: center;">
-                                                        <div class="dropdown">
-                                                            <button class="dropdown-toggle" type="button"
-                                                                style="background: transparent; border: none;"
-                                                                id="dropdownMenuButton" data-toggle="dropdown"
-                                                                aria-haspopup="true" aria-expanded="false"><img
-                                                                    src="<?php echo base_url('')?>assets/backend/img/icons/received.png"
-                                                                    alt="Receive" style="width: 25px;">
-                                                            </button>
-                                                            <div class="dropdown-menu"
-                                                                aria-labelledby="dropdownMenuButton">
-                                                                <a class="dropdown-item mis_status"
-                                                                    id="<?php echo $data->SWA_ID; ?>"
-                                                                    sid="<?php echo $data->SWA_ID; ?>"
-                                                                    sstatus="<?php echo $data->SWA_MIS_STATUS; ?>"
-                                                                    title="Receive"
-                                                                    <?php echo !empty($data->SWA_TRANS_NO1) ? 'disabled' : ''; ?>
-                                                                    style="cursor: pointer;">Cancel</a>
-                                                                <a class="dropdown-item mis-confirm-btn"
-                                                                    data-swa-id="<?php echo $data->SWA_ID; ?>"
-                                                                    data-toggle="modal" title="Confirm"
-                                                                    data-target="#misConfirmModal"
-                                                                    style="cursor: pointer;">Confirm</a>
-                                                            </div>
-                                                        </div>
+                                                        <button type="button" class="mis_status"
+                                                            id="<?php echo $data->SWA_ID; ?>"
+                                                            sid="<?php echo $data->SWA_ID; ?>"
+                                                            sstatus="<?php echo $data->SWA_MIS_STATUS; ?>"
+                                                            title="Receive"
+                                                            <?php echo !empty($data->SWA_TRANS_NO1) ? 'disabled' : ''; ?>
+                                                            style="background: #FF7F50; border: #FF7F50;"><i
+                                                                class="icon feather icon-slash f-w-600 f-16 m-r-15"
+                                                                style="color: #fff"></i><span
+                                                                style="color: #fff; font-size: 13px; margin-left: -8px;">Cancel</span></button>
+                                                        <button type="button" class="mis-confirm-btn"
+                                                            data-swa-id="<?php echo $data->SWA_ID; ?>"
+                                                            data-toggle="modal" title="Confirm"
+                                                            data-target="#misConfirmModal"
+                                                            style="background: #4099ff; border: #4099ff;"><i
+                                                                class="icon feather icon-check-square f-w-600 f-16 m-r-15"
+                                                                style="color: #fff"></i><span
+                                                                style="color: #fff; font-size: 13px; margin-left: -8px;">Confirm</span></button>
+
                                                         <!-- <button type="button" class="mis_status" id="<?php #echo $data->SWA_ID?>"
                                         style="background: transparent; border: none;"
                                         sid="<?php #echo $data->SWA_ID; ?>"
@@ -131,8 +126,8 @@
                                                 </tr>
                                                 <?php  
                               endforeach;     ?>
-                            
-                             
+
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -210,32 +205,31 @@ misStatusButtons.forEach(function(button) {
 });
 </script>
 <div class="modal fade" id="misConfirmModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog modal-md    " role="document">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content ">
             <div class="modal-header">
                 <h5 class="modal-title" id="assignSignatoriesModalLabel">Transaction Confirmation</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
                 </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="swa_id">SWA ID</label>
+                    <label class="sm-label" for="swa_id">SWA ID</label>
                     <input type="text" id="swaId" name="swa_id" class="form-control" style="text-align: right;"
                         readonly="readonly">
                 </div>
                 <div class="form-group">
-                    <label for="transactNo">Transaction Number<span style="color: red;">*</span></label>
+                    <label class="sm-label" for="transactNo">Transaction Number<span style="color: red;">*</span></label>
                     <input type="text" id="transactNo" name="transactNo" class="form-control"
                         style="text-align: right;">
                 </div>
                 <div class="form-group">
-                    <label for="transactNo">Date<span style="color: red;">*</span></label>
+                    <label class="sm-label" for="transactNo">Date<span style="color: red;">*</span></label>
                     <input type="date" id="transactDate" name="transactDate" class="form-control"
                         style="text-align: right;">
                 </div>
                 <div class="form-group">
-                    <label for="transactNo">Amount<span style="color: red;">*</span></label>
+                    <label class="sm-label" for="transactNo">Amount<span style="color: red;">*</span></label>
                     <input type="text" id="transactAmount" name="transactAmount" class="form-control"
                         style="text-align: right;">
                     <div id="validationMessageNo" style="color: red;"></div>
@@ -243,12 +237,9 @@ misStatusButtons.forEach(function(button) {
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                    style="width: 120px;">Close</button>
-                <button type="button" class="btn btn-success save-mis-tn" style="width: 120px;"><img
-                        src="<?php echo base_url('')?>assets/backend/img/icons/save.png"
-                        style="width: 15px; margin-right: 10px;">Save</button>
-                <!-- <button type="button" data-dismiss="modal" class="btn btn-primary">OK</button> -->
+                <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light"
+                    id="save-mis-tn">Submit</button>
             </div>
         </div>
     </div>
@@ -273,7 +264,7 @@ $(document).ready(function() {
         });
     });
 
-    $(".save-mis-tn").on("click", function(event) {
+    $("#save-mis-tn").on("click", function(event) {
         var transactNoInput = document.querySelector('[name="transactNo"]');
         var transactDateInput = document.querySelector('[name="transactDate"]');
         var transactAmountInput = document.querySelector('[name="transactAmount"]');
@@ -338,20 +329,20 @@ $(document).ready(function() {
     });
 });
 $(document).ready(function() {
-            $('#mistable').DataTable({
-                lengthChange: false,
-                language: {
-                    search: '',
-                    searchPlaceholder: 'Search...'
-                }
-            });
-        });
+    $('#mistable').DataTable({
+        lengthChange: false,
+        language: {
+            search: '',
+            searchPlaceholder: 'Search...'
+        }
+    });
+});
 
 
-        $('.dataTables_filter input[type="search"]').css({
-            'width': '300px',
-            'margin-right': '10px',
-            'padding': '5px',
-            'box-sizing': 'border-box'
-        });
+$('.dataTables_filter input[type="search"]').css({
+    'width': '300px',
+    'margin-right': '10px',
+    'padding': '5px',
+    'box-sizing': 'border-box'
+});
 </script>

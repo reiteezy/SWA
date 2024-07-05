@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </head>
   <body>
     <div style="text-align: center;">
-      <img src="<?php echo base_url('assets/backend/img/logo/alturas.png');?>" style="width: 200px;">
+      <img src="<?php echo base_url('assets/assets/images/alturas.png');?>" style="width: 200px;">
     </div>
     <div style="text-align: center; margin-bottom: -20px; margin-top: -20px;">
       <h2>Grocery Group Management (GGM)</h2>

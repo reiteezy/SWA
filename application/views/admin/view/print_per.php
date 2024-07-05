@@ -79,7 +79,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <table style="width: 100%">
         <tr>
             <td style="width: 35%">
-                <img src="<?php echo base_url('assets/backend/img/logo/alturas.png');?>" style="width: 186px;">
+                <img src="<?php echo base_url('assets/assets/images/alturas.png');?>" style="width: 186px;">
             </td>
             <td style="text-align: left; font-size: 16px; font-weight: bold;">
                 <span class="title">PROMO EXECUTION REPORT</span>

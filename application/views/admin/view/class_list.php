@@ -36,10 +36,7 @@
 
                             <div class="card table-card">
                                 <div class="card-header">
-                                    <h5>User Type List</h5>
-                                </div>
-                                <div class="card-block">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#addTypeModal"><i class="feather icon-plus"></i>Add New User
                                         Type</button>
                                 </div>
@@ -96,14 +93,14 @@
                 <div class="card-block">
                     <form role="form" id="classForm" method="POST" action="<?php echo base_url() ?>ClassController/new_type" enctype="multipart/form-data">
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label"> Name</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label"> Name</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="user_class" id="user_class"
                                     placeholder="Enter class name">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label"> Description</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label"> Description</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="user_descript" name="user_descript"
                                     placeholder="Enter description">

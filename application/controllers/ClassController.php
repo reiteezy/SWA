@@ -21,7 +21,7 @@ class ClassController extends CI_Controller
 		
         $this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
-        $this->load->view('admin/require/sidebar');
+        $this->load->view('admin/require/sidebar', $data);
         $this->load->view('admin/view/class_list', $data);
         $this->load->view('admin/require/footer');
 	}

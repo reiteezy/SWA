@@ -121,8 +121,7 @@
                                     <div class="latest-update-box">
                                         <div class="row p-t-20 p-b-30">
                                             <div class="col-auto text-end update-meta p-r-0">
-                                                <img src="<?php echo base_url();?>assets/assets/images/avatar-4.jpg"
-                                                    alt="user image"
+                                                <img src="../files/assets/images/avatar-4.jpg" alt="user image"
                                                     class="img-radius img-40 align-top m-r-15 update-icon">
                                             </div>
                                             <div class="col p-l-5">
@@ -156,8 +155,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-auto text-end update-meta p-r-0">
-                                                <img src="<?php echo base_url();?>assets/assets/images/avatar-4.jpg"
-                                                    alt="user image"
+                                                <img src="../files/assets/images/avatar-4.jpg" alt="user image"
                                                     class="img-radius img-40 align-top m-r-15 update-icon">
                                             </div>
                                             <div class="col p-l-5">
@@ -189,8 +187,8 @@
                                 </div>
                                 <div class="card-block">
                                     <div class="align-middle m-b-35">
-                                        <img src="<?php echo base_url();?>assets/assets/images/avatar-2.jpg"
-                                            alt="user image" class="img-radius img-40 align-top m-r-15">
+                                        <img src="../files/assets/images/avatar-2.jpg" alt="user image"
+                                            class="img-radius img-40 align-top m-r-15">
                                         <div class="d-inline-block">
                                             <a href="#!">
                                                 <h6>Alex Thompson</h6>
@@ -200,8 +198,8 @@
                                         </div>
                                     </div>
                                     <div class="align-middle m-b-35">
-                                        <img src="<?php echo base_url();?>assets/assets/images/avatar-3.jpg"
-                                            alt="user image" class="img-radius img-40 align-top m-r-15">
+                                        <img src="../files/assets/images/avatar-3.jpg" alt="user image"
+                                            class="img-radius img-40 align-top m-r-15">
                                         <div class="d-inline-block">
                                             <a href="#!">
                                                 <h6>John Doue</h6>
@@ -211,8 +209,8 @@
                                         </div>
                                     </div>
                                     <div class="align-middle m-b-35">
-                                        <img src="<?php echo base_url();?>assets/assets/images/avatar-3.jpg"
-                                            alt="user image" class="img-radius img-40 align-top m-r-15">
+                                        <img src="../files/assets/images/avatar-3.jpg" alt="user image"
+                                            class="img-radius img-40 align-top m-r-15">
                                         <div class="d-inline-block">
                                             <a href="#!">
                                                 <h6>Alex Thompson</h6>
@@ -223,8 +221,8 @@
                                         </div>
                                     </div>
                                     <div class="align-middle m-b-0">
-                                        <img src="<?php echo base_url();?>assets/assets/images/avatar-2.jpg"
-                                            alt="user image" class="img-radius img-40 align-top m-r-15">
+                                        <img src="../files/assets/images/avatar-2.jpg" alt="user image"
+                                            class="img-radius img-40 align-top m-r-15">
                                         <div class="d-inline-block">
                                             <a href="#!">
                                                 <h6>Alex Thompson</h6>
@@ -388,10 +386,10 @@
                                                 <h6>John Deo</h6>
                                                 <p class="text-muted m-b-15">The trip was an amazing and a life changing
                                                     experience!!</p>
-                                                <img src="<?php echo base_url();?>assets/assets/images/mega-menu/01.jpg"
-                                                    alt class="img-fluid img-100 m-r-15 m-b-10">
-                                                <img src="<?php echo base_url();?>assets/assets/images/mega-menu/03.jpg"
-                                                    alt class="img-fluid img-100 m-r-15 m-b-10">
+                                                <img src="../files/assets/images/mega-menu/01.jpg" alt
+                                                    class="img-fluid img-100 m-r-15 m-b-10">
+                                                <img src="../files/assets/images/mega-menu/03.jpg" alt
+                                                    class="img-fluid img-100 m-r-15 m-b-10">
                                             </div>
                                         </div>
                                         <div class="row p-b-30">
@@ -442,8 +440,8 @@
                                 <div class="card-block">
                                     <div class="row m-b-20 received-chat">
                                         <div class="col-auto p-r-0">
-                                            <img src="<?php echo base_url();?>assets/assets/images/avatar-2.jpg"
-                                                alt="user image" class="img-radius img-40">
+                                            <img src="../files/assets/images/avatar-2.jpg" alt="user image"
+                                                class="img-radius img-40">
                                         </div>
                                         <div class="col">
                                             <div class="msg">
@@ -460,22 +458,20 @@
                                             <p class="text-muted m-b-0"><i class="fa fa-clock-o m-r-10"></i>10:20am</p>
                                         </div>
                                         <div class="col-auto p-l-0">
-                                            <img src="<?php echo base_url();?>assets/assets/images/avatar-3.jpg"
-                                                alt="user image" class="img-radius img-40">
+                                            <img src="../files/assets/images/avatar-3.jpg" alt="user image"
+                                                class="img-radius img-40">
                                         </div>
                                     </div>
                                     <div class="row m-b-20 received-chat">
                                         <div class="col-auto p-r-0">
-                                            <img src="<?php echo base_url();?>assets/assets/images/avatar-2.jpg"
-                                                alt="user image" class="img-radius img-40">
+                                            <img src="../files/assets/images/avatar-2.jpg" alt="user image"
+                                                class="img-radius img-40">
                                         </div>
                                         <div class="col">
                                             <div class="msg">
                                                 <p class="m-b-0">Nice to meet you!</p>
-                                                <img src="<?php echo base_url();?>assets/assets/images/mega-menu/01.jpg"
-                                                    alt>
-                                                <img src="<?php echo base_url();?>assets/assets/images/mega-menu/03.jpg"
-                                                    alt>
+                                                <img src="../files/assets/images/mega-menu/01.jpg" alt>
+                                                <img src="../files/assets/images/mega-menu/03.jpg" alt>
                                             </div>
                                             <p class="text-muted m-b-0"><i class="fa fa-clock-o m-r-10"></i>10:20am</p>
                                         </div>
@@ -488,14 +484,14 @@
                                             <p class="text-muted m-b-0"><i class="fa fa-clock-o m-r-10"></i>10:20am</p>
                                         </div>
                                         <div class="col-auto p-l-0">
-                                            <img src="<?php echo base_url();?>assets/assets/images/avatar-3.jpg"
-                                                alt="user image" class="img-radius img-40">
+                                            <img src="../files/assets/images/avatar-3.jpg" alt="user image"
+                                                class="img-radius img-40">
                                         </div>
                                     </div>
                                     <div class="row m-b-20 received-chat">
                                         <div class="col-auto p-r-0">
-                                            <img src="<?php echo base_url();?>assets/assets/images/avatar-2.jpg"
-                                                alt="user image" class="img-radius img-40">
+                                            <img src="../files/assets/images/avatar-2.jpg" alt="user image"
+                                                class="img-radius img-40">
                                         </div>
                                         <div class="col">
                                             <div class="msg">

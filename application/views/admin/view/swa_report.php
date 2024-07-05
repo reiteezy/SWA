@@ -17,9 +17,6 @@
                         <li class="breadcrumb-item">
                             <a href="<?php echo base_url() ?>AdminController/dash"><i class="feather icon-home"></i></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="<?php echo base_url() ?>SwaController/swa_list">SWA
-                                List</a>
-                        </li>
                         <li class="breadcrumb-item"><a href="#!">Generate Report</a>
                         </li>
                     </ul>
@@ -30,7 +27,8 @@
 
     <div class="pcoded-inner-content">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js">
+        </script>
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body">
@@ -42,7 +40,7 @@
                                     <h5>Generate Report</h5>
                                 </div>  -->
 
-                                <div class="card-block" style="padding-top: 50px;">
+                                <div class="card-block" style="padding-top: 50px; padding-bottom: 50px">
                                     <div class="row" style="margin-bottom: 5px;">
                                         <div class="col-auto">
                                             <div id="reportrange"
@@ -54,10 +52,13 @@
                                         <div class="col-auto">
                                             <button class="btn btn-primary" id="generate-btn">Generate</button>
                                         </div>
+                                        <div class="col-auto">
+                                            <div class="generate-loader"></div>
+                                        </div>
                                     </div>
 
                                     <div class="table-responsive">
-                                        <div class="table-loader"></div>
+                                        <div class="report-loader"></div>
                                         <table id="report-table" class="table table-hover table-bordered m-b-0">
                                             <thead>
                                                 <tr>
@@ -84,11 +85,9 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="loader" id="loader"></div>
+                                    <!-- <div class="loader" id="loader"></div> -->
                                 </div>
-
                             </div>
-
                             <!-- -->
                         </div>
                     </div>
@@ -130,7 +129,10 @@ $(document).ready(function() {
     cb(start, end);
 
     function fetchTableData(startDate, endDate) {
-        $('.table-loader').show();
+        $('.report-loader').show();
+        // var loaderMinimumTime = 2000; // 3 seconds
+        // var startTime = Date.now();
+
         $.ajax({
             url: '<?= base_url("SwaController/get_daterange_data") ?>',
             method: 'POST',
@@ -144,54 +146,68 @@ $(document).ready(function() {
                 } catch (e) {
                     console.error('Invalid JSON response:', response);
                     alert('Failed to load data: Invalid JSON response.');
-                    $('.table-loader').hide();
+                    $('.report-loader').hide();
                     return;
                 }
-                var tbody = $('#report-table tbody');
-                tbody.empty();
-                console.log(response);
-                response.data.forEach(function(row) {
-                    tbody.append(
-                        '<tr><td>' + row.SWA_ID + '</td><td>' + row
-                        .DOCUMENT_DATE +
-                        '</td><td>' + row.NAME + '</td><td>' + row
-                        .SWA_ACCOUNTING_INSTRUCT +
-                        '</td><td>' + row.LOCATION +
-                        '</td><td>' + row.SUB_CODE +
-                        '</td><td>' + row.SWA_REMARK +
-                        '</td><td>' + row.SWA_TOTAL +
-                        '</td><td>' + row.SWA_TRANS_NO1 +
-                        '</td><td>' + row.SWA_TRANS_NO1_DATE +
-                        '</td><td>' + row.SWA_TRANS_NO1_AMOUNT +
-                        '</td><td>' + row.SWA_CRFCV_NO +
-                        '</td><td>' + row.SWA_CRFCV_DATE +
-                        '</td><td>' + row.SWA_CRFCV_AMOUNT +
-                        '</td><td>' +
-                        '</td></tr>');
-                });
 
-                $('.table-loader').hide();
+                // Calculate the elapsed time
+                // var elapsedTime = Date.now() - startTime;
+                // var remainingTime = loaderMinimumTime - elapsedTime;
+
+                // Ensure the loader is shown for at least 3 seconds
+                setTimeout(function() {
+                    var tbody = $('#report-table tbody');
+                    tbody.empty();
+                    console.log(response);
+                    response.data.forEach(function(row) {
+                        tbody.append(
+                            '<tr><td>' + row.SWA_ID + '</td><td>' + row
+                            .DOCUMENT_DATE +
+                            '</td><td>' + row.NAME + '</td><td>' + row
+                            .SWA_ACCOUNTING_INSTRUCT +
+                            '</td><td>' + row.LOCATION + '</td><td>' + row
+                            .SUB_CODE +
+                            '</td><td>' + row.SWA_REMARK + '</td><td>' + row
+                            .SWA_TOTAL +
+                            '</td><td>' + row.SWA_TRANS_NO1 + '</td><td>' + row
+                            .SWA_TRANS_NO1_DATE +
+                            '</td><td>' + row.SWA_TRANS_NO1_AMOUNT +
+                            '</td><td>' + row.SWA_CRFCV_NO +
+                            '</td><td>' + row.SWA_CRFCV_DATE + '</td><td>' + row
+                            .SWA_CRFCV_AMOUNT +
+                            '</td><td>' + '</td></tr>'
+                        );
+                    });
+                    $('.report-loader').hide();
+                }
+                // , remainingTime > 0 ? remainingTime : 0
+            );
             },
             error: function() {
-                $('.table-loader').hide();
-                alert('Failed to fetch data.');
+                // var elapsedTime = Date.now() - startTime;
+                // var remainingTime = loaderMinimumTime - elapsedTime;
+
+                setTimeout(function() {
+                    $('.report-loader').hide();
+                    alert('Failed to fetch data.');
+                }
+                // , remainingTime > 0 ? remainingTime : 0
+                );
             }
         });
     }
-});
-$(document).ready(function() {
+
+
     $('#generate-btn').on('click', function() {
         // Show the loader
-        $('#loader').show();
+        $('.generate-loader').show();
 
-        // Generate the PDF after a delay
+        // Simulate PDF generation delay (replace with actual generatePDF() function if needed)
         setTimeout(generatePDF, 5000);
     });
 
     function generatePDF() {
-        const {
-            jsPDF
-        } = window.jspdf;
+        const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
         const table = $('#report-table');
 
@@ -219,26 +235,16 @@ $(document).ready(function() {
         // Save the PDF
         doc.save('report.pdf');
 
-        // Hide the loader
-        $('#loader').hide();
+        // Hide the loader after PDF generation is complete
+        $('.generate-loader').hide();
     }
-});
-$(document).ready(function() {
+
     $('#report-table').DataTable({
         lengthChange: false,
         language: {
             search: '',
             searchPlaceholder: 'Search...'
         }
-    });
-
-
-
-    $('.dataTables_filter input[type="search"]').css({
-        'width': '300px',
-        'margin-right': '10px',
-        'padding': '5px',
-        'box-sizing': 'border-box'
     });
 });
 </script>

@@ -26,9 +26,10 @@ class AdminController extends CI_Controller
 
 	public function dash() 
 	{
+		$data['menu'] = 'dashboard';
         $this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
-        $this->load->view('admin/require/sidebar');
+        $this->load->view('admin/require/sidebar', $data);
         $this->load->view('admin/view/dashboard');
         $this->load->view('admin/require/footer');
 	}
@@ -426,18 +427,19 @@ public function acctg_status_changed()
 
 	public function view_privilege()
 	{
-		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
-		$this->breadcrumb->add('User Menu', base_url('privilege'));
-		if ($this->session->userdata('priv_um') == 1){
+		// if ($this->session->userdata('priv_um') == 1){
 		$data['menu'] = 'User_menu';			
 		$data['classes'] = $this->Admin_model->view_class_privilege();
-		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
-
-		$this->load->view('admin/user_menu', $data);
+		// $data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
+		$this->load->view('admin/require/header');
+		$this->load->view('admin/require/navbar');
+		$this->load->view('admin/require/sidebar', $data);
+		$this->load->view('admin/view/user_menu', $data);
+		$this->load->view('admin/require/footer');
 		// var_dump($this->session->userdata);	
-		} else {
-		$this->load->view('admin/error');
-		}
+		// } else {
+		// $this->load->view('admin/error');
+		// }
 	}
 
 	public function view_update_privilege($class_id)

@@ -1,5 +1,4 @@
 <div class="pcoded-content">
-
     <div class="page-header card">
         <div class="row align-items-end">
             <div class="col-lg-8">
@@ -24,23 +23,19 @@
             </div>
         </div>
     </div>
-
     <div class="pcoded-inner-content">
-
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body">
                     <div class="row">
                         <div class="col-sm-12">
-
                             <div class="card table-card">
                                 <div class="card-header">
-                                    <h5>Users List</h5>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#addUserModal"><i class="feather icon-plus"></i>Add New
+                                        User</button>
                                 </div>
-                                <div class="card-block">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal"><i class="feather icon-plus"></i>Add New User</button>
-                                </div>
-                                <div class="card-block">
+                                <div class="card-block" style="padding-bottom: 50px;">
                                     <div class="table-responsive">
                                         <table id="usertable" class="table table-hover m-b-0 sub-table">
                                             <thead>
@@ -60,7 +55,8 @@
                                                 <tr>
                                                     <td>
                                                         <div class="d-inline-block align-middle">
-                                                            <img src="http://172.16.161.34:8080/hrms<?php echo substr($user->EMP_PHOTO, 2); ?>" alt="user image"
+                                                            <img src="http://172.16.161.34:8080/hrms<?php echo substr($user->EMP_PHOTO, 2); ?>"
+                                                                alt="user image"
                                                                 class="img-radius img-40 align-top m-r-15">
                                                             <div class="d-inline-block">
                                                                 <h6><?php echo $user->EMP_NAME; ?></h6>
@@ -97,8 +93,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                         <!-- -->
                     </div>
                 </div>
@@ -108,7 +102,6 @@
 </div>
 </div>
 <!------------------------ USERS MODAL------------------>
-
 <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog">
     <div class="modal-dialog-centered modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -118,21 +111,21 @@
             </div>
             <div class="modal-body">
                 <div class="card-block">
-                <form id="addUserForm" role="form" method="POST" action="<?php echo base_url() ?>UserController/new_user"
-                enctype="multipart/form-data">
+                    <form id="addUserForm" role="form" method="POST"
+                        action="<?php echo base_url() ?>UserController/new_user" enctype="multipart/form-data">
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label">Name</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label">Name</label>
                             <div class="col-sm-10" style="position: relative">
                                 <input type="search" required autocomplete="off" id="emp_name" name="emp_name"
                                     class="form-control" placeholder="Family name, first name...">
                                 <div id="dropdown"
                                     style="position: absolute; overflow-y: auto; border: 1px solid #d1d3e2; background-color: #F5F5F5; display: none; z-index: 999;"
                                     class="dropdown-content"></div>
-                                    <div id="validationNameAvailability" style="color: red;"></div>
+                                <div id="validationNameAvailability" style="color: red;"></div>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label">User Class</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label">User Class</label>
                             <div class="col-sm-10">
                                 <select class="form-control" name="user_class" id="user_class">
                                     <option value="" disabled selected>Select class</option>
@@ -148,49 +141,44 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label">Class Description</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label">Class Description</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="class_description"
-                                    name="class_description" placeholder="">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label">Position</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="emp_pos" name="emp_pos"
+                                <input type="text" class="form-control" id="class_description" name="class_description"
                                     placeholder="">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label">Employee ID</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label">Position</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="emp_id" name="emp_id"
-                                    placeholder="">
+                                <input type="text" class="form-control" id="emp_pos" name="emp_pos" placeholder="">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label">Department</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label">Employee ID</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="emp_dept" name="emp_dept"
-                                    placeholder="">
+                                <input type="text" class="form-control" id="emp_id" name="emp_id" placeholder="">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label">Business Unit</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label">Department</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="emp_bu" name="emp_bu"
-                                    placeholder="">
+                                <input type="text" class="form-control" id="emp_dept" name="emp_dept" placeholder="">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label">Default Username</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label">Business Unit</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="username" name="username"
-                                    placeholder="">
+                                <input type="text" class="form-control" id="emp_bu" name="emp_bu" placeholder="">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="form-label col-sm-2 col-form-label">Default Password</label>
+                            <label class="form-label col-sm-2 col-form-label sm-label">Default Username</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="username" name="username" placeholder="">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="form-label col-sm-2 col-form-label sm-label">Default Password</label>
                             <div class="col-sm-10">
                                 <input type="password" class="form-control" id="password" name="password"
                                     placeholder="">
@@ -201,20 +189,20 @@
 
                         <div id="validationMessage" style="color: red;"></div>
                         <div id="validationUser" style="color: red;"></div>
-
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default waves-effect" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light" id="saveNewUserButton">Save changes</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light" id="saveNewUserButton">Save
+                    changes</button>
             </div>
         </div>
     </div>
 </div>
 <!------------------------ END OF ADD USERS MODAL------------------>
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
     $("#emp_name").on("input", function() {
         var emp_name = $(this).val();
 
@@ -375,7 +363,6 @@
         checkNameAvailability(empName);
     });
 
-});
 
 function checkNameAvailability(emp_name) {
     $.ajax({
@@ -395,21 +382,20 @@ function checkNameAvailability(emp_name) {
         error: function() {}
     });
 };
-$(document).ready(function() {
-            $('#usertable').DataTable({
-                lengthChange: false,
-                language: {
-                    search: '',
-                    searchPlaceholder: 'Search...'
-                }
-            });
-        });
+    $('#usertable').DataTable({
+        lengthChange: false,
+        language: {
+            search: '',
+            searchPlaceholder: 'Search...'
+        }
+    });
 
+$('.dataTables_filter input[type="search"]').css({
+    'width': '300px',
+    'margin-right': '10px',
+    'padding': '5px',
+    'box-sizing': 'border-box'
+});
+});
 
-        $('.dataTables_filter input[type="search"]').css({
-            'width': '300px',
-            'margin-right': '10px',
-            'padding': '5px',
-            'box-sizing': 'border-box'
-        });
 </script>

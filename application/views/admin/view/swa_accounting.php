@@ -39,7 +39,7 @@
                                     <h5>Accounting Confirmation</h5>
                                 </div> -->
 
-                                <div class="card-block" style="padding-top: 50px;">
+                                <div class="card-block" style="padding-bottom: 50px;">
                                     <div class="table-responsive">
                                         <table class="table table-hover m-b-0" id="acctgtable">
                                             <thead>
@@ -78,22 +78,20 @@
                                                     <td><?php echo $data->SWA_CRFCV_NO; ?></td>
                                                     <td>
                                                         <?php if(!empty($data->SWA_CRFCV_NO)) { ?>
-                                                        <span class="badge badge-success acctg-status"
-                                                            sid="<?php echo $data->SWA_ID?>">Confirmed</span>
+                                                        <label class="form-label badge badge-inverse-success acctg-status"
+                                                            sid="<?php echo $data->SWA_ID?>">Confirmed</label>
                                                         <?php } else { ?>
-                                                        <span class="badge badge-warning acctg-status"
-                                                            sid="<?php echo $data->SWA_ID?>">Pending</span>
+                                                        <label class="form-label badge badge-inverse-danger acctg-status"
+                                                            sid="<?php echo $data->SWA_ID?>">Pending</label>
                                                         <?php } ?>
                                                     </td>
                                                     <td>
-                                                        <button type="button" class="acctg-confirm-btn" title="Confirm"
-                                                            style="background: transparent; border: none;"
+                                                        <button type="button" class="acctg-confirm-btn" <?php echo (!empty($data->SWA_CRFCV_NO)) ? 'disabled' : '';?> title="Confirm"
                                                             data-swa-id="<?php echo $data->SWA_ID; ?>"
                                                             data-control-no="<?php echo $data->SWA_CONTROL_NO; ?>"
                                                             data-crfcv-no="<?php echo $data->SWA_CRFCV_NO; ?>"
-                                                            data-toggle="modal" data-target="#acctgConfirmModal"><img
-                                                                src="<?php echo base_url('')?>assets/backend/img/icons/confirm.png"
-                                                                alt="View" style="width: 20px;">
+                                                            data-toggle="modal" data-target="#acctgConfirmModal" style="background: #4099ff; border: #4099ff;">
+                                                        <i class="icon feather icon-check-square f-w-600 f-16 m-r-15" style="color: #fff"></i><span style="color: #fff; font-size: 13px; margin-left: -8px;">Confirm</span>
                                                         </button>
                                                     </td>
                                                 </tr>
@@ -116,7 +114,7 @@
     </div>
 </div>
 <div class="modal fade" id="acctgConfirmModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog modal-md" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="">Transaction Confirmation</h5>
@@ -145,7 +143,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success waves-effect waves-light save-acctg-tn">Save</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light" id="save-acctg-tn">Submit</button>
             </div>
         </div>
     </div>
@@ -238,7 +236,7 @@ $(document).ready(function() {
         });
     });
 
-    $(".save-acctg-tn").on("click", function(event) {
+    $("#save-acctg-tn").on("click", function(event) {
         var crfcvNoInput = document.querySelector('[name="crfcvNo"]');
         var crfcvDateInput = document.querySelector('[name="crfcvDate"]');
         var crfcvAmountInput = document.querySelector('[name="crfcvAmount"]');

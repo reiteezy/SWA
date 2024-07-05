@@ -34,23 +34,14 @@
                         <div class="col-sm-12">
 
                             <div class="card table-card">
-                                <!-- <div class="card-header">
-                                    <h5>SWA List</h5>
-                                </div> -->
-
-                                <div class="card-block" style="padding-top: 50px;">
-                                    <!-- <div class="row" style="margin-bottom: 5px;">
-                                        <div class="col-auto"> -->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                <div class="card-header">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#swaFormModal"><i class="feather icon-plus"></i>Add New
                                         SWA</button>
-                                    <!-- </div> -->
-                                    <!-- <div class="col-auto">
-                                            <a class="btn btn-primary"
-                                                href="<?php echo base_url() ?>SwaController/view_swa_reports">Generate
-                                                Report</a>
-                                        </div> -->
-                                    <!-- </div> -->
+                                    <!-- <h5>SWA List</h5> -->
+                                </div>
+
+                                <div class="card-block">
                                     <div class="table-responsive">
                                         <table id="swatable" class="table table-hover m-b-0">
                                             <thead>
@@ -106,9 +97,8 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- -->
                         </div>
+                        <!-- -->
                     </div>
                 </div>
             </div>
@@ -139,7 +129,7 @@
                                     $location = $this->db->get('location_tbl')->result_array();
                                     ?>
                                             <select class="form-control hide-select" name="loc" id="loc"
-                                                onchange="handleLocChange()">
+                                                onchange="handleLocChange()" style="font-weight: bold;">
                                                 <option value="" hidden selected></option>
                                                 <?php  foreach ($location as $loc): ?>
                                                 <option><?php echo $loc['LOCATION'] ?></option>
@@ -178,9 +168,11 @@
                                 <script>
                                 function getDate() {
                                     var today = new Date();
-                                    document.getElementById("document_date").value = today.getFullYear() + '-' + ('0' +
+                                    document.getElementById("document_date").value = today.getFullYear() + '-' + (
+                                        '0' +
                                         (today
-                                            .getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+                                            .getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-
+                                        2);
                                 }
                                 window.onload = function() {
                                     getDate();
@@ -297,7 +289,7 @@
                                                     <td style="padding: 2px;">
                                                         <select class="form-control custom-arrow"
                                                             name="datas[<?php echo $data; ?>][unit]"
-                                                            style="border: none;"
+                                                            style="border: none; font-weight: bold;"
                                                             id="datas[<?php echo $data; ?>][unit]">
                                                             <option value="" hidden selected>
                                                             </option>
@@ -402,7 +394,7 @@
                                             "][code]' style='border-color: #4c4c4c; text-align: center; center; border: none;'></td>";
                                         html +=
                                             "<td style='padding: 1px;'><select class='form-control custom-arrow' name='datas[" +
-                                            data + "][unit]' style='border: none;' id='datas[" +
+                                            data + "][unit]' style='border: none; font-weight: bold;' id='datas[" +
                                             data +
                                             "][unit]'>" +
                                             "<option value='' hidden selected></option>" +
@@ -476,10 +468,10 @@
                                                     style="color: red;">*</span>
                                                 <input type="hidden" id="sup_id" name="sup_id">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" data-toggle="modal" data-target="#assignSupplierModal"
-                                                        id="sup_code" name="sup_code" placeholder="Supplier"
-                                                        readonly="readonly" title="Search for supplier"
-                                                        style="cursor: pointer;">
+                                                    <input type="text" class="form-control" data-toggle="modal"
+                                                        data-target="#assignSupplierModal" id="sup_code" name="sup_code"
+                                                        placeholder="Supplier" readonly="readonly"
+                                                        title="Search for supplier" style="cursor: pointer;">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-xs-12">
@@ -556,10 +548,10 @@
                 </div>
                 <div class="modal-footer">
                     <div class="d-flex justify-content-start">
-                        <button type="button" class="btn btn-info waves-effect waves-light me-2"
-                            data-bs-toggle="modal" data-bs-target="#assignSignatoriesModal">Signatories</button>
-                        <button type="button" class="btn btn-info waves-effect waves-light me-2"
-                            data-bs-toggle="modal" data-bs-target="#assignPromoDetailsModal">Promo Details</button>
+                        <button type="button" class="btn btn-info waves-effect waves-light me-2" data-bs-toggle="modal"
+                            data-bs-target="#assignSignatoriesModal">Signatories</button>
+                        <button type="button" class="btn btn-info waves-effect waves-light me-2" data-bs-toggle="modal"
+                            data-bs-target="#assignPromoDetailsModal">Promo Details</button>
                         <input type="reset" value="Clear" id="clearForm"
                             class="btn btn-secondary waves-effect waves-light me-2" data-bs-toggle="tooltip"
                             title="Clear form">
@@ -696,7 +688,8 @@
                                     var unitPrice = parseFloat(item['MaxUnitPrice']);
                                     var startingDate = new Date(item['LatestDate']);
 
-                                    if (!latestPrices[uom] || startingDate > latestPrices[
+                                    if (!latestPrices[uom] || startingDate >
+                                        latestPrices[
                                             uom]
                                         .startingDate) {
                                         latestPrices[uom] = {
@@ -724,7 +717,8 @@
                                     dropdown.append($('<option>', {
                                         value: uom,
                                         text: uom,
-                                        'data-price': latestPrices[uom]
+                                        'data-price': latestPrices[
+                                                uom]
                                             .unitPrice.toFixed(2)
                                     }));
                                 });
@@ -734,8 +728,10 @@
                                 var itemBarCode = selectedItem['Barcode No_'];
                                 var itemDescription = selectedItem['Description'];
 
-                                $("#datas\\[" + row + "\\]\\[item_code\\]").val(itemCode);
-                                $("#datas\\[" + row + "\\]\\[barcode\\]").val(itemBarCode);
+                                $("#datas\\[" + row + "\\]\\[item_code\\]").val(
+                                    itemCode);
+                                $("#datas\\[" + row + "\\]\\[barcode\\]").val(
+                                    itemBarCode);
                                 $("#datas\\[" + row + "\\]\\[descript\\]").val(
                                     itemDescription);
                                 $("#datas\\[" + row + "\\]\\[unit_cost\\]").val('');
@@ -745,11 +741,13 @@
                                     if (selectedUOM) {
                                         var selectedPrice = $(this).find(
                                             'option:selected').data('price');
-                                        $("#datas\\[" + row + "\\]\\[unit_cost\\]")
+                                        $("#datas\\[" + row +
+                                                "\\]\\[unit_cost\\]")
                                             .val(
                                                 selectedPrice);
                                     } else {
-                                        $("#datas\\[" + row + "\\]\\[unit_cost\\]")
+                                        $("#datas\\[" + row +
+                                                "\\]\\[unit_cost\\]")
                                             .val(
                                                 '');
                                     }
@@ -1269,7 +1267,8 @@
                                                 <th style="text-align: center;">DATE</th>
                                                 <th style="text-align: center;">AMOUNT</th>
                                                 <th style="border-right: 0; text-align: right;">PAYMENTS</th>
-                                                <th style="border-left: 0; border-right: 0; text-align: center;">FROM
+                                                <th style="border-left: 0; border-right: 0; text-align: center;">
+                                                    FROM
                                                 </th>
                                                 <th style="border-left: 0; text-align: left;">SUPPLIER</th>
                                                 <th style="text-align: center;">BALANCE</th>
@@ -1281,7 +1280,8 @@
                                             <tr>
                                                 <td style="text-align: center;"><?php echo $data->SWA_ID; ?></td>
                                                 <td style="text-align: center;">
-                                                    <?php echo date("m/j/Y", strtotime($data->DOCUMENT_DATE)); ?></td>
+                                                    <?php echo date("m/j/Y", strtotime($data->DOCUMENT_DATE)); ?>
+                                                </td>
                                                 <td style="text-align: left;"><?php echo $data->NAME; ?></td>
                                                 <td style="text-align: left;">
                                                     <?php echo $data->SWA_ACCOUNTING_INSTRUCT; ?></td>
@@ -1289,15 +1289,19 @@
                                                 <td style="text-align: center;"><?php echo $data->SUB_CODE; ?></td>
                                                 <td style="text-align: left;"><?php echo $data->SWA_REMARK; ?></td>
                                                 <td style="text-align: center;"><?php echo $data->SWA_TOTAL; ?></td>
-                                                <td style="text-align: center;"><?php echo $data->SWA_TRANS_NO1; ?></td>
-                                                <td style="text-align: center;"><?php echo $data->SWA_TRANS_NO1_DATE; ?>
+                                                <td style="text-align: center;"><?php echo $data->SWA_TRANS_NO1; ?>
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    <?php echo $data->SWA_TRANS_NO1_DATE; ?>
                                                 </td>
                                                 <td style="text-align: center;">
                                                     <?php echo $data->SWA_TRANS_NO1_AMOUNT; ?></td>
-                                                <td style="text-align: left;"><?php echo $data->SWA_CRFCV_NO; ?></td>
+                                                <td style="text-align: left;"><?php echo $data->SWA_CRFCV_NO; ?>
+                                                </td>
                                                 <td style="text-align: center;"><?php echo $data->SWA_CRFCV_DATE; ?>
                                                 </td>
-                                                <td style="text-align: center;"><?php echo $data->SWA_CRFCV_AMOUNT; ?>
+                                                <td style="text-align: center;">
+                                                    <?php echo $data->SWA_CRFCV_AMOUNT; ?>
                                                 </td>
                                                 <td style="text-align: center;"></td>
                                                 <td style="text-align: center;"></td>
@@ -1376,7 +1380,8 @@
                     // console.log('min:', min.format('MM/DD/YYYY'), 'max:', max.format('MM/DD/YYYY'), 'date:', date.format('MM/DD/YYYY'))
 
                     if (
-                        (min.isValid() && max.isValid() && date.isBetween(min.format('MM/DD/YYYY'), max
+                        (min.isValid() && max.isValid() && date.isBetween(min.format('MM/DD/YYYY'),
+                            max
                             .format(
                                 'MM/DD/YYYY'), null, '[]')) ||
                         (min.isValid() && !max.isValid() && date.isSameOrAfter(min)) ||
@@ -1487,7 +1492,8 @@
                     var recDateValue = $('#rec_date').val();
 
                     if (reqByValue) {
-                        $('#swaForm').append('<input type="hidden" name="req_by" value="' + reqByValue +
+                        $('#swaForm').append('<input type="hidden" name="req_by" value="' +
+                            reqByValue +
                             '">');
                     }
                     if (reqDateValue && reqByValue) {
@@ -1495,7 +1501,8 @@
                             reqDateValue + '">');
                     }
                     if (revByValue) {
-                        $('#swaForm').append('<input type="hidden" name="rev_by" value="' + revByValue +
+                        $('#swaForm').append('<input type="hidden" name="rev_by" value="' +
+                            revByValue +
                             '">');
                     }
                     if (revDateValue && revByValue) {
@@ -1503,7 +1510,8 @@
                             revDateValue + '">');
                     }
                     if (appByValue) {
-                        $('#swaForm').append('<input type="hidden" name="app_by" value="' + appByValue +
+                        $('#swaForm').append('<input type="hidden" name="app_by" value="' +
+                            appByValue +
                             '">');
                     }
                     if (appDateValue && appByValue) {
@@ -1511,7 +1519,8 @@
                             appDateValue + '">');
                     }
                     if (relByValue) {
-                        $('#swaForm').append('<input type="hidden" name="rel_by" value="' + relByValue +
+                        $('#swaForm').append('<input type="hidden" name="rel_by" value="' +
+                            relByValue +
                             '">');
                     }
                     if (relDateValue && relByValue) {
@@ -1519,7 +1528,8 @@
                             relDateValue + '">');
                     }
                     if (recByValue) {
-                        $('#swaForm').append('<input type="hidden" name="rec_by" value="' + recByValue +
+                        $('#swaForm').append('<input type="hidden" name="rec_by" value="' +
+                            recByValue +
                             '">');
                     }
                     if (recDateValue && recByValue) {

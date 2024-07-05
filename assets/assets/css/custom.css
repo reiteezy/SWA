@@ -8,8 +8,11 @@ body {
     padding: 0;
     margin-right: 10px;
 }
-
-.modal-body label {
+.modal-header {
+  background: #154360;
+  color: #ccc
+}
+.modal-body input {
     font-weight: bold !important;
 }
 ::-webkit-scrollbar {
@@ -27,11 +30,8 @@ body {
   ::-webkit-scrollbar-thumb:hover {
     background: #031b30;
   }
-  .card-header {
-    margin-bottom: 20px;
-  }
+  /* card heading */
   
-
   .nav-tabs .nav-link {
   color: #333;
   }
@@ -60,8 +60,8 @@ body {
   .card {
     /* -webkit-box-shadow: none; */
     /* box-shadow: none; */
-    border: none;
-    margin-bottom: 0;
+    /* border: none;
+    margin-bottom: 0; */
 }
 
 .user-card
@@ -70,17 +70,10 @@ body {
   box-shadow: none;
 }
 
-/* .card .card-header {
-  padding:  50px 0 20px 50px;
-} */
-
 .card .card-header {
-  padding: 50px 50px 20px 50px;
+  padding: 1.9rem 1.25rem 0 1.25rem;
 }
 
-.card .card-block {
-  padding: 0 50px 0 50px; /* top: 0, right: 50px, bottom: 50px, left: 50px */
-}
 
 /* Floating Button Style */
 .floating-button {
@@ -115,7 +108,7 @@ body {
 .sm-label {
   font-size: 13px; /* Adjust font size as needed */
   text-transform: uppercase; /* Capitalize the text */
-  font-weight: bold; /* Optional: Make the text bold */
+  /* font-weight: bold; Optional: Make the text bold */
   color: #95604c;
 }
 
@@ -164,27 +157,18 @@ body {
   padding: 0;
 }
 
-.table-loader {
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #3498db;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
-  display: none;
-  margin: auto;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
 .table-container {
   position: relative;
 }
 
-.loading {
+.dropdown-item {
+  background: #fff !important;
+}
+
+.dropdown-item:hover {
+  background: #ccc !important;
+}
+/* .loading {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -194,6 +178,11 @@ body {
   right: 0;
   bottom: 0;
   background: rgba(255, 255, 255, 0.7);
+} */
+
+.highlight-row {
+  background-color: rgba(253, 215, 195, 0.522);
+  transition: background-color 5s ease;
 }
 
 .report-loader {
@@ -217,10 +206,32 @@ body {
 
 @keyframes loading {
   0% {
-      transform: translateX(-50%);
+      transform: translateX(-100%);
   }
 
   100% {
-      transform: translateX(50%);
+      transform: translateX(100%);
   }
+}
+
+/* HTML: <div class="loader"></div> */
+.generate-loader {
+  display: none; /* Hide initially */
+  width: 30px;
+  aspect-ratio: 1;
+  --c: no-repeat linear-gradient(#ff6f00 0 0);
+  background: 
+      var(--c) 0%   50%,
+      var(--c) 50%  50%,
+      var(--c) 100% 50%;
+  background-size: 20% 100%;
+  animation: l1 1s infinite linear;
+}
+
+@keyframes l1 {
+  0%  { background-size: 20% 100%, 20% 100%, 20% 100%; }
+  33% { background-size: 20% 10%, 20% 100%, 20% 100%; }
+  50% { background-size: 20% 100%, 20% 10%, 20% 100%; }
+  66% { background-size: 20% 100%, 20% 100%, 20% 10%; }
+  100% { background-size: 20% 100%, 20% 100%, 20% 100%; }
 }

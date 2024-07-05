@@ -6,7 +6,7 @@
                 <div class="pcoded-inner-navbar main-menu">
                     <div class="pcoded-navigation-label">Dashboard</div>
                     <ul class="pcoded-item pcoded-left-item">
-                        <li class>
+                        <li class="<?php echo ($menu=='dashboard') ? 'active' : '';?>">
                             <a href="<?php echo base_url() ?>AdminController/dash" class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
                                     <i class="feather icon-home"></i>
@@ -122,7 +122,8 @@
                             </ul>
                         </li>
                         <li class="<?php echo ($menu=='swa_accounting') ? 'active' : '';?>">
-                            <a href="<?php echo base_url() ?>SwaController/swa_accounting" class="waves-effect waves-dark">
+                            <a href="<?php echo base_url() ?>SwaController/swa_accounting"
+                                class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
                                     <i class="feather icon-menu"></i>
                                 </span>
@@ -130,7 +131,8 @@
                             </a>
                         </li>
                         <li class="<?php echo ($menu=='swa_reports') ? 'active' : '';?>">
-                            <a href="<?php echo base_url() ?>SwaController/view_swa_reports" class="waves-effect waves-dark">
+                            <a href="<?php echo base_url() ?>SwaController/view_swa_reports"
+                                class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
                                     <i class="feather icon-menu"></i>
                                 </span>
@@ -140,7 +142,7 @@
                     </ul>
                     <div class="pcoded-navigation-label">System Manager</div>
                     <ul class="pcoded-item pcoded-left-item">
-                        <li class="pcoded-hasmenu">
+                        <li class="pcoded-hasmenu <?php echo ($menu=='Type') ? 'active pcoded-trigger' : ''; ?>">
                             <a href="javascript:void(0)" class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
                                     <i class="feather icon-clipboard"></i>
@@ -148,20 +150,21 @@
                                 <span class="pcoded-mtext">User Type</span>
                             </a>
                             <ul class="pcoded-submenu">
-                                <li class=" ">
+                                <li class="<?php echo ($menu=='Type') ? 'active' : ''; ?>">
                                     <a href="<?php echo base_url() ?>ClassController/class_list"
                                         class="waves-effect waves-dark">
                                         <span class="pcoded-mtext">User Type List</span>
                                     </a>
                                 </li>
-                                <li class=" ">
+                                <!-- <li class=" ">
                                     <a href="<?php echo base_url() ?>ClassController/add_class"
                                         class="waves-effect waves-dark">
                                         <span class="pcoded-mtext">Add New User Type</span>
                                     </a>
+                                </li> -->
                             </ul>
                         </li>
-                        <li class="pcoded-hasmenu">
+                        <li class="pcoded-hasmenu <?php echo ($menu=='Users') ? 'active pcoded-trigger' : ''; ?>">
                             <a href="javascript:void(0)" class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
                                     <i class="feather icon-clipboard"></i>
@@ -169,21 +172,22 @@
                                 <span class="pcoded-mtext">System Users</span>
                             </a>
                             <ul class="pcoded-submenu">
-                                <li class=" ">
+                                <li class="<?php echo ($menu=='Users') ? 'active' : ''; ?>">
                                     <a href="<?php echo base_url() ?>UserController/users"
                                         class="waves-effect waves-dark">
                                         <span class="pcoded-mtext">Users List</span>
                                     </a>
                                 </li>
-                                <li class=" ">
+                                <!-- <li class=" ">
                                     <a href="<?php echo base_url() ?>UserController/add_user_page"
                                         class="waves-effect waves-dark">
                                         <span class="pcoded-mtext">Add New User</span>
                                     </a>
+                                </li> -->
                             </ul>
                         </li>
-                        <li class>
-                            <a href="navbar-light.html" class="waves-effect waves-dark">
+                        <li class="<?php echo ($menu=='User_menu') ? 'active' : ''; ?>">
+                            <a href="<?php echo base_url() ?>AdminController/view_privilege" class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
                                     <i class="feather icon-menu"></i>
                                 </span>

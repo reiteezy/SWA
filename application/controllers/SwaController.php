@@ -398,7 +398,8 @@ public function acctg_status_changed()
 //-----------------------------------ASSIGN PRIVILEGE----------------------------------------------------
 
 
-	public function saveTransactNoMis() {
+	public function saveTransactNoMis() 
+	{
 		$swa_id = $this->input->post('swa_id');
 		$this->db->select('swa_tbl.SWA_TRANS_NO1, swa_tbl.SWA_TRANS_NO2, swa_tbl.SWA_TRANS_NO3');
 		$this->db->from('swa_tbl');
@@ -439,7 +440,8 @@ public function acctg_status_changed()
 	}
 	
 
-	public function saveTransactNoAcctg() {
+	public function saveTransactNoAcctg() 
+	{
 		$swa_id = $this->input->post('swa_id');
 		$update_data = array(
 		'SWA_CRFCV_NO' => $this->input->post('crfcv_no'),
@@ -455,7 +457,8 @@ public function acctg_status_changed()
 		echo json_encode($response);
 	}
 	
-	public function printSwa($swa_id){
+	public function printSwa($swa_id)
+	{
 		$swaData['data'] = $this->Admin_model->get_swa_data($swa_id);
 		if (!$swaData) {
 		show_error('Data not found for the provided swa_id.');
@@ -463,7 +466,7 @@ public function acctg_status_changed()
 		$mpdf = new \Mpdf\Mpdf(['format' => 'Letter']);
 		$mpdf->autoLangToFont = true;
 		$mpdf->autoScriptToLang = true;
-		$html = $this->load->view('admin/print_swa', $swaData, true);
+		$html = $this->load->view('admin/view/print_swa', $swaData, true);
 		
 		$mpdf->SetMargins(5, 5, 10, 1);
 		$mpdf->WriteHTML($html);
@@ -471,7 +474,8 @@ public function acctg_status_changed()
 		$mpdf->Output();
 	}  
 
-	public function printPer($per_id){
+	public function printPer($per_id)
+	{
 		$perData['data'] = $this->Admin_model->get_per_data($per_id);
 		if (!$perData) {
 		show_error('Data not found for the provided swa_id.'); 
@@ -479,7 +483,7 @@ public function acctg_status_changed()
 		$mpdf = new \Mpdf\Mpdf(['format' => 'Letter']);
 		$mpdf->autoLangToFont = true;
 		$mpdf->autoScriptToLang = true;
-		$html = $this->load->view('admin/print_per', $perData, true);
+		$html = $this->load->view('admin/view/print_per', $perData, true);
 		
 		$mpdf->SetMargins(5, 5, 10, 1);
 		$mpdf->WriteHTML($html);

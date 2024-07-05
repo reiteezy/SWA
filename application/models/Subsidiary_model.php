@@ -9,6 +9,7 @@ class Subsidiary_model extends CI_Model
         parent::__construct(); 
     }
 
+    
     function add_subsidiary()
     {
         $sub_code = $this->input->post('sub_code');
@@ -18,19 +19,20 @@ class Subsidiary_model extends CI_Model
             'CODE' => $sub_code,
             'DESCRIPTION' => $sub_descript
         );
-        $response = $this->db->insert('sub_tbl', $sub_data);
-        if($response){
-            return $this->db->insert_id();
-        }
-        else{
-            return FALSE;
-        }
+        $this->db->insert('sub_tbl', $sub_data);
+        $insert_id = $this->db->insert_id();
+
+    return array(
+        'insert_id' => $insert_id,
+        'data' => $sub_data
+    );
     }
     
     public function view_subsidiary() 
     {
+        $this->db->order_by('ID', 'DESC');
         $result = $this->db->get('sub_tbl')->result();
-        $this->db->order_by('DESCRIPTION', 'DESC');
+
         return $result;
     }
     
@@ -57,12 +59,26 @@ class Subsidiary_model extends CI_Model
         );
     }
     
-    public function edit_subsidiary($sub_id, $update_data) 
+    function update_subsidiary($sub_id, $update_data) 
     {
+        // Update the record in the sub_tbl table where ID matches $sub_id
         $this->db->where('ID', $sub_id);
-        $response = $this->db->update('sub_tbl', $update_data);
-        return $response;
+        $this->db->update('sub_tbl', $update_data);
+    
+        // Fetch all columns from the updated record
+        $this->db->where('ID', $sub_id);
+        $query = $this->db->get('sub_tbl');
+        
+        // Check if a record exists
+        if ($query->num_rows() > 0) {
+            // Return the updated record as an associative array
+            return $query->row_array();
+        } else {
+            // Handle case where no record is found (optional)
+            return null; // or handle accordingly
+        }
     }
+    
 
     public function get_subsidiary($sub_id) 
     {

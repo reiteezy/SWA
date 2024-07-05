@@ -18,7 +18,7 @@ class SubsidiaryController extends CI_Controller
     $view_sub = $this->Subsidiary_model->view_subsidiary();
     $data['menu'] = 'Subsidiary';
     $data['subsidiaries'] = $view_sub;
-    
+    // print_r($view_sub);
     $this->load->view('admin/require/header');
     $this->load->view('admin/require/navbar');
     $this->load->view('admin/require/sidebar', $data);
@@ -46,7 +46,7 @@ public function new_subsidiary()
 	{
 		$response = $this->Subsidiary_model->add_subsidiary();
 		if ($response) {
-			$result = array('status' => 'success', 'message' => 'Data saved successfully!');
+			$result = array('status' => 'success', 'message' => 'Data saved successfully!', 'data' => $response);
 		} else {
 			$result = array('status' => 'error', 'message' => 'Failed to add data.');
 		}
@@ -62,10 +62,10 @@ public function new_subsidiary()
 		'DESCRIPTION' => $this->input->post('sub_descript')
 		);
 
-		$response = $this->Subsidiary_model>edit_subsidiary($sub_id, $update_data);
+		$response = $this->Subsidiary_model->update_subsidiary($sub_id, $update_data);
 
 		if ($response) {
-			$result = array('status' => 'success', 'message' => 'Data updated successfully!');
+			$result = array('status' => 'success', 'message' => 'Data updated successfully!', 'data' => $response);
 		} else {
 			$result = array('status' => 'error', 'message' => 'Failed to update data.');
 		}
@@ -114,38 +114,21 @@ public function new_subsidiary()
 	
 	public function view_edit_subsidiary($sub_id) 
 	{
-		if ($this->session->userdata('priv_sub') == 1)
-		{
-		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
-		$this->breadcrumb->add('Subsidiary', base_url('subsidiary'));
-		$this->breadcrumb->add('Edit', base_url('subsidiary/edit'), true); 
+		// if ($this->session->userdata('priv_sub') == 1)
+		// {
 		$data['menu'] = 'Subsidiary';
 		$data['sub_id'] = $sub_id;
 		$data['sub_data'] = $this->Subsidiary_model->get_subsidiary($sub_id);
-		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
 		// var_dump($data);
-		$this->load->view('admin/edit_subsidiary', $data);
-		} else {
-			redirect(base_url() . 'admin/error404');
-		}
+		$this->load->view('admin/require/header');
+		$this->load->view('admin/require/navbar');
+		$this->load->view('admin/require/sidebar', $data);
+		$this->load->view('admin/view/edit_subsidiary', $data);
+        $this->load->view('admin/require/footer');
+		// } else {
+		// 	redirect(base_url() . 'admin/error404');
+		// }
 	}
 
-	public function view_subsidiary() 
-	{
-		if ($this->session->userdata('priv_sub') == 1)
-		{
-		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
-		$this->breadcrumb->add('Subsidiary', base_url('subsidiary'));
-		$view_sub = $this->Subsidiary_model->view_subsidiary();
-		$data['menu'] = 'Subsidiary';
-		$data['subsidiaries'] = $view_sub;
-		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
-		
-		$this->load->view('admin/subsidiary', $data);
-		}
-		else {
-			redirect(base_url() . 'admin/error404');
-		}
-	}
 
 }

@@ -35,10 +35,7 @@
 
 
                             <div class="card table-card">
-                                <!-- <div class="card-header">
-                                    <h5>Supplier List</h5>
-                                </div> -->
-                                <div class="card-block" style="padding-top: 50px;">
+                                <div class="card-header">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#addSupModal"><i class="feather icon-plus"></i>Add New
                                         Supplier</button>
@@ -62,8 +59,8 @@
                                                     <!-- <td></td> -->
                                                     <td><?php echo $supplier->CODE; ?></td>
                                                     <td><?php echo $supplier->NAME; ?></td>
-                                                    <td><a href="#!"><i
-                                                                class="icon feather icon-edit f-w-600 f-16 m-r-15 text-c-blue"></i></a><a
+                                                    <td><button href="#!"><i
+                                                                class="icon feather icon-edit f-w-600 f-16 m-r-15 text-c-blue"></i></button><a
                                                             href="#!"><i
                                                                 class="feather icon-trash-2 f-w-600 f-16 text-c-red"></i></a>
                                                     </td>
@@ -96,11 +93,13 @@
             </div>
             <div class="modal-body">
                 <div class="card-block">
-                    <form role="form" id="supplierForm" method="POST" action="<?php echo base_url() ?>SupplierController/new_supplier" enctype="multipart/form-data">
+                    <form role="form" id="supplierForm" method="POST"
+                        action="<?php echo base_url() ?>SupplierController/new_supplier" enctype="multipart/form-data">
                         <div class="mb-3 row">
                             <label class="form-label col-sm-2 col-form-label sm-label"> Code</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="sup_code" id="sup_code" placeholder="Enter code">
+                                <input type="text" class="form-control" name="sup_code" id="sup_code"
+                                    placeholder="Enter code">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -144,7 +143,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default waves-effect" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light" id="supplierSaveButton">Save changes</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light" id="supplierSaveButton">Save
+                    changes</button>
             </div>
         </div>
     </div>
@@ -166,8 +166,9 @@ $(document).ready(function() {
         var telexInput = $('[name="sup_telno"]');
 
         if (codeInput.val().trim() === '' || supplierNameInput.val().trim() === '' || addressInput.val()
-            .trim() === '' || contactPersonInput.val().trim() === '' || phoneNoInput.val().trim() === '' || telexInput.val().trim() === ''
-            ) {
+            .trim() === '' || contactPersonInput.val().trim() === '' || phoneNoInput.val().trim() ===
+            '' || telexInput.val().trim() === ''
+        ) {
             validationMessage.text('Please fill in all required fields.');
             return;
         }
@@ -252,20 +253,20 @@ $(document).ready(function() {
     });
 });
 $(document).ready(function() {
-            $('#suptable').DataTable({
-                lengthChange: false,
-                language: {
-                    search: '',
-                    searchPlaceholder: 'Search...'
-                }
-            });
-        });
+    $('#suptable').DataTable({
+        lengthChange: false,
+        language: {
+            search: '',
+            searchPlaceholder: 'Search...'
+        }
+    });
+});
 
 
-        $('.dataTables_filter input[type="search"]').css({
-            'width': '300px',
-            'margin-right': '10px',
-            'padding': '5px',
-            'box-sizing': 'border-box'
-        });
+$('.dataTables_filter input[type="search"]').css({
+    'width': '300px',
+    'margin-right': '10px',
+    'padding': '5px',
+    'box-sizing': 'border-box'
+});
 </script>

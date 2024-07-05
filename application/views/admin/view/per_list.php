@@ -35,11 +35,8 @@
 
 
                             <div class="card table-card">
-                                <!-- <div class="card-header">
-                                    <h5>PER List</h5>
-                                </div> -->
-                                <div class="card-block" style="padding-top: 50px;">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                <div class="card-header">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#perFormModal"><i class="feather icon-plus"></i>Add New
                                         PER</button>
                                 </div>
