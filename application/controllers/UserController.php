@@ -20,6 +20,7 @@ class UserController extends CI_Controller
 		$data['users'] = $this->User_model->get_user_list();
 		$data['classes'] = $this->Class_model->get_class_data();
 		$data['menu'] = 'Users';
+		// print_r($data['users']);
 
 		$this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
@@ -58,19 +59,14 @@ class UserController extends CI_Controller
 
 	public function edit_user()
 	{
-		$user_class_id = $this->input->post('user_class');
+		$user_class_id = $this->input->post('update_userclass');
         $class_data = $this->User_model->get_user_data($user_class_id);
 		$user_id = $this->input->post('user_id');
 
 			$data = array(
-			'USERNAME' => $this->input->post('user_name'),
+			'USERNAME' => $this->input->post('update_username'),
 			'CLASS_ID' => $user_class_id,
-			'PASSWORD' => $this->input->post('password'),
-			'EMP_NAME' => $this->input->post('emp_name'),
-			'EMP_ID' => $this->input->post('emp_id'),
-			'EMP_POS' => $this->input->post('emp_pos'),
-			'EMP_DEPT' => $this->input->post('emp_dept'),
-			'EMP_BU' => $this->input->post('emp_bu')
+			'PASSWORD' => $this->input->post('update_password'),
 		
 		);
 			
@@ -120,18 +116,22 @@ class UserController extends CI_Controller
 	}
 
 	public function get_user($user_id) 
-	{
-		$this->db->select('users_tbl.*, class_tbl.CLASS, class_tbl.DESCRIPTION');
-		$this->db->from('users_tbl');
-		$this->db->join('class_tbl', 'users_tbl.CLASS_ID = class_tbl.CID', 'left');
-		$this->db->where('users_tbl.ID', $user_id);
+{
+    $this->db->select('users_tbl.*, class_tbl.CLASS, class_tbl.DESCRIPTION');
+    $this->db->from('users_tbl');
+    $this->db->join('class_tbl', 'users_tbl.CLASS_ID = class_tbl.CID', 'left');
+    $this->db->where('users_tbl.ID', $user_id);
 
-		$query = $this->db->get();
-		$user_data = $query->row_array();
-		
-		header('Content-Type: application/json');
-		echo json_encode($user_data);
+    $query = $this->db->get();
+    $user_data = $query->row_array();
+
+    header('Content-Type: application/json');
+    if ($user_data) {
+        echo json_encode($user_data);
+    } else {
+        echo json_encode(array('error' => 'User not found'));
     }
+}
 
 	// 	public function del_user($user_id)
 // {

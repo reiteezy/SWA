@@ -14,7 +14,9 @@ class LoginController extends CI_Controller {
 	{
         // if ($this->session->userdata('logged_in'))
         //     redirect(base_url() . 'admin','refresh');
+        $this->load->view('admin/require/header');
 		$this->load->view('login');
+        $this->load->view('admin/require/footer');
 	}
 
 
@@ -31,7 +33,6 @@ function valafclog()
         echo json_encode(array('status' => 'error', 'message' => 'Invalid Credentials'));
     }
 }
-
 
     function logout() {
     $this->session->sess_destroy();

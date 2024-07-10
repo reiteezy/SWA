@@ -5,6 +5,9 @@
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/bootstrap/js/bootstrap-4.5.2.min.js"></script>
 
+
+<!-- <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script> -->
+
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
 
 <script src="<?= base_url('assets/'); ?>assets/pages/waves/js/waves.min.js"></script>
@@ -68,8 +71,11 @@
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/modalEffects.js"></script>
 
 <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+<script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/moment.js"></script>
+<script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/daterangepicker.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> -->
 </body>
 
 </html>

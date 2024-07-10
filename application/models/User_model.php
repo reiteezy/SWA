@@ -46,7 +46,7 @@ class User_model extends CI_Model
     }
     public function get_user_list() 
     {
-        $this->db->select('users_tbl.*, class_tbl.CLASS, class_tbl.DESCRIPTION, sub_tbl.CODE, sub_tbl.DESCRIPTION');
+        $this->db->select('users_tbl.*, class_tbl.CLASS, class_tbl.DESCRIPTION AS CLASS_DESCRIPT, sub_tbl.CODE, sub_tbl.DESCRIPTION as SUB_DESCRIPT');
         $this->db->from('users_tbl');
         $this->db->join('class_tbl', 'users_tbl.CLASS_ID = class_tbl.CID', 'left');
         $this->db->join('sub_tbl', 'users_tbl.SUB_ID = sub_tbl.ID', 'left');

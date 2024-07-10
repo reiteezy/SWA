@@ -202,7 +202,7 @@ class Admin_model extends CI_Model
 
     public function get_swa_details($swa_id) 
     {
-        $this->db->select('SWA_QUANTITY, SWA_UNIT, SWA_DESCRIPTION, SWA_UNIT_COST, SWA_AMOUNT');
+        $this->db->select('swa_details_tbl.*');
         $this->db->from('swa_details_tbl');
         $this->db->where('SWA_ID', $swa_id); 
         $query = $this->db->get();

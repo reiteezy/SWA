@@ -57,8 +57,8 @@ class ClassController extends CI_Controller
 	{
 		$class_id = $this->input->post('class_id');
 		$update_data = array(
-		'CLASS' => $this->input->post('class_code'),
-		'DESCRIPTION' => $this->input->post('class_descript')
+		'CLASS' => $this->input->post('update_userclass'),
+		'DESCRIPTION' => $this->input->post('update_userdescript')
 		);
 
 		$response = $this->Class_model->edit_type($class_id, $update_data);

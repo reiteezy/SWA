@@ -77,7 +77,6 @@
                                                                 style="color: #fff"></i><span
                                                                 style="color: #fff; font-size: 13px; margin-left: -8px;">Delete</span>
                                                         </button>
-
                                                     </td>
                                                 </tr>
                                                 <?php  
@@ -146,7 +145,7 @@
     <div class="modal-dialog-centered modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Edit Subsidiary</h4>
+                <h4 class="modal-title">Update Subsidiary</h4>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -156,14 +155,14 @@
                         <div class="mb-3 row">
                             <label class="form-label col-sm-2 col-form-label sm-label">Code</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="sub_code" id="sub_editcode"
+                                <input type="text" class="form-control" name="update_subcode" id="sub_editcode"
                                     placeholder="Enter code">
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label class="form-label col-sm-2 col-form-label sm-label">Description</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="sub_editdescript" name="sub_descript"
+                                <input type="text" class="form-control" name="update_subdescript" id="sub_editdescript" 
                                     placeholder="Enter description">
                             </div>
                         </div>

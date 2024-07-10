@@ -216,18 +216,9 @@ class SwaController extends CI_Controller
 
 	public function view_swa_form($swa_id)
 	{
-		if ($this->session->userdata('priv_swavo') == 1 ){
-		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
-		$this->breadcrumb->add('Stock Withdrawal Advice', base_url('swa'));
-		$this->breadcrumb->add('View', base_url('swa/view'), true); 
-		$data['menu'] = 'swa';
-		$data['swa_id'] = $swa_id;
-		$data['swa_data'] = $this->Admin_model->get_swa_data($swa_id);
-		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
-				$this->load->view('admin/view_swa', $data);
-			} else {
-				redirect(base_url() . 'error');
-			}
+		$response['data'] = $this->Admin_model->get_swa_data($swa_id);
+		echo json_encode($response);
+			
 	}
 
 
@@ -323,8 +314,7 @@ class SwaController extends CI_Controller
 		echo json_encode($response);
 	}	
 
-	public function get_swa_per_details() {
-        $swa_id = $this->input->get('swa_id');
+	public function get_swa_per_details($swa_id) {
         $response['data'] = $this->Admin_model->get_swa_details($swa_id);
         echo json_encode($response);
     }

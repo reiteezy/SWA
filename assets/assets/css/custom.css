@@ -1,5 +1,39 @@
 body {
   font-family: 'Quicksand', sans-serif;
+  background-image: url(../images/bg-img.png);
+}
+
+.auth-box {
+  position: relative;
+  z-index: 1;
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+  backdrop-filter: blur(10px); /* Blurred background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.form-primary {
+  margin-bottom: 20px;
+}
+
+.form-primary label {
+  font-size: 14px;
+  color: #868686;
+}
+
+.form-primary input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+p .text-muted, .txt-primary {
+  color: #868686 !important;
 }
 
 .btn-transparent {
@@ -8,10 +42,12 @@ body {
     padding: 0;
     margin-right: 10px;
 }
+
 .modal-header {
   background: #154360;
   color: #ccc
 }
+
 .modal-body input {
     font-weight: bold !important;
 }
@@ -56,14 +92,6 @@ body {
     padding: 0;
 }
 
-
-  .card {
-    /* -webkit-box-shadow: none; */
-    /* box-shadow: none; */
-    /* border: none;
-    margin-bottom: 0; */
-}
-
 .user-card
 {
   -webkit-box-shadow: none;
@@ -73,7 +101,6 @@ body {
 .card .card-header {
   padding: 1.9rem 1.25rem 0 1.25rem;
 }
-
 
 /* Floating Button Style */
 .floating-button {
@@ -212,6 +239,11 @@ body {
   100% {
       transform: translateX(100%);
   }
+}
+
+.form-check-input:checked {
+  background-color: #70cd78;
+  border-color: #70cd78;
 }
 
 /* HTML: <div class="loader"></div> */

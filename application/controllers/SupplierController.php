@@ -51,12 +51,12 @@ public function new_supplier()
 	{
 		$sup_id = $this->input->post('sup_id');
 		$update_data = array(
-		'CODE' => $this->input->post('sup_code'),
-		'NAME' => $this->input->post('sup_name'),
-		'ADDRESS' => $this->input->post('sup_add'),
-		'CONTACT_PERSON' => $this->input->post('sup_contact'),
-		'PHONE_NO' => $this->input->post('sup_phoneno'),
-		'TEL_NO' => $this->input->post('sup_telno')
+		'CODE' => $this->input->post('update_supcode'),
+		'NAME' => $this->input->post('update_supname'),
+		'ADDRESS' => $this->input->post('update_supaddress'),
+		'CONTACT_PERSON' => $this->input->post('update_supcontact'),
+		'PHONE_NO' => $this->input->post('update_supphoneno'),
+		'TEL_NO' => $this->input->post('update_suptelno')
 		);
 
 		$response = $this->Supplier_model->edit_supplier($sup_id, $update_data);

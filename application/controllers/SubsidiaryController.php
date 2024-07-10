@@ -58,8 +58,8 @@ public function new_subsidiary()
 	{
 		$sub_id = $this->input->post('sub_id');
 		$update_data = array(
-		'CODE' => $this->input->post('sub_code'),
-		'DESCRIPTION' => $this->input->post('sub_descript')
+		'CODE' => $this->input->post('update_subcode'),
+		'DESCRIPTION' => $this->input->post('update_subdescript')
 		);
 
 		$response = $this->Subsidiary_model->update_subsidiary($sub_id, $update_data);

@@ -94,7 +94,7 @@
                                                             id="<?php echo $data->SWA_ID; ?>"
                                                             sid="<?php echo $data->SWA_ID; ?>"
                                                             sstatus="<?php echo $data->SWA_MIS_STATUS; ?>"
-                                                            title="Receive"
+                                                            title="Cancel"
                                                             <?php echo !empty($data->SWA_TRANS_NO1) ? 'disabled' : ''; ?>
                                                             style="background: #FF7F50; border: #FF7F50;"><i
                                                                 class="icon feather icon-slash f-w-600 f-16 m-r-15"
@@ -164,7 +164,7 @@ misStatusButtons.forEach(function(button) {
             if (result.isConfirmed) {
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST',
-                    '<?php echo base_url() ?>admin/mis_status_changed', true);
+                    '<?php echo base_url() ?>SwaController/mis_status_changed', true);
                 xhr.setRequestHeader('Content-Type',
                     'application/x-www-form-urlencoded');
                 xhr.onreadystatechange = function() {
@@ -186,7 +186,7 @@ misStatusButtons.forEach(function(button) {
                         var statusElements = document.querySelectorAll(
                             '.mis-status[sid="' + id + '"]');
                         var statusText = newStatus === 'cancelled' ? 'Cancelled' :
-                            'Pending';
+                            'Pending';2
                         statusElements.forEach(function(element) {
                             element.innerHTML = statusText;
                             element.style.color = newStatus === 'cancelled' ?
@@ -252,14 +252,12 @@ $(document).ready(function() {
         console.log("clicked");
         var swaId = $(this).data("swa-id");
         $.ajax({
-            url: '<?php echo base_url() ?>admin/confirm_view/' + swaId,
+            url: '<?php echo base_url() ?>SwaController/confirm_view/' + swaId,
             type: 'GET',
             dataType: 'json',
             success: function(data) {
                 // console.log('Data received:', data);
                 $('#swaId').val(data.SWA_ID);
-
-                $('#acctgConfirmModal').modal('show');
             }
         });
     });
@@ -289,7 +287,7 @@ $(document).ready(function() {
                 var transactDate = $('input[name="transactDate"]').val();
                 var transactAmount = $('input[name="transactAmount"]').val();
                 $.ajax({
-                    url: '<?php echo base_url() ?>admin/saveTransactNoMis',
+                    url: '<?php echo base_url() ?>SwaController/saveTransactNoMis',
                     type: "POST",
                     data: {
                         swa_id: swa_id,
@@ -310,8 +308,6 @@ $(document).ready(function() {
                         }).then(() => {
                             location.reload(true);
                         });
-
-                        $("#swaConfirmModal").modal("hide");
                     },
 
                     error: function(xhr, status, error) {
