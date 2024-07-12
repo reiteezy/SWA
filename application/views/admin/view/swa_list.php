@@ -125,13 +125,13 @@
                                 <!-- <div class="form-group"> -->
                                 <div class="row">
                                     <div class="col-md-4 col-xs-12">
-                                        <label class="sm-label">From</label><span style="color: red;">*</span>
+                                        <label class="sm-label">From</label>
                                         <div class="input-group">
                                             <?php  
                                     $location = $this->db->get('location_tbl')->result_array();
                                     ?>
                                             <select class="form-control hide-select" name="loc" id="loc"
-                                                onchange="handleLocChange()" style="font-weight: bold;">
+                                                onchange="handleLocChange()">
                                                 <option value="" hidden selected></option>
                                                 <?php  foreach ($location as $loc): ?>
                                                 <option><?php echo $loc['LOCATION'] ?></option>
@@ -197,15 +197,13 @@
                                 <!-- <div class="form-group"> -->
                                 <div class="row">
                                     <div class="col-md-4 col-xs-12" style="margin-top: -5px;">
-                                        <label class="sm-label">To</label><span style="color: red;">*</span><span
-                                            style="font-style: italic;"> (Click to select
-                                            subsidiary)</span>
+                                        <label class="sm-label">To</label>
                                         <input type="hidden" id="sub_id" name="sub_id">
                                         <div class="input-group">
                                             <input type="text" class="form-control" data-toggle="modal"
                                                 data-target="#assignSubsidiaryModal" readonly="readonly" id="sub_code"
-                                                name="sub_code" placeholder="Subsidiary" title="Search for subsidiary"
-                                                style="cursor: pointer;">
+                                                name="sub_code" placeholder="Select subsidiary"
+                                                title="Search for subsidiary" style="cursor: pointer;">
                                         </div>
                                     </div>
                                     <!-- <script>
@@ -221,7 +219,8 @@
                                     </div>
                                     <div class="col-md-4 col-xs-12">
                                         <label class="sm-label">Trans No.</label>
-                                        <input type="text" id="trans_no" name="trans_no" class="form-control" disabled>
+                                        <input type="text" id="trans_no" name="trans_no" class="form-control"
+                                            readonly="readonly">
                                     </div>
                                 </div>
                                 <!-- </div>
@@ -267,13 +266,13 @@
                                         <table class="table table-bordered" id="" style="width: 100%;">
                                             <thead style="position: sticky; top: 0;">
                                                 <tr
-                                                    style="text-align: center; border: 1px solid white; background-color: white;">
-                                                    <th style="width: 13%;">Code</th>
-                                                    <th style="width: 10%;">Unit</th>
+                                                    style="text-align: center; border: 1px solid white; background-color: #6b95b0;">
+                                                    <th style="width: 15%;">Code</th>
+                                                    <th style="width: 12%;">Unit</th>
                                                     <th style="width: 10%;">Quantity</th>
-                                                    <th style="width: 44%;">Description</th>
-                                                    <th style="width: 13%;">Cost Per Unit</th>
-                                                    <th style="width: 13%;">Amount</th>
+                                                    <th style="width: 39%;">Description</th>
+                                                    <th style="width: 12%;">Cost Per Unit</th>
+                                                    <th style="width: 12%;">Amount</th>
                                                     <!-- <th style="></th> -->
                                                 </tr>
                                             </thead>
@@ -283,27 +282,27 @@
                                                     style="transition: background-color 0.3s ease; cursor: pointer;"
                                                     onmouseover="this.style.backgroundColor='white';"
                                                     onmouseout="this.style.backgroundColor='';">
-                                                    <td style="padding: 2px;">
+                                                    <td>
                                                         <input class="form-control item-code-input" type="text"
                                                             name="datas[<?php echo $data;?>][code]" autocomplete="off"
                                                             style="text-align: center; border-color: #4c4c4c; border: none;">
                                                     </td>
-                                                    <td style="padding: 2px;">
+                                                    <td>
                                                         <select class="form-control custom-arrow"
                                                             name="datas[<?php echo $data; ?>][unit]"
-                                                            style="border: none; font-weight: bold;"
+                                                            style="border: none;"
                                                             id="datas[<?php echo $data; ?>][unit]">
                                                             <option value="" hidden selected>
                                                             </option>
                                                         </select>
                                                     </td>
-                                                    <td style="padding: 2px;">
+                                                    <td>
                                                         <input class="form-control" type="text"
                                                             name="datas[<?php echo $data; ?>][qty]" autocomplete="off"
                                                             oninput="calculateTotalAmt(this)"
                                                             style="text-align: center; border-color: #4c4c4c; border: none;">
                                                     </td>
-                                                    <td style="padding: 2px;">
+                                                    <td>
                                                         <input class="form-control" type="hidden"
                                                             name="datas[<?php echo $data;?>][barcode]"
                                                             autocomplete="off" id="datas[<?php echo $data;?>][barcode]">
@@ -317,7 +316,7 @@
                                                             autocomplete="off"
                                                             style="text-align: center; border-color: #4c4c4c; border: none;">
                                                     </td>
-                                                    <td style="padding: 2px;">
+                                                    <td>
                                                         <input class="form-control" type="text"
                                                             id="datas[<?php echo $data; ?>][unit_cost]"
                                                             name="datas[<?php echo $data; ?>][unit_cost]"
@@ -325,7 +324,7 @@
                                                             style="text-align: center; border-color: #4c4c4c; border: none;">
                                                     </td>
 
-                                                    <td style="padding: 2px;">
+                                                    <td>
                                                         <input class="form-control" type="text"
                                                             name="datas[<?php echo $data; ?>][amt]" value="" readonly
                                                             autocomplete="off"
@@ -374,22 +373,22 @@
                                         data++;
                                         var html = "<tr data-row='" + data + "'>";
                                         html +=
-                                            "<td style='padding: 1px;'><input class='form-control item-code-input' type='text' autocomplete='off' name='datas[" +
+                                            "<td><input class='form-control item-code-input' type='text' autocomplete='off' name='datas[" +
                                             data +
-                                            "][code]' style='border-color: #4c4c4c; text-align: center; center; border: none;'></td>";
+                                            "][code]' style='border-color: #4c4c4c; text-align: center; border: none;'></td>";
                                         html +=
-                                            "<td style='padding: 1px;'><select class='form-control custom-arrow' name='datas[" +
+                                            "<td><select class='form-control custom-arrow' name='datas[" +
                                             data + "][unit]' style='border: none; font-weight: bold;' id='datas[" +
                                             data +
                                             "][unit]'>" +
                                             "<option value='' hidden selected></option>" +
                                             "</select></td>";
                                         html +=
-                                            "<td style='padding: 1px;'><input class='form-control' type='text' autocomplete='off' name='datas[" +
+                                            "<td><input class='form-control' type='text' autocomplete='off' name='datas[" +
                                             data +
-                                            "][qty]' oninput='calculateTotalAmt(this)' style='border-color: #4c4c4c; text-align: center; center; border: none;'></td>";
+                                            "][qty]' oninput='calculateTotalAmt(this)' style='border-color: #4c4c4c; text-align: center; border: none;'></td>";
                                         html +=
-                                            "<td style='padding: 1px;'><input class='form-control' type='hidden' autocomplete='off' name='datas[" +
+                                            "<td><input class='form-control' type='hidden' autocomplete='off' name='datas[" +
                                             data +
                                             "][barcode]' id='datas[" +
                                             data +
@@ -401,17 +400,19 @@
                                             data +
                                             "][descript]' name='datas[" +
                                             data +
-                                            "][descript]' style='border-color: #4c4c4c; text-align: center; center; border: none;'></td>";
+                                            "][descript]' style='border-color: #4c4c4c; text-align: center; border: none;'></td>";
                                         html +=
-                                            "<td style='padding: 1px;'><input class='form-control' type='text' autocomplete='off' id='datas[" +
+                                            "<td><input class='form-control' type='text' autocomplete='off' id='datas[" +
                                             data +
                                             "][unit_cost]' name='datas[" +
                                             data +
-                                            "][unit_cost]' oninput='calculateTotalAmt(this)' style='border-color: #4c4c4c; text-align: center; center; border: none;'></td>";
+                                            "][unit_cost]' oninput='calculateTotalAmt(this)' style='border-color: #4c4c4c; text-align: center; border: none;'></td>";
                                         html +=
-                                            "<td style='padding: 1px;'><input class='form-control' type='text' readonly autocomplete='off' name='datas[" +
+                                            "<td><input class='form-control' type='text' readonly autocomplete='off' id='datas[" +
                                             data +
-                                            "][amt]' style='border-color: #4c4c4c; text-align: center; center; border: none; background-color: transparent;'></td>";
+                                            "][amt]' name='datas[" +
+                                            data +
+                                            "][amt]' style='border-color: #4c4c4c; text-align: center; border: none; background-color: transparent;'></td>";
                                         html += "</tr>";
 
 
@@ -433,29 +434,26 @@
                                     });
                                     </script>
                                     <div class="form-group text-right">
-                                        <div class="row">
-                                            <div class="col-md-9 col-xs-12">
-                                                <input type="hidden" id="" name="">
-                                            </div>
+                                        <div class="row justify-content-end">
                                             <div class="col-md-3 col-xs-12">
                                                 <label for="total" style="display: inline-block; margin-right: 15px;"
                                                     class="sm-label">Total</label>
                                                 <input type="text" readonly="readonly" id="total" name="total"
                                                     class="form-control"
-                                                    style="width: 56%; display: inline-block; text-align: center; color: blue !important;">
+                                                    style="width: 70%; display: inline-block; text-align: center; color: blue !important;">
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-md-3 col-xs-12">
-                                                <label class="sm-label">Supplier Name </label><span
-                                                    style="color: red;">*</span>
+                                                <label class="sm-label">Supplier Name</label>
                                                 <input type="hidden" id="sup_id" name="sup_id">
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" data-toggle="modal"
                                                         data-target="#assignSupplierModal" id="sup_code" name="sup_code"
-                                                        placeholder="Supplier" readonly="readonly"
+                                                        placeholder="Select supplier" readonly="readonly"
                                                         title="Search for supplier" style="cursor: pointer;">
                                                 </div>
                                             </div>
@@ -609,9 +607,7 @@
                                 <!-- <div class="form-group"> -->
                                 <div class="row">
                                     <div class="col-md-4 col-xs-12" style="margin-top: -5px;">
-                                        <label class="sm-label">To</label><span style="color: red;">*</span><span
-                                            style="font-style: italic;"> (Click to select
-                                            subsidiary)</span>
+                                        <label class="sm-label">To</label>
                                         <input type="hidden" id="sub_id" name="sub_id">
                                         <div class="input-group">
                                             <input type="text" readonly="readonly" id="view_subcode" name=""
@@ -631,7 +627,8 @@
                                     </div>
                                     <div class="col-md-4 col-xs-12">
                                         <label class="sm-label">Trans No.</label>
-                                        <input type="text" id="view_transno" name="" class="form-control" disabled>
+                                        <input type="text" id="view_transno" name="" class="form-control"
+                                            readonly="readonly">
                                     </div>
                                 </div>
                                 <!-- </div>
@@ -661,29 +658,16 @@
                                             name="crfcv_no" class="form-control">
                                     </div>
                                 </div>
-                                <div class="row" style="padding-top: 20px;">
-                                    <div class="col">
-                                        <span style="font-style: italic;">Enter the item code or
-                                            barcode</span>
-                                    </div>
-                                    <div class="col-auto text-end">
-                                        <button class="btn btn-sm btn-dark btn-flat" type="button" onclick="addItem();"
-                                            data-bs-toggle="tooltip" title="Add row"
-                                            style="color: #000; background-color: transparent; border-color: #fff;">
-                                            <i class="nav-icon fa fa-plus"></i></button>
-                                    </div>
-                                </div>
-                                <div class="tableContainer" style="height: 400px; overflow: auto;">
+                                <div class="tableContainer" style="height: auto; overflow: auto;">
                                     <table class="table table-bordered" id="" style="width: 100%;">
                                         <thead style="position: sticky; top: 0;">
                                             <tr
-                                                style="text-align: center; border: 1px solid white; background-color: white;">
-                                                <th style="width: 10%">Code</th>
+                                                style="text-align: center; border: 1px solid white; background-color: #6b95b0;">
+                                                <th style="width: 15%">Quantity</th>
                                                 <th style="width: 10%">Unit</th>
-                                                <th style="width: 5%">Quantity</th>
                                                 <th>Description</th>
-                                                <th style="width: 10%">Cost Per Unit</th>
-                                                <th style="width: 10%">Amount</th>
+                                                <th style="width: 15%">Cost Per Unit</th>
+                                                <th style="width: 15%">Amount</th>
                                                 <!-- <th style="></th> -->
                                             </tr>
                                         </thead>
@@ -730,12 +714,12 @@
                                     <div class="row">
                                         <div class="col-md-6 col-xs-12" style="margin-top: -30px;">
                                             <label class="sm-label">Accounting Instruction</label>
-                                            <textarea autocomplete="on" type="text" name="acct_instruct"
-                                                id="acct_instruct" class="form-control" placeholder=""></textarea>
+                                            <textarea autocomplete="on" type="text" id="view_accounting_instruct"
+                                                class="form-control" placeholder=""></textarea>
                                         </div>
                                         <div class="col-md-6 col-xs-12" style="margin-top: -30px;">
                                             <label class="sm-label">Remarks</label>
-                                            <textarea autocomplete="on" type="text" name="remark" id="remark"
+                                            <textarea autocomplete="on" type="text" id="view_remark"
                                                 class="form-control" placeholder=""></textarea>
                                         </div>
                                     </div>
@@ -745,19 +729,19 @@
                 </div>
                 <div class="modal-footer">
                     <div class="d-flex justify-content-start">
-                        <button type="button" class="btn btn-info waves-effect waves-light me-2" data-toggle="modal"
-                            data-target="#assignSignatoriesModal">Signatories</button>
-                        <button type="button" class="btn btn-info waves-effect waves-light me-2" data-toggle="modal"
-                            data-target="#assignPromoDetailsModal">Promo Details</button>
-                        <input type="reset" value="Clear" id="clearForm"
+                        <button type="button" class="btn btn-info waves-effect waves-light me-2 viewSignatoriesButton"
+                            data-toggle="modal" data-target="#viewSignatoriesModal">Signatories</button>
+                        <button type="button" class="btn btn-info waves-effect waves-light me-2 viewPromoButton"
+                            data-toggle="modal" data-target="#viewPromoDetailsModal">Promo Details</button>
+                        <!-- <input type="reset" value="Clear" id="clearForm"
                             class="btn btn-secondary waves-effect waves-light me-2" data-toggle="tooltip"
-                            title="Clear form">
+                            title="Clear form"> -->
                     </div>
                     <div class="ms-auto">
                         <button type="button" class="btn btn-default waves-effect me-2"
                             data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success waves-effect waves-light" id="">Save
-                            changes</button>
+                        <!-- <button type="button" class="btn btn-success waves-effect waves-light" id="">Save
+                            changes</button> -->
                     </div>
                 </div>
 
@@ -1247,6 +1231,66 @@ $(document).ready(function() {
         </div>
     </div>
 </div>
+<!--------------------------     SIGNATORIES MODAL     ---------------------------------------->
+<div class="modal fade" id="viewSignatoriesModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Signatories</h4>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card-block">
+                    <div class="form-group">
+                        <label class="sm-label">Requested by</label>
+                        <input autocomplete="on" value="<?php ?>" type="text" name="" id="vew_reqby"
+                            class="form-control" placeholder="Requested by">
+                        <label></label>
+                        <input autocomplete="on" type="date" value="<?php  ?>" name="" id="view_reqdate"
+                            class="form-control" placeholder="Date">
+                    </div>
+                    <div class="form-group">
+                        <label class="sm-label">Reviewed by</label>
+                        <input autocomplete="on" value="<?php ?>" type="text" name="" id="view_revby"
+                            class="form-control" placeholder="Reviewed by">
+                        <label></label>
+                        <input autocomplete="on" type="date" value="<?php  ?>" name="" id="view_revdate"
+                            class="form-control" placeholder="Date">
+                    </div>
+                    <div class="form-group">
+                        <label class="sm-label">Approved by</label>
+                        <input autocomplete="on" value="<?php ?>" type="text" name="" id="view_appby"
+                            class="form-control" placeholder="Approved by">
+                        <label></label>
+                        <input autocomplete="on" type="date" value="<?php  ?>" name="" id="view_appdate"
+                            class="form-control" placeholder="Date">
+                    </div>
+                    <div class="form-group">
+                        <label class="sm-label">Released by</label>
+                        <input autocomplete="on" value="<?php ?>" type="text" name="" id="view_relby"
+                            class="form-control" placeholder="Released by">
+                        <label></label>
+                        <input autocomplete="on" type="date" value="<?php  ?>" name="" id="view_reldate"
+                            class="form-control" placeholder="Date">
+                    </div>
+                    <div class="form-group">
+                        <label class="sm-label">Received by</label>
+                        <input autocomplete="on" value="<?php ?>" type="text" name="" id="view_recby"
+                            class="form-control" placeholder="Received by">
+                        <label></label>
+                        <input autocomplete="on" type="date" value="<?php  ?>" name="" id="view_recdate"
+                            class="form-control" placeholder="Date">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="" data-dismiss="modal"
+                            class="btn btn-default waves-effect">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--------------------------------------   PROMO DETAIL MODAL  ---------------------------------------->
 <div class="modal fade" id="assignPromoDetailsModal" tabindex="-1" role="dialog"
     aria-labelledby="assignPromoDetailsModalLabel" aria-hidden="true">
@@ -1291,6 +1335,49 @@ $(document).ready(function() {
         </div>
     </div>
 </div>
+<!--------------------------------------   VIEW PROMO DETAIL MODAL  ---------------------------------------->
+<div class="modal fade" id="viewPromoDetailsModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="">Promo Details</h4>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card-block">
+                    <div class="form-group">
+                        <label class="sm-label">Promo Title</label>
+                        <input autocomplete="on" value="<?php ?>" type="text" name="" id="view_promotitle"
+                            class="form-control" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label class="sm-label">Promo Mechanics</label>
+                        <textarea autocomplete="on" value="<?php ?>" type="text" name="" id="view_promomechanics"
+                            class="form-control" placeholder=""></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="sm-label">Promo Period</label>
+                                <input autocomplete="off" value="<?php ?>" type="date" name="" id="view_promostart"
+                                    class="form-control" placeholder="from">
+                            </div>
+                            <div class="col-md-6">
+                                <label>&nbsp;</label>
+                                <input autocomplete="off" value="<?php ?>" type="date" name="" id="view_promoend"
+                                    class="form-control" placeholder="to">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="" data-dismiss="modal"
+                            class="btn btn-default waves-effect">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
 $(document).ready(function() {
     $(document).on('click', '.viewSwaButton', function() {
@@ -1308,50 +1395,110 @@ $(document).ready(function() {
                 var swaData = response.data;
                 console.log(swaData);
 
-                var swaId = swaData.SWA_ID;
-                var subCode = swaData.SUB_CODE;
-                var subDescription = swaData.DESCRIPTION;
-                var swaDocDate = swaData.DOCUMENT_DATE;
-                var supCode = swaData.SUP_CODE;
-                var supName = swaData.NAME;
-                var swaTotal = parseFloat(swaData.SWA_TOTAL);
-                // var supCode = swaData.SUP_CODE;
-                // var supName = swaData.NAME;
-                // var promoTitle = swaData.SWA_PROMO_TITLE;
-                // var promoMechanics = swaData.SWA_PROMO_MECHANICS;
-                // var promoStart = swaData.SWA_PROMO_START;
-                // var promoEnd = swaData.SWA_PROMO_END;
-                // var swaTrans1 = swaData.SWA_TRANS_NO1;
-                // var swaTrans2 = swaData.SWA_TRANS_NO2;
-                // var swaTrans3 = swaData.SWA_TRANS_NO3;
+                var fields = {
+                    'SWA_ID': 'view_controlno',
+                    'SUB_CODE': 'view_subcode',
+                    'DESCRIPTION': 'view_subdescript',
+                    'DOCUMENT_DATE': 'view_docdate',
+                    'SUP_CODE': 'view_supcode',
+                    'NAME': 'view_supname',
+                    'LOCATION': 'view_loc',
+                    'SWA_TOTAL': 'view_swatotal',
+                    'SWA_ACCOUNTING_INSTRUCT': 'view_accounting_instruct',
+                    'SWA_REMARK': 'view_remark'
+                };
 
-                // $("#control_no").val(swaId);
-                // $("#swa_series_no").val(swaId);
-                $("#view_subcode").val(subCode);
-                $("#view_subdescript").val(subDescription);
-                $("#view_docdate").val(swaDocDate);
-                $("#view_supcode").val(supCode);
-                $("#view_supname").val(supName);
-                $("#view_swatotal").val(swaTotal.toFixed(2));
-                // $("#sup_code").val(supCode);
-                // $("#sup_name").val(supName);
-                // $("#promo_title").val(promoTitle);
-                // $("#mechanics").val(promoMechanics);
-                // $("#promo_start").val(promoStart);
-                // $("#promo_end").val(promoEnd);
-                // $("#mis_ref_1").val(swaTrans1);
-                // $("#mis_ref_2").val(swaTrans2);
-                // $("#mis_ref_3").val(swaTrans3);
+                $.each(fields, function(key, value) {
+                    var fieldValue = swaData[key];
+                    if (key === 'SWA_TOTAL') {
+                        fieldValue = parseFloat(fieldValue).toFixed(2);
+                    }
+                    $("#" + value).val(fieldValue);
+                });
+
+                $(document).on('click', '.viewSignatoriesButton', function() {
+                    populateSignatories(swaId);
+                });
+
+                $(document).on('click', '.viewPromoButton', function() {
+                    populatePromoDetails(swaId);
+                });
+
                 populateTable(swaId);
-
-
             },
             error: function(error) {
                 console.error("Error:", error);
             }
         });
 
+
     });
+
+    function populateSignatories(swaId) {
+        $.ajax({
+            url: '<?php echo base_url() ?>SwaController/get_signatories/' + swaId,
+            type: 'GET',
+            data: {
+                'swa_id': swaId
+            },
+            success: function(response) {
+                var response = JSON.parse(response);
+                var signatoriesData = response.data;
+                console.log(signatoriesData);
+
+                var fields = {
+                    'SWA_REQUEST_BY': 'vew_reqby',
+                    'SWA_REQUEST_BY_DATE': 'vew_reqdate',
+                    'SWA_REVIEW_BY': 'view_revby',
+                    'SWA_REVIEW_BY_DATE': 'view_revdate',
+                    'SWA_APPROVE_BY': 'view_appby',
+                    'SWA_APPROVE_BY_DATE': 'view_appdate',
+                    'SWA_RELEASE_BY': 'view_relby',
+                    'SWA_RELEASE_BY_DATE': 'view_reldate',
+                    'SWA_RECEIVE_BY': 'view_recby',
+                    'SWA_RECEIVE_BY_DATE': 'view_recdate'
+                };
+
+                $.each(fields, function(key, value) {
+                    $("#" + value).val(signatoriesData[key]);
+                });
+            },
+            error: function(error) {
+                console.error("Error:", error);
+            }
+        });
+    }
+
+    function populatePromoDetails(swaId) {
+
+        $.ajax({
+            url: '<?php echo base_url() ?>SwaController/get_promo/' + swaId,
+            type: 'GET',
+            data: {
+                'swa_id': swaId
+            },
+            success: function(response) {
+                var response = JSON.parse(response);
+                var promoData = response.data;
+                console.log(promoData);
+
+                var fields = {
+                    'SWA_PROMO_TITLE': 'view_promotitle',
+                    'SWA_PROMO_MECHANICS': 'view_promomechanics',
+                    'SWA_PROMO_START': 'view_promostart',
+                    'SWA_PROMO_END': 'view_promoend'
+                };
+
+                $.each(fields, function(key, value) {
+                    $("#" + value).val(promoData[key]);
+                });
+            },
+            error: function(error) {
+                console.error("Error:", error);
+            }
+        });
+
+    }
 
     function populateTable(swaId) {
         $.ajax({
@@ -1368,36 +1515,33 @@ $(document).ready(function() {
 
                 for (var i = 0; i < swaDetailsData.length; i++) {
                     console.log("Item total in should be:", swaDetailsData[i].SWA_ITEM_CODE);
-                    var newRow = $('<tr>');
+                    var newRow = $('<tr style="text-align: left">');
                     newRow.append(
                         '<td><input class="form-control" type="text" value="' + swaDetailsData[
-                            i].SWA_ITEM_CODE +
-                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;"></td>'
+                            i].SWA_QUANTITY +
+                        '" style="border-color: #4c4c4c; border: none;" ></td>'
                     );
                     newRow.append(
                         '<td><input class="form-control" type="text" value="' + swaDetailsData[
                             i].SWA_UNIT +
-                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;"></td>'
+                        '" style="border-color: #4c4c4c; border: none;"></td>'
                     );
                     newRow.append(
                         '<td><input class="form-control" type="text" value="' + swaDetailsData[
-                            i].SWA_QUANTITY +
-                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;" ></td>'
-                    );
-                    newRow.append(
-                        '<td><input class="form-control" type="text" value="' + swaDetailsData[
+                            i].SWA_ITEM_CODE +
+                        ' ' + swaDetailsData[
                             i].SWA_DESCRIPTION +
-                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;" ></td>'
+                        '" style="border-color: #4c4c4c; border: none;" ></td>'
                     );
                     newRow.append(
                         '<td><input class="form-control" type="text" value="' + swaDetailsData[
                             i].SWA_UNIT_COST +
-                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;" ></td>'
+                        '" style="border-color: #4c4c4c; border: none;" ></td>'
                     );
                     newRow.append(
                         '<td><input class="form-control" type="text" value="' + swaDetailsData[
                             i].SWA_AMOUNT +
-                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;" ></td></tr>'
+                        '" style="border-color: #4c4c4c; border: none;" ></td></tr>'
                     );
 
                     $("#tbodyview").append(newRow);

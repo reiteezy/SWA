@@ -216,11 +216,22 @@ class SwaController extends CI_Controller
 
 	public function view_swa_form($swa_id)
 	{
-		$response['data'] = $this->Admin_model->get_swa_data($swa_id);
+		$response['data'] = $this->Swa_model->get_swa_data($swa_id);
+		echo json_encode($response);
+	}
+
+	public function get_signatories($swa_id)
+	{
+		$response['data'] = $this->Swa_model->get_signatories_data($swa_id);
+		echo json_encode($response);
+	}
+
+	public function get_promo($swa_id)
+	{
+		$response['data'] = $this->Swa_model->get_promo_data($swa_id);
 		echo json_encode($response);
 			
 	}
-
 
 	public function view_reports_data(){
 		$this->db->select('swa_tbl.*, swa_tbl.DOCUMENT_DATE, swa_tbl.SWA_ID, sub_tbl.CODE AS SUB_CODE, sub_tbl.DESCRIPTION, sup_tbl.CODE AS SUP_CODE, sup_tbl.NAME');

@@ -13,7 +13,7 @@ class Admin_model extends CI_Model
     {
         $this->db->where('PASSWORD', $password);
         $this->db->where('USERNAME', $username);
-        $this->db->select('users_tbl.*, class_tbl.CLASS, class_tbl.DESCRIPTION, class_tbl.fileMaintenance, class_tbl.subsidiary, class_tbl.supplier, class_tbl.userFiltering, class_tbl.swa, class_tbl.swaForm, class_tbl.swaVo, class_tbl.swaMis, class_tbl.per, class_tbl.perVo, class_tbl.swaAcctg, class_tbl.swaReports, class_tbl.systemManager, class_tbl.userType, class_tbl.systemUser, class_tbl.userMenu, class_tbl.menuSetting, class_tbl.systemUtilities, class_tbl.systemWallpaper, class_tbl.aboutSystem, class_tbl.fileImport');
+        $this->db->select('users_tbl.*, class_tbl.*');
         $this->db->from('users_tbl');
         $this->db->join('class_tbl', 'users_tbl.CLASS_ID = class_tbl.CID', 'left');
         $query = $this->db->get();

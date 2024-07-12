@@ -109,7 +109,7 @@
                                     <div class="col-md-3 col-xs-12">
                                         <label class="sm-label">Subsidiary</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control rounded-pill" id="sub_code" name="sub_code"
+                                            <input type="text" class="form-control" id="sub_code" name="sub_code"
                                                 readonly="readonly" placeholder="Subsidiary">
                                         </div>
                                     </div>

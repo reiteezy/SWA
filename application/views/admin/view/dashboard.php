@@ -468,7 +468,7 @@
                                                 class="img-radius img-40">
                                         </div>
                                         <div class="col">
-                                            <div class="msg">
+                                            <div class="msg">   
                                                 <p class="m-b-0">Nice to meet you!</p>
                                                 <img src="../files/assets/images/mega-menu/01.jpg" alt>
                                                 <img src="../files/assets/images/mega-menu/03.jpg" alt>
@@ -521,9 +521,3 @@
     </div>
 </div>
 
-
-
-</div>
-</div>
-</div>
-</div>

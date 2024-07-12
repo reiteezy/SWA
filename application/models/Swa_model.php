@@ -59,6 +59,39 @@ class Swa_model extends CI_Model
     }
     }
 
+    public function get_signatories_data($swa_id) 
+    {
+        
+        $this->db->select('swa_tbl.SWA_REQUEST_BY, swa_tbl.SWA_REQUEST_BY_DATE, swa_tbl.SWA_REVIEW_BY, swa_tbl.SWA_REVIEW_BY_DATE, swa_tbl.SWA_APPROVE_BY, swa_tbl.SWA_APPROVE_BY_DATE, swa_tbl.SWA_RELEASE_BY, swa_tbl.SWA_RELEASE_BY_DATE, ,swa_tbl.SWA_RECEIVE_BY, swa_tbl.SWA_RECEIVE_BY_DATE');
+        $this->db->from('swa_tbl');
+        $this->db->where('swa_tbl.SWA_ID', $swa_id);
+
+        $query = $this->db->get();
+
+    if ($query->num_rows() > 0) {
+        return $query->row_array();
+    } else {
+        return false;
+    }
+    }
+
+    public function get_promo_data($swa_id) 
+    {
+        
+        $this->db->select('swa_tbl.SWA_PROMO_TITLE, swa_tbl.SWA_PROMO_MECHANICS, swa_tbl.SWA_PROMO_START, swa_tbl.SWA_PROMO_END');
+        $this->db->from('swa_tbl');
+        $this->db->where('swa_tbl.SWA_ID', $swa_id);
+
+        $query = $this->db->get();
+
+    if ($query->num_rows() > 0) {
+        return $query->row_array();
+    } else {
+        return false;
+    }
+    }
+
+
     public function get_swa_daterange($start_date, $end_date) 
     {
         $this->db->select('swa_tbl.*, swa_tbl.DOCUMENT_DATE, swa_tbl.SWA_ID, sub_tbl.CODE AS SUB_CODE, sub_tbl.DESCRIPTION, sup_tbl.CODE AS SUP_CODE, sup_tbl.NAME');
