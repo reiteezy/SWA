@@ -367,13 +367,13 @@
                                     <div class="col-md-3 col-xs-12">
                                         <label class="sm-label">Subsidiary</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="sub_code" name="sub_code"
+                                            <input type="text" class="form-control" id="sub_code" name=""
                                                 readonly="readonly" placeholder="Subsidiary">
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label>&nbsp;</label>
-                                        <input type="text" readonly="readonly" id="sub_descript" name="sub_descript"
+                                        <input type="text" readonly="readonly" id="sub_descript" name=""
                                             class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
@@ -382,14 +382,14 @@
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label class="sm-label">Control No.</label>
-                                        <input type="text" readonly="readonly" id="control_no" name="control_no"
+                                        <input type="text" readonly="readonly" id="control_no" name=""
                                             class="form-control">
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top: -15px;">
                                     <div class="col-md-6 col-xs-12">
                                         <label class="sm-label">Promo Title</label>
-                                        <input type="text" readonly="readonly" id="promo_title" name="promo_title"
+                                        <input type="text" readonly="readonly" id="promo_title" name=""
                                             class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
@@ -399,14 +399,14 @@
                                     <div class="col-md-3 col-xs-12">
                                         <label for="document_date" style="cursor: pointer;"
                                             class="sm-label">Date</label>
-                                        <input type="date" id="document_date" name="document_date" class="form-control">
+                                        <input type="date" id="document_date" name="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-xs-12">
                                         <label class="sm-label">Mechanics</label>
-                                        <input autocomplete="off" type="text" readonly="readonly" id="mechanics"
-                                            name="mechanics" class="form-control">
+                                        <input autocomplete="off" type="text" readonly="readonly" id="mechanics" name=""
+                                            class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label>&nbsp;</label>
@@ -414,24 +414,19 @@
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label class="sm-label">SWA Series No.</label>
-                                        <div style="position: relative;">
-                                            <input autocomplete="off" type="text" id="swa_series_no"
-                                                name="swa_series_no" class="form-control">
-                                            <div class="swaDropdown" id="swaDropdown"
-                                                style="position: absolute; width: 100%; max-height: 200px; overflow-y: auto; border: 1px solid #d1d3e2; background-color: #F5F5F5; display: none; z-index: 999;">
-                                            </div>
-                                        </div>
+                                        <input autocomplete="off" type="text" id="swa_series_no" name=""
+                                            class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3 col-xs-12">
                                         <label class="sm-label">Promo Period</label>
-                                        <input type="date" readonly="readonly" id="promo_start" name="promo_start"
+                                        <input type="date" readonly="readonly" id="promo_start" name=""
                                             class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label>&nbsp;</label>
-                                        <input type="date" readonly="readonly" value="" id="promo_end" name="promo_end"
+                                        <input type="date" readonly="readonly" value="" id="promo_end" name=""
                                             class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
@@ -441,13 +436,13 @@
                                     <div class="col-md-3 col-xs-12">
                                         <label class="sm-label">MIS Ref. No. 1</label>
                                         <input autocomplete="off" readonly="readonly" type="text" id="mis_ref_1"
-                                            name="mis_ref_1" class="form-control">
+                                            name="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3 col-xs-12">
                                         <label class="sm-label">Sponsor</label>
-                                        <input type="text" readonly="readonly" value="" id="sup_code" name="sup_code"
+                                        <input type="text" readonly="readonly" value="" id="sup_code" name=""
                                             class="form-control">
                                     </div>
                                     <div class="col-md-6 col-xs-12">
@@ -457,7 +452,7 @@
                                     <div class="col-md-3 col-xs-12">
                                         <label class="sm-label">MIS Ref. No. 2</label>
                                         <input autocomplete="off" readonly="readonly" type="text" id="mis_ref_2"
-                                            name="mis_ref_2" class="form-control">
+                                            name="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -473,7 +468,7 @@
                                     <div class="col-md-3 col-xs-12">
                                         <label class="sm-label">MIS Ref. No. 3</label>
                                         <input autocomplete="off" readonly="readonly" type="text" id="mis_ref_3"
-                                            name="mis_ref_3" class="form-control">
+                                            name="" class="form-control">
                                     </div>
                                 </div>
                                 <hr class="rounded">
@@ -529,8 +524,7 @@
                         title="Clear form">
                 </div>
                 <div class="ms-auto">
-                    <button type="button" class="btn btn-default waves-effect me-2"
-                        data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default waves-effect me-2" data-dismiss="modal">Close</button>
                     <!-- <button type="button" class="btn btn-primary waves-effect waves-light" id="">Save
                         changes</button> -->
                 </div>
@@ -613,7 +607,7 @@ $(document).ready(function() {
                 success: function(response) {
                     var response = JSON.parse(response);
                     var swaData = response.data;
-                    console.log(swaData);
+                    // console.log(swaData);
                     $("#swaDropdown").html("");
                     var uniqueSWAIds = [];
                     for (var c = 0; c < swaData.length; c++) {
@@ -633,7 +627,7 @@ $(document).ready(function() {
                                 var swaTrans1 = swaData[c].SWA_TRANS_NO1;
                                 var swaTrans2 = swaData[c].SWA_TRANS_NO2;
                                 var swaTrans3 = swaData[c].SWA_TRANS_NO3;
-                                console.log(promoTitle);
+                                // console.log(promoTitle);
                                 var option = $('<div>')
                                     .addClass('dropdown-item')
                                     .css('cursor', 'pointer')
@@ -705,7 +699,98 @@ $(document).ready(function() {
         }
     });
 
-    function populateTable(swaId) {
+    $(document).on('click', '.viewPerButton', function() {
+
+        var swaId = $(this).data('swa-id');
+
+        $.ajax({
+            url: '<?php echo base_url() ?>SwaController/view_per_form/' + swaId,
+            type: 'GET',
+            data: {
+                'swa_id': swaId
+            },
+            success: function(response) {
+                var response = JSON.parse(response);
+                var swaData = response.data;
+                // console.log(swaData);
+
+                var fields = {
+                    'SWA_ID': 'view_controlno',
+                    'SUB_CODE': 'view_subcode',
+                    'DESCRIPTION': 'view_subdescript',
+                    'DOCUMENT_DATE': 'view_docdate',
+                    'SUP_CODE': 'view_supcode',
+                    'NAME': 'view_supname',
+                    'LOCATION': 'view_loc',
+                    'SWA_TOTAL': 'view_swatotal',
+                    'SWA_ACCOUNTING_INSTRUCT': 'view_accounting_instruct',
+                    'SWA_REMARK': 'view_remark',
+                    'SWA_PER_NO': 'view_perno',
+                    'SWA_CRFCV_NO': 'view_crfcvno'
+                };
+                // console.log(swaData.SWA_CRFCV_NO);
+                $.each(fields, function(key, value) {
+
+                    var fieldValue = swaData[key];
+                    if (key === 'SWA_TOTAL') {
+                        fieldValue = parseFloat(fieldValue).toFixed(2);
+                    }
+
+                    $("#" + value).val(fieldValue);
+                });
+
+                $(document).on('click', '.viewSignatoriesButton', function() {
+                    populateSignatories(swaId);
+                });
+
+              
+
+                populateTable(swaId);
+            },
+            error: function(error) {
+                console.error("Error:", error);
+            }
+        });
+
+
+    });
+
+    function populateSignatories(swaId) {
+        $.ajax({
+            url: '<?php echo base_url() ?>SwaController/get_signatories/' + swaId,
+            type: 'GET',
+            data: {
+                'swa_id': swaId
+            },
+            success: function(response) {
+                var response = JSON.parse(response);
+                var signatoriesData = response.data;
+                // console.log(signatoriesData);
+
+                var fields = {
+                    'SWA_REQUEST_BY': 'vew_reqby',
+                    'SWA_REQUEST_BY_DATE': 'vew_reqdate',
+                    'SWA_REVIEW_BY': 'view_revby',
+                    'SWA_REVIEW_BY_DATE': 'view_revdate',
+                    'SWA_APPROVE_BY': 'view_appby',
+                    'SWA_APPROVE_BY_DATE': 'view_appdate',
+                    'SWA_RELEASE_BY': 'view_relby',
+                    'SWA_RELEASE_BY_DATE': 'view_reldate',
+                    'SWA_RECEIVE_BY': 'view_recby',
+                    'SWA_RECEIVE_BY_DATE': 'view_recdate'
+                };
+
+                $.each(fields, function(key, value) {
+                    $("#" + value).val(signatoriesData[key]);
+                });
+            },
+            error: function(error) {
+                console.error("Error:", error);
+            }
+        });
+    }
+
+    function populateViewTable(swaId) {
         $.ajax({
             url: '<?php echo base_url() ?>SwaController/get_swa_per_details',
             type: 'GET',
@@ -754,26 +839,55 @@ $(document).ready(function() {
         });
     }
 
-    function calculateDifferenceAmt(inputField) {
-        var rowIndex = inputField.closest("tr").rowIndex - 1;
-        var qtyValue = document.getElementsByName("datas[" + rowIndex +
-            "][qty]")[0];
-        var actualQtyInput = document.getElementsByName("datas[" + rowIndex +
-            "][actual_qty]")[0];
-        var unusedValue = document.getElementsByName("datas[" + rowIndex +
-            "][unused_alloc]")[0];
+    function populateTable(swaId) {
+        $.ajax({
+            url: '<?php echo base_url() ?>SwaController/get_swa_per_details/' + swaId,
+            type: 'GET',
+            data: {
+                'swa_id': swaId
+            },
+            success: function(response) {
+                var response = JSON.parse(response);
+                var swaDetailsData = response.data;
 
-        var qty = parseFloat(qtyValue.value) || 0;
-        var actualQty = parseFloat(actualQtyInput.value) || 0;
+                $("#tbody").html("");
 
-        if (actualQty) {
-            var unused = qty - actualQty;
-            unusedValue.value = unused.toFixed(2);
+                for (var i = 0; i < swaDetailsData.length; i++) {
+                    var newRow = $('<tr>');
+                    newRow.append(
+                        '<td><input class="form-control" type="text" name="datas[' + i +
+                        '][qty]" value="' + swaDetailsData[i].SWA_QUANTITY +
+                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;"></td>'
+                    );
+                    newRow.append(
+                        '<td><input class="form-control" type="text" name="datas[' + i +
+                        '][unit]" value="' + swaDetailsData[i].SWA_UNIT +
+                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;"></td>'
+                    );
+                    newRow.append(
+                        '<td><input class="form-control" type="text" name="datas[' + i +
+                        '][descript]" value="' + swaDetailsData[i].SWA_DESCRIPTION +
+                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;" ></td>'
+                    );
+                    newRow.append(
+                        '<td><input class="form-control" type="text" name="datas[' + i +
+                        '][actual_qty]" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;" oninput="calculateDifferenceAmt(this)"></td>'
+                    );
+                    newRow.append(
+                        '<td><input class="form-control" type="text" name="datas[' + i +
+                        '][unused_alloc]" value="" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;"></td>'
+                    );
 
-        } else {
-            unusedValue.value = "";
-        }
+
+                    $("#tbody").append(newRow);
+                }
+            },
+            error: function(error) {
+                console.error("Error fetching swa_details_tbl:", error);
+            }
+        });
     }
+
 
     function clearTable() {
         $("#tbody").html("");
@@ -958,9 +1072,12 @@ $(document).ready(function() {
 });
 
 function calculateDifferenceAmt(inputField) {
-    var rowIndex = inputField.closest("tr").index();
+    var $inputField = $(inputField);  // Ensure inputField is a jQuery object
+    var $row = $inputField.closest("tr");  // Get the closest <tr> element
+    var rowIndex = $row.index();  // Get the index of the <tr> element
+
     var qtyValue = $('input[name="datas[' + rowIndex + '][qty]"]').val();
-    var actualQtyInput = inputField.val();
+    var actualQtyInput = $inputField.val();
     var unusedValue = $('input[name="datas[' + rowIndex + '][unused_alloc]"]');
 
     var qty = parseFloat(qtyValue) || 0;
@@ -974,6 +1091,7 @@ function calculateDifferenceAmt(inputField) {
     }
 }
 
+
 $(document).ready(function() {
     $('#pertable').DataTable({
         lengthChange: false,
@@ -982,7 +1100,7 @@ $(document).ready(function() {
             searchPlaceholder: 'Search...'
         }
     });
-});
+
 
 
 $('.dataTables_filter input[type="search"]').css({
@@ -990,5 +1108,6 @@ $('.dataTables_filter input[type="search"]').css({
     'margin-right': '10px',
     'padding': '5px',
     'box-sizing': 'border-box'
+});
 });
 </script>

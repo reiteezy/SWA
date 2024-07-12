@@ -332,41 +332,40 @@
                                                     </td>
                                                 </tr>
                                                 <?php } ?>
-                                                <script>
-                                                function calculateTotalAmt(inputField) {
-                                                    var rowIndex = $(inputField).closest("tr").index();
-                                                    var qtyInput = $("input[name='datas[" + rowIndex + "][qty]']");
-                                                    var unitCostInput = $("input[name='datas[" + rowIndex +
-                                                        "][unit_cost]']");
-                                                    var amtInput = $("input[name='datas[" + rowIndex + "][amt]']");
-
-                                                    var qty = parseFloat(qtyInput.val()) || 0;
-                                                    var unitCost = parseFloat(unitCostInput.val()) || 0;
-
-                                                    if (qty && unitCost) {
-                                                        var total = qty * unitCost;
-                                                        amtInput.val(total.toFixed(2));
-                                                    } else {
-                                                        amtInput.val("");
-                                                    }
-                                                    calculateGrandTotal();
-                                                }
-
-                                                function calculateGrandTotal() {
-                                                    var totalSum = 0;
-
-                                                    $("input[name*='[amt]']").each(function() {
-                                                        var amtValue = parseFloat($(this).val()) || 0;
-                                                        totalSum += amtValue;
-                                                    });
-
-                                                    $("#total").val(totalSum.toFixed(2));
-                                                }
-                                                </script>
                                             </tbody>
                                         </table>
                                     </div>
                                     <script>
+                                    function calculateTotalAmt(inputField) {
+                                        var rowIndex = $(inputField).closest("tr").index();
+                                        var qtyInput = $("input[name='datas[" + rowIndex + "][qty]']");
+                                        var unitCostInput = $("input[name='datas[" + rowIndex +
+                                            "][unit_cost]']");
+                                        var amtInput = $("input[name='datas[" + rowIndex + "][amt]']");
+
+                                        var qty = parseFloat(qtyInput.val()) || 0;
+                                        var unitCost = parseFloat(unitCostInput.val()) || 0;
+
+                                        if (qty && unitCost) {
+                                            var total = qty * unitCost;
+                                            amtInput.val(total.toFixed(2));
+                                        } else {
+                                            amtInput.val("");
+                                        }
+                                        calculateGrandTotal();
+                                    }
+
+                                    function calculateGrandTotal() {
+                                        var totalSum = 0;
+
+                                        $("input[name*='[amt]']").each(function() {
+                                            var amtValue = parseFloat($(this).val()) || 0;
+                                            totalSum += amtValue;
+                                        });
+
+                                        $("#total").val(totalSum.toFixed(2));
+                                    }
+
                                     var data = 7;
 
                                     function addItem() {
@@ -1405,16 +1404,27 @@ $(document).ready(function() {
                     'LOCATION': 'view_loc',
                     'SWA_TOTAL': 'view_swatotal',
                     'SWA_ACCOUNTING_INSTRUCT': 'view_accounting_instruct',
-                    'SWA_REMARK': 'view_remark'
+                    'SWA_REMARK': 'view_remark',
+                    'SWA_PER_NO': 'view_perno',
+                    'SWA_CRFCV_NO': 'view_crfcvno'
                 };
-
+                console.log(swaData.SWA_CRFCV_NO);
                 $.each(fields, function(key, value) {
+
                     var fieldValue = swaData[key];
                     if (key === 'SWA_TOTAL') {
                         fieldValue = parseFloat(fieldValue).toFixed(2);
                     }
+
                     $("#" + value).val(fieldValue);
                 });
+                if (swaData.SWA_TRANS_NO3) {
+                    $('#view_transno').val(swaData.SWA_TRANS_NO3);
+                } else if (swaData.SWA_TRANS_NO2) {
+                    $('#view_transno').val(swaData.SWA_TRANS_NO2);
+                } else {
+                    $('#view_transno').val(swaData.SWA_TRANS_NO1);
+                }
 
                 $(document).on('click', '.viewSignatoriesButton', function() {
                     populateSignatories(swaId);
