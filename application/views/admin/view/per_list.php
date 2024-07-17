@@ -4,7 +4,7 @@
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
-                    <i class="feather icon-inbox bg-c-blue"></i>
+                    <i class="feather icon-file-text bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>Promo Execution Report</h5>
                         <span>Stock Withdrawal Advice System</span>
@@ -36,9 +36,11 @@
 
                             <div class="card table-card">
                                 <div class="card-header">
+                                <?php if ($this->session->userdata('priv_per') == 1 && $this->session->userdata('priv_pervo') == 0): ?>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#perFormModal"><i class="feather icon-plus"></i>Add New
                                         PER</button>
+                                        <?php endif; ?>
                                 </div>
                                 <div class="card-block">
                                     <div class="table-responsive">
@@ -63,10 +65,9 @@
                                                     <td><?php echo $data->DOCUMENT_DATE; ?></td>
                                                     <td><?php echo $data->SUB_DESCRIPT; ?></td>
                                                     <td><?php echo $data->PER_PROMO_TITLE; ?></td>
-                                                    <td><button type="button" id="viewPerButton" title="View"
+                                                    <td><button type="button" class="action-btn-c-green" id="viewPerButton" title="View"
                                                             data-per-id="<?php echo $data->PER_ID?>" data-toggle="modal"
-                                                            data-target="#viewPerFormModal"
-                                                            style="background: #4099ff; border: #4099ff;"><i
+                                                            data-target="#viewPerFormModal"><i
                                                                 class="icon feather icon-eye f-w-600 f-16 m-r-15"
                                                                 style="color: #fff"></i><span
                                                                 style="color: #fff; font-size: 13px; margin-left: -8px;">View</span></button>
@@ -236,7 +237,7 @@
                                     value</span><span style="color: red">*</span>
                                 <table class="table table-bordered table-per" id="perTable" style="width: 100%;">
                                     <thead style="position: sticky; top: 0; text-align: center">
-                                        <tr>
+                                        <tr style="background-color: #6b95b0;">
                                             <!-- <th>#</th> -->
                                             <th style="width: 14%;">Quantity</th>
                                             <th style="width: 14%;">Unit</th>
@@ -359,7 +360,7 @@
                 <div class="card-block">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="perForm" role="form" id="perForm" method="POST" action=""
+                            <form class="" role="form" id="" method="POST" action=""
                                 enctype="multipart/form-data">
                                 <!-- <div class="card-body"> -->
                                 <!-- <div class="form-group"> -->
@@ -367,13 +368,13 @@
                                     <div class="col-md-3 col-xs-12">
                                         <label class="sm-label">Subsidiary</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="sub_code" name=""
+                                            <input type="text" class="form-control" id="view_per_subcode" name=""
                                                 readonly="readonly" placeholder="Subsidiary">
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label>&nbsp;</label>
-                                        <input type="text" readonly="readonly" id="sub_descript" name=""
+                                        <input type="text" readonly="readonly" id="view_per_subdescript" name=""
                                             class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
@@ -382,14 +383,14 @@
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label class="sm-label">Control No.</label>
-                                        <input type="text" readonly="readonly" id="control_no" name=""
+                                        <input type="text" readonly="readonly" id="view_per_controlno" name=""
                                             class="form-control">
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top: -15px;">
                                     <div class="col-md-6 col-xs-12">
                                         <label class="sm-label">Promo Title</label>
-                                        <input type="text" readonly="readonly" id="promo_title" name=""
+                                        <input type="text" readonly="readonly" id="view_per_promotitle" name=""
                                             class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
@@ -399,13 +400,13 @@
                                     <div class="col-md-3 col-xs-12">
                                         <label for="document_date" style="cursor: pointer;"
                                             class="sm-label">Date</label>
-                                        <input type="date" id="document_date" name="" class="form-control">
+                                        <input type="date" id="view_document_date" name="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-xs-12">
                                         <label class="sm-label">Mechanics</label>
-                                        <input autocomplete="off" type="text" readonly="readonly" id="mechanics" name=""
+                                        <input autocomplete="off" type="text" readonly="readonly" id="vie_per_mechanics" name=""
                                             class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
@@ -414,19 +415,19 @@
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label class="sm-label">SWA Series No.</label>
-                                        <input autocomplete="off" type="text" id="swa_series_no" name=""
+                                        <input autocomplete="off" type="text" id="view_swa_series_no" name=""
                                             class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3 col-xs-12">
                                         <label class="sm-label">Promo Period</label>
-                                        <input type="date" readonly="readonly" id="promo_start" name=""
+                                        <input type="date" readonly="readonly" id="view_promo_start" name=""
                                             class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label>&nbsp;</label>
-                                        <input type="date" readonly="readonly" value="" id="promo_end" name=""
+                                        <input type="date" readonly="readonly" value="" id="view_promo_end" name=""
                                             class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
@@ -435,14 +436,14 @@
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label class="sm-label">MIS Ref. No. 1</label>
-                                        <input autocomplete="off" readonly="readonly" type="text" id="mis_ref_1"
+                                        <input autocomplete="off" readonly="readonly" type="text" id="view_mis_ref_1"
                                             name="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3 col-xs-12">
                                         <label class="sm-label">Sponsor</label>
-                                        <input type="text" readonly="readonly" value="" id="sup_code" name=""
+                                        <input type="text" readonly="readonly" value="" id="view_sup_code" name=""
                                             class="form-control">
                                     </div>
                                     <div class="col-md-6 col-xs-12">
@@ -451,14 +452,14 @@
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label class="sm-label">MIS Ref. No. 2</label>
-                                        <input autocomplete="off" readonly="readonly" type="text" id="mis_ref_2"
+                                        <input autocomplete="off" readonly="readonly" type="text" id="view_mis_ref_2"
                                             name="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-xs-12">
                                         <label>&nbsp;</label>
-                                        <input autocomplete="off" readonly="readonly" type="text" id="sup_name"
+                                        <input autocomplete="off" readonly="readonly" type="text" id="view_sup_name"
                                             name="sup_name" class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
@@ -467,16 +468,16 @@
                                     </div>
                                     <div class="col-md-3 col-xs-12">
                                         <label class="sm-label">MIS Ref. No. 3</label>
-                                        <input autocomplete="off" readonly="readonly" type="text" id="mis_ref_3"
+                                        <input autocomplete="off" readonly="readonly" type="text" id="view_mis_ref_3"
                                             name="" class="form-control">
                                     </div>
                                 </div>
                                 <hr class="rounded">
                                 <span style="font-style: italic">Enter actual execution quantity
                                     value</span><span style="color: red">*</span>
-                                <table class="table table-bordered table-per" id="perTable" style="width: 100%;">
+                                <table class="table table-bordered table-per" id="viewPerTable" style="width: 100%;">
                                     <thead style="position: sticky; top: 0; text-align: center">
-                                        <tr>
+                                        <tr  style="background-color: #6b95b0;">
                                             <!-- <th>#</th> -->
                                             <th style="width: 14%;">Quantity</th>
                                             <th style="width: 14%;">Unit</th>
@@ -490,7 +491,7 @@
 
                                         </tr>
                                     </thead>
-                                    <tbody id="tbody">
+                                    <tbody id="tbody-view">
 
                                     </tbody>
                                 </table>
@@ -500,13 +501,13 @@
                                     <div class="row">
                                         <div class="col-md-6 col-xs-12">
                                             <label class="sm-label">Promo Execution Summary</label>
-                                            <textarea autocomplete="on" type="text" id="per_summary" name="per_summary"
+                                            <textarea autocomplete="on" type="text" id="view_per_summary" name=""
                                                 class="form-control"></textarea>
                                         </div>
                                         <div class="col-md-6 col-xs-12">
                                             <label class="sm-label">Post-promo Remarks</label>
-                                            <textarea autocomplete="on" type="text" id="post_promo_remarks"
-                                                name="post_promo_remarks" class="form-control"></textarea>
+                                            <textarea autocomplete="on" type="text" id="View_post_promo_remarks"
+                                                name="" class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -517,8 +518,8 @@
             </div>
             <div class="modal-footer">
                 <div class="d-flex justify-content-start">
-                    <button type="button" class="btn btn-info waves-effect waves-light me-2" data-bs-toggle="modal"
-                        data-bs-target="#">Signatories</button>
+                    <button type="button" class="btn btn-info waves-effect waves-light me-2 viewSignatoriesButton" data-toggle="modal"
+                        data-target="#viewSignatoriesModal">Signatories</button>
                     <input type="reset" value="Clear" id="clearForm"
                         class="btn btn-secondary waves-effect waves-light me-2" data-toggle="tooltip"
                         title="Clear form">
@@ -578,6 +579,63 @@
                                     class="form-control" placeholder="Noted by">
                                 <label></label>
                                 <input autocomplete="on" type="date" value="<?php  ?>" id="note_date" name="note_date"
+                                    class="form-control" placeholder="Date">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" data-dismiss="modal"
+                                    class="btn btn-primary waves-effect waves-light" id="saveSignatoriesValues">Save
+                                    changes</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--------------------------    VIEW SIGNATORIES MODAL     ---------------------------------------->
+<div class="modal fade" id="viewSignatoriesModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog-centered modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Signatories</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card-block">
+                    <form role="form" method="POST" action="<?php echo base_url() ?>#" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="sm-label">Submitted by</label>
+                                <input autocomplete="on" value="<?php ?>" type="text" id="view_sub_by" name=""
+                                    class="form-control" placeholder="Submitted by">
+                                <label></label>
+                                <input autocomplete="on" type="date" value="<?php  ?>" id="view_sub_date" name=""
+                                    class="form-control" placeholder="Date">
+                            </div>
+                            <div class="form-group">
+                                <label class="sm-label">Reviewed by</label>
+                                <input autocomplete="on" value="<?php ?>" type="text" id="view_rev_by" name=""
+                                    class="form-control" placeholder="Reviewed by">
+                                <label></label>
+                                <input autocomplete="on" type="date" value="<?php  ?>" id="view_rev_date" name=""
+                                    class="form-control" placeholder="Date">
+                            </div>
+                            <div class="form-group">
+                                <label class="sm-label">Audited by</label>
+                                <input autocomplete="on" value="<?php ?>" type="text" id="view_audit_by" name=""
+                                    class="form-control" placeholder="Audited by">
+                                <label></label>
+                                <input autocomplete="on" type="date" value="<?php  ?>" id="view_audit_date" name=""
+                                    class="form-control" placeholder="Date">
+                            </div>
+                            <div class="form-group">
+                                <label class="sm-label">Noted by</label>
+                                <input autocomplete="on" value="<?php ?>" type="text" id="view_note_by" name=""
+                                    class="form-control" placeholder="Noted by">
+                                <label></label>
+                                <input autocomplete="on" type="date" value="<?php  ?>" id="view_note_date" name=""
                                     class="form-control" placeholder="Date">
                             </div>
                             <div class="modal-footer">
@@ -699,68 +757,66 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on('click', '.viewPerButton', function() {
-
-        var swaId = $(this).data('swa-id');
+    $(document).on('click', '#viewPerButton', function() {
+        console.log("clicked");
+        var perId = $(this).data('per-id');
 
         $.ajax({
-            url: '<?php echo base_url() ?>SwaController/view_per_form/' + swaId,
+            url: '<?php echo base_url() ?>SwaController/view_per_form/' + perId,
             type: 'GET',
             data: {
-                'swa_id': swaId
+                'per_id': perId
             },
             success: function(response) {
                 var response = JSON.parse(response);
-                var swaData = response.data;
+                var perData = response.data;
                 // console.log(swaData);
 
                 var fields = {
-                    'SWA_ID': 'view_controlno',
-                    'SUB_CODE': 'view_subcode',
-                    'DESCRIPTION': 'view_subdescript',
-                    'DOCUMENT_DATE': 'view_docdate',
-                    'SUP_CODE': 'view_supcode',
-                    'NAME': 'view_supname',
-                    'LOCATION': 'view_loc',
-                    'SWA_TOTAL': 'view_swatotal',
-                    'SWA_ACCOUNTING_INSTRUCT': 'view_accounting_instruct',
-                    'SWA_REMARK': 'view_remark',
-                    'SWA_PER_NO': 'view_perno',
-                    'SWA_CRFCV_NO': 'view_crfcvno'
+                    'PER_ID': 'view_per_controlno',
+                    'SWA_ID': 'view_swa_series_no',
+                    'SUB_CODE': 'view_per_subcode',
+                    'SUB_DESCRIPT': 'view_per_subdescript',
+                    'PER_SPONSOR_CODE': 'view_sup_code',
+                    'PER_SPONSOR_NAME': 'view_sup_name', 
+                    'PER_PROMO_TITLE': 'view_per_promotitle',
+                    'PER_MECHANICS': 'vie_per_mechanics',
+                    'PROMO_START': 'view_promo_start',
+                    'PROMO_END': 'view_promo_end',
+                    'PER_MISREF_NO1': 'view_mis_ref_1',
+                    'PER_MISREF_NO2': 'view_mis_ref_2',
+                    'PER_MISREF_NO3': 'view_mis_ref_3',
+                    'PER_SUMMARY': 'view_per_summary',
+                    'PER_REMARK': 'View_post_promo_remarks',
+                    'DOCUMENT_DATE': 'view_document_date'
                 };
                 // console.log(swaData.SWA_CRFCV_NO);
                 $.each(fields, function(key, value) {
 
-                    var fieldValue = swaData[key];
-                    if (key === 'SWA_TOTAL') {
-                        fieldValue = parseFloat(fieldValue).toFixed(2);
-                    }
+                    var fieldValue = perData[key];
 
                     $("#" + value).val(fieldValue);
                 });
 
                 $(document).on('click', '.viewSignatoriesButton', function() {
-                    populateSignatories(swaId);
+                    populateSignatories(perId);
                 });
 
-              
-
-                populateTable(swaId);
+                populateViewTable(perId);
             },
             error: function(error) {
                 console.error("Error:", error);
             }
         });
 
-
     });
 
-    function populateSignatories(swaId) {
+    function populateSignatories(perId) {
         $.ajax({
-            url: '<?php echo base_url() ?>SwaController/get_signatories/' + swaId,
+            url: '<?php echo base_url() ?>SwaController/get_per_signatories/' + perId,
             type: 'GET',
             data: {
-                'swa_id': swaId
+                'per_id': perId
             },
             success: function(response) {
                 var response = JSON.parse(response);
@@ -768,16 +824,14 @@ $(document).ready(function() {
                 // console.log(signatoriesData);
 
                 var fields = {
-                    'SWA_REQUEST_BY': 'vew_reqby',
-                    'SWA_REQUEST_BY_DATE': 'vew_reqdate',
-                    'SWA_REVIEW_BY': 'view_revby',
-                    'SWA_REVIEW_BY_DATE': 'view_revdate',
-                    'SWA_APPROVE_BY': 'view_appby',
-                    'SWA_APPROVE_BY_DATE': 'view_appdate',
-                    'SWA_RELEASE_BY': 'view_relby',
-                    'SWA_RELEASE_BY_DATE': 'view_reldate',
-                    'SWA_RECEIVE_BY': 'view_recby',
-                    'SWA_RECEIVE_BY_DATE': 'view_recdate'
+                    'PER_SUBMIT_BY': 'view_sub_by',
+                    'PER_SUBMIT_BY_DATE': 'view_sub_date',
+                    'PER_REVIEW_BY': 'view_rev_by',
+                    'PER_REVIEW_BY_DATE': 'view_rev_date',
+                    'PER_AUDIT_BY': 'view_audit_by',
+                    'PER_AUDIT_BY_DATE': 'view_audit_date',
+                    'PER_NOTE_BY': 'view_note_by',
+                    'PER_NOTE_BY_DATE': 'view_note_date'
                 };
 
                 $.each(fields, function(key, value) {
@@ -790,47 +844,49 @@ $(document).ready(function() {
         });
     }
 
-    function populateViewTable(swaId) {
+    function populateViewTable(perId) {
         $.ajax({
-            url: '<?php echo base_url() ?>SwaController/get_swa_per_details',
+            url: '<?php echo base_url() ?>SwaController/get_per_details/' + perId,
             type: 'GET',
             data: {
-                'swa_id': swaId
+                'per_id': perId
             },
             success: function(response) {
                 var response = JSON.parse(response);
-                var swaDetailsData = response.data;
+                var perDetailsData = response.data;
 
-                $("#tbody").html("");
-
-                for (var i = 0; i < swaDetailsData.length; i++) {
-                    var newRow = $('<tr>');
+                console.log(perDetailsData);
+                $("#tbody-view").html("");
+                for (var i = 0; i < perDetailsData.length; i++) {
+                    var newRow = $('<tr style="background-color: #e3f1fe;">');
                     newRow.append(
                         '<td><input class="form-control" type="text" name="datas[' + i +
-                        '][qty]" value="' + swaDetailsData[i].SWA_QUANTITY +
+                        '][qty]" value="' + perDetailsData[i].PER_QUANTITY +
                         '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;"></td>'
                     );
                     newRow.append(
                         '<td><input class="form-control" type="text" name="datas[' + i +
-                        '][unit]" value="' + swaDetailsData[i].SWA_UNIT +
+                        '][unit]" value="' + perDetailsData[i].PER_UNIT +
                         '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;"></td>'
                     );
                     newRow.append(
                         '<td><input class="form-control" type="text" name="datas[' + i +
-                        '][descript]" value="' + swaDetailsData[i].SWA_DESCRIPTION +
+                        '][descript]" value="' + perDetailsData[i].PER_ITEM_DESCRIPTION +
                         '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;" ></td>'
                     );
                     newRow.append(
                         '<td><input class="form-control" type="text" name="datas[' + i +
-                        '][actual_qty]" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;" oninput="calculateDifferenceAmt(this)"></td>'
+                        '][actual_qty]" value="' + perDetailsData[i].PER_ACTUAL_EXECUTE_QTY +
+                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;" oninput="calculateDifferenceAmt(this)"></td>'
                     );
                     newRow.append(
                         '<td><input class="form-control" type="text" name="datas[' + i +
-                        '][unused_alloc]" value="" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;"></td>'
+                        '][unused_alloc]" value="' + perDetailsData[i].PER_UNUSED_ALLOCATION +
+                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;"></td>'
                     );
 
 
-                    $("#tbody").append(newRow);
+                    $("#tbody-view").append(newRow);
                 }
             },
             error: function(error) {
@@ -841,7 +897,7 @@ $(document).ready(function() {
 
     function populateTable(swaId) {
         $.ajax({
-            url: '<?php echo base_url() ?>SwaController/get_swa_per_details/' + swaId,
+            url: '<?php echo base_url() ?>SwaController/get_swa_details/' + swaId,
             type: 'GET',
             data: {
                 'swa_id': swaId
@@ -853,7 +909,7 @@ $(document).ready(function() {
                 $("#tbody").html("");
 
                 for (var i = 0; i < swaDetailsData.length; i++) {
-                    var newRow = $('<tr>');
+                    var newRow = $('<tr style="background-color: #e3f1fe;">');
                     newRow.append(
                         '<td><input class="form-control" type="text" name="datas[' + i +
                         '][qty]" value="' + swaDetailsData[i].SWA_QUANTITY +

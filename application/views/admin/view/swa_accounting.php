@@ -4,7 +4,7 @@
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
-                    <i class="feather icon-inbox bg-c-blue"></i>
+                    <i class="feather icon-check bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>Accounting Confirmation</h5>
                         <span>Stock Withdrawal Advice System</span>
@@ -86,11 +86,11 @@
                                                         <?php } ?>
                                                     </td>
                                                     <td>
-                                                        <button type="button" class="acctg-confirm-btn" <?php echo (!empty($data->SWA_CRFCV_NO)) ? 'disabled' : '';?> title="Confirm"
+                                                        <button type="button" class="acctg-confirm-btn action-btn-c-green" <?php echo (!empty($data->SWA_CRFCV_NO)) ? 'disabled' : '';?> title="Confirm"
                                                             data-swa-id="<?php echo $data->SWA_ID; ?>"
                                                             data-control-no="<?php echo $data->SWA_CONTROL_NO; ?>"
                                                             data-crfcv-no="<?php echo $data->SWA_CRFCV_NO; ?>"
-                                                            data-toggle="modal" data-target="#acctgConfirmModal" style="background: #4099ff; border: #4099ff;">
+                                                            data-toggle="modal" data-target="#acctgConfirmModal">
                                                         <i class="icon feather icon-check-square f-w-600 f-16 m-r-15" style="color: #fff"></i><span style="color: #fff; font-size: 13px; margin-left: -8px;">Confirm</span>
                                                         </button>
                                                     </td>

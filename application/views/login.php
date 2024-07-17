@@ -1,68 +1,123 @@
-<section class="login-block">
-
-    <!-- <div class="container-fluid">
-<div class="row">
-<div class="col-sm-12"> -->
-
-    <form class="md-float-material form-material" id="loginForm">
-        <!-- <div class="text-center">
-<img src="https://colorlib.com//polygon/admindek/files/assets/images/logo.png" alt="logo.png">
-</div> -->
-        <div class="auth-box card" style="margin-top: 100px;">
-            <div class="card-block">
-                <div class="row m-b-20">
-                    <div class="col-md-12">
-                        <h3 class="text-center txt-primary">Sign In</h3>
-                    </div>
-                </div>
-
-                <p class="text-muted text-center p-b-5">Welcome Back!</p>
-                <div class="form-group form-primary">
-                    <input type="text" id="username" name="username" class="form-control" required>
-                    <span class="form-bar"></span>
-                    <label class="float-label">Username</label>
-                </div>
-                <div class="form-group form-primary">
-                    <input type="password" id="password" name="password" class="form-control" required>
-                    <span class="form-bar"></span>
-                    <label class="float-label">Password</label>
-                </div>
-                <!-- <div class="row m-t-25 text-left">
-<div class="col-12">
-<div class="checkbox-fade fade-in-primary">
-<label>
-<input type="checkbox" value>
-<span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
-<span class="text-inverse">Remember me</span>
-</label>
-</div>
-<div class="forgot-phone text-right float-right">
-<a href="https://colorlib.com//polygon/admindek/default/auth-reset-password.html" class="text-right f-w-600"> Forgot Password?</a>
-</div>
-</div>
-</div> -->
-                <div class="row m-t-30">
-                    <div class="col-md-12">
-                        <button type="submit" id="loginBtn"
-                            class="btn btn-primary btn-md waves-effect text-center m-b-20"
-                            style="width: 100%;">LOGIN</button>
-                    </div>
-                </div>
-            </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWA Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to bottom right, #58a6e1, #1e173e);
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+        .login-container {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            width: 320px;
+            max-width: 100%;
+            padding: 30px 20px;
+        }
+        .login-header {
+            margin-bottom: 20px;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .form-field {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .login-form input {
+            color: black;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            /* color: white; */
+            outline: none;
+        }
+        .login-form input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .login-form label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            pointer-events: none;
+            transition: 0.3s ease;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+        }
+        .login-form input:focus + label,
+        .login-form input:not(:placeholder-shown) + label {
+            top: -20px;
+            left: 10px;
+            font-size: 12px;
+            color: white;
+        }
+        .login-form button {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            margin: 20px 0 20px 0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-form button:hover {
+            background-color: #333;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            LOGIN
         </div>
-    </form>
+        <form class="login-form" id="loginForm">
+            <div class="form-field">
+                <input type="text" id="username" name="username" placeholder=" " required>
+                <label for="username">Username</label>
+            </div>
+            <div class="form-field">
+                <input type="password" id="password" name="password" placeholder=" " required>
+                <label for="password">Password</label>
+            </div>
+            <button type="button" id="loginBtn">SIGN IN</button>
+        </form>
+        <!-- <div class="forgot-password">
+            <a href="#">Forgot password?</a>
+        </div> -->
+    </div>
+</body>
 
-    <!-- </div>
-
-</div>
-
-</div> -->
 
 
-</section>
+<script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/jquery/js/jquery-3.7.1.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+<script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/toastr.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     function submitLoginForm() {
@@ -74,16 +129,16 @@ document.addEventListener('DOMContentLoaded', function() {
             data: formData,
             dataType: 'json',
             success: function(response) {
-                // if (response.status === 'success') {
-                //     toastr.success(response.message);
+                if (response.status === 'success') {
+                    toastr.success(response.message);
                 window.location.href = response.redirect_url;
-                // } else {
-                //     toastr.error(response.message);
-                // }
+                } else {
+                    toastr.error(response.message);
+                }
             },
             error: function(xhr, status, error) {
                 console.log('An error occurred while processing your request.');
-                // toastr.error('An error occurred while processing your request.');
+                toastr.error('An error occurred while processing your request.');
             }
         });
     }
@@ -101,3 +156,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+</html>
+

@@ -4,7 +4,7 @@
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
-                    <i class="feather icon-inbox bg-c-blue"></i>
+                    <i class="fa fa-building bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>Subsidiary</h5>
                         <span>Stock Withdrawal Advice System</span>
@@ -60,19 +60,17 @@
                                                     <!-- <td></td> -->
                                                     <td><?php echo $subsidiary->CODE; ?></td>
                                                     <td><?php echo $subsidiary->DESCRIPTION; ?></td>
-                                                    <td><button type="button" class="editSubsidiaryButton" title="edit"
+                                                    <td><button type="button" class="editSubsidiaryButton action-btn-c-green" title="edit"
                                                             data-sub-id="<?php echo $subsidiary->ID; ?>"
                                                             data-sub-code="<?php echo $subsidiary->CODE; ?>"
                                                             data-sub-descript="<?php echo $subsidiary->DESCRIPTION; ?>"
-                                                            data-toggle="modal" data-target="#editSubsidiaryModal"
-                                                            style="background: #4099ff; border: #4099ff;">
+                                                            data-toggle="modal" data-target="#editSubsidiaryModal">
                                                             <i class="icon feather icon-edit f-w-600 f-16 m-r-15"
                                                                 style="color: #fff"></i><span
                                                                 style="color: #fff; font-size: 13px; margin-left: -8px;">Update</span>
                                                         </button>
-                                                        <button type="button" class="deleteButton"
-                                                            data-delete-url="<?php echo base_url() ?>SubsidiaryController/del_subsidiary/<?php echo $subsidiary->ID; ?>"
-                                                            style="background: #ff5370; border: #ff5370;"><i
+                                                        <button type="button" class="deleteButton action-btn-c-red"
+                                                            data-delete-url="<?php echo base_url() ?>SubsidiaryController/del_subsidiary/<?php echo $subsidiary->ID; ?>"><i
                                                                 class="feather icon-trash-2 f-w-600 f-16 m-r-15"
                                                                 style="color: #fff"></i><span
                                                                 style="color: #fff; font-size: 13px; margin-left: -8px;">Delete</span>

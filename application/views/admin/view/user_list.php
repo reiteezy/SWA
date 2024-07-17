@@ -3,7 +3,7 @@
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
-                    <i class="feather icon-inbox bg-c-blue"></i>
+                    <i class="feather icon-users bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>System Users</h5>
                         <span>Stock Withdrawal Advice System</span>
@@ -87,14 +87,14 @@
                                                     </td>
                                                     <td>
                                                         <button type="button" id="<?php echo $user->ID?>"
-                                                            class="viewUserButton"
+                                                            class="viewUserButton action-btn-c-blue"
                                                             data-user-id="<?php echo $user->ID; ?>" data-toggle="modal"
                                                             data-target="#viewUserModal" title="View"
-                                                            style="background: #4099ff; border: #4099ff; margin-left: 5px;">
-                                                            <i class="icon feather icon-edit f-w-600 f-16 m-r-15"
+                                                            style="margin-left: 5px;">
+                                                            <i class="icon feather icon-eye f-w-600 f-16 m-r-15"
                                                                 style="color: #fff"></i><span
                                                                 style="color: #fff; font-size: 13px; margin-left: -8px;">View</span></button>
-                                                        <button type="button" class="editUserButton" title="edit"
+                                                        <button type="button" class="editUserButton action-btn-c-green" title="edit"
                                                             data-user-id="<?php echo $user->ID; ?>"
                                                             data-user-empname="<?php echo $user->EMP_NAME; ?>"
                                                             data-user-name="<?php echo $user->USERNAME; ?>"
@@ -102,7 +102,7 @@
                                                             data-user-descript="<?php echo $user->CLASS_DESCRIPT; ?>"
                                                             data-user-password="<?php echo $user->PASSWORD; ?>"
                                                             data-toggle="modal" data-target="#editUserModal"
-                                                            style="background: #4099ff; border: #4099ff; margin-left: 5px;">
+                                                            style="margin-left: 5px;">
                                                             <i class="icon feather icon-edit f-w-600 f-16 m-r-15"
                                                                 style="color: #fff"></i><span
                                                                 style="color: #fff; font-size: 13px; margin-left: -8px;">Update</span>
@@ -142,7 +142,7 @@
                                     <input type="search" required autocomplete="off" id="emp_name" name="emp_name"
                                         class="form-control" placeholder="Family name, first name...">
                                     <div id="dropdown"
-                                        style="position: absolute; overflow-y: auto; border: 1px solid #d1d3e2; background-color: #F5F5F5; display: none; z-index: 999;"
+                                        style="position: absolute; overflow-y: auto; border: 1px solid #d1d3e2; background-color: #F5F5F5; display: none; z-index: 999; width: 96%;"
                                         class="dropdown-content"></div>
                                     <div id="validationNameAvailability" style="color: red;"></div>
                                 </div>

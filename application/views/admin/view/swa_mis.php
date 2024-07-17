@@ -4,7 +4,7 @@
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
-                    <i class="feather icon-inbox bg-c-blue"></i>
+                    <i class="feather icon-check bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>MIS Confirmation</h5>
                         <span>Stock Withdrawal Advice System</span>
@@ -90,21 +90,19 @@
                                                         <?php }  ?>
                                                     </td>
                                                     <td style="text-align: center;">
-                                                        <button type="button" class="mis_status"
+                                                        <button type="button" class="mis_status action-btn-c-red"
                                                             id="<?php echo $data->SWA_ID; ?>"
                                                             sid="<?php echo $data->SWA_ID; ?>"
                                                             sstatus="<?php echo $data->SWA_MIS_STATUS; ?>"
                                                             title="Cancel"
-                                                            <?php echo !empty($data->SWA_TRANS_NO1) ? 'disabled' : ''; ?>
-                                                            style="background: #FF7F50; border: #FF7F50;"><i
+                                                            <?php echo !empty($data->SWA_TRANS_NO1) ? 'disabled' : ''; ?>><i
                                                                 class="icon feather icon-slash f-w-600 f-16 m-r-15"
                                                                 style="color: #fff"></i><span
                                                                 style="color: #fff; font-size: 13px; margin-left: -8px;">Cancel</span></button>
-                                                        <button type="button" class="mis-confirm-btn"
+                                                        <button type="button" class="mis-confirm-btn action-btn-c-green"
                                                             data-swa-id="<?php echo $data->SWA_ID; ?>"
                                                             data-toggle="modal" title="Confirm"
-                                                            data-target="#misConfirmModal"
-                                                            style="background: #4099ff; border: #4099ff;"><i
+                                                            data-target="#misConfirmModal"><i
                                                                 class="icon feather icon-check-square f-w-600 f-16 m-r-15"
                                                                 style="color: #fff"></i><span
                                                                 style="color: #fff; font-size: 13px; margin-left: -8px;">Confirm</span></button>

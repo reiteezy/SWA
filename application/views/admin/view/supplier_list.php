@@ -4,7 +4,7 @@
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
-                    <i class="feather icon-inbox bg-c-blue"></i>
+                    <i class="fa fa-truck bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>Supplier</h5>
                         <span>Stock Withdrawal Advice System</span>
@@ -59,7 +59,7 @@
                                                     <!-- <td></td> -->
                                                     <td><?php echo $supplier->CODE; ?></td>
                                                     <td><?php echo $supplier->NAME; ?></td>
-                                                    <td><button type="button" class="editSupplierButton" title="edit"
+                                                    <td><button type="button" class="editSupplierButton action-btn-c-green" title="edit"
                                                             data-sup-id="<?php echo $supplier->ID; ?>"
                                                             data-sup-code="<?php echo $supplier->CODE; ?>"
                                                             data-sup-name="<?php echo $supplier->NAME; ?>"
@@ -67,15 +67,13 @@
                                                             data-sup-contact="<?php echo $supplier->CONTACT_PERSON; ?>"
                                                             data-sup-phoneno="<?php echo $supplier->PHONE_NO; ?>"
                                                             data-sup-telno="<?php echo $supplier->TEL_NO; ?>"
-                                                            data-toggle="modal" data-target="#editSupplierModal"
-                                                            style="background: #4099ff; border: #4099ff;">
+                                                            data-toggle="modal" data-target="#editSupplierModal">
                                                             <i class="icon feather icon-edit f-w-600 f-16 m-r-15"
                                                                 style="color: #fff"></i><span
                                                                 style="color: #fff; font-size: 13px; margin-left: -8px;">Update</span>
                                                         </button>
-                                                        <button type="button" class="deleteButton"
-                                                            data-delete-url="<?php echo base_url() ?>SupplierController/del_supplier/<?php echo $supplier->ID; ?>"
-                                                            style="background: #ff5370; border: #ff5370;"><i
+                                                        <button type="button" class="deleteButton action-btn-c-red"
+                                                            data-delete-url="<?php echo base_url() ?>SupplierController/del_supplier/<?php echo $supplier->ID; ?>"><i
                                                                 class="feather icon-trash-2 f-w-600 f-16 m-r-15"
                                                                 style="color: #fff"></i><span
                                                                 style="color: #fff; font-size: 13px; margin-left: -8px;">Delete</span>

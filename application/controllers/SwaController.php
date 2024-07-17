@@ -159,7 +159,7 @@ class SwaController extends CI_Controller
 
 	public function new_swa()
 	{
-		$swa_id = $this->Admin_model->add_swa();
+		$swa_id = $this->Swa_model->add_swa();
 		if ($swa_id) {
 			$response = array('status' => 'success', 'message' => 'Data saved successfully!', 'swaId' => $swa_id);
 		} else {
@@ -171,7 +171,7 @@ class SwaController extends CI_Controller
 	}
 	public function new_per()
 	{
-		$per_id = $this->Admin_model->add_per();
+		$per_id = $this->Swa_model->add_per();
 		if ($per_id) {
 			$response = array('status' => 'success', 'message' => 'Data saved successfully!', 'perId' => $per_id);
 		} else {
@@ -220,11 +220,18 @@ class SwaController extends CI_Controller
 		echo json_encode($response);
 	}
 
-	public function get_signatories($swa_id)
+	public function get_swa_signatories($swa_id)
 	{
-		$response['data'] = $this->Swa_model->get_signatories_data($swa_id);
+		$response['data'] = $this->Swa_model->get_swa_signatories_data($swa_id);
 		echo json_encode($response);
 	}
+
+	public function get_per_signatories($per_id)
+	{
+		$response['data'] = $this->Swa_model->get_per_signatories_data($per_id);
+		echo json_encode($response);
+	}
+
 
 	public function get_promo($swa_id)
 	{
@@ -249,16 +256,10 @@ class SwaController extends CI_Controller
 
 	public function view_per_form($per_id)
 	{
-		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
-		$this->breadcrumb->add('Promo Execution Peport', base_url('per'));
-		$this->breadcrumb->add('View', base_url('per/view'), true); 
-		$data['menu'] = 'per';
-		$data['per_id'] = $per_id;
-		$data['per_data'] = $this->Admin_model->get_per_data($per_id);
-		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
-				$this->load->view('admin/view_per', $data);
+		$response['data'] = $this->Swa_model->get_per_data($per_id);
+		echo json_encode($response);
 	}
-	
+
 	public function swa_mis_confirm()
 	{
 		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
@@ -325,8 +326,13 @@ class SwaController extends CI_Controller
 		echo json_encode($response);
 	}	
 
-	public function get_swa_per_details($swa_id) {
-        $response['data'] = $this->Admin_model->get_swa_details($swa_id);
+	public function get_swa_details($swa_id) {
+        $response['data'] = $this->Swa_model->get_swa_details($swa_id);
+        echo json_encode($response);
+    }
+
+	public function get_per_details($per_id) {
+        $response['data'] = $this->Swa_model->get_per_details($per_id);
         echo json_encode($response);
     }
 

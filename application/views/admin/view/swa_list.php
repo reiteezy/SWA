@@ -4,7 +4,7 @@
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
-                    <i class="feather icon-inbox bg-c-blue"></i>
+                    <i class="feather icon-file bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>Stock Withdrawal Advice</h5>
                         <span>Stock Withdrawal Advice System</span>
@@ -35,9 +35,11 @@
 
                             <div class="card table-card">
                                 <div class="card-header">
+                                <?php if ($this->session->userdata('priv_swaf') == 1 && $this->session->userdata('priv_swavo') == 0): ?>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#swaFormModal"><i class="feather icon-plus"></i>Add New
                                         SWA</button>
+                                        <?php endif; ?>
                                     <!-- <h5>SWA List</h5> -->
                                 </div>
 
@@ -82,10 +84,9 @@
                                                             data-user-id="<?php echo $data->SWA_ID?>">Received</label>
                                                         <?php } ?>
                                                     </td>
-                                                    <td><button type="button" class="viewSwaButton" title="View"
+                                                    <td><button type="button" class="viewSwaButton action-btn-c-blue" title="View"
                                                             data-swa-id="<?php echo $data->SWA_ID?>" data-toggle="modal"
-                                                            data-target="#viewSwaFormModal" title="View"
-                                                            style="background: #4099ff; border: #4099ff;"><i
+                                                            data-target="#viewSwaFormModal" title="View"><i
                                                                 class="icon feather icon-eye f-w-600 f-16 m-r-15"
                                                                 style="color: #fff"></i><span
                                                                 style="color: #fff; font-size: 13px; margin-left: -8px;">View</span></button>
@@ -262,7 +263,7 @@
                                                 <i class="nav-icon fa fa-plus"></i></button>
                                         </div>
                                     </div>
-                                    <div class="tableContainer" style="height: 400px; overflow: auto;">
+                                    <div class="tableContainer" style="height: 388px; overflow: auto;">
                                         <table class="table table-bordered" id="" style="width: 100%;">
                                             <thead style="position: sticky; top: 0;">
                                                 <tr
@@ -279,9 +280,7 @@
                                             <tbody id="tbody" style="overflow-y: auto; max-height: 410px;">
                                                 <?php for ($data = 0; $data < 8; $data++) { ?>
                                                 <tr data-row="<?php echo $data; ?>"
-                                                    style="transition: background-color 0.3s ease; cursor: pointer;"
-                                                    onmouseover="this.style.backgroundColor='white';"
-                                                    onmouseout="this.style.backgroundColor='';">
+                                                    style="transition: background-color 0.3s ease; cursor: pointer; background-color: #e3f1fe !important;">
                                                     <td>
                                                         <input class="form-control item-code-input" type="text"
                                                             name="datas[<?php echo $data;?>][code]" autocomplete="off"
@@ -370,7 +369,7 @@
 
                                     function addItem() {
                                         data++;
-                                        var html = "<tr data-row='" + data + "'>";
+                                        var html = "<tr data-row='" + data + "' style='background-color: #e3f1fe;'>";
                                         html +=
                                             "<td><input class='form-control item-code-input' type='text' autocomplete='off' name='datas[" +
                                             data +
@@ -1446,7 +1445,7 @@ $(document).ready(function() {
 
     function populateSignatories(swaId) {
         $.ajax({
-            url: '<?php echo base_url() ?>SwaController/get_signatories/' + swaId,
+            url: '<?php echo base_url() ?>SwaController/get_swa_signatories/' + swaId,
             type: 'GET',
             data: {
                 'swa_id': swaId
@@ -1512,7 +1511,7 @@ $(document).ready(function() {
 
     function populateTable(swaId) {
         $.ajax({
-            url: '<?php echo base_url() ?>SwaController/get_swa_per_details/' + swaId,
+            url: '<?php echo base_url() ?>SwaController/get_swa_details/' + swaId,
             type: 'GET',
             data: {
                 'swa_id': swaId
@@ -1525,7 +1524,7 @@ $(document).ready(function() {
 
                 for (var i = 0; i < swaDetailsData.length; i++) {
                     console.log("Item total in should be:", swaDetailsData[i].SWA_ITEM_CODE);
-                    var newRow = $('<tr style="text-align: left">');
+                    var newRow = $('<tr style="text-align: left; background-color: #e3f1fe;">');
                     newRow.append(
                         '<td><input class="form-control" type="text" value="' + swaDetailsData[
                             i].SWA_QUANTITY +

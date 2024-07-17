@@ -15,11 +15,13 @@
                             </a>
                         </li>
                     </ul>
+                    <?php if ($this->session->userdata('priv_fm') == 1): ?>
                     <div class="pcoded-navigation-label">File Maintenance</div>
                     <ul class="pcoded-item pcoded-left-item">
+                        <?php if ($this->session->userdata('priv_fm') == 1 && $this->session->userdata('priv_sub') == 1): ?>
                         <li class="pcoded-hasmenu <?php echo ($menu=='Subsidiary') ? 'active pcoded-trigger' : '';?>">
                             <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                                <span class="pcoded-micon"><i class="fa fa-building"></i></span>
                                 <span class="pcoded-mtext">Subsidiary</span>
                                 <span class="pcoded-badge label label-info ">NEW</span>
                             </a>
@@ -38,6 +40,9 @@
                                 </li> -->
                             </ul>
                         </li>
+
+                        <?php endif ?>
+                        <?php if ($this->session->userdata('priv_fm') == 1 && $this->session->userdata('priv_sup') == 1): ?>
                         <li class="pcoded-hasmenu <?php echo ($menu=='Supplier') ? 'active pcoded-trigger' : '';?>">
                             <a href="javascript:void(0)" class="waves-effect waves-dark">
                                 <span class="pcoded-micon"><i class="fa fa-truck"></i></span>
@@ -59,20 +64,27 @@
                                 </li> -->
                             </ul>
                         </li>
+                        <?php endif ?>
+                        <?php if ($this->session->userdata('priv_fm') == 1 && $this->session->userdata('priv_uf') == 1): ?>
                         <li class>
                             <a href="navbar-light.html" class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
-                                    <i class="feather icon-menu"></i>
+                                    <i class="feather icon-filter"></i>
                                 </span>
                                 <span class="pcoded-mtext">User Filtering</span>
                             </a>
                         </li>
+
+                        <?php endif ?>
                     </ul>
+                    <?php endif; ?>
+                    <?php if ($this->session->userdata('priv_swa') == 1): ?>
                     <div class="pcoded-navigation-label">Stock Withdrawal Advice</div>
                     <ul class="pcoded-item pcoded-left-item">
+                        <?php if (($this->session->userdata('priv_swa') == 1 && $this->session->userdata('priv_swaf') == 1 )||($this->session->userdata('priv_swa') == 1 && $this->session->userdata('priv_swavo') == 1 )): ?>
                         <li class="pcoded-hasmenu <?php echo ($menu=='Swa') ? 'active pcoded-trigger' : ''; ?>">
                             <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                                <span class="pcoded-micon"><i class="feather icon-file"></i></span>
                                 <span class="pcoded-mtext">SWA Form</span>
                                 <span class="pcoded-badge label label-info ">NEW</span>
                             </a>
@@ -92,17 +104,21 @@
                                 </li> -->
                             </ul>
                         </li>
+                        <?php endif ?>
+                        <?php if ($this->session->userdata('priv_swa') == 1 && $this->session->userdata('priv_swamis') == 1): ?>
                         <li class="<?php echo ($menu=='swa_mis') ? 'active' : '';?>">
                             <a href="<?php echo base_url() ?>SwaController/swa_mis" class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
-                                    <i class="feather icon-menu"></i>
+                                    <i class="feather icon-check"></i>
                                 </span>
                                 <span class="pcoded-mtext">SWA MIS</span>
                             </a>
                         </li>
+                        <?php endif ?>
+                        <?php if (($this->session->userdata('priv_swa') == 1 && $this->session->userdata('priv_per') == 1) || ($this->session->userdata('priv_swa') == 1 && $this->session->userdata('priv_pervo') == 1)): ?>
                         <li class="pcoded-hasmenu <?php echo ($menu=='per') ? 'active pcoded-trigger' : ''; ?>">
                             <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                                <span class="pcoded-micon"><i class="feather icon-file-text"></i></span>
                                 <span class="pcoded-mtext">Promo Execution Report</span>
                             </a>
                             <ul class="pcoded-submenu">
@@ -121,31 +137,40 @@
                                 </li> -->
                             </ul>
                         </li>
+                        <?php endif ?>
+                        <?php if ($this->session->userdata('priv_swa') == 1 && $this->session->userdata('priv_swaacctg') == 1): ?>
                         <li class="<?php echo ($menu=='swa_accounting') ? 'active' : '';?>">
                             <a href="<?php echo base_url() ?>SwaController/swa_accounting"
                                 class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
-                                    <i class="feather icon-menu"></i>
+                                    <i class="feather icon-check"></i>
                                 </span>
                                 <span class="pcoded-mtext">SWA Accounting</span>
                             </a>
                         </li>
+                        <?php endif ?>
+                        <?php if ($this->session->userdata('priv_swa') == 1 && $this->session->userdata('priv_genreport') == 1): ?>
                         <li class="<?php echo ($menu=='swa_reports') ? 'active' : '';?>">
                             <a href="<?php echo base_url() ?>SwaController/view_swa_reports"
                                 class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
-                                    <i class="feather icon-menu"></i>
+                                    <i class="feather icon-flag"></i>
                                 </span>
                                 <span class="pcoded-mtext">Generate Report</span>
                             </a>
                         </li>
+
+                        <?php endif ?>
                     </ul>
+                    <?php endif; ?>
+                    <?php if ($this->session->userdata('priv_sm') == 1): ?>
                     <div class="pcoded-navigation-label">System Manager</div>
                     <ul class="pcoded-item pcoded-left-item">
+                        <?php if ($this->session->userdata('priv_sm') == 1 && $this->session->userdata('priv_ut') == 1): ?>
                         <li class="pcoded-hasmenu <?php echo ($menu=='Type') ? 'active pcoded-trigger' : ''; ?>">
                             <a href="javascript:void(0)" class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
-                                    <i class="feather icon-clipboard"></i>
+                                    <i class="feather icon-user"></i>
                                 </span>
                                 <span class="pcoded-mtext">User Type</span>
                             </a>
@@ -164,10 +189,12 @@
                                 </li> -->
                             </ul>
                         </li>
+                        <?php endif ?>
+                        <?php if ($this->session->userdata('priv_sm') == 1 && $this->session->userdata('priv_users') == 1): ?>
                         <li class="pcoded-hasmenu <?php echo ($menu=='Users') ? 'active pcoded-trigger' : ''; ?>">
                             <a href="javascript:void(0)" class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
-                                    <i class="feather icon-clipboard"></i>
+                                    <i class="feather icon-users"></i>
                                 </span>
                                 <span class="pcoded-mtext">System Users</span>
                             </a>
@@ -186,35 +213,46 @@
                                 </li> -->
                             </ul>
                         </li>
+                        <?php endif ?>
+                        <?php if ($this->session->userdata('priv_sm') == 1 && $this->session->userdata('priv_um') == 1): ?>
                         <li class="<?php echo ($menu=='User_menu') ? 'active' : ''; ?>">
-                            <a href="<?php echo base_url() ?>AdminController/view_privilege" class="waves-effect waves-dark">
+                            <a href="<?php echo base_url() ?>AdminController/view_privilege"
+                                class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
-                                    <i class="feather icon-menu"></i>
+                                    <i class="feather icon-user-check"></i>
                                 </span>
                                 <span class="pcoded-mtext">User Menu</span>
                             </a>
                         </li>
+                        <?php endif ?>
 
                     </ul>
+                    <?php endif; ?>
+                    <?php if ($this->session->userdata('priv_utilities') == 1): ?>
                     <div class="pcoded-navigation-label">System Utilities</div>
                     <ul class="pcoded-item pcoded-left-item">
+                        <?php if ($this->session->userdata('priv_utilities') == 1 && $this->session->userdata('priv_sw') == 1): ?>
                         <li class>
                             <a href="navbar-light.html" class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
-                                    <i class="feather icon-menu"></i>
+                                    <i class="feather icon-image    "></i>
                                 </span>
                                 <span class="pcoded-mtext">Wallpaper</span>
                             </a>
                         </li>
+                        <?php endif ?>
+                        <?php if ($this->session->userdata('priv_utilities') == 1 && $this->session->userdata('priv_as') == 1): ?>
                         <li class>
                             <a href="navbar-light.html" class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
-                                    <i class="feather icon-menu"></i>
+                                    <i class="feather icon-info"></i>
                                 </span>
                                 <span class="pcoded-mtext">About</span>
                             </a>
                         </li>
+                        <?php endif ?>
                     </ul>
+                    <?php endif; ?>
                 </div>
             </div>
         </nav>

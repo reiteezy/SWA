@@ -4,7 +4,7 @@
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
-                    <i class="feather icon-inbox bg-c-blue"></i>
+                    <i class="feather icon-user bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>User Type</h5>
                         <span>Stock Withdrawal Advice System</span>
@@ -57,19 +57,17 @@
                                                 <tr>
                                                     <td><?php echo $class->CLASS; ?></td>
                                                     <td><?php echo $class->DESCRIPTION; ?></td>
-                                                    <td><button type="button" class="editClassButton" title="edit"
+                                                    <td><button type="button" class="editClassButton action-btn-c-green" title="edit"
                                                             data-class-id="<?php echo $class->CID; ?>"
                                                             data-class-code="<?php echo $class->CLASS; ?>"
                                                             data-class-descript="<?php echo $class->DESCRIPTION; ?>"
-                                                            data-toggle="modal" data-target="#editClassModal"
-                                                            style="background: #4099ff; border: #4099ff;">
+                                                            data-toggle="modal" data-target="#editClassModal">
                                                             <i class="icon feather icon-edit f-w-600 f-16 m-r-15"
                                                                 style="color: #fff"></i><span
                                                                 style="color: #fff; font-size: 13px; margin-left: -8px;">Update</span>
                                                         </button>
-                                                        <button type="button" class="deleteButton"
-                                                            data-delete-url="<?php echo base_url() ?>ClassController/del_type/<?php echo $class->CID; ?>"
-                                                            style="background: #ff5370; border: #ff5370;"><i
+                                                        <button type="button" class="deleteButton action-btn-c-red"
+                                                            data-delete-url="<?php echo base_url() ?>ClassController/del_type/<?php echo $class->CID; ?>"><i
                                                                 class="feather icon-trash-2 f-w-600 f-16 m-r-15"
                                                                 style="color: #fff"></i><span
                                                                 style="color: #fff; font-size: 13px; margin-left: -8px;">Delete</span>

@@ -4,9 +4,9 @@
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
-                    <i class="feather icon-inbox bg-c-blue"></i>
+                    <i class="feather icon-user-check bg-c-yellow"></i>
                     <div class="d-inline">
-                        <h5>System Users</h5>
+                        <h5>User Menu</h5>
                         <span>Stock Withdrawal Advice System</span>
                     </div>
                 </div>
@@ -63,8 +63,7 @@
                                                     <td><?php echo $class->CLASS; ?></td>
                                                     <td><?php echo $class->DESCRIPTION; ?></td>
                                                     <td style="text-align: center;">
-                                                        <button type="button" class="assign-privilege-btn"
-                                                            style="background: #4099ff; border: #4099ff;"
+                                                        <button type="button" class="assign-privilege-btn action-btn-c-green"
                                                             data-class-id="<?php echo $class->CID; ?>"
                                                             data-toggle="modal" data-target="#rightsModal"
                                                             data-user-description="<?php echo $class->DESCRIPTION; ?>"
@@ -294,8 +293,8 @@
                                 <td>File Import</td>
                                 <td class="text-center">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input1" id="fileImport">
-                                        <label class="form-check-label1" name for="fileImport"></label>
+                                        <input type="checkbox" class="form-check-input1" id="generateReport">
+                                        <label class="form-check-label1" name for="generateReport"></label>
                                     </div>
                                 </td>
                             </tr>
@@ -322,7 +321,7 @@ $(document).ready(function() {
         selectedClassId = $(this).data("class-id");
         console.log(selectedClassId);
         $.ajax({
-            url: '<?php echo base_url() ?>ADminController/view_update_privilege/' +
+            url: '<?php echo base_url() ?>AdminController/view_update_privilege/' +
                 selectedClassId,
             type: 'GET',
             dataType: 'json',
@@ -350,7 +349,7 @@ $(document).ready(function() {
                 $('#systemWallpaper').prop('checked', parseInt(data.classes
                     .systemWallpaper));
                 $('#aboutSystem').prop('checked', parseInt(data.classes.aboutSystem));
-                $('#fileImport').prop('checked', parseInt(data.classes.fileImport));
+                $('#generateReport').prop('checked', parseInt(data.classes.generateReport));
                 // console.log(data);
                 // $("#rightsModal").modal("show");
             }
@@ -474,13 +473,13 @@ $(document).ready(function() {
             }
         }
         if (checkboxId === 'systemWallpaper' || checkboxId === 'aboutSystem' || checkboxId ===
-            'fileImport') {
+            'generateReport') {
             if (isChecked) {
                 $('#systemUtilities').prop('checked', true);
                 selectedPrivileges['systemUtilities'] = 1;
             } else {
                 if (!$('#systemWallpaper').prop('checked') && !$('#aboutSystem').prop('checked') && !$(
-                        '#fileImport').prop('checked')) {
+                        '#generateReport').prop('checked')) {
                     $('#systemUtilities').prop('checked', false);
                     selectedPrivileges['systemUtilities'] = 0;
                 }
@@ -489,17 +488,17 @@ $(document).ready(function() {
             if (isChecked) {
                 $('#systemWallpaper').prop('checked', true);
                 $('#aboutSystem').prop('checked', true);
-                $('#fileImport').prop('checked', true);
+                $('#generateReport').prop('checked', true);
                 selectedPrivileges['systemWallpaper'] = 1;
                 selectedPrivileges['aboutSystem'] = 1;
-                selectedPrivileges['fileImport'] = 1;
+                selectedPrivileges['generateReport'] = 1;
             } else {
                 $('#systemWallpaper').prop('checked', false);
                 $('#aboutSystem').prop('checked', false);
-                $('#fileImport').prop('checked', false);
+                $('#generateReport').prop('checked', false);
                 selectedPrivileges['systemWallpaper'] = 0;
                 selectedPrivileges['aboutSystem'] = 0;
-                selectedPrivileges['fileImport'] = 0;
+                selectedPrivileges['generateReport'] = 0;
             }
         }
     });
@@ -530,7 +529,7 @@ $(document).ready(function() {
             if (result.isConfirmed) {
 
                 $.ajax({
-                    url: '<?php echo base_url() ?>admin/savePrivileges',
+                    url: '<?php echo base_url() ?>AdminController/savePrivileges',
                     type: "POST",
                     data: {
                         classId: selectedClassId,

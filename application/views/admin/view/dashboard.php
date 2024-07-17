@@ -4,7 +4,7 @@
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
-                    <i class="feather icon-home bg-c-blue"></i>
+                    <i class="feather icon-home bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>Admin Dashboard</h5>
                         <span>Stock Withdrawal Advice System</span>

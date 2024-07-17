@@ -59,12 +59,28 @@ class Swa_model extends CI_Model
     }
     }
 
-    public function get_signatories_data($swa_id) 
+    public function get_swa_signatories_data($swa_id) 
     {
         
         $this->db->select('swa_tbl.SWA_REQUEST_BY, swa_tbl.SWA_REQUEST_BY_DATE, swa_tbl.SWA_REVIEW_BY, swa_tbl.SWA_REVIEW_BY_DATE, swa_tbl.SWA_APPROVE_BY, swa_tbl.SWA_APPROVE_BY_DATE, swa_tbl.SWA_RELEASE_BY, swa_tbl.SWA_RELEASE_BY_DATE, ,swa_tbl.SWA_RECEIVE_BY, swa_tbl.SWA_RECEIVE_BY_DATE');
         $this->db->from('swa_tbl');
         $this->db->where('swa_tbl.SWA_ID', $swa_id);
+
+        $query = $this->db->get();
+
+    if ($query->num_rows() > 0) {
+        return $query->row_array();
+    } else {
+        return false;
+    }
+    }
+
+    public function get_per_signatories_data($per_id) 
+    {
+        
+        $this->db->select('per_tbl.PER_SUBMIT_BY, per_tbl.PER_SUBMIT_BY_DATE, per_tbl.PER_REVIEW_BY, per_tbl.PER_REVIEW_BY_DATE, per_tbl.PER_AUDIT_BY, per_tbl.PER_AUDIT_BY_DATE, per_tbl.PER_NOTE_BY, per_tbl.PER_NOTE_BY_DATE');
+        $this->db->from('per_tbl');
+        $this->db->where('per_tbl.PER_ID', $per_id);
 
         $query = $this->db->get();
 
@@ -154,9 +170,24 @@ class Swa_model extends CI_Model
 
     public function get_swa_details($swa_id) 
     {
-        $this->db->select('SWA_QUANTITY, SWA_UNIT, SWA_DESCRIPTION, SWA_UNIT_COST, SWA_AMOUNT');
+        $this->db->select('swa_details_tbl.*');
         $this->db->from('swa_details_tbl');
         $this->db->where('SWA_ID', $swa_id); 
+        $query = $this->db->get();
+
+        if ($query) {
+            return $query->result(); 
+        } else {
+            return array(); 
+        }
+    }
+
+    
+    public function get_per_details($per_id) 
+    {
+        $this->db->select('per_details_tbl.*');
+        $this->db->from('per_details_tbl');
+        $this->db->where('PER_ID', $per_id); 
         $query = $this->db->get();
 
         if ($query) {
@@ -302,9 +333,8 @@ class Swa_model extends CI_Model
         $doc_date = $this->input->post('document_date');
         $table_data = $this->input->post('datas');
         
-      
+        // print_r($misref1);
         $per_data = array(
-           
             'SWA_ID' => $swa_id,
             'PER_SPONSOR_CODE' => $sponsor_code,
             'PER_SPONSOR_NAME' => $sponsor_name,
