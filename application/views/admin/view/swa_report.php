@@ -26,8 +26,10 @@
     </div>
 
     <div class="pcoded-inner-content">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js">
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"> -->
+        </script>
+
         </script>
         <div class="main-body">
             <div class="page-wrapper">
@@ -39,9 +41,8 @@
                                 <!-- <div class="card-header">
                                     <h5>Generate Report</h5>
                                 </div>  -->
-
                                 <div class="card-block" style="padding-top: 50px; padding-bottom: 50px">
-                                    <div class="row" style="margin-bottom: 5px;">
+                                    <div class="row" style="margin-bottom: 20px;">
                                         <div class="col-auto">
                                             <div id="reportrange"
                                                 style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 400x;">
@@ -50,13 +51,17 @@
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <button class="btn btn-primary" id="generate-btn">Generate</button>
+                                            <button class="btn btn-primary" id="generate-pdf-btn">Generate PDF</button>
                                         </div>
+                                        <!-- <div class="col-auto">
+                                            <button class="btn btn-primary"
+                                                style="background: #02838d; border: #02838d;"
+                                                id="generate-excel-btn">Generate Excel</button>
+                                        </div> -->
                                         <div class="col-auto">
                                             <div class="generate-loader"></div>
                                         </div>
                                     </div>
-
                                     <div class="table-responsive">
                                         <div class="report-loader"></div>
                                         <table id="report-table" class="table table-hover table-bordered m-b-0">
@@ -87,7 +92,14 @@
                                     </div>
                                     <!-- <div class="loader" id="loader"></div> -->
                                 </div>
+                                <div class="card-body" id="pdf-container">
+                                    <!-- <div class="card-body" id="excel-container"> -->
+                                    <!-- PDF will be displayed here -->
+                                </div>
                             </div>
+                            <!-- <div class="card">
+                              
+                            </div> -->
                             <!-- -->
                         </div>
                     </div>
@@ -96,10 +108,12 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"> -->
 </script>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script> -->
 <script type="text/javascript">
 $(document).ready(function() {
     var start = moment();
@@ -150,68 +164,67 @@ $(document).ready(function() {
                     return;
                 }
 
-                // Calculate the elapsed time
-                // var elapsedTime = Date.now() - startTime;
-                // var remainingTime = loaderMinimumTime - elapsedTime;
-
-                // Ensure the loader is shown for at least 3 seconds
                 setTimeout(function() {
                     var tbody = $('#report-table tbody');
                     tbody.empty();
                     console.log(response);
                     response.data.forEach(function(row) {
                         tbody.append(
-                            '<tr><td>' + row.SWA_ID + '</td><td>' + row
-                            .DOCUMENT_DATE +
-                            '</td><td>' + row.NAME + '</td><td>' + row
-                            .SWA_ACCOUNTING_INSTRUCT +
-                            '</td><td>' + row.LOCATION + '</td><td>' + row
-                            .SUB_CODE +
-                            '</td><td>' + row.SWA_REMARK + '</td><td>' + row
-                            .SWA_TOTAL +
-                            '</td><td>' + row.SWA_TRANS_NO1 + '</td><td>' + row
-                            .SWA_TRANS_NO1_DATE +
-                            '</td><td>' + row.SWA_TRANS_NO1_AMOUNT +
-                            '</td><td>' + row.SWA_CRFCV_NO +
-                            '</td><td>' + row.SWA_CRFCV_DATE + '</td><td>' + row
-                            .SWA_CRFCV_AMOUNT +
-                            '</td><td>' + '</td></tr>'
+                            '<tr>' +
+                            '<td>' + (row.SWA_ID || '') + '</td>' +
+                            '<td>' + (row.DOCUMENT_DATE || '') + '</td>' +
+                            '<td>' + (row.NAME || '') + '</td>' +
+                            '<td>' + (row.SWA_ACCOUNTING_INSTRUCT || '') +
+                            '</td>' +
+                            '<td>' + (row.LOCATION || '') + '</td>' +
+                            '<td>' + (row.SUB_CODE || '') + '</td>' +
+                            '<td>' + (row.SWA_REMARK || '') + '</td>' +
+                            '<td>' + (row.SWA_TOTAL || '') + '</td>' +
+                            '<td>' + (row.SWA_TRANS_NO1 || '') + '</td>' +
+                            '<td>' + (row.SWA_TRANS_NO1_DATE || '') + '</td>' +
+                            '<td>' + (row.SWA_TRANS_NO1_AMOUNT || '') +
+                            '</td>' +
+                            '<td>' + (row.SWA_CRFCV_NO || '') + '</td>' +
+                            '<td>' + (row.SWA_CRFCV_DATE || '') + '</td>' +
+                            '<td>' + (row.SWA_CRFCV_AMOUNT || '') + '</td>' +
+                            '<td></td>' +
+                            '</tr>'
                         );
                     });
                     $('.report-loader').hide();
-                }
-                // , remainingTime > 0 ? remainingTime : 0
-            );
+                });
             },
             error: function() {
                 // var elapsedTime = Date.now() - startTime;
                 // var remainingTime = loaderMinimumTime - elapsedTime;
-
                 setTimeout(function() {
                     $('.report-loader').hide();
                     alert('Failed to fetch data.');
-                }
-                // , remainingTime > 0 ? remainingTime : 0
-                );
+                });
             }
         });
     }
 
-
-    $('#generate-btn').on('click', function() {
-        // Show the loader
+    $('#generate-pdf-btn').on('click', function() {
         $('.generate-loader').show();
-
-        // Simulate PDF generation delay (replace with actual generatePDF() function if needed)
         setTimeout(generatePDF, 5000);
     });
 
+    $('#generate-excel-btn').on('click', function() {
+        generateExcel();
+    });
+
     function generatePDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
+        const {
+            jsPDF
+        } = window.jspdf;
+        const doc = new jsPDF({
+            orientation: 'landscape',
+            unit: 'mm',
+            format: 'legal'
+        });
         const table = $('#report-table');
 
-        // Prepare data for autoTable
         const headers = [];
         table.find('thead th').each(function() {
             headers.push($(this).text());
@@ -226,25 +239,49 @@ $(document).ready(function() {
             data.push(row);
         });
 
-        // Add the table to the PDF
         doc.autoTable({
             head: [headers],
-            body: data
+            body: data,
+            theme: 'plain',
+            styles: {
+                fontSize: 8,
+                cellPadding: 3,
+                lineColor: [0, 0, 0],
+                lineWidth: 0.1
+            },
+            tableLineColor: [0, 0, 0],
+            margin: {
+                top: 10
+            },
         });
 
-        // Save the PDF
-        doc.save('report.pdf');
+        const pdfDataUrl = doc.output('datauristring');
 
-        // Hide the loader after PDF generation is complete
+        const iframe = document.createElement('iframe');
+        iframe.style.width = '100%';
+        iframe.style.height = '500px';
+        iframe.src = pdfDataUrl;
+
+        const pdfContainer = document.getElementById('pdf-container');
+        pdfContainer.innerHTML = '';
+        pdfContainer.appendChild(iframe);
         $('.generate-loader').hide();
     }
 
-    $('#report-table').DataTable({
-        lengthChange: false,
-        language: {
-            search: '',
-            searchPlaceholder: 'Search...'
-        }
-    });
+    // function generateExcel() {
+    //     const table = document.getElementById('report-table');
+    //     const workbook = XLSX.utils.table_to_book(table, {
+    //         sheet: "Sheet1"
+    //     });
+    //     XLSX.writeFile(workbook, 'report.xlsx');
+    // }
+
+    // $('#report-table').DataTable({
+    //     lengthChange: false,
+    //     language: {
+    //         search: '',
+    //         searchPlaceholder: 'Search...'
+    //     }
+    // });
 });
 </script>

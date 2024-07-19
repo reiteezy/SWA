@@ -31,8 +31,8 @@
                         <div class="col-sm-12">
                             <div class="card table-card">
                                 <div class="card-header">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#addUserModal"><i class="feather icon-plus"></i>Add New
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#addUserModal"><i class="feather icon-plus"></i>Add New
                                         User</button>
                                 </div>
                                 <div class="card-block" style="padding-bottom: 50px;">
@@ -40,8 +40,8 @@
                                         <table id="usertable" class="table table-hover m-b-0 sub-table">
                                             <thead>
                                                 <tr>
-                                                    <th></th>
-                                                    <th>Employee Name</th>
+                                                    <!-- <th></th> -->
+                                                    <th style="width: 20%">Employee Name</th>
                                                     <th>Username</th>
                                                     <th>User Class</th>
                                                     <th>Password</th>
@@ -54,12 +54,6 @@
                               foreach ($users as $user):
                               ?>
                                                 <tr>
-                                                    <td>
-                                                        <div class="form-check form-switch">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                id="flexSwitchCheckDefault">
-                                                        </div>
-                                                    </td>
                                                     <td>
                                                         <div class="d-inline-block align-middle">
                                                             <img src="http://172.16.161.34:8080/hrms<?php echo substr($user->EMP_PHOTO, 2); ?>"
@@ -94,8 +88,8 @@
                                                             <i class="icon feather icon-eye f-w-600 f-16 m-r-15"
                                                                 style="color: #fff"></i><span
                                                                 style="color: #fff; font-size: 13px; margin-left: -8px;">View</span></button>
-                                                        <button type="button" class="editUserButton action-btn-c-green" title="edit"
-                                                            data-user-id="<?php echo $user->ID; ?>"
+                                                        <button type="button" class="editUserButton action-btn-c-green"
+                                                            title="edit" data-user-id="<?php echo $user->ID; ?>"
                                                             data-user-empname="<?php echo $user->EMP_NAME; ?>"
                                                             data-user-name="<?php echo $user->USERNAME; ?>"
                                                             data-user-class="<?php echo $user->CLASS; ?>"
@@ -107,6 +101,11 @@
                                                                 style="color: #fff"></i><span
                                                                 style="color: #fff; font-size: 13px; margin-left: -8px;">Update</span>
                                                         </button>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="user_status" data-user-id="<?php echo $user->ID; ?>"
+                                                                <?php echo ($user->STATUS == 1) ? 'checked' : ''; ?>>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -130,7 +129,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Add New User</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="card-block">
@@ -218,7 +217,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default waves-effect" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary waves-effect waves-light" id="saveNewUserButton">Save
                     </button>
                 </div>
@@ -289,7 +288,6 @@
             </div>
         </div>
     </div>
-
     <!------------------------ END OF VIEW USERS MODAL------------------>
     <!------------------------ UPDATE USERS MODAL------------------>
     <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog">
@@ -569,49 +567,35 @@
             'box-sizing': 'border-box'
         });
 
-        //     function format(d) {
-        //     // `d` is the original data object for the row
-        //     return (
-        //         '<dl>' +
-        //         '<dt>Employee ID:</dt>' +
-        //         '<dd>' +
-        //         d.EMP_ID +
-        //         '</dd>' +
-        //         '<dt>Department:</dt>' +
-        //         '<dd>' +
-        //         d.EMP_DEPT +
-        //         '</dd>' +
-        //         '<dt>Business Unit:</dt>' +
-        //         '<dd>' +
-        //         d.EMP_BU +
-        //         '</dd>' +
-        //         '</dl>'
-        //     );
-        // }
+        //get user status
 
-        // let table = new DataTable('#usertable', {
-        //     ajax: '<?php echo base_url() ?>',
-        //     columns: [
-        //         {
-        //             className: 'dt-control',
-        //             orderable: false,
-        //             data: null,
-        //             defaultContent: ''
-        //         },
-        //         { data: 'name' },
-        //         { data: 'username' },
-        //         { data: 'class' },
-        //         { data: 'password' },
-        //         { data: 'status' }
-        //     ],
-        //     order: [[1, 'asc']]
-        // });
+        //----------------------------------------------------------------------------------user status toggle
+        $(document).on('change', '#user_status', function() {
+            console.log("clicked");
+            const userId = $(this).data('user-id');
+            const userStatus = $(this).is(':checked') ? '1' : '0';
+
+            $.ajax({
+                url: '<?php echo base_url() ?>AdminController/user_status_changed',
+                type: 'POST',
+                data: {
+                    user_status: userStatus,
+                    user_id: userId
+                },
+                success: function(response) {
+                    console.log("Toggle value updated successfully.");
+                },
+                error: function(error) {
+                    console.error("Error updating toggle value:", error);
+                }
+            });
+        });
+
         // EDIT USER
 
-        $("#username_edit").on("input", function() {
+        $(document).on('input', '#username_edit', function() {
             var originalUsername = $(this).data('user-name');
             var newUsername = $(this).val();
-
 
             var usernameLengthValidation = document.getElementById('usernameLengthValidation');
             var uniqueUsernameValidation = document.getElementById('uniqueUsernameValidation');
@@ -636,7 +620,6 @@
                 data: {
                     username: username
                 },
-
                 success: function(data) {
                     console.log(data.taken)
                     if (data.taken === true) {
@@ -650,25 +633,21 @@
             });
         };
 
-        $('.viewUserButton').on('click', function() {
+        $(document).on('click', '.viewUserButton', function() {
             var userId = $(this).data('user-id');
-
             $.ajax({
                 url: '<?php echo base_url() ?>UserController/get_user/' + userId,
                 method: 'GET',
                 success: function(response) {
                     console.log("Raw response: ", response);
-
                     try {
                         var data = typeof response === 'string' ? JSON.parse(response) :
                             response;
                         console.log("Parsed data: ", data);
-
                         if (data.error) {
                             console.error("Error: ", data.error);
                             return;
                         }
-
                         var formattedAddedDate = new Date(data.CREATION_DATE);
                         var formattedUpdatedDate = new Date(data.DATE_UPDATED);
                         var formattedAddedDateString = formattedAddedDate
@@ -719,7 +698,7 @@
         });
 
         $(document).on('click', '.editUserButton', function() {
-            // Get the data attributes from the clicked button
+
             var userId = $(this).data('user-id');
             var userEmpName = $(this).data('user-empname');
             var userName = $(this).data('user-name');
@@ -728,7 +707,7 @@
             var userPassword = $(this).data('user-password');
             console.log("User class is: ", userClass);
             console.log("User class description is: ", userDescript);
-            // Populate the modal form fields with the data
+
             $('#user_id').val(userId);
             $('#user_editempname').val(userEmpName);
             $('#username_edit').val(userName);

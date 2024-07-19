@@ -53,6 +53,15 @@ class User_model extends CI_Model
         $query = $this->db->get();
         return $query->result(); 
     }
+
+    public function get_status($user_id) 
+    {
+        $this->db->select('users_tbl.STATUS');
+        $this->db->from('users_tbl');
+        $this->db->where('users_tbl.ID', $user_id);
+        $query = $this->db->get();
+        return $query->result(); 
+    }
     
     public function insert_user_data($data) 
     {

@@ -236,14 +236,14 @@ $(document).ready(function() {
                             var newRow = table.row.add([
                                 newCode,
                                 newDescription,
-                                '<a class="editSubsidiaryButton" title="edit" data-sub-id="' +
+                                '<a class="editSubsidiaryButton action-btn-c-green" title="edit" data-sub-id="' +
                                 newId + '" data-sub-code="' + newCode +
                                 '" data-sub-descript="' + newDescription +
                                 '" data-toggle="modal" data-target="#editSubsidiaryModal">' +
-                                '<i class="icon feather icon-edit f-w-600 f-16 m-r-15 text-c-blue"></i></a>' +
-                                '<a type="button" href="#!" class="deleteButton" data-delete-url="<?php echo base_url() ?>SubsidiaryController/del_subsidiary/' +
+                                '<i class="icon feather icon-edit f-w-600 f-16 m-r-15" style="color: #fff"></i><span style="color: #fff; font-size: 13px; margin-left: -8px;">Update</span></a>' +
+                                '<a type="button" href="#!" class="deleteButton action-btn-c-red" data-delete-url="<?php echo base_url() ?>SubsidiaryController/del_subsidiary/' +
                                 newId + '">' +
-                                '<i class="feather icon-trash-2 f-w-600 f-16 text-c-red"></i></a>'
+                                '<i class="feather icon-trash-2 f-w-600 f-16 m-r-15" style="color: #fff"></i><span style="color: #fff; font-size: 13px; margin-left: -8px;">Delete</span></a>'
                             ]).draw(false).node();
                             // Move to the first page and redraw the table
                             table.page('first').draw(false);

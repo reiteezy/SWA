@@ -36,7 +36,7 @@
 
                             <div class="card table-card">
                                 <div class="card-header">
-                                <?php if ($this->session->userdata('priv_per') == 1 && $this->session->userdata('priv_pervo') == 0): ?>
+                                <?php if ($this->session->userdata('priv_per') == 1): ?>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#perFormModal"><i class="feather icon-plus"></i>Add New
                                         PER</button>
@@ -81,7 +81,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <!-- -->
                         </div>
                     </div>
@@ -350,7 +349,7 @@
 <!------------------------ END OF PER MODAL------------------>
 <!---------------------------  VIEW PER MODAL-------------------------->
 <div class="modal fade" id="viewPerFormModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Promo Execution Report Form</h4>
@@ -543,7 +542,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Signatories</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="card-block">
@@ -600,7 +599,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Signatories</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="card-block">
@@ -640,8 +639,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" data-dismiss="modal"
-                                    class="btn btn-primary waves-effect waves-light" id="saveSignatoriesValues">Save
-                                    changes</button>
+                                    class="btn btn-default waves-effect waves-light" id="">Close
+                                    </button>
                             </div>
                         </div>
                     </form>
@@ -858,34 +857,27 @@ $(document).ready(function() {
                 console.log(perDetailsData);
                 $("#tbody-view").html("");
                 for (var i = 0; i < perDetailsData.length; i++) {
-                    var newRow = $('<tr style="background-color: #e3f1fe;">');
+                    var newRow = $('<tr>');
                     newRow.append(
-                        '<td><input class="form-control" type="text" name="datas[' + i +
-                        '][qty]" value="' + perDetailsData[i].PER_QUANTITY +
-                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;"></td>'
+                        '<td>' + perDetailsData[i].PER_QUANTITY +
+                        '</td>'
                     );
                     newRow.append(
-                        '<td><input class="form-control" type="text" name="datas[' + i +
-                        '][unit]" value="' + perDetailsData[i].PER_UNIT +
-                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;"></td>'
+                        '<td>' + perDetailsData[i].PER_UNIT +
+                        '</td>'
                     );
                     newRow.append(
-                        '<td><input class="form-control" type="text" name="datas[' + i +
-                        '][descript]" value="' + perDetailsData[i].PER_ITEM_DESCRIPTION +
-                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;" ></td>'
+                        '<td>' + perDetailsData[i].PER_ITEM_DESCRIPTION +
+                        '</td>'
                     );
                     newRow.append(
-                        '<td><input class="form-control" type="text" name="datas[' + i +
-                        '][actual_qty]" value="' + perDetailsData[i].PER_ACTUAL_EXECUTE_QTY +
-                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;" oninput="calculateDifferenceAmt(this)"></td>'
+                        '<td>' + perDetailsData[i].PER_ACTUAL_EXECUTE_QTY +
+                        '</td>'
                     );
                     newRow.append(
-                        '<td><input class="form-control" type="text" name="datas[' + i +
-                        '][unused_alloc]" value="' + perDetailsData[i].PER_UNUSED_ALLOCATION +
-                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;"></td>'
+                        '<td>' + perDetailsData[i].PER_UNUSED_ALLOCATION +
+                        '</td>'
                     );
-
-
                     $("#tbody-view").append(newRow);
                 }
             },
@@ -909,29 +901,29 @@ $(document).ready(function() {
                 $("#tbody").html("");
 
                 for (var i = 0; i < swaDetailsData.length; i++) {
-                    var newRow = $('<tr style="background-color: #e3f1fe;">');
+                    var newRow = $('<tr>');
                     newRow.append(
                         '<td><input class="form-control" type="text" name="datas[' + i +
                         '][qty]" value="' + swaDetailsData[i].SWA_QUANTITY +
-                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;"></td>'
+                        '" style="text-align: center; border-color: #4c4c4c; border: none; box-shadow: none;"></td>'
                     );
                     newRow.append(
                         '<td><input class="form-control" type="text" name="datas[' + i +
                         '][unit]" value="' + swaDetailsData[i].SWA_UNIT +
-                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;"></td>'
+                        '" style="text-align: center; border-color: #4c4c4c; border: none; box-shadow: none;"></td>'
                     );
                     newRow.append(
                         '<td><input class="form-control" type="text" name="datas[' + i +
                         '][descript]" value="' + swaDetailsData[i].SWA_DESCRIPTION +
-                        '" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;" ></td>'
+                        '" style="text-align: center; border-color: #4c4c4c; border: none; box-shadow: none;" ></td>'
                     );
                     newRow.append(
                         '<td><input class="form-control" type="text" name="datas[' + i +
-                        '][actual_qty]" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;" oninput="calculateDifferenceAmt(this)"></td>'
+                        '][actual_qty]" autocomplete="off" style="text-align: center; border-color: #4c4c4c; border: none; box-shadow: none;" oninput="calculateDifferenceAmt(this)"></td>'
                     );
                     newRow.append(
                         '<td><input class="form-control" type="text" name="datas[' + i +
-                        '][unused_alloc]" value="" style="text-align: center; border-color: #4c4c4c; border: none; padding: 1px !important;"></td>'
+                        '][unused_alloc]" autocomplete="off" value="" style="text-align: center; border-color: #4c4c4c; border: none; box-shadow: none;"></td>'
                     );
 
 
@@ -1077,7 +1069,7 @@ $(document).ready(function() {
 
 
 
-    $('#saveSignatoriesValues').on('click', function() {
+    $(document).on('click', '#saveSignatoriesValues', function() {
         var subByValue = $('#sub_by').val();
         var subDateValue = $('#sub_date').val();
         var revByValue = $('#rev_by').val();

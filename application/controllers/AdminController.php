@@ -79,11 +79,12 @@ class AdminController extends CI_Controller
 
 	public function view_profile() 
 	{
-		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
-		$this->breadcrumb->add('Profile', base_url('profile'));
-		$data['menu'] = 'Profile';
-		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
-        $this->load->view('admin/view_profile', $data);
+		$data['menu'] = 'dashboard';
+        $this->load->view('admin/require/header');
+        $this->load->view('admin/require/navbar');
+        $this->load->view('admin/require/sidebar', $data);
+        $this->load->view('admin/view/view_profile');
+        $this->load->view('admin/require/footer');
 	}
 
 	public function new_swa()
@@ -328,10 +329,18 @@ class AdminController extends CI_Controller
 	}
 
 //-----------------------------------CHANGE STATUS------------------------------------------------
+public function get_user_status(){
+	$user_id = $this->input->get('user_id');
+	$response['data'] = $this->User_model->get_status($user_id);
+	echo json_encode($response);
+}
+
 public function user_status_changed()
 {
     $user_id = $this->input->post('user_id');
     $user_status = $this->input->post('user_status');
+	print_r($user_status);
+	die();
     if ($user_status == '1') {
         $user_status = '0';
     } else {

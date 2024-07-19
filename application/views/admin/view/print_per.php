@@ -13,25 +13,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="author" content="">
     <title>Print PER</title>
     <!-- <link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css"> -->
-    <link href='https://fonts.googleapis.com/css?family=Bree Serif' rel='stylesheet'>
+    <!-- <link href='https://fonts.googleapis.com/css?family=Bree Serif' rel='stylesheet'> -->
     <style>
+    @font-face {
+        font-family: 'Nixie One';
+        src: url('<?php echo base_url('/assets/assets/fonts/nixie_one/NixieOne.ttf')?>') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
     body {
-        font-family: 'roboto';
+        font-family: 'Arial', sans-serif;
         margin: 0;
-        /* Remove default body margin */
         padding: 0;
-        /* Remove default body padding */
         font-size: 13px;
     }
 
     .header {
         margin-top: 20px;
-        /* Adjust top margin for the header */
     }
 
     table.td {
-        /* font-family: 'Roboto Mono', monospace; */
-    }
+        font-family: 'Nimbus Mono';
+    }s
 
     img {
         width: 200px;
@@ -93,21 +97,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <td style="border-bottom: 1px solid black; width: 12%;"><?php echo $data['PER_ID'];?></td>
         </tr>
         <tr>
-            <td style="border-bottom: 1px solid black; font-weight: bold; font-family: 'couriernew'; text-align: center;"><?php echo strtoupper($data['SUB_DESCRIPT']);?></td>
+            <td
+                style="border-bottom: 1px solid black; font-weight: bold; font-family: 'courier'; text-align: center;">
+                <?php echo strtoupper($data['SUB_DESCRIPT']);?></td>
             <td style="text-align: right; font-weight: bold;">Date :</td>
-            <td style="border-bottom: 1px solid black"><?php echo date("m/d/Y", strtotime($data['DOCUMENT_DATE']));?></td>
+            <td style="border-bottom: 1px solid black"><?php echo date("m/d/Y", strtotime($data['DOCUMENT_DATE']));?>
+            </td>
         </tr>
     </table>
     <table style="width: 100%">
         <tr>
             <td style="width: 17%; font-weight: bold;">Promo Title &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
-            <td style="border-bottom: 1px solid black; width: 53%; font-weight: bold; font-family: 'couriernew';"><?php echo strtoupper($data['PER_PROMO_TITLE']);?></td>
+            <td style="border-bottom: 1px solid black; width: 53%; font-weight: bold; font-family: 'couriernew';">
+                <?php echo strtoupper($data['PER_PROMO_TITLE']);?></td>
             <td style="text-align: right; font-weight: bold;">SWA Series No.:</td>
             <td style="border-bottom: 1px solid black; width: 12%;"><?php echo $data['SWA_ID'];?></td>
         </tr>
         <tr>
             <td style="font-weight: bold;">Mechanics &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
-            <td style="border-bottom: 1px solid black; font-weight: bold; font-family: 'couriernew';"><?php echo strtoupper($data['PER_MECHANICS']);?></td>
+            <td style="border-bottom: 1px solid black; font-weight: bold; font-family: 'couriernew';">
+                <?php echo strtoupper($data['PER_MECHANICS']);?></td>
             <td style="text-align: right; font-weight: bold;">MIS Ref. NO. 1 :</td>
             <td style="border-bottom: 1px solid black"><?php echo $data['PER_MISREF_NO1'];?></td>
         </tr>
@@ -131,7 +140,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </tr>
         <tr>
             <td style=" font-weight: bold;">Promo Sponsor :</td>
-            <td style="border-bottom: 1px solid black; font-weight: bold; font-family: 'couriernew';"><?php echo $data['PER_SPONSOR_NAME'];?></td>
+            <td style="border-bottom: 1px solid black; font-weight: bold; font-family: 'couriernew';">
+                <?php echo $data['PER_SPONSOR_NAME'];?></td>
             <td style="text-align: right; font-weight: bold;">3 :</td>
             <td style="border-bottom: 1px solid black"><?php echo $data['PER_MISREF_NO3'];?></td>
         </tr>
@@ -142,7 +152,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <tr>
                 <th colspan="3"></th>
                 <th style="border: 1px solid black; border-bottom: none;"></th>
-                <th style="border: 1px solid black; border-left: none; border-bottom: none; width: 14%; text-align: center;">Declaration of
+                <th
+                    style="border: 1px solid black; border-left: none; border-bottom: none; width: 14%; text-align: center;">
+                    Declaration of
                 </th>
             </tr>
             <tr>
@@ -167,10 +179,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <th style="border: 1px solid black; width: 7%; text-align: center;">Unit</th>
                 <th style="border: 1px solid black; width: 45%; text-align: center;">Item Description</th>
                 <th style="border: 1px solid black; border-top: none;  width: 14%; text-align: center;">Quantity</th>
-                <th style="border: 1px solid black; border-top: none; border-left: none; width: 14%; text-align: center;">Quantity</th>
+                <th
+                    style="border: 1px solid black; border-top: none; border-left: none; width: 14%; text-align: center;">
+                    Quantity</th>
             </tr>
         </thead>
-         <tbody id="tbody">
+        <tbody id="tbody">
             <?php 
                 $count = 0;
                $this->db->select('per_details_tbl.*');
@@ -229,14 +243,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <td
                     style="text-align: right; border: 1px solid black; border-left: 1px solid black; border-top: 0; padding: 1px; height: 15px;">
                 </td>
-                <td style="text-align: left; border: 1px solid black; border-top: 0;  border-right: 0; padding: 1px; height: 15px;"></td>
+                <td
+                    style="text-align: left; border: 1px solid black; border-top: 0;  border-right: 0; padding: 1px; height: 15px;">
+                </td>
                 <td style="text-align: center; border: 1px solid black; border-top: 0; padding: 1px; height: 15px;">
                 </td>
                 <td style="text-align: right; border: 1px solid black; border-top: 0; padding: 1px; height: 15px;"></td>
                 <td
                     style="text-align: right; border: 1px solid black; border-right: 1px solid black; border-left: 0; border-top: 0; padding: 1px; height: 15px;">
                 </td>
-            </tr>   
+            </tr>
 
         </tbody>
     </table>
@@ -247,112 +263,117 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <td style="text-align: left; font-weight: bold;">*Post Promo Remarks</td>
             </tr>
         </table>
-        <textarea name="text" id="text" style="width: 49%; height: 100px;">&nbsp;<?php echo strtoupper($data['PER_SUMMARY']);?></textarea>
-        <textarea name="text" id="text" style="width: 49%; height: 100px;">&nbsp;<?php echo strtoupper($data['PER_REMARK']);?></textarea>
+        <textarea name="text" id="text"
+            style="width: 49%; height: 100px;">&nbsp;<?php echo strtoupper($data['PER_SUMMARY']);?></textarea>
+        <textarea name="text" id="text"
+            style="width: 49%; height: 100px;">&nbsp;<?php echo strtoupper($data['PER_REMARK']);?></textarea>
     </div>
-<table style="width: 100%; margin-top: 4px;">
-    <tr>
-        <td style="width: 55%; font-weight: bold;">Submitted by:</td>
-        <td style="font-weight: bold;">Audited by:</td>
-    </tr>
-    <tr>
-        <td><i>(Promo Coordinating Supervisor)</i></td>
-        <td><i>(Subsidiary IAD)</i></td>
-    </tr>
-</table>
-<table style="width: 100%; margin-top: 5px;">
-    <tr>
-        <td style="width: 45%; border-bottom: 1px solid black; height: 15px;"></td>
-        <td></td>
-        <td style="text-align: right; width: 45%; border-bottom: 1px solid black; height: 15px;"></td>
-    </tr>
-</table>
-<table style="width: 100%;">
-<tr>
-    <td stlye="width: 5%; text-align: left;"><b>Name:</b></td>
-    <td style="width: 38%; text-align: center;"><?php echo strtoupper($data['PER_SUBMIT_BY']);?></td>
-    <td style="width: 10%;;"></td>
-    <td stlye="width: 5%; text-align: left;"><b>Name:</b></td>
-    <td style="width: 38%; text-align: center;"><?php echo strtoupper($data['PER_AUDIT_BY']);?></td>
-</tr>
-<tr>
-    <td stlye="width: 5%; text-align: left;"><b>Date:</b></td>
-    <td style="width: 38%; text-align: left;">    <?php $dateTime = DateTime::createFromFormat('Y-m-d', $data['PER_SUBMIT_BY_DATE']);
+    <table style="width: 100%; margin-top: 4px;">
+        <tr>
+            <td style="width: 55%; font-weight: bold;">Submitted by:</td>
+            <td style="font-weight: bold;">Audited by:</td>
+        </tr>
+        <tr>
+            <td><i>(Promo Coordinating Supervisor)</i></td>
+            <td><i>(Subsidiary IAD)</i></td>
+        </tr>
+    </table>
+    <table style="width: 100%; margin-top: 5px;">
+        <tr>
+            <td style="width: 45%; border-bottom: 1px solid black; height: 15px;"></td>
+            <td></td>
+            <td style="text-align: right; width: 45%; border-bottom: 1px solid black; height: 15px;"></td>
+        </tr>
+    </table>
+    <table style="width: 100%;">
+        <tr>
+            <td stlye="width: 5%; text-align: left;"><b>Name:</b></td>
+            <td style="width: 38%; text-align: center;"><?php echo strtoupper($data['PER_SUBMIT_BY']);?></td>
+            <td style="width: 10%;;"></td>
+            <td stlye="width: 5%; text-align: left;"><b>Name:</b></td>
+            <td style="width: 38%; text-align: center;"><?php echo strtoupper($data['PER_AUDIT_BY']);?></td>
+        </tr>
+        <tr>
+            <td stlye="width: 5%; text-align: left;"><b>Date:</b></td>
+            <td style="width: 38%; text-align: left;"> <?php $dateTime = DateTime::createFromFormat('Y-m-d', $data['PER_SUBMIT_BY_DATE']);
     if ($dateTime !== false && !array_sum($dateTime->getLastErrors())) {
         $formattedDate = $dateTime->format('m/d/Y');
         echo $formattedDate;
     } else {
         echo '&nbsp;/ /';
     }?></td>
-    <td style="width: 10%;;"></td>
-    <td stlye="width: 5%; text-align: left;"><b>Date:</b></td>
-    <td style="width: 38%; text-align: left;">    <?php $dateTime = DateTime::createFromFormat('Y-m-d', $data['PER_AUDIT_BY_DATE']);
+            <td style="width: 10%;;"></td>
+            <td stlye="width: 5%; text-align: left;"><b>Date:</b></td>
+            <td style="width: 38%; text-align: left;"> <?php $dateTime = DateTime::createFromFormat('Y-m-d', $data['PER_AUDIT_BY_DATE']);
     if ($dateTime !== false && !array_sum($dateTime->getLastErrors())) {
         $formattedDate = $dateTime->format('m/d/Y');
         echo $formattedDate;
     } else {
         echo '&nbsp;/ /';
     }?></td>
-</tr>
-</table>
-<table style="width: 100%; margin-top: 5px;">
-    <tr>
-        <td style="width: 55%; font-weight: bold;">Reviewed by:</td>
-        <td style="font-weight: bold;">Noted by:</td> 
-    </tr>
-    <tr>
-        <td><i>(Sr. Supervisor/Subsidiary Manager)</i></td>
-        <td><i>(GGM/CMG)</i></td>
-    </tr>
-</table>
-<table style="width: 100%; margin-top: 5px;">
-    <tr>
-        <td style="width: 45%; border-bottom: 1px solid black; height: 15px;"></td>
-        <td></td>
-        <td style="text-align: right; width: 45%; border-bottom: 1px solid black; height: 15px;"></td>
-    </tr>
-</table>
-<table style="width: 100%;">
-<tr>
-    <td stlye="width: 5%; text-align: left; font-weight: bold;"><b>Name:</b></td>
-    <td style="width: 38%; text-align: center;"><?php echo strtoupper($data['PER_REVIEW_BY']);?></td>
-    <td style="width: 10%;;"></td>
-    <td stlye="width: 5%; text-align: left;"><b>Name:</b></td>
-    <td style="width: 38%; text-align: center;"><?php echo strtoupper($data['PER_NOTE_BY']);?></td>
-</tr>
-<tr>
-    <td stlye="width: 5%; text-align: left;"><b>Date:</b></td>
-    <td style="width: 38%; text-align: left;">    <?php $dateTime = DateTime::createFromFormat('Y-m-d', $data['PER_REVIEW_BY_DATE']);
+        </tr>
+    </table>
+    <table style="width: 100%; margin-top: 5px;">
+        <tr>
+            <td style="width: 55%; font-weight: bold;">Reviewed by:</td>
+            <td style="font-weight: bold;">Noted by:</td>
+        </tr>
+        <tr>
+            <td><i>(Sr. Supervisor/Subsidiary Manager)</i></td>
+            <td><i>(GGM/CMG)</i></td>
+        </tr>
+    </table>
+    <table style="width: 100%; margin-top: 5px;">
+        <tr>
+            <td style="width: 45%; border-bottom: 1px solid black; height: 15px;"></td>
+            <td></td>
+            <td style="text-align: right; width: 45%; border-bottom: 1px solid black; height: 15px;"></td>
+        </tr>
+    </table>
+    <table style="width: 100%;">
+        <tr>
+            <td stlye="width: 5%; text-align: left; font-weight: bold;"><b>Name:</b></td>
+            <td style="width: 38%; text-align: center;"><?php echo strtoupper($data['PER_REVIEW_BY']);?></td>
+            <td style="width: 10%;;"></td>
+            <td stlye="width: 5%; text-align: left;"><b>Name:</b></td>
+            <td style="width: 38%; text-align: center;"><?php echo strtoupper($data['PER_NOTE_BY']);?></td>
+        </tr>
+        <tr>
+            <td stlye="width: 5%; text-align: left;"><b>Date:</b></td>
+            <td style="width: 38%; text-align: left;"> <?php $dateTime = DateTime::createFromFormat('Y-m-d', $data['PER_REVIEW_BY_DATE']);
     if ($dateTime !== false && !array_sum($dateTime->getLastErrors())) {
         $formattedDate = $dateTime->format('m/d/Y');
         echo $formattedDate;
     } else {
         echo '&nbsp;/ /';
     }?></td>
-    <td style="width: 10%;;"></td>
-    <td stlye="width: 5%; text-align: left;"><b>Date:</b></td>
-    <td style="width: 38%; text-align: left;">    <?php $dateTime = DateTime::createFromFormat('Y-m-d', $data['PER_NOTE_BY_DATE']);
+            <td style="width: 10%;;"></td>
+            <td stlye="width: 5%; text-align: left;"><b>Date:</b></td>
+            <td style="width: 38%; text-align: left;"> <?php $dateTime = DateTime::createFromFormat('Y-m-d', $data['PER_NOTE_BY_DATE']);
     if ($dateTime !== false && !array_sum($dateTime->getLastErrors())) {
         $formattedDate = $dateTime->format('m/d/Y');
         echo $formattedDate;
     } else {
         echo '&nbsp;/ /';
     }?></td>
-</tr>
-</table>
-<br>
-&nbsp;<span style="font-weight: bold;">Note:</span> This Promo Execution Report should be accomplished and signed three days after end of promo period.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Attach required reports/exhibits.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*Attach separate sheets if allocated space is not enough
+        </tr>
+    </table>
+    <br>
+    &nbsp;<span style="font-weight: bold;">Note:</span> This Promo Execution Report should be accomplished and signed
+    three days after end of promo period.
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Attach required reports/exhibits.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*Attach separate sheets if allocated space is not
+    enough
 
-<table style="width: 100%; font-size: 10px; margin-top: 10px; font-weight: bold;">
-    <tr>
-        <td style="20%; text-align: left; font-style: italic;">Distribution of copies:</td>
-        <td style="30%; text-align: left; font-style: italic;">Original - GGM/CMG</td>
-        <td style="30%; text-align: center; font-style: italic;">Duplicate - Subsidary Manager</td>
-        <td style="20%; text-align: right; font-style: italic;">Triplicate - Subsdiary IAD</td>
-    </tr>
-</table>
+    <table style="width: 100%; font-size: 10px; margin-top: 10px; font-weight: bold;">
+        <tr>
+            <td style="20%; text-align: left; font-style: italic;">Distribution of copies:</td>
+            <td style="30%; text-align: left; font-style: italic;">Original - GGM/CMG</td>
+            <td style="30%; text-align: center; font-style: italic;">Duplicate - Subsidary Manager</td>
+            <td style="20%; text-align: right; font-style: italic;">Triplicate - Subsdiary IAD</td>
+        </tr>
+    </table>
 
 </body>
+
 </html>

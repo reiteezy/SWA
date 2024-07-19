@@ -13533,7 +13533,7 @@ body {
     width: 100%;
   }
   .form-group {
-    margin-bottom: 1.25em;
+    /* margin-bottom: 1.25em; */
   }
   .form-group .form-control-lg {
     font-size: 1.25em;

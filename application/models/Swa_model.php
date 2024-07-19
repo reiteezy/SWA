@@ -307,6 +307,8 @@ class Swa_model extends CI_Model
 
     function add_per()
     {
+
+        // print_r($this->input->post());
         $control_no = $this->input->post('control_no');
         $misref1 = $this->input->post('mis_ref_1');
         $misref2 = $this->input->post('mis_ref_2');
@@ -360,12 +362,12 @@ class Swa_model extends CI_Model
             'PER_NOTE_BY_DATE' => $note_date,
             'DOCUMENT_DATE' => $doc_date
         );
+       
         // print_r($per_data);
         $this->db->insert('per_tbl', $per_data);
         $per_id = $this->db->insert_id();
         $table_data = $this->input->post('datas');
         $per_table_data = array();
-        
         foreach ($table_data as $row) {
             if (!empty($row['qty']) || !empty($row['unit']) || !empty($row['descript']) || !empty($row['unit_cost']) || !empty($row['amt'])) {
                 $per_table_data[] = array(
@@ -382,6 +384,11 @@ class Swa_model extends CI_Model
         if (!empty($per_table_data)) {
             $this->db->insert_batch('per_details_tbl', $per_table_data);
         }
+        $update_swa_per = array(
+            'SWA_PER_NO' => $per_id
+        );
+        $this->db->where('SWA_ID', $swa_id);
+        $this->db->update('swa_tbl', $update_swa_per);
         
         return $per_id;
     }

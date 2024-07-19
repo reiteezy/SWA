@@ -52,15 +52,10 @@
 
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/pages/toolbar/jquery.toolbar.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/pages/toolbar/custom-toolbar.js"></script>
-
-
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/select2/js/select2.full.min.js"></script>
-
-<script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js">
-</script>
+<script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/multiselect/js/jquery.multi-select.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/jquery.quicksearch.js"></script>
-
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/pages/advance-elements/select2-custom.js"></script>|
 
 
@@ -70,15 +65,18 @@
 <script src="<?= base_url('assets/'); ?>assets/js/classie.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/modalEffects.js"></script>
 
-<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
+<!----------------------- JSPDF  ------------------------------>
 
+<script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/jspdf.umd.min.js"></script>
+<script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/jspdf.plugin.autotable.min.js"></script>
 
+<!------------------------- TOASTR----------------------- -->
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/toastr.js"></script>
 
+
+<!----------------- DATERANGE FILTER, REPORT------------------>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/moment.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/daterangepicker.js"></script>
-<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> -->
 </body>
 
 </html>

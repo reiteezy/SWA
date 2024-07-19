@@ -35,7 +35,7 @@
 
                             <div class="card table-card">
                                 <div class="card-header">
-                                <?php if ($this->session->userdata('priv_swaf') == 1 && $this->session->userdata('priv_swavo') == 0): ?>
+                                <?php if ($this->session->userdata('priv_swaf') == 1): ?>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#swaFormModal"><i class="feather icon-plus"></i>Add New
                                         SWA</button>
@@ -251,7 +251,7 @@
                                             name="crfcv_no" class="form-control">
                                     </div>
                                     <!-- </div> -->
-                                    <div class="row" style="padding-top: 20px;">
+                                    <div class="row">
                                         <div class="col">
                                             <span style="font-style: italic;">Enter the item code or
                                                 barcode</span>
@@ -280,16 +280,16 @@
                                             <tbody id="tbody" style="overflow-y: auto; max-height: 410px;">
                                                 <?php for ($data = 0; $data < 8; $data++) { ?>
                                                 <tr data-row="<?php echo $data; ?>"
-                                                    style="transition: background-color 0.3s ease; cursor: pointer; background-color: #e3f1fe !important;">
+                                                    style="transition: background-color 0.3s ease; cursor: pointer;">
                                                     <td>
                                                         <input class="form-control item-code-input" type="text"
                                                             name="datas[<?php echo $data;?>][code]" autocomplete="off"
-                                                            style="text-align: center; border-color: #4c4c4c; border: none;">
+                                                            style="text-align: center; border: none; box-shadow: none;">
                                                     </td>
                                                     <td>
                                                         <select class="form-control custom-arrow"
                                                             name="datas[<?php echo $data; ?>][unit]"
-                                                            style="border: none;"
+                                                            style="border: none; box-shadow: none;"
                                                             id="datas[<?php echo $data; ?>][unit]">
                                                             <option value="" hidden selected>
                                                             </option>
@@ -299,7 +299,7 @@
                                                         <input class="form-control" type="text"
                                                             name="datas[<?php echo $data; ?>][qty]" autocomplete="off"
                                                             oninput="calculateTotalAmt(this)"
-                                                            style="text-align: center; border-color: #4c4c4c; border: none;">
+                                                            style="text-align: center; border: none; box-shadow: none;">
                                                     </td>
                                                     <td>
                                                         <input class="form-control" type="hidden"
@@ -313,21 +313,20 @@
                                                             id="datas[<?php echo $data; ?>][descript]"
                                                             name="datas[<?php echo $data; ?>][descript]"
                                                             autocomplete="off"
-                                                            style="text-align: center; border-color: #4c4c4c; border: none;">
+                                                            style="text-align: center; border: none; box-shadow: none;">
                                                     </td>
                                                     <td>
                                                         <input class="form-control" type="text"
                                                             id="datas[<?php echo $data; ?>][unit_cost]"
                                                             name="datas[<?php echo $data; ?>][unit_cost]"
                                                             autocomplete="off" oninput="calculateTotalAmt(this)"
-                                                            style="text-align: center; border-color: #4c4c4c; border: none;">
+                                                            style="text-align: center; border: none; box-shadow: none;">
                                                     </td>
-
                                                     <td>
                                                         <input class="form-control" type="text"
                                                             name="datas[<?php echo $data; ?>][amt]" value="" readonly
                                                             autocomplete="off"
-                                                            style=" text-align: center; border-color: #4c4c4c; border: none; background-color: transparent;">
+                                                            style=" text-align: center; border: none; background-color: transparent; box-shadow: none;">
                                                     </td>
                                                 </tr>
                                                 <?php } ?>
@@ -369,14 +368,14 @@
 
                                     function addItem() {
                                         data++;
-                                        var html = "<tr data-row='" + data + "' style='background-color: #e3f1fe;'>";
+                                        var html = "<tr data-row='" + data + "' style='box-shadow: none;'>";
                                         html +=
                                             "<td><input class='form-control item-code-input' type='text' autocomplete='off' name='datas[" +
                                             data +
-                                            "][code]' style='border-color: #4c4c4c; text-align: center; border: none;'></td>";
+                                            "][code]' style='border-color: #4c4c4c; text-align: center; border: none; box-shadow: none;'></td>";
                                         html +=
                                             "<td><select class='form-control custom-arrow' name='datas[" +
-                                            data + "][unit]' style='border: none; font-weight: bold;' id='datas[" +
+                                            data + "][unit]' style='border: none; font-weight: bold; box-shadow: none;' id='datas[" +
                                             data +
                                             "][unit]'>" +
                                             "<option value='' hidden selected></option>" +
@@ -384,7 +383,7 @@
                                         html +=
                                             "<td><input class='form-control' type='text' autocomplete='off' name='datas[" +
                                             data +
-                                            "][qty]' oninput='calculateTotalAmt(this)' style='border-color: #4c4c4c; text-align: center; border: none;'></td>";
+                                            "][qty]' oninput='calculateTotalAmt(this)' style='border-color: #4c4c4c; text-align: center; border: none; box-shadow: none;'></td>";
                                         html +=
                                             "<td><input class='form-control' type='hidden' autocomplete='off' name='datas[" +
                                             data +
@@ -398,21 +397,20 @@
                                             data +
                                             "][descript]' name='datas[" +
                                             data +
-                                            "][descript]' style='border-color: #4c4c4c; text-align: center; border: none;'></td>";
+                                            "][descript]' style='border-color: #4c4c4c; text-align: center; border: none; box-shadow: none;'></td>";
                                         html +=
                                             "<td><input class='form-control' type='text' autocomplete='off' id='datas[" +
                                             data +
                                             "][unit_cost]' name='datas[" +
                                             data +
-                                            "][unit_cost]' oninput='calculateTotalAmt(this)' style='border-color: #4c4c4c; text-align: center; border: none;'></td>";
+                                            "][unit_cost]' oninput='calculateTotalAmt(this)' style='border-color: #4c4c4c; text-align: center; border: none; box-shadow: none;'></td>";
                                         html +=
                                             "<td><input class='form-control' type='text' readonly autocomplete='off' id='datas[" +
                                             data +
                                             "][amt]' name='datas[" +
                                             data +
-                                            "][amt]' style='border-color: #4c4c4c; text-align: center; border: none; background-color: transparent;'></td>";
+                                            "][amt]' style='border-color: #4c4c4c; text-align: center; border: none; background-color: transparent; box-shadow: none;'></td>";
                                         html += "</tr>";
-
 
                                         var newRow = $("#tbody").append(html).find('tr:last');
 
@@ -445,7 +443,7 @@
 
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="col-md-3 col-xs-12">
+                                            <div class="col-md-3 col-xs-12" style="margin-top: -35px;">
                                                 <label class="sm-label">Supplier Name</label>
                                                 <input type="hidden" id="sup_id" name="sup_id">
                                                 <div class="input-group">
@@ -455,7 +453,7 @@
                                                         title="Search for supplier" style="cursor: pointer;">
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 col-xs-12">
+                                            <div class="col-md-6 col-xs-12" style="margin-top: -35px;">
                                                 <label>&nbsp;</label>
                                                 <input type="text" readonly="readonly" id="sup_name" name="sup_name"
                                                     class="form-control">
@@ -464,12 +462,12 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="col-md-6 col-xs-12" style="margin-top: -30px;">
+                                            <div class="col-md-6 col-xs-12" style="margin-top: -10px;">
                                                 <label class="sm-label">Accounting Instruction</label>
                                                 <textarea autocomplete="on" type="text" name="acct_instruct"
                                                     id="acct_instruct" class="form-control" placeholder=""></textarea>
                                             </div>
-                                            <div class="col-md-6 col-xs-12" style="margin-top: -30px;">
+                                            <div class="col-md-6 col-xs-12" style="margin-top: -10px;">
                                                 <label class="sm-label">Remarks</label>
                                                 <textarea autocomplete="on" type="text" name="remark" id="remark"
                                                     class="form-control" placeholder=""></textarea>
@@ -544,17 +542,15 @@
                             changes</button>
                     </div>
                 </div>
-
                 </form>
             </div>
         </div>
     </div>
-
 </div>
 <!-- ------------------- END OF SWA MODAL ------------------------>
 <!----------------------VIEW SWA MODAL------------------------------>
 <div class="modal fade" id="viewSwaFormModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Stock Withdrawal Advice Form</h4>
@@ -598,9 +594,7 @@
                                         <label class="sm-label">Date</label>
                                         <input type="date" id="view_docdate" name="" class="form-control">
                                     </div>
-
                                 </div>
-
                                 <!-- </div> -->
                                 <!-- <div class="form-group"> -->
                                 <div class="row">
@@ -692,7 +686,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-md-3 col-xs-12">
+                                        <div class="col-md-3 col-xs-12" style="margin-top: -35px;">
                                             <label class="sm-label">Supplier Name </label><span
                                                 style="color: red;">*</span>
                                             <input type="hidden" id="sup_id" name="sup_id">
@@ -701,7 +695,7 @@
                                                     class="form-control">
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-xs-12">
+                                        <div class="col-md-6 col-xs-12" style="margin-top: -35px;">
                                             <label>&nbsp;</label>
                                             <input type="text" readonly="readonly" id="view_supname" name=""
                                                 class="form-control">
@@ -710,12 +704,12 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-md-6 col-xs-12" style="margin-top: -30px;">
+                                        <div class="col-md-6 col-xs-12" style="margin-top: -10px;">
                                             <label class="sm-label">Accounting Instruction</label>
                                             <textarea autocomplete="on" type="text" id="view_accounting_instruct"
                                                 class="form-control" placeholder=""></textarea>
                                         </div>
-                                        <div class="col-md-6 col-xs-12" style="margin-top: -30px;">
+                                        <div class="col-md-6 col-xs-12" style="margin-top: -10px;">
                                             <label class="sm-label">Remarks</label>
                                             <textarea autocomplete="on" type="text" id="view_remark"
                                                 class="form-control" placeholder=""></textarea>
@@ -1523,34 +1517,34 @@ $(document).ready(function() {
                 $("#tbodyview").html("");
 
                 for (var i = 0; i < swaDetailsData.length; i++) {
-                    console.log("Item total in should be:", swaDetailsData[i].SWA_ITEM_CODE);
-                    var newRow = $('<tr style="text-align: left; background-color: #e3f1fe;">');
+                    // console.log("Item total in should be:", swaDetailsData[i].SWA_ITEM_CODE);
+                    var newRow = $('<tr>');
                     newRow.append(
-                        '<td><input class="form-control" type="text" value="' + swaDetailsData[
+                        '<td>' + swaDetailsData[
                             i].SWA_QUANTITY +
-                        '" style="border-color: #4c4c4c; border: none;" ></td>'
+                        '</td>'
                     );
                     newRow.append(
-                        '<td><input class="form-control" type="text" value="' + swaDetailsData[
+                        '<td>' + swaDetailsData[
                             i].SWA_UNIT +
-                        '" style="border-color: #4c4c4c; border: none;"></td>'
+                        '</td>'
                     );
                     newRow.append(
-                        '<td><input class="form-control" type="text" value="' + swaDetailsData[
+                        '<td>' + swaDetailsData[
                             i].SWA_ITEM_CODE +
                         ' ' + swaDetailsData[
                             i].SWA_DESCRIPTION +
-                        '" style="border-color: #4c4c4c; border: none;" ></td>'
+                        '</td>'
                     );
                     newRow.append(
-                        '<td><input class="form-control" type="text" value="' + swaDetailsData[
+                        '<td>' + swaDetailsData[
                             i].SWA_UNIT_COST +
-                        '" style="border-color: #4c4c4c; border: none;" ></td>'
+                        '</td>'
                     );
                     newRow.append(
-                        '<td><input class="form-control" type="text" value="' + swaDetailsData[
+                        '<td>' + swaDetailsData[
                             i].SWA_AMOUNT +
-                        '" style="border-color: #4c4c4c; border: none;" ></td></tr>'
+                        '</td></tr>'
                     );
 
                     $("#tbodyview").append(newRow);

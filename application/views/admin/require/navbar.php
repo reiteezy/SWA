@@ -61,16 +61,15 @@
                                     </li>
                                     <li>
                                         <div class="d-flex">
-                                            <div class="flex-shrink-0">
+                                            <!-- <div class="flex-shrink-0">
                                                 <img class="img-radius"
                                                     src="<?php echo base_url();?>assets/assets/images/avatar-4.jpg"
                                                     alt="Generic placeholder image">
-                                            </div>
+                                            </div> -->
                                             <div class="flex-grow-1">
-                                                <h5 class="notification-user">John Doe</h5>
-                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer
-                                                    elit.</p>
-                                                <span class="notification-time">30 minutes ago</span>
+                                                <h5 class="notification-user"></h5>
+                                                <p class="notification-msg"></p>
+                                                <span class="notification-time"></span>
                                             </div>
                                         </div>
                                     </li>
@@ -103,7 +102,7 @@
                                         </a>
                                     </li> -->
                                     <li>
-                                        <a href="#">
+                                        <a href="<?php echo base_url() ?>AdminController/view_profile">
                                             <i class="feather icon-user"></i> Profile
                                         </a>
                                     </li>
