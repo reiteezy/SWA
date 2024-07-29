@@ -28,14 +28,10 @@ class Subsidiary_model extends CI_Model
     );
     }
     
-    public function view_subsidiary() 
-    {
-        $this->db->order_by('ID', 'DESC');
-        $result = $this->db->get('sub_tbl')->result();
-
-        return $result;
+    public function get_subsidiaries() {
+        $query = $this->db->get('sub_tbl');
+        return $query->result();
     }
-    
 
     public function get_swa_subsidiary() 
     {

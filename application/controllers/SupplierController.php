@@ -8,6 +8,7 @@ class SupplierController extends CI_Controller
         parent::__construct();
  		$this->load->database();
 		$this->load->model('Supplier_model');
+		$this->load->model('Notification_model');
 		if (!$this->session->userdata('login_id')) {
             redirect(base_url(), 'refresh');
         }
@@ -15,6 +16,8 @@ class SupplierController extends CI_Controller
     
     public function supplier() 
 	{
+		if ($this->session->userdata('priv_sub') == 1)
+		{
 		$view_sup = $this->Supplier_model->view_supplier();
 		$data['menu'] = 'Supplier';
 		$data['suppliers'] = $view_sup;
@@ -23,7 +26,13 @@ class SupplierController extends CI_Controller
         $this->load->view('admin/require/navbar');
         $this->load->view('admin/require/sidebar', $data);
         $this->load->view('admin/view/supplier_list', $data);
+        $this->load->view('admin/view/js/supplier_js');
+        $this->load->view('admin/view/modals/supplier_modal');
         $this->load->view('admin/require/footer');
+		} 
+		else {
+		redirect(base_url() . 'admin/error404');
+		}
 	}
 
 	public function add_supplier()
@@ -38,7 +47,13 @@ class SupplierController extends CI_Controller
 public function new_supplier() 
 	{
 		$response = $this->Supplier_model->add_supplier();
+		$notification_data = array(
+			'message' => 'A new Supplier has been added',
+			'header' => 'New Supplier',
+			'target_url' => base_url('SupplierController/supplier')
+		);
 		if ($response) {
+			$this->Notification_model->add_notification($notification_data);
 			$result = array('status' => 'success', 'message' => 'Data saved successfully!');
 		} else {
 			$result = array('status' => 'error', 'message' => 'Failed to add data.');
@@ -111,7 +126,7 @@ public function new_supplier()
 		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
 		$this->load->view('admin/supplier', $data);
 		} else {
-			redirect(base_url() . 'admin/error404');
+			redirect(base_url() . 'AdminController/error_page');
 		}
 	}
 

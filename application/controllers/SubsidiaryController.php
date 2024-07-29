@@ -8,6 +8,7 @@ class SubsidiaryController extends CI_Controller
         parent::__construct();
  		$this->load->database();
         $this->load->model('Subsidiary_model');
+		$this->load->model('Notification_model');
 		if (!$this->session->userdata('login_id')) {
             redirect(base_url(), 'refresh');
         }
@@ -15,7 +16,9 @@ class SubsidiaryController extends CI_Controller
 
     public function subsidiary()
 {
-    $view_sub = $this->Subsidiary_model->view_subsidiary();
+	if ($this->session->userdata('priv_sub') == 1)
+		{
+    $view_sub = $this->Subsidiary_model->get_subsidiaries();
     $data['menu'] = 'Subsidiary';
     $data['subsidiaries'] = $view_sub;
     // print_r($view_sub);
@@ -23,7 +26,13 @@ class SubsidiaryController extends CI_Controller
     $this->load->view('admin/require/navbar');
     $this->load->view('admin/require/sidebar', $data);
     $this->load->view('admin/view/subsidiary_list', $data);
+	$this->load->view('admin/view/js/subsidiary_js');
+	$this->load->view('admin/view/modals/subsidiary_modal');
     $this->load->view('admin/require/footer');
+}
+else {
+	redirect(base_url() . 'AdminController/error_page');
+}
 }
 
 
@@ -45,7 +54,13 @@ class SubsidiaryController extends CI_Controller
 public function new_subsidiary()
 	{
 		$response = $this->Subsidiary_model->add_subsidiary();
+		$notification_data = array(
+			'message' => 'A new Subsidiary has been added',
+			'header' => 'New Subsidiary',
+			'target_url' => base_url('SubsidiaryController/subsidiary')
+		);
 		if ($response) {
+			$this->Notification_model->add_notification($notification_data);
 			$result = array('status' => 'success', 'message' => 'Data saved successfully!', 'data' => $response);
 		} else {
 			$result = array('status' => 'error', 'message' => 'Failed to add data.');

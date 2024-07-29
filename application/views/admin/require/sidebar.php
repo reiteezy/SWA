@@ -23,14 +23,14 @@
                             <a href="javascript:void(0)" class="waves-effect waves-dark">
                                 <span class="pcoded-micon"><i class="fa fa-building"></i></span>
                                 <span class="pcoded-mtext">Subsidiary</span>
-                                <span class="pcoded-badge label label-info ">NEW</span>
+                                <!-- <span class="pcoded-badge label label-info ">NEW</span> -->
                             </a>
                             <ul class="pcoded-submenu">
                                 <li class="<?php echo ($menu == 'Subsidiary') ? 'active' : '' ;?>">
                                     <a href="<?php echo base_url() ?>SubsidiaryController/subsidiary"
                                         class="waves-effect waves-dark">
                                         <span class="pcoded-mtext">Subsidiary List</span>
-                                        <span class="pcoded-badge label label-info ">NEW</span>
+                                        <!-- <span class="pcoded-badge label label-info ">NEW</span> -->
                                     </a>
                                 </li>
                                 <!-- <li class>
@@ -53,7 +53,7 @@
                                     <a href="<?php echo base_url() ?>SupplierController/supplier"
                                         class="waves-effect waves-dark">
                                         <span class="pcoded-mtext">Supplier List</span>
-                                        <span class="pcoded-badge label label-warning">NEW</span>
+                                        <!-- <span class="pcoded-badge label label-warning">NEW</span> -->
                                     </a>
                                 </li>
                                 <!-- <li class>
@@ -66,8 +66,8 @@
                         </li>
                         <?php endif ?>
                         <?php if ($this->session->userdata('priv_fm') == 1 && $this->session->userdata('priv_uf') == 1): ?>
-                        <li class>
-                            <a href="navbar-light.html" class="waves-effect waves-dark">
+                        <li class="<?php echo ($menu == 'user filter') ? 'active' : '' ;?>">
+                            <a href="<?php echo base_url() ?>UserController/user_filter_view" class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
                                     <i class="feather icon-filter"></i>
                                 </span>
@@ -86,14 +86,14 @@
                             <a href="javascript:void(0)" class="waves-effect waves-dark">
                                 <span class="pcoded-micon"><i class="feather icon-file"></i></span>
                                 <span class="pcoded-mtext">SWA Form</span>
-                                <span class="pcoded-badge label label-info ">NEW</span>
+                                <!-- <span class="pcoded-badge label label-info ">NEW</span> -->
                             </a>
                             <ul class="pcoded-submenu">
                                 <li class="<?php echo ($menu=='Swa') ? 'active' : ''; ?>">
                                     <a href="<?php echo base_url() ?>SwaController/swa_list"
                                         class="waves-effect waves-dark">
                                         <span class="pcoded-mtext">SWA List</span>
-                                        <span class="pcoded-badge label label-info ">NEW</span>
+                                        <!-- <span class="pcoded-badge label label-info ">NEW</span> -->
                                     </a>
                                 </li>
                                 <!-- <li class>
@@ -126,7 +126,7 @@
                                     <a href="<?php echo base_url() ?>SwaController/per_list"
                                         class="waves-effect waves-dark">
                                         <span class="pcoded-mtext">PER List</span>
-                                        <span class="pcoded-badge label label-info ">NEW</span>
+                                        <!-- <span class="pcoded-badge label label-info ">NEW</span> -->
                                     </a>
                                 </li>
                                 <!-- <li class>

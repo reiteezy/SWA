@@ -15,17 +15,15 @@ class AdminController extends CI_Controller
         }
     }
 
-	public function error404()
+	public function error_page()
 	{
-		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
-		$this->breadcrumb->add('Error', base_url('error'));
-		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
-		$data['menu'] = 'Error_page';
-		$this->load->view('admin/error', $data);
+		$this->load->view('admin/extra/error_page');
 	}
 
 	public function dash() 
 	{
+		// if (!$this->session->userdata('logged_in'))
+		// redirect(base_url(), 'refresh'); 
 		$data['menu'] = 'dashboard';
         $this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
@@ -339,8 +337,8 @@ public function user_status_changed()
 {
     $user_id = $this->input->post('user_id');
     $user_status = $this->input->post('user_status');
-	print_r($user_status);
-	die();
+	// print_r($user_status);
+	// die();
     if ($user_status == '1') {
         $user_status = '0';
     } else {

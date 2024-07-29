@@ -61,7 +61,6 @@ class Swa_model extends CI_Model
 
     public function get_swa_signatories_data($swa_id) 
     {
-        
         $this->db->select('swa_tbl.SWA_REQUEST_BY, swa_tbl.SWA_REQUEST_BY_DATE, swa_tbl.SWA_REVIEW_BY, swa_tbl.SWA_REVIEW_BY_DATE, swa_tbl.SWA_APPROVE_BY, swa_tbl.SWA_APPROVE_BY_DATE, swa_tbl.SWA_RELEASE_BY, swa_tbl.SWA_RELEASE_BY_DATE, ,swa_tbl.SWA_RECEIVE_BY, swa_tbl.SWA_RECEIVE_BY_DATE');
         $this->db->from('swa_tbl');
         $this->db->where('swa_tbl.SWA_ID', $swa_id);

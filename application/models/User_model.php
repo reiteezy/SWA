@@ -99,4 +99,20 @@ class User_model extends CI_Model
     //         'deleted' => 'done',
     //     );
     // }
+    public function get_user_subsidiaries($user_id) {
+        $this->db->select('sub_tbl.*');
+        $this->db->from('sub_tbl');
+        $this->db->join('user_subsidiaries_tbl', 'sub_tbl.ID = user_subsidiaries_tbl.subsidiary_id');
+        $this->db->where('user_subsidiaries_tbl.user_id', $user_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function add_user_subsidiary($user_id, $subsidiary_id) {
+        $data = array(
+            'user_id' => $user_id,
+            'subsidiary_id' => $subsidiary_id
+        );
+        $this->db->insert('user_subsidiaries', $data);
+    }
 }

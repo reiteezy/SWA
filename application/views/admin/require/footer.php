@@ -77,6 +77,6 @@
 <!----------------- DATERANGE FILTER, REPORT------------------>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/moment.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/daterangepicker.js"></script>
-</body>
 
+</body>
 </html>

@@ -54,6 +54,7 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>assets/css/style.css">
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>assets/css/pages.css">
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>assets/css/custom.css">
+<link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>assets/css/widget.css">
 
 
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>assets/css/daterangepicker.css">

@@ -8,6 +8,7 @@ class LoginController extends CI_Controller {
         parent::__construct();
  		$this->load->database();
         $this->load->model('Admin_model');
+        $this->load->model('Notification_model');
         }
 
 	function index()

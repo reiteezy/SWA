@@ -286,13 +286,13 @@ p .text-muted, .txt-primary {
 }
 
 .form-check-input:checked {
-  background-color: #70cd78;
-  border-color: #70cd78;
+  background-color: #30827b;
+  border-color: #30827b;
 }
 
 .form-check-input1:checked {
-  background-color: #70cd78;
-  border-color: #70cd78;
+  background-color: #30827b;
+  border-color: #30827b;
 }
 
 .generate-loader {

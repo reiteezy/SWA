@@ -8,6 +8,7 @@ class ClassController extends CI_Controller
         parent::__construct();
  		$this->load->database();
 		$this->load->model('Class_model');
+		$this->load->model('Notification_model');
 		if (!$this->session->userdata('login_id')) {
             redirect(base_url(), 'refresh');
         }
@@ -23,6 +24,8 @@ class ClassController extends CI_Controller
         $this->load->view('admin/require/navbar');
         $this->load->view('admin/require/sidebar', $data);
         $this->load->view('admin/view/class_list', $data);
+        $this->load->view('admin/view/js/class_js');
+        $this->load->view('admin/view/modals/class_modal');
         $this->load->view('admin/require/footer');
 	}
 
@@ -44,7 +47,14 @@ class ClassController extends CI_Controller
 	public function new_type() 
 	{
 		$response = $this->Class_model->add_type();
+		$notification_data = array(
+			'message' => 'A new class has been added',
+			'header' => 'User Class',
+			'target_url' => base_url('ClassController/class_list')
+		);
+		
 		if ($response) {
+			$this->Notification_model->add_notification($notification_data);
 			$result = array('status' => 'success', 'message' => 'Data saved successfully!');
 		} else {
 			$result = array('status' => 'error', 'message' => 'Failed to add data.');

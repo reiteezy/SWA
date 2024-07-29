@@ -51,31 +51,27 @@
                             <div class="dropdown-primary dropdown">
                                 <div class="dropdown-toggle" data-bs-toggle="dropdown">
                                     <i class="feather icon-bell"></i>
-                                    <!-- <span class="badge bg-c-red">5</span> -->
+                                    <span class="badge bg-c-red" id="notification-count">0</span>
                                 </div>
                                 <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn"
-                                    data-dropdown-out="fadeOut">
+                                    data-dropdown-out="fadeOut" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
                                     <li>
                                         <h6>Notifications</h6>
-                                        <label class="form-label label label-danger">New</label>
+                                     
                                     </li>
-                                    <li>
-                                        <div class="d-flex">
-                                            <!-- <div class="flex-shrink-0">
-                                                <img class="img-radius"
-                                                    src="<?php echo base_url();?>assets/assets/images/avatar-4.jpg"
-                                                    alt="Generic placeholder image">
-                                            </div> -->
-                                            <div class="flex-grow-1">
-                                                <h5 class="notification-user"></h5>
-                                                <p class="notification-msg"></p>
-                                                <span class="notification-time"></span>
+                                    <div id="notification-list">
+                                        <li>
+                                            <div class="d-flex">
+                                                <div class="flex-grow-1">
+                                                    <h5 class="notification-user">No new notifications</h5>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    </div>
                                 </ul>
                             </div>
                         </li>
+
                         <!-- <li class="header-notification">
                             <div class="dropdown-primary dropdown">
                                 <div class="displayChatbox dropdown-toggle" data-bs-toggle="dropdown">
@@ -87,8 +83,8 @@
                         <li class="user-profile header-notification">
                             <div class="dropdown-primary dropdown">
                                 <div class="dropdown-toggle" data-bs-toggle="dropdown">
-                                    <span
-                                        style="margin-right: 10px;"><?php echo $this->session->userdata('login_empname'); ?></span>
+                                    <!-- <span
+                                        style="margin-right: 10px;"><?php echo $this->session->userdata('login_empname'); ?></span> -->
                                     <?php $emp_img = $this->session->userdata('login_image'); ?>
                                     <img src="http://172.16.161.34:8080/hrms<?php echo substr($emp_img, 2); ?>"
                                         alt="user image" class="img-radius">
@@ -304,36 +300,112 @@
                     }
                 });
             }
-            
-        function updateClock() {
-            const now = new Date();
 
-            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            const months = [
-                'January', 'February', 'March', 'April', 'May', 'June',
-                'July', 'August', 'September', 'October', 'November', 'December'
-            ];
+            function updateClock() {
+                const now = new Date();
 
-            const dayName = days[now.getDay()];
-            const day = now.getDate().toString().padStart(2, '0');
-            const month = months[now.getMonth()];
-            const year = now.getFullYear();
+                const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                const months = [
+                    'January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'
+                ];
 
-            let hours = now.getHours();
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            const seconds = now.getSeconds().toString().padStart(2, '0');
-            const period = hours >= 12 ? 'PM' : 'AM';
+                const dayName = days[now.getDay()];
+                const day = now.getDate().toString().padStart(2, '0');
+                const month = months[now.getMonth()];
+                const year = now.getFullYear();
 
-            hours = hours % 12;
-            hours = hours ? hours : 12;
+                let hours = now.getHours();
+                const minutes = now.getMinutes().toString().padStart(2, '0');
+                const seconds = now.getSeconds().toString().padStart(2, '0');
+                const period = hours >= 12 ? 'PM' : 'AM';
 
-            const formattedDate = `${dayName}, ${day} ${month} ${year}`;
-            const formattedTime = `${hours}:${minutes} ${period}`;
+                hours = hours % 12;
+                hours = hours ? hours : 12;
 
-            document.getElementById('digital-clock').innerHTML = `${formattedDate}&nbsp;&nbsp;&nbsp;${formattedTime}`;
-        }
+                const formattedDate = `${dayName}, ${day} ${month} ${year}`;
+                const formattedTime = `${hours}:${minutes} ${period}`;
 
-        setInterval(updateClock, 1000);
-        updateClock();
-    });
+                document.getElementById('digital-clock').innerHTML =
+                    `${formattedDate}&nbsp;&nbsp;&nbsp;${formattedTime}`;
+            }
+
+            setInterval(updateClock, 1000);
+            updateClock();
+
+
+            function load_notifications() {
+                $.ajax({
+                    url: '<?php echo site_url('NotificationController/get_unread_notifications'); ?>',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#notification-list').empty();
+                        if (data.length > 0) {
+                            $('#notification-count').text(data.length);
+                            $.each(data, function(i, notification) {
+                                $('#notification-list').append(
+                                    '<li>' +
+                                    '<div class="d-flex">' +
+                                    '<div class="flex-grow-1">' +
+                                    '<a href="#" class="notification-link" data-id="' +
+                                    notification.id +
+                                    '" data-url="' + notification.target_url + '">' +
+                                    '<h5 class="notification-user">' + notification.header + '</h5>' +
+                                    '<p class="notification-msg">' + notification
+                                    .message + ' <label class="form-label label label-danger"> New</label></p>' +
+                                    '<span class="notification-time">' + notification
+                                    .created_at + '</span>' +
+                                    '</a>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</li>'
+                                );
+                            });
+                        } else {
+                            $('#notification-count').text(0);
+                            $('#notification-list').append(
+                                '<li>' +
+                                '<div class="d-flex">' +
+                                '<div class="flex-grow-1">' +
+                                '<h5 class="notification-user">No new notifications</h5>' +
+                                '</div>' +
+                                '</div>' +
+                                '</li>'
+                            );
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error fetching notifications:', textStatus, errorThrown);
+                    }
+                });
+            }
+
+            load_notifications();
+
+            setInterval(load_notifications, 30000);
+
+            $('.dropdown-toggle').click(function() {
+                load_notifications();
+            });
+
+            $(document).on('click', '.notification-link', function(event) {
+                event.preventDefault();
+                var notificationId = $(this).data('id');
+                var redirectUrl = $(this).data('url');
+
+                $.ajax({
+                    url: '<?php echo base_url('NotificationController/mark_as_read/') ?>' +
+                        notificationId,
+                    method: 'POST',
+                    success: function(data) {
+                        window.location.href = redirectUrl;
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error marking notification as read:', textStatus,
+                            errorThrown);
+                    }
+                });
+            });
+        });
         </script>

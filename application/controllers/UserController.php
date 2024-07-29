@@ -9,6 +9,8 @@ class UserController extends CI_Controller
  		$this->load->database();
 		$this->load->model('User_model');
 		$this->load->model('Class_model');
+		$this->load->model('Subsidiary_model');
+		$this->load->model('Notification_model');
 		if (!$this->session->userdata('login_id')) {
             redirect(base_url(), 'refresh');
         }
@@ -16,17 +18,16 @@ class UserController extends CI_Controller
 
     public function users() 
 	{
-		
 		$data['users'] = $this->User_model->get_user_list();
 		$data['classes'] = $this->Class_model->get_class_data();
 		$data['menu'] = 'Users';
-		// print_r($data['users']);
 
 		$this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
         $this->load->view('admin/require/sidebar', $data);
-        // $this->load->view('admin/require/customscript');
         $this->load->view('admin/view/user_list', $data);
+        $this->load->view('admin/view/js/users_js');
+        $this->load->view('admin/view/modals/users_modal');
         $this->load->view('admin/require/footer');
 	}
 
@@ -35,12 +36,10 @@ class UserController extends CI_Controller
 		$data['users'] = $this->User_model->get_user_list();
 		$data['classes'] = $this->Class_model->get_class_data();
 		$data['menu'] = 'Add User';
-		// $data['users'] = $user_data;
 
 		$this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
         $this->load->view('admin/require/sidebar');
-        // $this->load->view('admin/require/customscript');
         $this->load->view('admin/view/add_user', $data);
         $this->load->view('admin/require/footer');
 	}
@@ -48,7 +47,13 @@ class UserController extends CI_Controller
     public function new_user() 
 	{
 		$response = $this->User_model->add_user();
+		$notification_data = array(
+			'message' => 'A new user has been added',
+			'header' => 'New User',
+			'target_url' => base_url('UserController/users')
+		);
 		if ($response) {
+			$this->Notification_model->add_notification($notification_data);
 			$result = array('status' => 'success', 'message' => 'Data saved successfully!');
 		} else {
 			$result = array('status' => 'error', 'message' => 'Failed to add data.');
@@ -71,7 +76,6 @@ class UserController extends CI_Controller
 		);
 			
 		$response = $this->User_model->update_user_data($user_id, $data);
-
 		if ($response) {
 			$result = array('status' => 'success', 'message' => 'Data updated successfully!');
 			
@@ -81,21 +85,6 @@ class UserController extends CI_Controller
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 	
-	public function user_list() 
-	{
-		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
-		$this->breadcrumb->add('Users', base_url('users'));
-		if ($this->session->userdata('priv_users') == 1)
-		{
-		$data['menu'] = 'Users';
-		$data['users'] = $this->User_model->get_user_list();
-		$data['classes'] = $this->Class_model->get_class_data();
-		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
-        $this->load->view('admin/users', $data);
-		} else {
-			redirect(base_url() . 'admin/error404');
-		}
-    }
 	
 	public function view_edit_user($user_id)
 	{
@@ -133,12 +122,24 @@ class UserController extends CI_Controller
     }
 }
 
-	// 	public function del_user($user_id)
-// {
-// 		$del_user = $this->User_model->del_user($user_id); 
-// 		if($del_user['deleted']=='done'){
-// 		$this->session->set_flashdata('success', 'Successfully deleted.');
-// 		redirect(base_url() . 'admin/user_list','refresh');
-// }
+public function user_filter_view() 
+{
+	$data['users'] = $this->User_model->get_user_list();
+	$data['subsidiaries'] = $this->Subsidiary_model->get_subsidiaries();
+	$data['menu'] = 'user filter';
+	// print_r($data['users']);
 
+	$this->load->view('admin/require/header');
+	$this->load->view('admin/require/navbar');
+	$this->load->view('admin/require/sidebar', $data);
+	$this->load->view('admin/view/user_filtering', $data);
+	$this->load->view('admin/require/footer');
+}
+
+public function tag_subsidiary() {
+	$user_id = $this->input->post('user_id');
+	$subsidiary_id = $this->input->post('subsidiary_id');
+	$this->User_model->add_user_subsidiary($user_id, $subsidiary_id);
+	redirect('users');
+}
 }
