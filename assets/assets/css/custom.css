@@ -36,7 +36,8 @@ body {
 
 .modal .form-control {
   /* background-color: #e3f1fe; */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
+  border: 1px solid rgb(108 172 255);
 }
 
 .form-primary {
@@ -70,6 +71,11 @@ p .text-muted, .txt-primary {
 .action-btn-c-green {
   background: #02838d;
   border: #02838d;
+}
+
+.action-btn-c-yellow {
+  background: #ffd148;
+  border: #ffd148;
 }
 
 .action-btn-c-red {
@@ -175,12 +181,6 @@ p .text-muted, .txt-primary {
   pointer-events: none; /* Ensure the icon doesn't intercept clicks */
 }
 
-.sm-label {
-  font-size: 13px; /* Adjust font size as needed */
-  text-transform: uppercase; /* Capitalize the text */
-  font-weight: bold;
-  /* color: #95604c; */
-}
 
 .header-clock {
   font-size: 15px;
@@ -239,6 +239,7 @@ p .text-muted, .txt-primary {
   background: #4d9dff !important;
   color: #ffff;
 }
+
 /* .loading {
   display: flex;
   justify-content: center;

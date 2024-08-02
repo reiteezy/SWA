@@ -37,12 +37,6 @@ class ClassController extends CI_Controller
         $this->load->view('admin/view/add_class');
         $this->load->view('admin/require/footer');
 	}
-    // public function class_list()
-	// {
-    //     $class_list = $this->Class_model->get_user_class();
-    //     $data['class_list'] = $class_list;
-    //     $this->load->view('admin/users', $data);
-    // }
 
 	public function new_type() 
 	{

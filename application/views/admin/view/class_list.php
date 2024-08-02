@@ -15,7 +15,7 @@
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title breadcrumb-padding">
                         <li class="breadcrumb-item">
-                            <a href="<?php echo base_url() ?>AdminController/dash"><i class="feather icon-home"></i></a>
+                            <a href="<?php echo base_url() ?>AdminController/index"><i class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item"><a href="#!">User Type List</a>
                         </li>
@@ -47,7 +47,7 @@
                                                 <tr>
                                                     <th>Class</th>
                                                     <th>Description</th>
-                                                    <th>Action</th>
+                                                    <th style="width: 15%;">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

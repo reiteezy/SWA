@@ -15,7 +15,7 @@
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title breadcrumb-padding">
                         <li class="breadcrumb-item">
-                            <a href="<?php echo base_url() ?>AdminController/dash"><i class="feather icon-home"></i></a>
+                            <a href="<?php echo base_url() ?>AdminController/index"><i class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item"><a href="#!">View Profile</a>
                         </li>
@@ -93,31 +93,26 @@
                                         <tr>
                                             <td>Password:</td>
                                             <td>
-                                                <span
+                                                <!-- <span
                                                     style="font-family: monospace; -webkit-text-security: disc; margin-right: 10px;"
-                                                    id="passwordDisplay"><?php echo $info['PASSWORD']; ?></span>
+                                                    id="passwordDisplay"><?php #echo $info['PASSWORD']; ?></span> -->
                                                 <button id="togglePassword" type="button" onclick="togglePassword()"
                                                     style="background: none; border: none; padding: 0;">
-                                                    <i class="fa fa-eye"></i>
+                                                    <!-- <i class="fa fa-eye"></i> -->
                                                 </button>
                                                 <!-- <button type="button" id="modalButton1" data-toggle="modal"
                                     data-target="#changePassModal" class="btn"
                                     style="margin-left: 10px; background-color: transparent; border: 3px solid #AED6F1; color: black; border-radius: 10px; padding: 5px 5px; font-size: 12px; box-shadow: none;">Change
                                     password</button> -->
-                                                <button type="button" id="modalButton1" data-toggle="modal"
-                                                    data-target="#changePassModal" class="btn btn-primary"
-                                                    style="width: 160px; margin-left: 10px;"><img
-                                                        src="<?php echo base_url('')?>assets/backend/img/icons/key.png"
-                                                        style="width: 15px; margin-right: 10px;">Change
+                                                <button type="button" data-toggle="modal" data-target="#changePassModal"
+                                                    id="modalButton1"
+                                                    class="btn btn-primary waves-effect waves-light">Change
                                                     Password</button>
                                             </td>
                                         </tr>
                                     </table>
-
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -126,23 +121,20 @@
     </div>
 </div>
 
-<div class="modal fade" id="changePassModal" tabindex="-1" role="dialog" aria-labelledby="changePassModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-md ">
+<div class="modal fade" id="changePassModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog-centered modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="changePassModalLabel"><img class="" src="<?= base_url('assets/backend/img/icons/changepass.png'); ?>"
-            style="width: 20px; margin-right: 10px; ">Change password</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h4 class="modal-title">Change Password</h4>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form role="form" id="passForm" method="POST"
                     action="<?php echo base_url() ?>admin/update_password/<?php echo $info['ID']; ?>"
                     enctype="multipart/form-data">
-                    <div class="card-body">
+                    <div class="card-block">
                         <div class="form-group">
+                        <div id="currentPasswordValidation" style="color: red;"></div>
                             <input type="hidden" readonly="readonly" value="<?php echo $info['PASSWORD']; ?>"
                                 id="password" name="password" class="form-control">
                             <input value="<?php echo $info['ID']; ?>" type="hidden" name="user_id" class="form-control">
@@ -155,9 +147,10 @@
                                     style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); box-shadow: none; background: none; border: 0; transition: transform 0.1s ease-in-out; "
                                     onmouseover="this.style.color='#007bff'" onmouseout="this.style.color='';"></button>
                             </div>
-                            <div id="currentPasswordValidation" style="color: red;"></div>
+                          
                         </div>
                         <div class="form-group">
+                        <div id="passwordLengthValidation" style="color: red;"></div>
                             <label for="new_password">New Password&nbsp;<span style="color: red;">*</span></label>
                             <div class="input-group">
                                 <input autocomplete="off" type="password" id="new_password" name="new_password"
@@ -166,8 +159,9 @@
                                     style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); box-shadow: none; background: none; border: 0; transition: transform 0.1s ease-in-out; "
                                     onmouseover="this.style.color='#007bff'" onmouseout="this.style.color='';"></button>
                             </div>
-                            <div id="passwordLengthValidation" style="color: red;"></div>
+                           
                             <div class="form-group">
+                            <div id="passwordMatchValidation" style="color: red;"></div>
                                 <label for="confirm_password">Confirm Password&nbsp;<span
                                         style="color: red;">*</span></label>
                                 <div class="input-group">
@@ -178,15 +172,17 @@
                                         onmouseover="this.style.color='#007bff'"
                                         onmouseout="this.style.color='';"></button>
                                 </div>
-                                <div id="passwordMatchValidation" style="color: red;"></div>
+                                
                                 <div id="validationMessage" style="color: red;"></div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                                        style="width: 120px;"><img src="<?php echo base_url('')?>assets/backend/img/icons/cancel.png" style="width: 15px; margin-right: 10px;">Cancel</button>
-                                    <button id="savePasswordButton" type="button" class="btn btn-success"
-                                        style="width: 150px;"><img src="<?php echo base_url('')?>assets/backend/img/icons/save.png" style="width: 15px; margin-right: 10px;">Save
-                                        Changes</button>
+                                    <button type="button" class="btn btn-default waves-effect "
+                                        data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary waves-effect waves-light"
+                                        id="savePasswordButton">Save changes</button>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
                 <?php endforeach; ?>
             </div>

@@ -15,7 +15,7 @@
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title breadcrumb-padding">
                         <li class="breadcrumb-item">
-                            <a href="<?php echo base_url() ?>AdminController/dash"><i class="feather icon-home"></i></a>
+                            <a href="<?php echo base_url() ?>AdminController/index"><i class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item"><a href="#!">SWA List</a>
                         </li>
@@ -49,12 +49,12 @@
                                             <thead>
                                                 <tr>
                                                     <!-- <th></th> -->
-                                                    <th>Control Number</th>
+                                                    <th style="width: 10%">Control Number</th>
                                                     <th>Document Date</th>
                                                     <th>Supplier Name</th>
-                                                    <th>MIS Status</th>
-                                                    <th>Accounting Status</th>
-                                                    <th>Action</th>
+                                                    <!-- <th>MIS Status</th>
+                                                    <th>Accounting Status</th> -->
+                                                    <th style="width: 10%">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -65,25 +65,25 @@
                                                     <!-- <td></td> -->
                                                     <td><?php echo $data->SWA_ID; ?></td>
                                                     <td><?php echo $data->DOCUMENT_DATE; ?></td>
-                                                    <td><?php echo $data->NAME; ?></td>
-                                                    <td> <?php  if($data->SWA_MIS_STATUS == 'cancelled'){ ?>
+                                                    <td><?php echo $data->SUP_NAME; ?></td>
+                                                    <!-- <td> <?php  #if($data->SWA_MIS_STATUS == 'cancelled'){ ?>
                                                         <label class="user-status form-label badge badge-inverse-danger"
-                                                            data-user-id="<?php echo $data->SWA_ID?>">Cancelled</label>
-                                                        <?php } else { ?>
+                                                            data-user-id="<?php #echo $data->SWA_ID?>">Cancelled</label>
+                                                        <?php #} else { ?>
                                                         <label
                                                             class="user-status form-label badge badge-inverse-warning"
-                                                            data-user-id="<?php echo $data->SWA_ID?>">Pending</label>
-                                                        <?php } ?>
+                                                            data-user-id="<?php #echo $data->SWA_ID?>">Pending</label>
+                                                        <?php #} ?>
                                                     </td>
-                                                    <td> <?php  if($data->SWA_ACCTG_STATUS == 'pending'){ ?>
+                                                    <td> <?php  #if($data->SWA_ACCTG_STATUS == 'pending'){ ?>
                                                         <label class="user-status form-label badge badge-inverse-danger"
-                                                            data-user-id="<?php echo $data->SWA_ID?>">Pending</label>
-                                                        <?php } else { ?>
+                                                            data-user-id="<?php #echo $data->SWA_ID?>">Pending</label>
+                                                        <?php #} else { ?>
                                                         <label
                                                             class="user-status form-label badge badge-inverse-success"
-                                                            data-user-id="<?php echo $data->SWA_ID?>">Received</label>
-                                                        <?php } ?>
-                                                    </td>
+                                                            data-user-id="<?php #echo $data->SWA_ID?>">Received</label>
+                                                        <?php #} ?>
+                                                    </td> -->
                                                     <td><button type="button" class="viewSwaButton action-btn-c-blue"
                                                             title="View" data-swa-id="<?php echo $data->SWA_ID?>"
                                                             data-toggle="modal" data-target="#viewSwaFormModal"

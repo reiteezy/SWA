@@ -10,14 +10,15 @@ class Swa_model extends CI_Model
     }
 
    
-        public function view_swa_data() 
+    public function view_swa_data() 
     {
-        $this->db->order_by('CREATION_DATE', 'DESC');
-        $this->db->select('swa_tbl.*, sub_tbl.CODE as SUB_CODE, sub_tbl.DESCRIPTION, sup_tbl.CODE as SUP_CODE, sup_tbl.NAME');
+        $this->db->order_by('SWA_ID', 'DESC');
+        $this->db->select('swa_tbl.*, sub_tbl.CODE as SUB_CODE,  sub_tbl.DESCRIPTION');
+        // $this->db->select('swa_tbl.*, sub_tbl.CODE as SUB_CODE, sub_tbl.DESCRIPTION, sup_tbl.CODE as SUP_CODE, sup_tbl.NAME');
         $this->db->from('swa_tbl');
         $this->db->join('sub_tbl', 'swa_tbl.SUB_ID = sub_tbl.ID', 'left');
-        $this->db->join('sup_tbl', 'swa_tbl.SUP_ID = sup_tbl.ID', 'left');
-                $query = $this->db->get();
+        // $this->db->join('sup_tbl', 'swa_tbl.SUP_ID = sup_tbl.ID', 'left');
+        $query = $this->db->get();
     
         if ($query) {
             return $query->result(); 
@@ -31,7 +32,7 @@ class Swa_model extends CI_Model
         $this->db->order_by('SWA_ID', 'DESC');
         $this->db->select('per_tbl.*');
         $this->db->from('per_tbl');
-                $query = $this->db->get();
+        $query = $this->db->get();
     
         if ($query) {
             return $query->result(); 
@@ -42,14 +43,13 @@ class Swa_model extends CI_Model
 
     public function get_swa_data($swa_id) 
     {
-        
-        $this->db->select('swa_tbl.*, sub_tbl.CODE AS SUB_CODE, sub_tbl.DESCRIPTION as DESCRIPTION, sup_tbl.CODE AS SUP_CODE, sup_tbl.NAME, sup_tbl.NAME, swa_details_tbl.SWA_QUANTITY, swa_details_tbl.SWA_UNIT, swa_details_tbl.SWA_DESCRIPTION, swa_details_tbl.SWA_UNIT_COST, swa_details_tbl.SWA_AMOUNT');
+        $this->db->select('swa_tbl.*, sub_tbl.CODE AS SUB_CODE, sub_tbl.DESCRIPTION as DESCRIPTION, swa_details_tbl.SWA_QUANTITY, swa_details_tbl.SWA_UNIT, swa_details_tbl.SWA_DESCRIPTION, swa_details_tbl.SWA_UNIT_COST, swa_details_tbl.SWA_AMOUNT');
+        // $this->db->select('swa_tbl.*, sub_tbl.CODE AS SUB_CODE, sub_tbl.DESCRIPTION as DESCRIPTION, sup_tbl.CODE AS SUP_CODE, sup_tbl.NAME, sup_tbl.NAME, swa_details_tbl.SWA_QUANTITY, swa_details_tbl.SWA_UNIT, swa_details_tbl.SWA_DESCRIPTION, swa_details_tbl.SWA_UNIT_COST, swa_details_tbl.SWA_AMOUNT');
         $this->db->from('swa_tbl');
         $this->db->join('swa_details_tbl', 'swa_tbl.SWA_ID = swa_details_tbl.SWA_ID', 'left');
         $this->db->join('sub_tbl', 'swa_tbl.SUB_ID = sub_tbl.ID', 'left');
-        $this->db->join('sup_tbl', 'swa_tbl.SUP_ID = sup_tbl.ID', 'left');
+        // $this->db->join('sup_tbl', 'swa_tbl.SUP_ID = sup_tbl.ID', 'left');
         $this->db->where('swa_tbl.SWA_ID', $swa_id);
-
         $query = $this->db->get();
 
     if ($query->num_rows() > 0) {
@@ -64,7 +64,6 @@ class Swa_model extends CI_Model
         $this->db->select('swa_tbl.SWA_REQUEST_BY, swa_tbl.SWA_REQUEST_BY_DATE, swa_tbl.SWA_REVIEW_BY, swa_tbl.SWA_REVIEW_BY_DATE, swa_tbl.SWA_APPROVE_BY, swa_tbl.SWA_APPROVE_BY_DATE, swa_tbl.SWA_RELEASE_BY, swa_tbl.SWA_RELEASE_BY_DATE, ,swa_tbl.SWA_RECEIVE_BY, swa_tbl.SWA_RECEIVE_BY_DATE');
         $this->db->from('swa_tbl');
         $this->db->where('swa_tbl.SWA_ID', $swa_id);
-
         $query = $this->db->get();
 
     if ($query->num_rows() > 0) {
@@ -76,11 +75,9 @@ class Swa_model extends CI_Model
 
     public function get_per_signatories_data($per_id) 
     {
-        
         $this->db->select('per_tbl.PER_SUBMIT_BY, per_tbl.PER_SUBMIT_BY_DATE, per_tbl.PER_REVIEW_BY, per_tbl.PER_REVIEW_BY_DATE, per_tbl.PER_AUDIT_BY, per_tbl.PER_AUDIT_BY_DATE, per_tbl.PER_NOTE_BY, per_tbl.PER_NOTE_BY_DATE');
         $this->db->from('per_tbl');
         $this->db->where('per_tbl.PER_ID', $per_id);
-
         $query = $this->db->get();
 
     if ($query->num_rows() > 0) {
@@ -92,11 +89,9 @@ class Swa_model extends CI_Model
 
     public function get_promo_data($swa_id) 
     {
-        
         $this->db->select('swa_tbl.SWA_PROMO_TITLE, swa_tbl.SWA_PROMO_MECHANICS, swa_tbl.SWA_PROMO_START, swa_tbl.SWA_PROMO_END');
         $this->db->from('swa_tbl');
         $this->db->where('swa_tbl.SWA_ID', $swa_id);
-
         $query = $this->db->get();
 
     if ($query->num_rows() > 0) {
@@ -109,11 +104,12 @@ class Swa_model extends CI_Model
 
     public function get_swa_daterange($start_date, $end_date) 
     {
-        $this->db->select('swa_tbl.*, swa_tbl.DOCUMENT_DATE, swa_tbl.SWA_ID, sub_tbl.CODE AS SUB_CODE, sub_tbl.DESCRIPTION, sup_tbl.CODE AS SUP_CODE, sup_tbl.NAME');
+        $this->db->select('swa_tbl.*, swa_tbl.DOCUMENT_DATE, swa_tbl.SWA_ID, sub_tbl.CODE AS SUB_CODE, sub_tbl.DESCRIPTION');
+        // $this->db->select('swa_tbl.*, swa_tbl.DOCUMENT_DATE, swa_tbl.SWA_ID, sub_tbl.CODE AS SUB_CODE, sub_tbl.DESCRIPTION, sup_tbl.CODE AS SUP_CODE, sup_tbl.NAME');
         $this->db->from('swa_tbl');
         // $this->db->join('swa_details_tbl', 'swa_tbl.SWA_ID = swa_details_tbl.SWA_ID', 'left');
         $this->db->join('sub_tbl', 'swa_tbl.SUB_ID = sub_tbl.ID', 'left');
-        $this->db->join('sup_tbl', 'swa_tbl.SUP_ID = sup_tbl.ID', 'left');
+        // $this->db->join('sup_tbl', 'swa_tbl.SUP_ID = sup_tbl.ID', 'left');
         $this->db->where('swa_tbl.DOCUMENT_DATE >=', $start_date);
         $this->db->where('swa_tbl.DOCUMENT_DATE <=', $end_date);
 
@@ -127,7 +123,6 @@ class Swa_model extends CI_Model
         $this->db->from('per_tbl');
         $this->db->join('per_details_tbl', 'per_tbl.PER_ID = per_details_tbl.PER_ID', 'left');
         $this->db->where('per_tbl.PER_ID', $per_id);
-
         $query = $this->db->get();
 
     if ($query->num_rows() > 0) {
@@ -153,10 +148,11 @@ class Swa_model extends CI_Model
     public function per_swa_details() 
     {
         $this->db->distinct();
-        $this->db->select('swa_tbl.SWA_ID, sub_tbl.CODE AS SUB_CODE, sub_tbl.DESCRIPTION, sup_tbl.CODE AS SUP_CODE, sup_tbl.NAME, swa_details_tbl.SWA_QUANTITY, swa_details_tbl.SWA_UNIT, swa_details_tbl.SWA_DESCRIPTION, swa_details_tbl.SWA_UNIT_COST, swa_details_tbl.SWA_AMOUNT, swa_tbl.SWA_PROMO_TITLE, swa_tbl.SWA_PROMO_MECHANICS, swa_tbl.SWA_PROMO_START, swa_tbl.SWA_PROMO_END, swa_tbl.SWA_TRANS_NO1, swa_tbl.SWA_TRANS_NO2, swa_tbl.SWA_TRANS_NO3');
+        $this->db->select('swa_tbl.SWA_ID, sub_tbl.CODE AS SUB_CODE, sub_tbl.DESCRIPTION, swa_details_tbl.SWA_QUANTITY, swa_details_tbl.SWA_UNIT, swa_details_tbl.SWA_DESCRIPTION, swa_details_tbl.SWA_UNIT_COST, swa_details_tbl.SWA_AMOUNT, swa_tbl.SWA_PROMO_TITLE, swa_tbl.SWA_PROMO_MECHANICS, swa_tbl.SWA_PROMO_START, swa_tbl.SWA_PROMO_END, swa_tbl.SWA_TRANS_NO1, swa_tbl.SWA_TRANS_NO2, swa_tbl.SWA_TRANS_NO3');
+        // $this->db->select('swa_tbl.SWA_ID, sub_tbl.CODE AS SUB_CODE, sub_tbl.DESCRIPTION, sup_tbl.CODE AS SUP_CODE, sup_tbl.NAME, swa_details_tbl.SWA_QUANTITY, swa_details_tbl.SWA_UNIT, swa_details_tbl.SWA_DESCRIPTION, swa_details_tbl.SWA_UNIT_COST, swa_details_tbl.SWA_AMOUNT, swa_tbl.SWA_PROMO_TITLE, swa_tbl.SWA_PROMO_MECHANICS, swa_tbl.SWA_PROMO_START, swa_tbl.SWA_PROMO_END, swa_tbl.SWA_TRANS_NO1, swa_tbl.SWA_TRANS_NO2, swa_tbl.SWA_TRANS_NO3');
         $this->db->from('swa_tbl');
         $this->db->join('sub_tbl', 'swa_tbl.SUB_ID = sub_tbl.ID', 'left');
-        $this->db->join('sup_tbl', 'swa_tbl.SUP_ID = sup_tbl.ID', 'left');
+        // $this->db->join('sup_tbl', 'swa_tbl.SUP_ID = sup_tbl.ID', 'left');
         $this->db->join('swa_details_tbl', 'swa_tbl.SWA_ID = swa_details_tbl.SWA_ID', 'left');
         $query = $this->db->get();
     
@@ -245,16 +241,19 @@ class Swa_model extends CI_Model
         $promo_start = $this->input->post('promo_start');
         $promo_end = $this->input->post('promo_end');
         $sub_id = $this->input->post('sub_id');
-        $sup_id = $this->input->post('sup_id');
+        // $sup_id = $this->input->post('sup_id');
         $total_amt = $this->input->post('total');
-        
+        $sup_code = $this->input->post('sup_code');
+        $sup_name = $this->input->post('sup_name');
 
         $sub_data = $this->Admin_model->get_swa_sub($sub_id);
-        $sup_data = $this->Admin_model->get_swa_sup($sup_id);
+        // $sup_data = $this->Admin_model->get_swa_sup($sup_id);
         
         $swa_data = array(
             'SUB_ID' => $sub_id,
-            'SUP_ID' => $sup_id,
+            // 'SUP_ID' => $sup_id,
+            'SUP_CODE' => $sup_code,
+            'SUP_NAME' => $sup_name,
             'LOCATION' => $loc,
             'SWA_CONTROL_NO' => $control_no,
             'DOCUMENT_DATE' => $document_date,

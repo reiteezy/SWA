@@ -13,11 +13,10 @@ class LoginController extends CI_Controller {
 
 	function index()
 	{
-        // if ($this->session->userdata('logged_in'))
-        //     redirect(base_url() . 'admin','refresh');
+        if ($this->session->userdata('logged_in'))
+            redirect(base_url('admincontroller/index'));
         $this->load->view('admin/require/header');
 		$this->load->view('login');
-        // $this->load->view('admin/require/footer');
 	}
 
 
@@ -29,7 +28,7 @@ function valafclog()
     $check = $this->Admin_model->checkLogin($username, $password);
     
     if ($check == 'active_user') {
-        echo json_encode(array('status' => 'success', 'redirect_url' => base_url() . 'admincontroller/dash'));
+        echo json_encode(array('status' => 'success', 'redirect_url' => base_url() . 'admincontroller/index'));
     } else {
         echo json_encode(array('status' => 'error', 'message' => 'Invalid Credentials'));
     }

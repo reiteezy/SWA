@@ -57,7 +57,7 @@
                                     </div>
 
                                 </div>
-                            
+
                                 <!-- </div> -->
                                 <!-- <div class="form-group"> -->
                                 <div class="row">
@@ -197,32 +197,30 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                 
+
                                     <div class="form-group text-right">
                                         <div class="row justify-content-end">
-                                            <div class="col-md-3 col-xs-12">
+                                            <div class="col-md-3 col-xs-12" style="margin-top: 10px;">
                                                 <label for="total" style="display: inline-block; margin-right: 15px;"
                                                     class="sm-label">Total</label>
                                                 <input type="text" readonly="readonly" id="total" name="total"
                                                     class="form-control"
-                                                    style="width: 70%; display: inline-block; text-align: center; color: blue !important;">
+                                                    style="width: 100%; display: inline-block; text-align: center; color: blue !important;">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="col-md-3 col-xs-12" style="margin-top: -35px;">
+                                            <div class="col-md-3 col-xs-12" style="margin-top: -58px;">
                                                 <label class="sm-label">Supplier Name</label>
-                                                <input type="hidden" id="sup_id" name="sup_id">
+                                                <!-- <input type="hidden" id="sup_id" name="sup_id"> -->
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" data-toggle="modal"
-                                                        data-target="#assignSupplierModal" id="sup_code" name="sup_code"
-                                                        placeholder="Select supplier" readonly="readonly"
-                                                        title="Search for supplier" style="cursor: pointer;">
+                                                    <input type="text" class="form-control vendor-code-input"
+                                                        id="sup_code" name="sup_code">
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 col-xs-12" style="margin-top: -35px;">
+                                            <div class="col-md-6 col-xs-12" style="margin-top: -58px;">
                                                 <label>&nbsp;</label>
                                                 <input type="text" readonly="readonly" id="sup_name" name="sup_name"
                                                     class="form-control">
@@ -249,25 +247,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <div class="d-flex justify-content-start">
-                        <button type="button" class="btn btn-info waves-effect waves-light me-2" data-toggle="modal"
-                            data-target="#assignSignatoriesModal">Signatories</button>
-                        <button type="button" class="btn btn-info waves-effect waves-light me-2" data-toggle="modal"
-                            data-target="#assignPromoDetailsModal">Promo Details</button>
-                        <input type="reset" value="Clear" id="clearForm"
-                            class="btn btn-secondary waves-effect waves-light me-2" data-toggle="tooltip"
-                            title="Clear form">
-                    </div>
-                    <div class="ms-auto">
-                        <button type="button" class="btn btn-default waves-effect me-2"
-                            data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success waves-effect waves-light" id="saveButton">Save
-                            changes</button>
-                    </div>
-                </div>
-                </form>
+
+
             </div>
+            <div class="modal-footer">
+                <div class="d-flex justify-content-start">
+                    <button type="button" class="btn btn-info waves-effect waves-light me-2" data-toggle="modal"
+                        data-target="#assignSignatoriesModal">Signatories</button>
+                    <button type="button" class="btn btn-info waves-effect waves-light me-2" data-toggle="modal"
+                        data-target="#assignPromoDetailsModal">Promo Details</button>
+                    <input type="reset" value="Clear" id="clearForm"
+                        class="btn btn-secondary waves-effect waves-light me-2" data-toggle="tooltip"
+                        title="Clear form">
+                </div>
+                <div class="ms-auto">
+                    <button type="button" class="btn btn-default waves-effect me-2" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success waves-effect waves-light" id="saveButton">Save
+                        changes</button>
+                </div>
+            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -399,18 +398,18 @@
                                         <div class="col-md-9 col-xs-12">
                                             <input type="hidden" id="" name="">
                                         </div>
-                                        <div class="col-md-3 col-xs-12">
+                                        <div class="col-md-3 col-xs-12" style="margin-top: 5px;">
                                             <label for="total" style="display: inline-block; margin-right: 15px;"
                                                 class="sm-label">Total</label>
                                             <input type="text" readonly="readonly" id="view_swatotal" name=""
                                                 class="form-control"
-                                                style="width: 56%; display: inline-block; text-align: center; color: blue !important;">
+                                                style="width: 100%; display: inline-block; text-align: center; color: blue !important;">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-md-3 col-xs-12" style="margin-top: -35px;">
+                                        <div class="col-md-3 col-xs-12" style="margin-top: -58px;">
                                             <label class="sm-label">Supplier Name </label><span
                                                 style="color: red;">*</span>
                                             <input type="hidden" id="sup_id" name="sup_id">
@@ -419,7 +418,7 @@
                                                     class="form-control">
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-xs-12" style="margin-top: -35px;">
+                                        <div class="col-md-6 col-xs-12" style="margin-top: -58px;">
                                             <label>&nbsp;</label>
                                             <input type="text" readonly="readonly" id="view_supname" name=""
                                                 class="form-control">

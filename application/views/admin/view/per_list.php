@@ -15,7 +15,7 @@
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title breadcrumb-padding">
                         <li class="breadcrumb-item">
-                            <a href="<?php echo base_url() ?>AdminController/dash"><i class="feather icon-home"></i></a>
+                            <a href="<?php echo base_url() ?>AdminController/index"><i class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item"><a href="#!">PER List</a>
                         </li>
@@ -48,7 +48,7 @@
                                             <thead>
                                                 <tr>
                                                     <!-- <th></th> -->
-                                                    <th>Control Number</th>
+                                                    <th style="width: 10%;">Control Number</th>
                                                     <th>Document Date</th>
                                                     <th>Subsidiary</th>
                                                     <th>Promo Tittle</th>

@@ -71,8 +71,6 @@ class SwaController extends CI_Controller
 		{
 		$data['menu'] = 'swa_mis';
 		$swa_data = $this->Swa_model->view_swa_data();
-		// $noDataFound = empty($swa_data);
-		// $data['noDataFound'] = $noDataFound;
 		$data['swa_datas'] = $swa_data;
 		$this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
@@ -92,8 +90,6 @@ class SwaController extends CI_Controller
 		{
 		$data['menu'] = 'swa_accounting';
 		$swa_data = $this->Swa_model->view_swa_data();
-		// $noDataFound = empty($swa_data);
-		// $data['noDataFound'] = $noDataFound;
 		$data['swa_datas'] = $swa_data;
 		$this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
@@ -153,6 +149,7 @@ class SwaController extends CI_Controller
         $this->load->view('admin/require/navbar');
         $this->load->view('admin/require/sidebar', $data);
         $this->load->view('admin/view/swa_report', $data);
+        $this->load->view('admin/view/js/reports_js');
         $this->load->view('admin/require/footer');
 	} else {
 		redirect(base_url() . 'AdminController/error_page');
@@ -186,10 +183,11 @@ class SwaController extends CI_Controller
 	}
 
 	public function view_reports_data(){
-		$this->db->select('swa_tbl.*, swa_tbl.DOCUMENT_DATE, swa_tbl.SWA_ID, sub_tbl.CODE AS SUB_CODE, sub_tbl.DESCRIPTION, sup_tbl.CODE AS SUP_CODE, sup_tbl.NAME');
+		$this->db->select('swa_tbl.*, swa_tbl.DOCUMENT_DATE, swa_tbl.SWA_ID, sub_tbl.CODE AS SUB_CODE, sub_tbl.DESCRIPTION');
+		// $this->db->select('swa_tbl.*, swa_tbl.DOCUMENT_DATE, swa_tbl.SWA_ID, sub_tbl.CODE AS SUB_CODE, sub_tbl.DESCRIPTION, sup_tbl.CODE AS SUP_CODE, sup_tbl.NAME');
         $this->db->from('swa_tbl');
         $this->db->join('sub_tbl', 'swa_tbl.SUB_ID = sub_tbl.ID', 'left');
-        $this->db->join('sup_tbl', 'swa_tbl.SUP_ID = sup_tbl.ID', 'left');
+        // $this->db->join('sup_tbl', 'swa_tbl.SUP_ID = sup_tbl.ID', 'left');
 	
 		$query = $this->db->get();
 		$data = $query->result_array();
@@ -247,23 +245,6 @@ class SwaController extends CI_Controller
         echo json_encode($response);
     }
 
-	public function view_per() 
-	{
-		$this->breadcrumb->add('<i class="fas fa-home"></i>  Home', base_url());
-		$this->breadcrumb->add('Promo Execution Report', base_url('per'));
-		if ($this->session->userdata('priv_per') == 1 || $this->session->userdata('priv_pervo') == 1 ){
-		$per_data = $this->Admin_model->view_per_data();
-		$noDataFound = empty($per_data);
-		$data['menu'] = 'per';
-		$data['per_datas'] = $per_data;
-		$data['noDataFound'] = $noDataFound;
-		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
-	
-    	$this->load->view('admin/promo_execution', $data);
-		} else {
-			redirect(base_url() . 'error');
-		}
-	}
 
 
 //-----------------------------------CHANGE STATUS------------------------------------------------
@@ -504,6 +485,43 @@ public function acctg_status_changed()
     error_log(print_r($data, true));
 
     odbc_free_result($barcode_row);
+    odbc_close($connection);
+
+    header('Content-Type: application/json');
+    echo json_encode($data);
+}
+
+
+public function get_vendor()
+{
+    $connectdns = "test_file";
+    $username = "super";
+    $password = "fsasya1941";
+    $vendortable = '[ICM_SM_SERVER_POS_SQL].[dbo].[Islands City Mall - SM POS SRV$Vendor]';
+    $vendor_input = $this->input->post('vendor_input');
+
+    $connection = odbc_connect($connectdns, $username, $password);
+    if (!$connection) {
+        die('Not connected: ' . odbc_errormsg());
+    }
+
+    $vendor_check_query = "
+        SELECT [No_], [Name]
+        FROM $vendortable
+        WHERE [No_] = '$vendor_input'";
+
+    $vendor_check_result = odbc_exec($connection, $vendor_check_query);
+    if (!$vendor_check_result) {
+        die('Error in SQL query: ' . odbc_errormsg());
+    }
+
+    $data['vendors'] = array();
+
+    while ($row = odbc_fetch_array($vendor_check_result)) {
+        $data['vendors'][] = $row;
+    }
+
+    odbc_free_result($vendor_check_result);
     odbc_close($connection);
 
     header('Content-Type: application/json');

@@ -153,16 +153,10 @@ $(document).ready(function() {
         language: {
             search: '',
             searchPlaceholder: 'Search...'
-        }
+        },
+        ordering: false
     });
 
-    $('#acctgpendingtable').DataTable({
-        lengthChange: false,
-        language: {
-            search: '',
-            searchPlaceholder: 'Search...'
-        }
-    });
 
     $('.dataTables_filter input[type="search"]').css({
         'width': '300px',

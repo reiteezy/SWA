@@ -42,15 +42,7 @@ else {
 		$this->output->set_content_type('application/json')->set_output(json_encode($data));
 	}
 
-    public function add_subsidiary()
-	{
-        $this->load->view('admin/require/header');
-        $this->load->view('admin/require/navbar');
-        $this->load->view('admin/require/sidebar');
-        $this->load->view('admin/view/add_subsidiary');
-        $this->load->view('admin/require/footer');
-	}
-	
+
 public function new_subsidiary()
 	{
 		$response = $this->Subsidiary_model->add_subsidiary();
@@ -127,23 +119,7 @@ public function new_subsidiary()
 		echo json_encode($data);
     }
 	
-	public function view_edit_subsidiary($sub_id) 
-	{
-		// if ($this->session->userdata('priv_sub') == 1)
-		// {
-		$data['menu'] = 'Subsidiary';
-		$data['sub_id'] = $sub_id;
-		$data['sub_data'] = $this->Subsidiary_model->get_subsidiary($sub_id);
-		// var_dump($data);
-		$this->load->view('admin/require/header');
-		$this->load->view('admin/require/navbar');
-		$this->load->view('admin/require/sidebar', $data);
-		$this->load->view('admin/view/edit_subsidiary', $data);
-        $this->load->view('admin/require/footer');
-		// } else {
-		// 	redirect(base_url() . 'admin/error404');
-		// }
-	}
+
 
 
 }

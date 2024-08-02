@@ -525,7 +525,8 @@ $(document).ready(function() {
         language: {
             search: '',
             searchPlaceholder: 'Search...'
-        }
+        },
+        ordering: false
     });
 
 

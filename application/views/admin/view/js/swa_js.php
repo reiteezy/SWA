@@ -112,7 +112,7 @@ function addItem() {
 addItem();
 $(document).on('keydown', function(e) {
     if (e.key === 'Tab') {
-        // e.preventDefault(); // Uncomment if you want to prevent default tab behavior
+        // e.preventDefault(); 
         var lastInput = $('#tbody tr:last-child .form-control:last-child');
         if (lastInput.is(':focus')) {
             addItem();
@@ -120,8 +120,6 @@ $(document).on('keydown', function(e) {
     }
 });
 
-</script>
-<script>
 $(document).ready(function() {
     $('#clearForm').on('click', function(event) {
         event.preventDefault();
@@ -129,7 +127,7 @@ $(document).ready(function() {
     });
 
     function checkIfEmpty() {
-        var form = $('#swaForm')[0]; // Convert to jQuery object
+        var form = $('#swaForm')[0];
         var formData = new FormData(form);
         var isFormEmpty = Array.from(formData.values()).every(value => value === '');
 
@@ -162,8 +160,7 @@ $(document).ready(function() {
     }
 });
 
-</script>
-<script>
+
 $(document).ready(function() {
     $(document).on("keypress", ".item-code-input", function(event) {
         if (event.which === 13) {
@@ -177,7 +174,7 @@ $(document).ready(function() {
                 };
 
                 $.ajax({
-                    url: '<?php echo base_url() ?>AdminController/get_item',
+                    url: '<?php echo base_url() ?>SwaController/get_item',
                     type: 'POST',
                     data: dataToSend,
                     success: function(response) {
@@ -283,6 +280,66 @@ $(document).ready(function() {
         Swal.fire({
             title: 'Item not found',
             text: 'No item found for the entered code or barcode',
+            icon: 'info',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+        });
+    }
+
+    $(document).on("keypress", ".vendor-code-input", function(event) {
+        if (event.which === 13) {
+            var vendor_input = $(this).val().trim();
+            var dataToSend = {};
+
+            if (vendor_input.length > 0) {
+                dataToSend = {
+                    'vendor_input': vendor_input
+                };
+
+                $.ajax({
+                    url: '<?php echo base_url() ?>SwaController/get_vendor',
+                    type: 'POST',
+                    data: dataToSend,
+                    success: function(response) {
+                        
+                        console.log("Response:", response);
+                        var vendorData = response.vendors;
+                        console.log("Item Data:", vendorData);
+
+                        if (vendorData.length === 0) {
+                            showVendorNotFoundAlert();
+                        } else {
+
+                            for (var i = 0; i < vendorData.length; i++) {
+                                var vendor = vendorData[i];
+                                var vendorNo = vendor['No_'];
+                                var vendorName = vendor['Name'];
+                            }
+
+                            $("#sup_code").val(vendorNo);
+                            $("#sup_name").val(vendorName);
+
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        showItemNotFoundAlert();
+                        console.error("AJAX Error:", error);
+                        console.log("Response:", xhr.responseText);
+                    }
+                });
+            } else {
+                showVendorNotFoundAlert();
+                $("#sup_code").val('');
+                $("#sup_name").val('');
+            }
+        }
+    });
+
+    function showVendorNotFoundAlert() {
+        // console.log("showItemNotFoundAlert() function called");
+        Swal.fire({
+            title: 'Vendor not found',
+            text: 'No vendor found for the entered vendor code',
             icon: 'info',
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Ok'
@@ -646,37 +703,37 @@ $(document).ready(function() {
         });
     }
 
-    $(document).on('change', '.supplier-checkbox', function() {
-        $(".supplier-checkbox").not(this).prop("checked", false);
-        if ($(this).is(":checked")) {
-            updateSupplierModalValues($(this));
-        } else {
-            resetSupplierModalValues();
-        }
-    });
+    // $(document).on('change', '.supplier-checkbox', function() {
+    //     $(".supplier-checkbox").not(this).prop("checked", false);
+    //     if ($(this).is(":checked")) {
+    //         updateSupplierModalValues($(this));
+    //     } else {
+    //         resetSupplierModalValues();
+    //     }
+    // });
 
-    $(document).on('click', '.select-supplier', function() {
-        if (!$(event.target).is(":checkbox")) {
-            var checkbox = $(this).find('.supplier-checkbox');
-            checkbox.prop('checked', !checkbox.prop('checked')).change();
-        }
-    });
+    // $(document).on('click', '.select-supplier', function() {
+    //     if (!$(event.target).is(":checkbox")) {
+    //         var checkbox = $(this).find('.supplier-checkbox');
+    //         checkbox.prop('checked', !checkbox.prop('checked')).change();
+    //     }
+    // });
 
-    function updateSupplierModalValues(checkbox) {
-        var selectedId = checkbox.val();
-        var selectedCode = checkbox.closest("tr").find("td:nth-child(2)").text();
-        var selectedSupplierName = checkbox.closest("tr").find("td:nth-child(3)").text();
+    // function updateSupplierModalValues(checkbox) {
+    //     var selectedId = checkbox.val();
+    //     var selectedCode = checkbox.closest("tr").find("td:nth-child(2)").text();
+    //     var selectedSupplierName = checkbox.closest("tr").find("td:nth-child(3)").text();
 
-        $("#sup_id").val(selectedId);
-        $("#sup_code").val(selectedCode);
-        $("#sup_name").val(selectedSupplierName);
-    }
+    //     $("#sup_id").val(selectedId);
+    //     $("#sup_code").val(selectedCode);
+    //     $("#sup_name").val(selectedSupplierName);
+    // }
 
-    function resetSupplierModalValues() {
-        $("#sup_id").val("");
-        $("#sup_code").val("");
-        $("#sup_name").val("");
-    }
+    // function resetSupplierModalValues() {
+    //     $("#sup_id").val("");
+    //     $("#sup_code").val("");
+    //     $("#sup_name").val("");
+    // }
 
     $('#savePDValues').on('click', function() {
         var promoTitleValue = $('#promo_title').val();
@@ -758,14 +815,16 @@ $(document).ready(function() {
         language: {
             search: '',
             searchPlaceholder: 'Search...'
-        }
+        },
+        ordering: false
     });
     $('#supplier-select-table').DataTable({
         lengthChange: false,
         language: {
             search: '',
             searchPlaceholder: 'Search...'
-        }
+        },
+        ordering: false
     });
 
     $('.dataTables_filter input[type="search"]').css({

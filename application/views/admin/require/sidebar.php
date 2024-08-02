@@ -7,7 +7,7 @@
                     <div class="pcoded-navigation-label">Dashboard</div>
                     <ul class="pcoded-item pcoded-left-item">
                         <li class="<?php echo ($menu=='dashboard') ? 'active' : '';?>">
-                            <a href="<?php echo base_url() ?>AdminController/dash" class="waves-effect waves-dark">
+                            <a href="<?php echo base_url() ?>AdminController/index" class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
                                     <i class="feather icon-home"></i>
                                 </span>
@@ -42,29 +42,29 @@
                         </li>
 
                         <?php endif ?>
-                        <?php if ($this->session->userdata('priv_fm') == 1 && $this->session->userdata('priv_sup') == 1): ?>
-                        <li class="pcoded-hasmenu <?php echo ($menu=='Supplier') ? 'active pcoded-trigger' : '';?>">
+                        <?php #if ($this->session->userdata('priv_fm') == 1 && $this->session->userdata('priv_sup') == 1): ?>
+                        <!-- <li class="pcoded-hasmenu <?php #echo ($menu=='Supplier') ? 'active pcoded-trigger' : '';?>">
                             <a href="javascript:void(0)" class="waves-effect waves-dark">
                                 <span class="pcoded-micon"><i class="fa fa-truck"></i></span>
                                 <span class="pcoded-mtext">Supplier</span>
                             </a>
                             <ul class="pcoded-submenu">
-                                <li class="<?php echo ($menu == 'Supplier') ? 'active' : '' ;?>">
-                                    <a href="<?php echo base_url() ?>SupplierController/supplier"
+                                <li class="<?php #echo ($menu == 'Supplier') ? 'active' : '' ;?>">
+                                    <a href="<?php #echo base_url() ?>SupplierController/supplier"
                                         class="waves-effect waves-dark">
-                                        <span class="pcoded-mtext">Supplier List</span>
+                                        <span class="pcoded-mtext">Supplier List</span> -->
                                         <!-- <span class="pcoded-badge label label-warning">NEW</span> -->
-                                    </a>
-                                </li>
+                                    <!-- </a>
+                                </li> -->
                                 <!-- <li class>
-                                    <a href="<?php echo base_url() ?>SupplierController/add_supplier"
+                                    <a href="<?php #echo base_url() ?>SupplierController/add_supplier"
                                         class="waves-effect waves-dark">
                                         <span class="pcoded-mtext">Add New Supplier</span>
                                     </a>
                                 </li> -->
-                            </ul>
-                        </li>
-                        <?php endif ?>
+                            <!-- </ul>
+                        </li> -->
+                        <?php #endif ?>
                         <?php if ($this->session->userdata('priv_fm') == 1 && $this->session->userdata('priv_uf') == 1): ?>
                         <li class="<?php echo ($menu == 'user filter') ? 'active' : '' ;?>">
                             <a href="<?php echo base_url() ?>UserController/user_filter_view" class="waves-effect waves-dark">
@@ -232,14 +232,14 @@
                     <div class="pcoded-navigation-label">System Utilities</div>
                     <ul class="pcoded-item pcoded-left-item">
                         <?php if ($this->session->userdata('priv_utilities') == 1 && $this->session->userdata('priv_sw') == 1): ?>
-                        <li class>
+                        <!-- <li class>
                             <a href="navbar-light.html" class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
                                     <i class="feather icon-image    "></i>
                                 </span>
                                 <span class="pcoded-mtext">Wallpaper</span>
                             </a>
-                        </li>
+                        </li> -->
                         <?php endif ?>
                         <?php if ($this->session->userdata('priv_utilities') == 1 && $this->session->userdata('priv_as') == 1): ?>
                         <li class>

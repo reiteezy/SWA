@@ -15,7 +15,7 @@
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title breadcrumb-padding">
                         <li class="breadcrumb-item">
-                            <a href="<?php echo base_url() ?>AdminController/dash"><i class="feather icon-home"></i></a>
+                            <a href="<?php echo base_url() ?>AdminController/index"><i class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item"><a href="#!">MIS Confirmation</a>
                         </li>
@@ -52,21 +52,18 @@
                                                     <th>Transaction No. 1</th>
                                                     <th>Transaction No. 2</th>
                                                     <th>Transaction No. 3</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>
+                                                    <!-- <th>Status</th> -->
+                                                    <th style="text-align: center;">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <!-- <?php #if ($noDataFound){ ?>
-                                                <tr>
-                                                    <td colspan="9" class="dataTables_empty text-center">No records
-                                                        found</td>
-                                                </tr>
-                                                <?php #} else { ?> -->
+                                            <!-- <pre><?php #print_r($swa_datas)?></pre> -->
+                                               
                                                 <?php  
                               $count = 1;
                               foreach ($swa_datas as $data): 
                               ?>
+                             
                                                 <tr>
                                                     <!-- <td><?php #echo $count++; ?></td> -->
                                                     <td style="text-align: center;"><?php echo $data->SWA_ID; ?></td>
@@ -77,28 +74,28 @@
                                                     <td><?php echo $data->SWA_TRANS_NO1;?></td>
                                                     <td><?php echo $data->SWA_TRANS_NO2; ?></td>
                                                     <td><?php echo $data->SWA_TRANS_NO3; ?></td>
-                                                    <td>
-                                                        <?php  if ($data->SWA_MIS_STATUS == 'cancelled') { ?>
+                                                    <!-- <td>
+                                                        <?php  #if ($data->SWA_MIS_STATUS == 'cancelled') { ?>
                                                         <span class="form-label badge badge-inverse-danger mis-status"
-                                                            sid="<?php echo $data->SWA_ID?>">Cancelled</span>
-                                                        <?php } elseif ($data->SWA_MIS_STATUS == 'pending') { ?>
+                                                            sid="<?php #echo $data->SWA_ID?>">Cancelled</span>
+                                                        <?php #} elseif ($data->SWA_MIS_STATUS == 'pending') { ?>
                                                         <span class="form-label badge badge-inverse-warning mis-status"
-                                                            sid="<?php echo $data->SWA_ID?>">Pending</span>
-                                                        <?php } elseif ($data->SWA_MIS_STATUS == 'confirmed') { ?>
+                                                            sid="<?php #echo $data->SWA_ID?>">Pending</span>
+                                                        <?php #} elseif ($data->SWA_MIS_STATUS == 'confirmed') { ?>
                                                         <span class="form-label badge badge-inverse-success mis-status"
-                                                            sid="<?php echo $data->SWA_ID?>">Confirmed</span>
-                                                        <?php }  ?>
-                                                    </td>
+                                                            sid="<?php #echo $data->SWA_ID?>">Confirmed</span>
+                                                        <?php #}  ?>
+                                                    </td> -->
                                                     <td style="text-align: center;">
-                                                        <button type="button" class="mis_status action-btn-c-red"
-                                                            id="<?php echo $data->SWA_ID; ?>"
-                                                            sid="<?php echo $data->SWA_ID; ?>"
-                                                            sstatus="<?php echo $data->SWA_MIS_STATUS; ?>"
+                                                        <!-- <button type="button" class="mis_status action-btn-c-red"
+                                                            id="<?php #echo $data->SWA_ID; ?>"
+                                                            sid="<?php #echo $data->SWA_ID; ?>"
+                                                            sstatus="<?php #echo $data->SWA_MIS_STATUS; ?>"
                                                             title="Cancel"
-                                                            <?php echo !empty($data->SWA_TRANS_NO1) ? 'disabled' : ''; ?>><i
+                                                            <?php #echo !empty($data->SWA_TRANS_NO1) ? 'disabled' : ''; ?>><i
                                                                 class="icon feather icon-slash f-w-600 f-16 m-r-15"
                                                                 style="color: #fff"></i><span
-                                                                style="color: #fff; font-size: 13px; margin-left: -8px;">Cancel</span></button>
+                                                                style="color: #fff; font-size: 13px; margin-left: -8px;">Cancel</span></button> -->
                                                         <button type="button" class="mis-confirm-btn action-btn-c-green"
                                                             data-swa-id="<?php echo $data->SWA_ID; ?>"
                                                             data-toggle="modal" title="Confirm"

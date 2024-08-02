@@ -86,23 +86,7 @@ class UserController extends CI_Controller
 	}
 	
 	
-	public function view_edit_user($user_id)
-	{
-		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
-		$this->breadcrumb->add('Users', base_url('users'));
-		$this->breadcrumb->add('Edit', base_url('users'), true);
-		if ($this->session->userdata('priv_users') == 1)
-		{
-		$data['menu'] = 'Users';
-		$data['user_id'] = $user_id;
-		$data['user_data'] = $this->User_model->get_user_data($user_id);
-		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
-		// var_dump($data);
-		$this->load->view('admin/edit_user', $data);
-		} else {
-			redirect(base_url() . 'admin/error404');
-		}
-	}
+
 
 	public function get_user($user_id) 
 {
@@ -140,6 +124,6 @@ public function tag_subsidiary() {
 	$user_id = $this->input->post('user_id');
 	$subsidiary_id = $this->input->post('subsidiary_id');
 	$this->User_model->add_user_subsidiary($user_id, $subsidiary_id);
-	redirect('users');
+	redirect('user');
 }
 }

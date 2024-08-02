@@ -15,7 +15,7 @@
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title breadcrumb-padding">
                         <li class="breadcrumb-item">
-                            <a href="<?php echo base_url() ?>AdminController/dash"><i class="feather icon-home"></i></a>
+                            <a href="<?php echo base_url() ?>AdminController/index"><i class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item"><a href="#!">Accounting Confirmation</a>
                         </li>
@@ -44,47 +44,35 @@
                                         <table class="table table-hover m-b-0" id="acctgtable">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
+                                                    <!-- <th>#</th> -->
                                                     <th>Control No.</th>
                                                     <th>Date</th>
                                                     <th>Origin</th>
                                                     <th>Destination</th>
                                                     <th>CRF/CV Number</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>
+                                                    <!-- <th>Status</th> -->
+                                                    <th style="width: 10%">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <!-- <?php #if ($noDataFound){ ?>
+                                                <?php foreach ($swa_datas as $data): ?>
                                                 <tr>
-                                                    <td colspan="7" class="dataTables_empty text-center">No records
-                                                        found</td>
-                                                </tr>
-                                                <?php #} else { ?> -->
-                                                <?php  
-                              $count = 1;
-                             
-                              foreach ($swa_datas as $data):
-                              ?>
-                                                <tr>
-                                                    <td style="width: 5%;"><?php echo $count++ ?></td>
-                                                    <td style="width: 10%;"><?php echo $data->SWA_ID; ?></td>
-                                                    <!-- to be changed to actual control number-->
+                                                    <td style="width: 10%;"><?php echo $data->SWA_ID; ?></td><!-- to be changed to actual control number-->
                                                     <td style="width: 10%;">
                                                         <?php echo date("F j, Y", strtotime($data->DOCUMENT_DATE)); ?>
                                                     </td>
                                                     <td><?php echo $data->LOCATION; ?></td>
                                                     <td><?php echo $data->DESCRIPTION; ?></td>
                                                     <td><?php echo $data->SWA_CRFCV_NO; ?></td>
-                                                    <td>
-                                                        <?php if(!empty($data->SWA_CRFCV_NO)) { ?>
+                                                    <!-- <td>
+                                                        <?php #if(!empty($data->SWA_CRFCV_NO)) { ?>
                                                         <label class="form-label badge badge-inverse-success acctg-status"
-                                                            sid="<?php echo $data->SWA_ID?>">Confirmed</label>
-                                                        <?php } else { ?>
+                                                            sid="<?php #echo $data->SWA_ID?>">Confirmed</label>
+                                                        <?php #} else { ?>
                                                         <label class="form-label badge badge-inverse-danger acctg-status"
-                                                            sid="<?php echo $data->SWA_ID?>">Pending</label>
-                                                        <?php } ?>
-                                                    </td>
+                                                            sid="<?php #echo $data->SWA_ID?>">Pending</label>
+                                                        <?php #} ?>
+                                                    </td> -->
                                                     <td>
                                                         <button type="button" class="acctg-confirm-btn action-btn-c-green" <?php echo (!empty($data->SWA_CRFCV_NO)) ? 'disabled' : '';?> title="Confirm"
                                                             data-swa-id="<?php echo $data->SWA_ID; ?>"
@@ -105,7 +93,6 @@
                                 </div>
                             </div>
 
-                            <!-- -->
                         </div>
                     </div>
                 </div>

@@ -11,16 +11,16 @@
         <nav class="navbar header-navbar pcoded-header">
             <div class="navbar-wrapper">
                 <div class="navbar-logo">
-                    <a href="index.html">
-                        <!-- <img class="img-fluid" src="<?php echo base_url();?>assets/assets/images/logo.png" alt="Theme-Logo" /> -->
-                        <span>SWA</span>
+                    <a href="#" style="margin-left: 80px">
+                        <img class="img-fluid" src="<?php echo base_url();?>assets/assets/images/swalogo.png" alt="SWA" width="40" height="40"/>
+                        <!-- <span>SWA</span> -->
                     </a>
                     <a class="mobile-menu" id="mobile-collapse" href="#!">
                         <i class="feather icon-menu icon-toggle-right"></i>
                     </a>
-                    <a class="mobile-options waves-effect waves-light">
+                    <!-- <a class="mobile-options waves-effect waves-light">
                         <i class="feather icon-more-horizontal"></i>
-                    </a>
+                    </a> -->
                 </div>
                 <div class="navbar-container container-fluid">
                     <ul class="nav-left">
@@ -57,7 +57,6 @@
                                     data-dropdown-out="fadeOut" style="max-height: 400px; overflow-y: auto; overflow-x: hidden;">
                                     <li>
                                         <h6>Notifications</h6>
-                                     
                                     </li>
                                     <div id="notification-list">
                                         <li>
@@ -333,10 +332,29 @@
             setInterval(updateClock, 1000);
             updateClock();
 
+            var login_class = <?php echo json_encode($this->session->userdata('login_class')); ?>;
+    var misPrivilege = <?php echo json_encode($this->session->userdata('priv_swamis')); ?>;
+    var accountingPrivilege = <?php echo json_encode($this->session->userdata('priv_swaaccounting')); ?>;
+    var swaPrivilege = <?php echo json_encode($this->session->userdata('priv_swaf')); ?>;
+    var perPrivilege = <?php echo json_encode($this->session->userdata('priv_per')); ?>;
+    
+    var url;
+
+    if (login_class === 'ADMIN') {
+        url = '<?php echo base_url('NotificationController/get_unread_notifications'); ?>';
+    } else if(misPrivilege === '1') {
+        url = '<?php echo base_url('NotificationController/get_swa_notifications'); ?>';
+    } else if(accountingPrivilege === '1') {
+        url = '<?php echo base_url('NotificationController/get_swa_notifications'); ?>';
+    } else if(swaPrivilege === '1') {
+        url = '<?php echo base_url('NotificationController/get_swa_notifications'); ?>';
+    } else if(perPrivilege === '1') {
+        url = '<?php echo base_url('NotificationController/get_per_notifications'); ?>';
+    }
 
             function load_notifications() {
                 $.ajax({
-                    url: '<?php echo site_url('NotificationController/get_unread_notifications'); ?>',
+                    url: url,
                     method: 'GET',
                     dataType: 'json',
                     success: function(data) {
@@ -344,24 +362,24 @@
                         if (data.length > 0) {
                             $('#notification-count').text(data.length);
                             $.each(data, function(i, notification) {
+                                
                                 $('#notification-list').append(
-                                    '<li>' +
-                                    '<div class="d-flex">' +
-                                    '<div class="flex-grow-1">' +
-                                    '<a href="#" class="notification-link" data-id="' +
+                                    '<li class="notification-link" data-id="' +
                                     notification.id +
                                     '" data-url="' + notification.target_url + '">' +
+                                    '<div class="d-flex">' +
+                                    '<div class="flex-grow-1">' +
                                     '<h5 class="notification-user">' + notification.header + '</h5>' +
                                     '<p class="notification-msg">' + notification
                                     .message + ' <label class="form-label label label-danger"> New</label></p>' +
                                     '<span class="notification-time">' + notification
                                     .created_at + '</span>' +
-                                    '</a>' +
                                     '</div>' +
                                     '</div>' +
                                     '</li>'
                                 );
                             });
+                        
                         } else {
                             $('#notification-count').text(0);
                             $('#notification-list').append(

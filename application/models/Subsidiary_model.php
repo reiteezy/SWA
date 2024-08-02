@@ -28,9 +28,13 @@ class Subsidiary_model extends CI_Model
     );
     }
     
-    public function get_subsidiaries() {
+    public function get_subsidiaries() {    
+        $this->db->order_by('CREATION_DATE', 'DESC');
+        $this->db->select('*');
         $query = $this->db->get('sub_tbl');
-        return $query->result();
+        // echo $this->db->last_query(); 
+        // die();
+        return $query->result_array();
     }
 
     public function get_swa_subsidiary() 
@@ -57,21 +61,16 @@ class Subsidiary_model extends CI_Model
     
     function update_subsidiary($sub_id, $update_data) 
     {
-        // Update the record in the sub_tbl table where ID matches $sub_id
         $this->db->where('ID', $sub_id);
         $this->db->update('sub_tbl', $update_data);
     
-        // Fetch all columns from the updated record
         $this->db->where('ID', $sub_id);
         $query = $this->db->get('sub_tbl');
         
-        // Check if a record exists
         if ($query->num_rows() > 0) {
-            // Return the updated record as an associative array
             return $query->row_array();
         } else {
-            // Handle case where no record is found (optional)
-            return null; // or handle accordingly
+            return null; 
         }
     }
     

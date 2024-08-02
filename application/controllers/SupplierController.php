@@ -35,15 +35,6 @@ class SupplierController extends CI_Controller
 		}
 	}
 
-	public function add_supplier()
-	{
-        $this->load->view('admin/require/header');
-        $this->load->view('admin/require/navbar');
-        $this->load->view('admin/require/sidebar');
-        $this->load->view('admin/view/add_supplier');
-        $this->load->view('admin/require/footer');
-	}
-
 public function new_supplier() 
 	{
 		$response = $this->Supplier_model->add_supplier();
@@ -95,39 +86,6 @@ public function new_supplier()
 		}
 	
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
-	}
-
-	public function view_edit_supplier($sup_id)
-	{
-		if ($this->session->userdata('priv_sup') == 1)
-		{
-		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
-		$this->breadcrumb->add('Supplier', base_url('supplier'));
-		$this->breadcrumb->add('Edit', base_url('supplier/edit'), true);
-		$data['menu'] = 'Supplier';
-		$data['sup_id'] = $sup_id;
-		$data['sup_data'] = $this->Supplier_model->get_supplier($sup_id);
-		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
-		$this->load->view('admin/edit_supplier', $data);
-		} else {
-			redirect(base_url() . 'admin/error404');
-		}
-	}
-
-	public function view_supplier() 
-	{
-		if ($this->session->userdata('priv_sup') == 1)
-		{
-		$this->breadcrumb->add('<i class="fas fa-home"></i> Home', base_url());
-		$this->breadcrumb->add('Supplier', base_url('supplier'));
-		$view_sup = $this->Supplier_model->view_supplier();
-		$data['menu'] = 'Supplier';
-		$data['suppliers'] = $view_sup;
-		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
-		$this->load->view('admin/supplier', $data);
-		} else {
-			redirect(base_url() . 'AdminController/error_page');
-		}
 	}
 
 	public function get_supplier($supplier_id) 

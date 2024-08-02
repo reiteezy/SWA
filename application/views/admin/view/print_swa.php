@@ -237,7 +237,7 @@ if (!empty($data['DOCUMENT_DATE'])) {
     <table style="margin-left: -18px; margin-top: 5px; margin-bottom: 5px; font-size: 13px; width: 80%;">
         <tr>
             <td style="font-weight: bold; width: 22%; ">SUPPLIER NAME :</td>
-            <td style="border-bottom: 1px solid black; text-align: center;"> <?php echo (strtoupper($data['NAME']));?>
+            <td style="border-bottom: 1px solid black; text-align: center;"> <?php echo (strtoupper($data['SUP_NAME']));?>
             </td>
         </tr>
     </table>

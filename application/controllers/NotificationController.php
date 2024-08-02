@@ -13,6 +13,27 @@ class NotificationController extends CI_Controller {
         echo json_encode($notifications);
     }
 
+    // public function get_mis_notifications() {
+    //     $notifications = $this->Notification_model->get_mis_notifications();
+    //     echo json_encode($notifications);
+    // }
+
+    // public function get_accounting_notifications() {
+    //     $notifications = $this->Notification_model->get_accounting_notifications();
+    //     echo json_encode($notifications);
+    // }
+
+    public function get_swa_notifications() {
+        $notifications = $this->Notification_model->get_swa_notifications();
+        echo json_encode($notifications);
+    }
+
+    public function get_per_notifications() {
+        $notifications = $this->Notification_model->get_per_notifications();
+        echo json_encode($notifications);
+    }
+
+
     public function mark_as_read($notification_id) {
         $this->Notification_model->delete_old_notifications();
         $response = $this->Notification_model->mark_as_read($notification_id);

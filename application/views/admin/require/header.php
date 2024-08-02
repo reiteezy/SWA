@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<link rel="icon" href="https://demo.dashboardpack.com/admindek-html/files/assets/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="<?= base_url('assets/'); ?>assets/images/swalogo.png" type="image/x-icon">
 
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
 

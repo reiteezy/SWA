@@ -105,7 +105,9 @@
 <body>
     <div class="login-container">
         <div class="login-header">
-            LOGIN
+            <img class="img-fluid" src="<?php echo base_url();?>assets/assets/images/swalogin.png" alt="SWA" width="200"
+                height="120" />
+            <!-- LOGIN -->
         </div>
         <form class="login-form" id="loginForm">
             <div class="form-field">
@@ -116,6 +118,7 @@
                 <input type="password" id="password" name="password" placeholder="" autocomplete="off" required>
                 <label for="password">Password</label>
             </div>
+            <!-- <div id="capslockMessage" style="color: white; background: red;"></div> -->
             <button type="button" id="loginBtn">SIGN IN</button>
         </form>
         <!-- <div class="forgot-password">
@@ -126,6 +129,19 @@
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/jquery/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/toastr.js"></script>
 <script>
+
+// var capslockMessage = document.getElementById('capslockMessage');
+
+// document.getElementById('password').addEventListener('keydown', function(e) {
+//     var capsLockOn = e.getModifierState && e.getModifierState('CapsLock');
+
+//     if (capsLockOn) {
+//         capslockMessage.textContent = 'Capslock is ON';
+//     } else {
+//         capslockMessage.textContent = '';
+//     }
+// });
+
 document.addEventListener('DOMContentLoaded', function() {
     function submitLoginForm() {
         var formData = $('#loginForm').serialize();
