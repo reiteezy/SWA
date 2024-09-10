@@ -109,7 +109,9 @@ class UserController extends CI_Controller
 public function user_filter_view() 
 {
 	$data['users'] = $this->User_model->get_user_list();
-	$data['subsidiaries'] = $this->Subsidiary_model->get_subsidiaries();
+	// $data['tagged'] = $this->get_user_tagged_subsidiaries();
+	// $data['untagged'] = $this->get_user_untagged_subsidiaries();
+
 	$data['menu'] = 'user filter';
 	// print_r($data['users']);
 
@@ -120,10 +122,36 @@ public function user_filter_view()
 	$this->load->view('admin/require/footer');
 }
 
+public function get_user_tagged_subsidiaries() {
+	$user_id = $this->input->post('user_id');
+	$subsidiaries = $this->User_model->get_tagged_subsidiaries($user_id);
+	echo json_encode($subsidiaries);
+}
+
+public function get_user_untagged_subsidiaries() {
+    $user_id = $this->input->post('user_id');
+    $subsidiaries = $this->User_model->get_untagged_subsidiaries($user_id);
+    echo json_encode($subsidiaries);
+}
+
+
 public function tag_subsidiary() {
 	$user_id = $this->input->post('user_id');
+	$sub_id = $this->input->post('sub_id');
+	$response = $this->User_model->add_user_subsidiary($user_id, $sub_id);
+	if ($response) {
+		$result = array('status' => 'success', 'message' => 'Data updated successfully!');
+		
+	} else {
+		$result = array('status' => 'error', 'message' => 'Failed to update data.');
+	} 
+	$this->output->set_content_type('application/json')->set_output(json_encode($result));
+}
+
+public function untag_subsidiary() {
+	$user_id = $this->input->post('user_id');
 	$subsidiary_id = $this->input->post('subsidiary_id');
-	$this->User_model->add_user_subsidiary($user_id, $subsidiary_id);
+	$this->User_model->remove_user_subsidiary($user_id, $subsidiary_id);
 	redirect('user');
 }
 }

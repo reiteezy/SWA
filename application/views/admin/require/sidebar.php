@@ -66,14 +66,14 @@
                         </li> -->
                         <?php #endif ?>
                         <?php if ($this->session->userdata('priv_fm') == 1 && $this->session->userdata('priv_uf') == 1): ?>
-                        <li class="<?php echo ($menu == 'user filter') ? 'active' : '' ;?>">
+                        <!-- <li class="<?php echo ($menu == 'user filter') ? 'active' : '' ;?>">
                             <a href="<?php echo base_url() ?>UserController/user_filter_view" class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
                                     <i class="feather icon-filter"></i>
                                 </span>
                                 <span class="pcoded-mtext">User Filtering</span>
                             </a>
-                        </li>
+                        </li> -->
 
                         <?php endif ?>
                     </ul>
@@ -242,8 +242,8 @@
                         </li> -->
                         <?php endif ?>
                         <?php if ($this->session->userdata('priv_utilities') == 1 && $this->session->userdata('priv_as') == 1): ?>
-                        <li class>
-                            <a href="navbar-light.html" class="waves-effect waves-dark">
+                        <li class="<?php echo ($menu=='about') ? 'active' : ''; ?>">
+                            <a href="<?php echo base_url() ?>AdminController/about_page" class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
                                     <i class="feather icon-info"></i>
                                 </span>

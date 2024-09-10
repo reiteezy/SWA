@@ -453,6 +453,11 @@
                             title="Clear form"> -->
                     </div>
                     <div class="ms-auto">
+                        <a id="printLink" href=""
+                            target="_blank">
+                            <button type="button" class="btn btn-info waves-effect waves-light me-2 printView">
+                                Print</button>
+                        </a>
                         <button type="button" class="btn btn-default waves-effect me-2"
                             data-dismiss="modal">Close</button>
                         <!-- <button type="button" class="btn btn-success waves-effect waves-light" id="">Save

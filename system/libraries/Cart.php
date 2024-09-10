@@ -497,7 +497,7 @@ class CI_Cart {
 	 * @param	string	$row_id
 	 * @return	array
 	 */
-	public function get_item($row_id)
+	private function get_item($row_id)
 	{
 		return (in_array($row_id, array('total_items', 'cart_total'), TRUE) OR ! isset($this->_cart_contents[$row_id]))
 			? FALSE

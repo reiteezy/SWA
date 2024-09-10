@@ -46,7 +46,7 @@ class User_model extends CI_Model
     }
     public function get_user_list() 
     {
-        $this->db->select('users_tbl.*, class_tbl.CLASS, class_tbl.DESCRIPTION AS CLASS_DESCRIPT, sub_tbl.CODE, sub_tbl.DESCRIPTION as SUB_DESCRIPT');
+        $this->db->select('users_tbl.*, class_tbl.CID, class_tbl.CLASS, class_tbl.DESCRIPTION AS CLASS_DESCRIPT, sub_tbl.CODE, sub_tbl.DESCRIPTION as SUB_DESCRIPT');
         $this->db->from('users_tbl');
         $this->db->join('class_tbl', 'users_tbl.CLASS_ID = class_tbl.CID', 'left');
         $this->db->join('sub_tbl', 'users_tbl.SUB_ID = sub_tbl.ID', 'left');
@@ -99,21 +99,39 @@ class User_model extends CI_Model
     //         'deleted' => 'done',
     //     );
     // }
-    public function get_user_subsidiaries($user_id) {
+
+    public function get_tagged_subsidiaries($user_id) {
         $this->db->select('sub_tbl.*');
         $this->db->from('sub_tbl');
-        $this->db->join('user_subsidiaries_tbl', 'sub_tbl.ID = user_subsidiaries_tbl.subsidiary_id');
+        $this->db->join('user_subsidiaries_tbl', 'sub_tbl.ID = user_subsidiaries_tbl.sub_id');
         $this->db->where('user_subsidiaries_tbl.user_id', $user_id);
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function add_user_subsidiary($user_id, $subsidiary_id) {
+    public function get_untagged_subsidiaries($user_id) {
+        $this->db->select('sub_tbl.*');
+        $this->db->from('sub_tbl');
+        $this->db->join('user_subsidiaries_tbl', 'sub_tbl.ID = user_subsidiaries_tbl.sub_id', 'left');
+        $this->db->where('user_subsidiaries_tbl.user_id !=', $user_id);
+        $this->db->where('user_subsidiaries_tbl.sub_id IS NULL');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function add_user_subsidiary($user_id, $sub_id) {
         $data = array(
             'user_id' => $user_id,
-            'subsidiary_id' => $subsidiary_id
+            'sub_id' => $sub_id
         );
-        $this->db->insert('user_subsidiaries', $data);
+        $response = $this->db->insert('user_subsidiaries_tbl', $data);
+        return $response;
+    }
+
+    public function remove_user_subsidiary($user_id, $sub_id) {
+        $this->db->where('user_id', $user_id);
+        $this->db->where('sub_id', $sub_id);
+        $this->db->delete('user_subsidiaries_tbl');
     }
 
 }

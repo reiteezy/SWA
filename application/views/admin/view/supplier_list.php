@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="card-block">
                                     <div class="table-responsive">
-                                        <table id="suptable" class="table table-hover m-b-0 sub-table">
+                                        <table id="suptable" class="table table-hover m-b-0">
                                             <thead>
                                                 <tr>
                                                     <!-- <th></th> -->
@@ -59,7 +59,7 @@
                                                     <!-- <td></td> -->
                                                     <td><?php echo $supplier->CODE; ?></td>
                                                     <td><?php echo $supplier->NAME; ?></td>
-                                                    <td><button type="button" class="editSupplierButton action-btn-c-green" title="edit"
+                                                    <td><button type="button" class="editSupplierButton  btn waves-effect waves-light btn-primary btn-icon" title="edit" style="border:none; background-color: #02838d;"
                                                             data-sup-id="<?php echo $supplier->ID; ?>"
                                                             data-sup-code="<?php echo $supplier->CODE; ?>"
                                                             data-sup-name="<?php echo $supplier->NAME; ?>"
@@ -68,15 +68,10 @@
                                                             data-sup-phoneno="<?php echo $supplier->PHONE_NO; ?>"
                                                             data-sup-telno="<?php echo $supplier->TEL_NO; ?>"
                                                             data-toggle="modal" data-target="#editSupplierModal">
-                                                            <i class="icon feather icon-edit f-w-600 f-16 m-r-15"
-                                                                style="color: #fff"></i><span
-                                                                style="color: #fff; font-size: 13px; margin-left: -8px;">Update</span>
+                                                            <i class="icofont icofont-edit" style="padding-left: 5px;"></i>
                                                         </button>
-                                                        <button type="button" class="deleteButton action-btn-c-red"
-                                                            data-delete-url="<?php echo base_url() ?>SupplierController/del_supplier/<?php echo $supplier->ID; ?>"><i
-                                                                class="feather icon-trash-2 f-w-600 f-16 m-r-15"
-                                                                style="color: #fff"></i><span
-                                                                style="color: #fff; font-size: 13px; margin-left: -8px;">Delete</span>
+                                                        <button type="button" class="deleteButton  btn waves-effect waves-light btn-primary btn-icon" style="border:none; background-color: #f0533a;"
+                                                            data-delete-url="<?php echo base_url() ?>SupplierController/del_supplier/<?php echo $supplier->ID; ?>"><i class="icofont icofont-ui-delete" style="padding-left: 5px;"></i>
                                                         </button>
                                                     </td>
                                                 </tr>

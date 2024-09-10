@@ -174,7 +174,7 @@ $(document).ready(function() {
                 };
 
                 $.ajax({
-                    url: '<?php echo base_url() ?>SwaController/get_item',
+                    url: '<?php echo base_url() ?>SwaController/get_item_code',
                     type: 'POST',
                     data: dataToSend,
                     success: function(response) {
@@ -288,7 +288,7 @@ $(document).ready(function() {
 
     $(document).on("keypress", ".vendor-code-input", function(event) {
         if (event.which === 13) {
-            var vendor_input = $(this).val().trim();
+            var vendor_input = $(this).val().trim().toLowerCase();
             var dataToSend = {};
 
             if (vendor_input.length > 0) {
@@ -301,7 +301,7 @@ $(document).ready(function() {
                     type: 'POST',
                     data: dataToSend,
                     success: function(response) {
-                        
+
                         console.log("Response:", response);
                         var vendorData = response.vendors;
                         console.log("Item Data:", vendorData);
@@ -420,7 +420,8 @@ $(document).ready(function() {
             cancelButtonText: 'Not Now'
         }).then((result) => {
             if (result.isConfirmed) {
-                var pdfUrl = '<?php echo base_url() ?>SwaController/printSwa/' + recordId;
+                var numberOfCopies = 3;
+                var pdfUrl = '<?php echo base_url() ?>SwaController/printSwa/' + recordId + '?copies=' + numberOfCopies;
                 var printWindow = window.open(pdfUrl, '_blank');
 
                 location.reload();
@@ -540,7 +541,7 @@ $(document).ready(function() {
                     'DESCRIPTION': 'view_subdescript',
                     'DOCUMENT_DATE': 'view_docdate',
                     'SUP_CODE': 'view_supcode',
-                    'NAME': 'view_supname',
+                    'SUP_NAME': 'view_supname',
                     'LOCATION': 'view_loc',
                     'SWA_TOTAL': 'view_swatotal',
                     'SWA_ACCOUNTING_INSTRUCT': 'view_accounting_instruct',
@@ -572,6 +573,14 @@ $(document).ready(function() {
 
                 $(document).on('click', '.viewPromoButton', function() {
                     populatePromoDetails(swaId);
+                });
+
+                $('#printLink').attr('href',
+                    '<?php echo base_url() ?>SwaController/printSwa/' + swaId);
+
+                $('.printView').click(function() {
+                    $('#printLink')[0]
+                .click();
                 });
 
                 populateTable(swaId);

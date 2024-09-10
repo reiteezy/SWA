@@ -18,6 +18,7 @@ class Notification_model extends CI_Model {
     }
 
     public function get_unread_notifications() {
+        $this->db->order_by('created_at', 'DESC');
         $this->db->where('is_read', 0);
         $query = $this->db->get('notifications_tbl');
         return $query->result();
@@ -45,6 +46,7 @@ class Notification_model extends CI_Model {
     // }
 
     public function get_swa_notifications() {
+        $this->db->order_by('created_at', 'DESC');
         $this->db->where('header', 'New SWA');
         $this->db->where('is_read', 0);
         $query = $this->db->get('notifications_tbl');
@@ -52,6 +54,7 @@ class Notification_model extends CI_Model {
     }
 
     public function get_per_notifications() {
+        $this->db->order_by('created_at', 'DESC');
         $this->db->where('header', 'New PER');
         $this->db->where('is_read', 0);
         $query = $this->db->get('notifications_tbl');

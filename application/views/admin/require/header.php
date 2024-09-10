@@ -29,6 +29,8 @@
 
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>assets/icon/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>assets/css/font-awesome-n.min.css">
+
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>bower_components/switchery/css/switchery.min.css">
 
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>bower_components/sweetalert/css/sweetalert2.css">

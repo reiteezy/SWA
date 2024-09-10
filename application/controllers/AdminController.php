@@ -50,6 +50,17 @@ class AdminController extends CI_Controller
         $this->load->view('admin/require/footer');
 	}
 
+	public function about_page() 
+	{
+		$data['menu'] = 'about';
+        $this->load->view('admin/require/header');
+        $this->load->view('admin/require/navbar');
+        $this->load->view('admin/require/sidebar', $data);;
+        $this->load->view('admin/view/about_page');
+        $this->load->view('admin/require/footer');
+	}
+
+
 	public function view_reports_data(){
 		$this->db->select('swa_tbl.*, swa_tbl.DOCUMENT_DATE, swa_tbl.SWA_ID, sub_tbl.CODE AS SUB_CODE, sub_tbl.DESCRIPTION, sup_tbl.CODE AS SUP_CODE, sup_tbl.NAME');
         $this->db->from('swa_tbl');
@@ -98,19 +109,6 @@ class AdminController extends CI_Controller
     }
 
 	
-	public function about_page()
-	{
-		$this->breadcrumb->add('<i class="fas fa-home"></i>  Home', base_url());
-		$this->breadcrumb->add('About', base_url('about'));
-		if ($this->session->userdata('priv_as') == 1){
-			$data['menu'] = 'About';
-		$data['breadcrumbs'] = $this->breadcrumb->getBreadcrumbs();
-		$this->load->view('admin/about', $data);
-	} else {
-		redirect(base_url() . 'error');
-		}
-	}
-
 	public function update_wallpaper()
 	{
 		if (!empty($_FILES['logo']['name'])) {

@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="card-block">
                                     <div class="table-responsive">
-                                        <table class="table table-hover m-b-0 sub-table" id="classtable">
+                                        <table class="table table-hover m-b-0" id="classtable">
                                             <thead>
                                                 <tr>
                                                     <th>Class</th>
@@ -57,20 +57,15 @@
                                                 <tr>
                                                     <td><?php echo $class->CLASS; ?></td>
                                                     <td><?php echo $class->DESCRIPTION; ?></td>
-                                                    <td><button type="button" class="editClassButton action-btn-c-green" title="edit"
+                                                    <td><button type="button" class="editClassButton  btn waves-effect waves-light btn-primary btn-icon" title="edit" style="border:none; background-color: #02838d;" 
                                                             data-class-id="<?php echo $class->CID; ?>"
                                                             data-class-code="<?php echo $class->CLASS; ?>"
                                                             data-class-descript="<?php echo $class->DESCRIPTION; ?>"
                                                             data-toggle="modal" data-target="#editClassModal">
-                                                            <i class="icon feather icon-edit f-w-600 f-16 m-r-15"
-                                                                style="color: #fff"></i><span
-                                                                style="color: #fff; font-size: 13px; margin-left: -8px;">Update</span>
+                                                            <i class="icofont icofont-edit" style="padding-left: 5px;"></i>
                                                         </button>
-                                                        <button type="button" class="deleteButton action-btn-c-red"
-                                                            data-delete-url="<?php echo base_url() ?>ClassController/del_type/<?php echo $class->CID; ?>"><i
-                                                                class="feather icon-trash-2 f-w-600 f-16 m-r-15"
-                                                                style="color: #fff"></i><span
-                                                                style="color: #fff; font-size: 13px; margin-left: -8px;">Delete</span>
+                                                        <button type="button" class="deleteButton  btn waves-effect waves-light btn-primary btn-icon" style="border:none; background-color: #f0533a;"
+                                                            data-delete-url="<?php echo base_url() ?>ClassController/del_type/<?php echo $class->CID; ?>"><i class="icofont icofont-ui-delete" style="padding-left: 5px;"></i>
                                                         </button>
                                                     </td>
                                                 </tr>

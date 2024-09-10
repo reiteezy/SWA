@@ -56,14 +56,11 @@
                                                     <td><?php echo $class->DESCRIPTION; ?></td>
                                                     <td style="text-align: center;">
                                                         <button type="button"
-                                                            class="assign-privilege-btn action-btn-c-green"
+                                                            class="assign-privilege-btn btn waves-effect waves-light btn-primary btn-icon"
                                                             data-class-id="<?php echo $class->CID; ?>"
                                                             data-toggle="modal" data-target="#rightsModal"
                                                             data-user-description="<?php echo $class->DESCRIPTION; ?>"
-                                                            data-user-class="<?php echo $class->CLASS; ?>"><i
-                                                                class="icon feather icon-unlock f-w-600 f-16 m-r-15"
-                                                                style="color: #fff"></i><span
-                                                                style="color: #fff; font-size: 13px; margin-left: -8px;">Access</span></button>
+                                                            data-user-class="<?php echo $class->CLASS; ?>"><i class="icofont icofont-unlock" style="padding-left: 5px;"></i></button>
                                                     </td>
                                                 </tr>
                                                 <?php

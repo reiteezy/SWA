@@ -186,7 +186,7 @@ $(document).ready(function() {
         lengthChange: false,
         language: {
             search: '',
-            searchPlaceholder: 'Search...'
+            searchPlaceholder: ' Search...'
         }
     });
 });

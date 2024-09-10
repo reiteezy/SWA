@@ -15,7 +15,8 @@
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title breadcrumb-padding">
                         <li class="breadcrumb-item">
-                            <a href="<?php echo base_url() ?>AdminController/index"><i class="feather icon-home"></i></a>
+                            <a href="<?php echo base_url() ?>AdminController/index"><i
+                                    class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item"><a href="#!">Dashboard</a> </li>
                     </ul>
@@ -30,6 +31,91 @@
                 <div class="page-body">
 
                     <div class="row">
+                    <?php if ($this->session->userdata('priv_users') == 1): ?>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card ticket-card">
+                                <div class="card-body">
+                                    <p class="m-b-30 bg-c-red lbl-card"><i class="feather icon-users"></i> Total Users
+                                    </p>
+                                    <div class="text-center">
+                                        <h2 class="m-b-0 d-inline-block text-c-red"> <?php $userCount = $this->db->count_all('users_tbl'); echo $userCount; ?></h2>
+                                        <p class="m-b-0 d-inline-block">Users</p>
+                                        <p class="m-b-0 m-t-15"><i
+                                                class="fas fa-caret-down m-r-10 f-18 text-c-red"></i>From
+                                            Previous Month</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endif ?>
+                        <?php if ($this->session->userdata('priv_sub') == 1): ?>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card ticket-card">
+                                <div class="card-body">
+                                    <p class="m-b-30 bg-c-blue lbl-card"><i class="fa fa-building"></i> Total Subsidiary
+                                    </p>
+                                    <div class="text-center">
+                                        <h2 class="m-b-0 d-inline-block text-c-blue"> <?php $subsidiaryCount = $this->db->count_all('sub_tbl'); echo $subsidiaryCount; ?></h2>
+                                        <p class="m-b-0 d-inline-block">Subsidiaries</p>
+                                        <p class="m-b-0 m-t-15"><i
+                                                class="fas fa-caret-up m-r-10 f-18 text-c-blue"></i>From
+                                            Previous Month</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endif ?>
+                        <?php if ($this->session->userdata('priv_swa') == 1): ?>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card ticket-card">
+                                <div class="card-body">
+                                    <p class="m-b-30 bg-c-green lbl-card"><i class="feather icon-file"></i> Total SWA</p>
+                                    <div class="text-center">
+                                        <h2 class="m-b-0 d-inline-block text-c-green"><?php $swaCount = $this->db->count_all('swa_tbl'); echo $swaCount; ?></h2>
+                                        <p class="m-b-0 d-inline-block">Stock Withdrawal Advice</p>
+                                        <p class="m-b-0 m-t-15"><i
+                                                class="fas fa-caret-up m-r-10 f-18 text-c-green"></i>From
+                                            Previous Month</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endif ?>
+                        <?php if ($this->session->userdata('priv_per') == 1): ?>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card ticket-card">
+                                <div class="card-body">
+                                    <p class="m-b-30 bg-c-yellow lbl-card"><i class="feather icon-file-text"></i> Total PER
+                                    </p>
+                                    <div class="text-center">
+                                        <h2 class="m-b-0 d-inline-block text-c-yellow"> <?php $perCount = $this->db->count_all('per_tbl'); echo $perCount; ?></h2>
+                                        <p class="m-b-0 d-inline-block">Promo Execution Report</p>
+                                        <p class="m-b-0 m-t-15"><i
+                                                class="fas fa-caret-up m-r-10 f-18 text-c-yellow"></i>From Previous
+                                            Month
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endif ?>
+                    <div class="col-xl-12 col-md-12">
+                        <div class="card latest-update-card">
+                            <div class="card-header">
+                                <h5>Welcome <?= $this->session->userdata('login_empname'); ?></h5>
+
+                            </div>
+                            <div class="card-block" style="height: 200px;">
+                                <div class="latest-update-box"
+                                    style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                                    <img src="<?= base_url('assets/assets/images/dashboardimg.jpg') ?>"
+                                        alt="Dashboard Image" width="280" height="190">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
                         <?php if ($this->session->userdata('priv_users') == 1): ?>
                         <div class="col-xl-3 col-md-6">
                             <div class="card prod-p-card card-red">
@@ -41,12 +127,12 @@
                                                 <?php $userCount = $this->db->count_all('users_tbl'); echo $userCount; ?>
                                             </h3>
                                         </div>
-                                        <div class="col-auto">
+                                        <div class="col-auto"> -->
                                             <!-- <i class="fas fa-money-bill-alt text-c-red f-18"></i> -->
-                                        </div>
-                                    </div>
+                                        <!-- </div>
+                                    </div> -->
                                     <!-- <p class="m-b-0 text-white"><span class="label label-danger m-r-10"></span></p> -->
-                                </div>
+                                <!-- </div>
                             </div>
                         </div>
                         <?php endif ?>
@@ -61,13 +147,13 @@
                                                 <?php $subsidiaryCount = $this->db->count_all('sub_tbl'); echo $subsidiaryCount; ?>
                                             </h3>
                                         </div>
-                                        <div class="col-auto">
+                                        <div class="col-auto"> -->
                                             <!-- <i class="fas fa-database text-c-blue f-18"></i> -->
-                                        </div>
-                                    </div>
+                                        <!-- </div>
+                                    </div> -->
                                     <!-- <p class="m-b-0 text-white"><span class="label label-primary m-r-10"></span></p> -->
-                                </div>
-                            </div>
+                                <!-- </div> -->
+                            <!-- </div>
                         </div>
                         <?php endif ?>
                         <?php if ($this->session->userdata('priv_swa') == 1): ?>
@@ -81,12 +167,12 @@
                                                 <?php $swaCount = $this->db->count_all('swa_tbl'); echo $swaCount; ?>
                                             </h3>
                                         </div>
-                                        <div class="col-auto">
+                                        <div class="col-auto"> -->
                                             <!-- <i class="fas fa-tags text-c-yellow f-18"></i> -->
-                                        </div>
-                                    </div>
+                                        <!-- </div>
+                                    </div> -->
                                     <!-- <p class="m-b-0 text-white"><span class="label label-warning m-r-10"></span></p> -->
-                                </div>
+                                <!-- </div>
                             </div>
                         </div>
                         <?php endif ?>
@@ -98,15 +184,15 @@
                                         <div class="col">
                                             <h6 class="m-b-5 text-white">Total PER</h6>
                                             <h3 class="m-b-0 f-w-700 text-white">
-                                                <?php $oerCount = $this->db->count_all('per_tbl'); echo $oerCount; ?>
+                                                <?php $perCount = $this->db->count_all('per_tbl'); echo $perCount; ?>
                                             </h3>
                                         </div>
-                                        <div class="col-auto">
+                                        <div class="col-auto"> -->
                                             <!-- <i class="fas fa-database text-c-green f-18"></i> -->
-                                        </div>
-                                    </div>
+                                        <!-- </div>
+                                    </div> -->
                                     <!-- <p class="m-b-0 text-white"><span class="label label-primary m-r-10"></span></p> -->
-                                </div>
+                                <!-- </div>
                             </div>
                         </div>
                         <?php endif ?>
@@ -118,15 +204,15 @@
                                         <div class="col">
                                             <h6 class="m-b-5 text-white">Pending MIS</h6>
                                             <h3 class="m-b-0 f-w-700 text-white">
-                                                <?php $perCount = $this->db->count_all('per_tbl'); echo $perCount; ?>
+                                                <?php $this->db->where('SWA_TRANS_NO1', NULL); $misCount = $this->db->count_all_results('swa_tbl');  echo $misCount; ?>
                                             </h3>
                                         </div>
-                                        <div class="col-auto">
+                                        <div class="col-auto"> -->
                                             <!-- <i class="fas fa-database text-c-green f-18"></i> -->
-                                        </div>
-                                    </div>
+                                        <!-- </div>
+                                    </div> -->
                                     <!-- <p class="m-b-0 text-white"><span class="label label-primary m-r-10"></span></p> -->
-                                </div>
+                                <!-- </div>
                             </div>
                         </div>
                         <?php endif ?>
@@ -138,34 +224,18 @@
                                         <div class="col">
                                             <h6 class="m-b-5 text-white">Pending Accounting</h6>
                                             <h3 class="m-b-0 f-w-700 text-white">
-                                                <?php $this->db->where('SWA_CRFCV_NO', ''); $acctgCount = $this->db->count_all_results('swa_tbl');  echo $acctgCount; ?>
+                                                <?php $this->db->where('SWA_CRFCV_NO', NULL); $acctgCount = $this->db->count_all_results('swa_tbl');  echo $acctgCount; ?>
                                             </h3>
                                         </div>
-                                        <div class="col-auto">
+                                        <div class="col-auto"> -->
                                             <!-- <i class="fas fa-database text-c-yellow f-18"></i> -->
-                                        </div>
-                                    </div>
+                                        <!-- </div>
+                                    </div> -->
                                     <!-- <p class="m-b-0 text-white"><span class="label label-primary m-r-10"></span></p> -->
-                                </div>
+                                <!-- </div>
                             </div>
                         </div>
-                        <?php endif ?>
-                        <div class="col-xl-8 col-md-12">
-                            <div class="card latest-update-card">
-                                <div class="card-header">
-                                    <h5>Welcome <?= $this->session->userdata('login_empname'); ?></h5>
-
-                                </div>
-                                <div class="card-block" style="height: 200px;">
-                                    <div class="latest-update-box"
-                                        style="display: flex; justify-content: center; align-items: center; height: 100%;">
-                                        <img src="<?= base_url('assets/assets/images/dashboardimg.jpg') ?>"
-                                            alt="Dashboard Image" width="280" height="190">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                        <?php endif ?> -->
 
                         <!-- 
                         <div class="col-xl-4 col-md-12">
@@ -292,7 +362,7 @@
                         </div> -->
 
 
-                        <div class="col-xl-8 col-md-12">
+                        <!-- <div class="col-xl-8 col-md-12">
                             <div class="card latest-update-card">
                                 <div class="card-header">
                                     <h5>Latest Activity</h5>
@@ -316,12 +386,12 @@
                                             </div>
                                             <div class="col">
                                                 <h6></h6>
-                                                <p class="text-muted m-b-15"></p>
+                                                <p class="text-muted m-b-15"></p> -->
                                                 <!-- <img src="../files/assets/images/mega-menu/01.jpg" alt
                                                     class="img-fluid img-100 m-r-15 m-b-10">
                                                 <img src="../files/assets/images/mega-menu/03.jpg" alt
                                                     class="img-fluid img-100 m-r-15 m-b-10"> -->
-                                            </div>
+                                            <!-- </div>
                                         </div>
                                         <div class="row p-b-30">
                                             <div class="col-auto text-end update-meta">
@@ -349,7 +419,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
 

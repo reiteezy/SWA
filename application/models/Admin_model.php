@@ -186,7 +186,7 @@ class Admin_model extends CI_Model
     public function per_swa_details() 
     {
         $this->db->distinct();
-        $this->db->select('swa_tbl.SWA_ID, sub_tbl.CODE AS SUB_CODE, sub_tbl.DESCRIPTION, sup_tbl.CODE AS SUP_CODE, sup_tbl.NAME, swa_details_tbl.SWA_QUANTITY, swa_details_tbl.SWA_UNIT, swa_details_tbl.SWA_DESCRIPTION, swa_details_tbl.SWA_UNIT_COST, swa_details_tbl.SWA_AMOUNT, swa_tbl.SWA_PROMO_TITLE, swa_tbl.SWA_PROMO_MECHANICS, swa_tbl.SWA_PROMO_START, swa_tbl.SWA_PROMO_END, swa_tbl.SWA_TRANS_NO1, swa_tbl.SWA_TRANS_NO2, swa_tbl.SWA_TRANS_NO3');
+        $this->db->select('swa_tbl.*, sub_tbl.CODE AS SUB_CODE, sub_tbl.DESCRIPTION, swa_details_tbl.SWA_QUANTITY, swa_details_tbl.SWA_UNIT, swa_details_tbl.SWA_DESCRIPTION, swa_details_tbl.SWA_UNIT_COST, swa_details_tbl.SWA_AMOUNT, swa_tbl.SWA_PROMO_TITLE, swa_tbl.SWA_PROMO_MECHANICS, swa_tbl.SWA_PROMO_START, swa_tbl.SWA_PROMO_END, swa_tbl.SWA_TRANS_NO1, swa_tbl.SWA_TRANS_NO2, swa_tbl.SWA_TRANS_NO3');
         $this->db->from('swa_tbl');
         $this->db->join('sub_tbl', 'swa_tbl.SUB_ID = sub_tbl.ID', 'left');
         $this->db->join('sup_tbl', 'swa_tbl.SUP_ID = sup_tbl.ID', 'left');

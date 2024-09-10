@@ -29,7 +29,7 @@ class Swa_model extends CI_Model
     
     public function view_per_data() 
     {
-        $this->db->order_by('SWA_ID', 'DESC');
+        $this->db->order_by('PER_ID', 'DESC');
         $this->db->select('per_tbl.*');
         $this->db->from('per_tbl');
         $query = $this->db->get();
@@ -396,6 +396,20 @@ class Swa_model extends CI_Model
         $this->db->where('SWA_ID', $swa_id);
         $response = $this->db->update('swa_tbl', $update_data);
         return $response;
+    }
+
+    public function increment_print_count($swa_id)
+    {
+        $this->db->set('PRINT_COUNT', 'PRINT_COUNT + 1', FALSE);
+        $this->db->where('SWA_ID', $swa_id);
+        $this->db->update('swa_tbl');
+    }
+
+    public function increment_print_countper($per_id)
+    {
+        $this->db->set('PRINT_COUNT', 'PRINT_COUNT + 1', FALSE);
+        $this->db->where('PER_ID', $per_id);
+        $this->db->update('per_tbl');
     }
 
 }

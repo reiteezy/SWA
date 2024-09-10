@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="card-block" style="padding-bottom: 50px;">
                                     <div class="table-responsive">
-                                        <table id="usertable" class="table table-hover m-b-0 sub-table">
+                                        <table id="usertable" class="table table-hover m-b-0">
                                             <thead>
                                                 <tr>
                                                     <th style="width: 20%">Employee Name</th>
@@ -78,25 +78,22 @@
                                                     </td>
                                                     <td>
                                                         <button type="button" id="<?php echo $user->ID?>"
-                                                            class="viewUserButton action-btn-c-blue"
+                                                            class="viewUserButton  btn waves-effect waves-light btn-primary btn-icon"
                                                             data-user-id="<?php echo $user->ID; ?>" data-toggle="modal"
                                                             data-target="#viewUserModal" title="View"
                                                             style="margin-left: 5px;">
-                                                            <i class="icon feather icon-eye f-w-600 f-16 m-r-15"
-                                                                style="color: #fff"></i><span
-                                                                style="color: #fff; font-size: 13px; margin-left: -8px;">View</span></button>
-                                                        <button type="button" class="editUserButton action-btn-c-green"
+                                                            <i class="icofont icofont-eye-alt" style="padding-left: 5px;"></i></button>
+                                                        <button type="button" class="editUserButton  btn waves-effect waves-light btn-primary btn-icon" style="border:none; background-color: #02838d;" 
                                                             title="edit" data-user-id="<?php echo $user->ID; ?>"
                                                             data-user-empname="<?php echo $user->EMP_NAME; ?>"
                                                             data-user-name="<?php echo $user->USERNAME; ?>"
                                                             data-user-class="<?php echo $user->CLASS; ?>"
                                                             data-user-descript="<?php echo $user->CLASS_DESCRIPT; ?>"
                                                             data-user-password="<?php echo $user->PASSWORD; ?>"
+                                                            data-class-id="<?php echo $user->CID; ?>"
                                                             data-toggle="modal" data-target="#editUserModal"
                                                             style="margin-left: 5px;">
-                                                            <i class="icon feather icon-edit f-w-600 f-16 m-r-15"
-                                                                style="color: #fff"></i><span
-                                                                style="color: #fff; font-size: 13px; margin-left: -8px;">Update</span>
+                                                            <i class="icofont icofont-edit" style="padding-left: 5px;"></i>
                                                         </button>
 
                                                     </td>

@@ -59,21 +59,17 @@
                                                     <td><?php echo $subsidiary['CODE']; ?></td>
                                                     <td><?php echo $subsidiary['DESCRIPTION']; ?></td>
                                                     <td>
-                                                        <button type="button" class="editSubsidiaryButton action-btn-c-green" title="edit"
+                                                        <button type="button" class="editSubsidiaryButton btn waves-effect waves-light btn-primary btn-icon" style="border:none; background-color: #02838d;" title="edit"
                                                             data-sub-id="<?php echo $subsidiary['ID']; ?>"
                                                             data-sub-code="<?php echo $subsidiary['CODE']; ?>"
                                                             data-sub-descript="<?php echo $subsidiary['DESCRIPTION']; ?>"
                                                             data-toggle="modal" data-target="#editSubsidiaryModal">
-                                                            <i class="icon feather icon-edit f-w-600 f-16 m-r-15"
-                                                                style="color: #fff">
-                                                            </i>
-                                                            <span style="color: #fff; font-size: 13px; margin-left: -8px;">Update</span>
+                                                            <i class="icofont icofont-edit" style="padding-left: 5px;"></i>
+                                                            <!-- <span style="color: #fff; font-size: 13px; margin-left: -8px;"></span> -->
                                                         </button>
-                                                        <button type="button" class="deleteButton action-btn-c-red"
-                                                            data-delete-url="<?php echo base_url() ?>SubsidiaryController/del_subsidiary/<?php echo $subsidiary['ID']; ?>"><i
-                                                                class="feather icon-trash-2 f-w-600 f-16 m-r-15"
-                                                                style="color: #fff"></i><span
-                                                                style="color: #fff; font-size: 13px; margin-left: -8px;">Delete</span>
+                                                        <button type="button" class="deleteButton btn waves-effect waves-light btn-primary btn-icon" title="Delete" style="border:none; background-color: #f0533a;"
+                                                            data-delete-url="<?php echo base_url() ?>SubsidiaryController/del_subsidiary/<?php echo $subsidiary['ID']; ?>"><i class="icofont icofont-ui-delete" style="padding-left: 5px;"></i>
+                                                            <!-- <span style="color: #fff; font-size: 13px; margin-left: -8px;"></span> -->
                                                         </button>
                                                     </td>
                                                 </tr>

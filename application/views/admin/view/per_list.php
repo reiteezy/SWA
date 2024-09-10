@@ -65,13 +65,10 @@
                                                     <td><?php echo $data->DOCUMENT_DATE; ?></td>
                                                     <td><?php echo $data->SUB_DESCRIPT; ?></td>
                                                     <td><?php echo $data->PER_PROMO_TITLE; ?></td>
-                                                    <td><button type="button" class="action-btn-c-green"
+                                                    <td><button type="button" class=" btn waves-effect waves-light btn-primary btn-icon"
                                                             id="viewPerButton" title="View"
                                                             data-per-id="<?php echo $data->PER_ID?>" data-toggle="modal"
-                                                            data-target="#viewPerFormModal"><i
-                                                                class="icon feather icon-eye f-w-600 f-16 m-r-15"
-                                                                style="color: #fff"></i><span
-                                                                style="color: #fff; font-size: 13px; margin-left: -8px;">View</span></button>
+                                                            data-target="#viewPerFormModal"><i class="icofont icofont-eye-alt" style="padding-left: 5px;"></i></button>
                                                     </td>
                                                 </tr>
                                                 <?php  

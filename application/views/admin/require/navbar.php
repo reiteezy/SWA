@@ -351,7 +351,7 @@
     } else if(perPrivilege === '1') {
         url = '<?php echo base_url('NotificationController/get_per_notifications'); ?>';
     }
-
+    
             function load_notifications() {
                 $.ajax({
                     url: url,
@@ -370,10 +370,8 @@
                                     '<div class="d-flex">' +
                                     '<div class="flex-grow-1">' +
                                     '<h5 class="notification-user">' + notification.header + '</h5>' +
-                                    '<p class="notification-msg">' + notification
-                                    .message + ' <label class="form-label label label-danger"> New</label></p>' +
-                                    '<span class="notification-time">' + notification
-                                    .created_at + '</span>' +
+                                    '<p class="notification-msg">' + notification.message + ' <label class="form-label label label-danger"> New</label></p>' +
+                                    '<span class="notification-time">' + notification.created_at + '</span>' +
                                     '</div>' +
                                     '</div>' +
                                     '</li>'

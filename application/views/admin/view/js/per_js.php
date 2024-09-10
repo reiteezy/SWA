@@ -78,7 +78,7 @@ $(document).ready(function() {
                                 var subCode = swaData[c].SUB_CODE;
                                 var subDescription = swaData[c].DESCRIPTION;
                                 var supCode = swaData[c].SUP_CODE;
-                                var supName = swaData[c].NAME;
+                                var supName = swaData[c].SUP_NAME;
                                 var promoTitle = swaData[c].SWA_PROMO_TITLE;
                                 var promoMechanics = swaData[c].SWA_PROMO_MECHANICS;
                                 var promoStart = swaData[c].SWA_PROMO_START;
@@ -201,6 +201,14 @@ $(document).ready(function() {
 
                 $(document).on('click', '.viewSignatoriesButton', function() {
                     populateSignatories(perId);
+                });
+
+                $('#printLink').attr('href',
+                    '<?php echo base_url() ?>SwaController/printPer/' + perId);
+
+                $('.printView').click(function() {
+                    $('#printLink')[0]
+                .click();
                 });
 
                 populateViewTable(perId);
@@ -420,7 +428,8 @@ $(document).ready(function() {
             cancelButtonText: 'Not Now'
         }).then((result) => {
             if (result.isConfirmed) {
-                var pdfUrl = '<?php echo base_url() ?>SwaController/printPer/' + recordId;
+                var numberOfCopies = 3;
+                var pdfUrl = '<?php echo base_url() ?>SwaController/printPer/' + recordId + '?copies=' + numberOfCopies;
                 var printWindow = window.open(pdfUrl, '_blank');
 
                 location.reload();

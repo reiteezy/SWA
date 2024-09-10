@@ -90,6 +90,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </td>
         </tr>
     </table>
+    
+    <?php if ($data['PRINT_COUNT'] >= 1): ?>
+    <div style="text-align: right; margin-top: -80px; margin-bottom: 80px;">
+        <span style="">REPRINTED</span>
+    </div>
+    <?php endif ?>
     <table style="width: 100%;">
         <tr>
             <td style="width: 70%; font-weight: bold;">Name of Implementing Subsidiary / Business Unit :</td>
@@ -108,7 +114,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <table style="width: 100%">
         <tr>
             <td style="width: 17%; font-weight: bold;">Promo Title &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
-            <td style="border-bottom: 1px solid black; width: 53%; font-weight: bold; font-family: 'couriernew';">
+            <td style="border-bottom: 1px solid black; width: 52%; font-weight: bold; font-family: 'couriernew';">
                 <?php echo strtoupper($data['PER_PROMO_TITLE']);?></td>
             <td style="text-align: right; font-weight: bold;">SWA Series No.:</td>
             <td style="border-bottom: 1px solid black; width: 12%;"><?php echo $data['SWA_ID'];?></td>
@@ -175,10 +181,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     Allocation</th>
             </tr>
             <tr>
-                <th style="border: 1px solid black; width: 14%; text-align: center;">Quantity</th>
-                <th style="border: 1px solid black; width: 7%; text-align: center;">Unit</th>
+                <th style="border: 1px solid black; border-right: none; width: 14%; text-align: center;">Quantity</th>
+                <th style="border: 1px solid black; border-right: none; width: 7%; text-align: center;">Unit</th>
                 <th style="border: 1px solid black; width: 45%; text-align: center;">Item Description</th>
-                <th style="border: 1px solid black; border-top: none;  width: 14%; text-align: center;">Quantity</th>
+                <th style="border: 1px solid black; border-top: none; border-left: none;  width: 14%; text-align: center;">Quantity</th>
                 <th
                     style="border: 1px solid black; border-top: none; border-left: none; width: 14%; text-align: center;">
                     Quantity</th>
@@ -196,15 +202,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <tr>
 
                 <td
-                    style="text-align: right; border: 1px solid black; border-bottom: 0; border-left: 1px solid black; border-top: 0; padding: 5px; padding-top: 2px; padding-bottom: 0px; height: 15px; font-family: 'couriernew';">
+                    style="text-align: right; border: 1px solid black; border-bottom: none; border-top: none; border-right: none; padding: 5px; padding-top: 2px; padding-bottom: 0px; height: 15px; font-family: 'couriernew';">
                     <?php echo number_format($row['PER_QUANTITY'], 2);?>
                 </td>
                 <td
-                    style="text-align: left; border: 1px solid black; border-bottom: 0; border-top: 0; border-right: 0; padding: 5px; padding-top: 2px; padding-bottom: 0px; height: 15px;  font-family: 'couriernew';">
+                    style="text-align: left; border: 1px solid black; border-bottom: none; border-top: none; border-right: none; padding: 5px; padding-top: 2px; padding-bottom: 0px; height: 15px;  font-family: 'couriernew';">
                     <?php echo (strtoupper($row['PER_UNIT']));?>
                 </td>
                 <td
-                    style="text-align: left; border: 1px solid black; border-bottom: 0; border-top: 0; padding: 5px; padding-top: 2px; padding-bottom: 0px; height: 15px; font-family: 'couriernew';">
+                    style="text-align: left; border: 1px solid black; border-bottom: none; border-top: none; border-right: none; padding: 5px; padding-top: 2px; padding-bottom: 0px; height: 15px; font-family: 'couriernew';">
                     <?php echo (strtoupper($row['PER_ITEM_DESCRIPTION']));?>
                 </td>
                 <td
@@ -223,34 +229,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               for ($addrow = 0; $addrow < $remainingRows; $addrow++) { ?>
             <tr>
                 <td
-                    style="text-align: right; border: 1px solid black; border-bottom: 0; border-left: 1px solid black; border-top: 0; padding: 1px; padding-top: 2px; height: 15px; font-family: 'couriernew';">
+                    style="text-align: right; border: 1px solid black; border-bottom: none; border-right: none; border-top: none; padding: 1px; padding-top: 2px; height: 15px; font-family: 'couriernew';">
                 </td>
                 <td
-                    style="text-align: left; border: 1px solid black; border-bottom: 0; border-top: 0;  border-right: 0; padding: 1px; padding-top: 2px; height: 15px; font-family: 'couriernew';">
+                    style="text-align: left; border: 1px solid black; border-bottom: none; border-top: none;  border-right: none; padding: 1px; padding-top: 2px; height: 15px; font-family: 'couriernew';">
                 </td>
                 <td
-                    style="text-align: left; border: 1px solid black; border-bottom: 0; border-top: 0; padding: 1px; padding-top: 2px; height: 15px; font-family: 'couriernew';">
+                    style="text-align: left; border: 1px solid black; border-bottom: none; border-top: none; padding: 1px; border-right: none; padding-top: 2px; height: 15px; font-family: 'couriernew';">
                 </td>
                 <td
-                    style="text-align: right; border: 1px solid black; border-bottom: 0; border-top: 0; padding: 1px; padding-top: 2px; height: 15px; font-family: 'couriernew';">
+                    style="text-align: right; border: 1px solid black; border-bottom: none; border-top: none; padding: 1px; padding-top: 2px; height: 15px; font-family: 'couriernew';">
                 </td>
                 <td
-                    style="text-align: right; border: 1px solid black; border-bottom: 0; border-right: 1px solid black; border-top: 0; border-left: 0; padding: 1px; padding-top: 2px; height: 15px; font-family: 'couriernew';">
+                    style="text-align: right; border: 1px solid black; border-bottom: none; border-right: 1px solid black; border-top: none; border-left: none; padding: 1px; padding-top: 2px; height: 15px; font-family: 'couriernew';">
                 </td>
             </tr>
             <?php  } ?>
             <tr>
                 <td
-                    style="text-align: right; border: 1px solid black; border-left: 1px solid black; border-top: 0; padding: 1px; height: 15px;">
+                    style="text-align: right; border: 1px solid black; border-left: 1px solid black; border-right: none; border-top: none; padding: 1px; height: 15px;">
                 </td>
                 <td
-                    style="text-align: left; border: 1px solid black; border-top: 0;  border-right: 0; padding: 1px; height: 15px;">
+                    style="text-align: left; border: 1px solid black; border-top: none;  border-right: none; padding: 1px; height: 15px;">
                 </td>
-                <td style="text-align: center; border: 1px solid black; border-top: 0; padding: 1px; height: 15px;">
+                <td style="text-align: center; border: 1px solid black; border-right: none; border-top: none; padding: 1px; height: 15px;">
                 </td>
-                <td style="text-align: right; border: 1px solid black; border-top: 0; padding: 1px; height: 15px;"></td>
+                <td style="text-align: right; border: 1px solid black; border-top: none; padding: 1px; height: 15px;"></td>
                 <td
-                    style="text-align: right; border: 1px solid black; border-right: 1px solid black; border-left: 0; border-top: 0; padding: 1px; height: 15px;">
+                    style="text-align: right; border: 1px solid black; border-right: 1px solid black; border-left: none; border-top: none; padding: 1px; height: 15px;">
                 </td>
             </tr>
 

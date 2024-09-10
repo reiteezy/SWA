@@ -11,7 +11,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Print SWA</title>
-    <!-- <link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css"> -->
     <style>
     @font-face {
         font-family: 'Nimbus Mono';
@@ -81,6 +80,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div style="text-align: center; margin-top: -15px;">
         <h3>STOCK WITHDRAWAL ADVICE FORM (SWAF)</h3>
     </div>
+    <?php if ($data['PRINT_COUNT'] >= 1): ?>
+    <div style="text-align: right; margin-top: -150px; margin-bottom: 150px; margin-right: 20px;">
+        <span style="">REPRINTED</span>
+    </div>
+    <?php endif ?>
     <table style="margin-left: -18px; margin-top: -5px; font-size: 13px; width: 100%">
         <tr style="margin-bottom: -5px;">
             <td style="font-weight: bold; width: 7%;">From :</td>

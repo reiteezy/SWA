@@ -84,13 +84,10 @@
                                                             data-user-id="<?php #echo $data->SWA_ID?>">Received</label>
                                                         <?php #} ?>
                                                     </td> -->
-                                                    <td><button type="button" class="viewSwaButton action-btn-c-blue"
+                                                    <td><button type="button" class="viewSwaButton  btn waves-effect waves-light btn-primary btn-icon"
                                                             title="View" data-swa-id="<?php echo $data->SWA_ID?>"
                                                             data-toggle="modal" data-target="#viewSwaFormModal"
-                                                            title="View"><i
-                                                                class="icon feather icon-eye f-w-600 f-16 m-r-15"
-                                                                style="color: #fff"></i><span
-                                                                style="color: #fff; font-size: 13px; margin-left: -8px;">View</span></button>
+                                                            title="View"><i class="icofont icofont-eye-alt" style="padding-left: 5px;"></i></button>
 
                                                     </td>
                                                 </tr>

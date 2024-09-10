@@ -321,7 +321,7 @@ public function acctg_status_changed()
 			$update_data = array(
 				'SWA_TRANS_NO3' => $this->input->post('transactNo'),
 				'SWA_TRANS_NO3_DATE' => $this->input->post('transactDate'),
-				'SWA_TRANS_NO4_AMOUNT' => $this->input->post('transactAmount')
+				'SWA_TRANS_NO3_AMOUNT' => $this->input->post('transactAmount')
 			);
 		} else {
 			return false;
@@ -358,39 +358,72 @@ public function acctg_status_changed()
 	
 	public function printSwa($swa_id)
 	{
-		$swaData['data'] = $this->Admin_model->get_swa_data($swa_id);
-		if (!$swaData) {
-		show_error('Data not found for the provided swa_id.');
+		$copies = $this->input->get('copies');
+	
+		if (!is_numeric($copies) || (int)$copies <= 0) {
+			$copies = 1;
+		} else {
+			$copies = (int)$copies;
 		}
+	
+		$swaData['data'] = $this->Admin_model->get_swa_data($swa_id);
+		if (!$swaData['data']) {
+			show_error('Data not found for the provided swa_id.');
+		}
+	
+		$this->Swa_model->increment_print_count($swa_id);
+	
 		$mpdf = new \Mpdf\Mpdf(['format' => 'Letter']);
 		$mpdf->autoLangToFont = true;
 		$mpdf->autoScriptToLang = true;
+	
 		$html = $this->load->view('admin/view/print_swa', $swaData, true);
-		
+	
 		$mpdf->SetMargins(5, 5, 10, 1);
-		$mpdf->WriteHTML($html);
-
+	
+		for ($i = 0; $i < $copies; $i++) {
+			$mpdf->WriteHTML($html);
+			if ($i < $copies - 1) {
+				$mpdf->AddPage(); 
+			}
+		}
+	
 		$mpdf->Output();
-	}  
-
+	}
+	
 	public function printPer($per_id)
 	{
+		$copies = $this->input->get('copies');
+	
+		if (!is_numeric($copies) || (int)$copies <= 0) {
+			$copies = 1;
+		} else {
+			$copies = (int)$copies;
+		}
+		
 		$perData['data'] = $this->Admin_model->get_per_data($per_id);
 		if (!$perData) {
 		show_error('Data not found for the provided swa_id.'); 
 		}
+		$this->Swa_model->increment_print_countper($per_id);
+
 		$mpdf = new \Mpdf\Mpdf(['format' => 'Letter']);
 		$mpdf->autoLangToFont = true;
 		$mpdf->autoScriptToLang = true;
 		$html = $this->load->view('admin/view/print_per', $perData, true);
 		
 		$mpdf->SetMargins(5, 5, 10, 1);
-		$mpdf->WriteHTML($html);
+		for ($i = 0; $i < $copies; $i++) {
+			$mpdf->WriteHTML($html);
+			if ($i < $copies - 1) {
+				$mpdf->AddPage(); // Add a new page for each copy
+			}
+		}
 
 		$mpdf->Output();
 	}
 
-	public function get_item() 
+	public function get_item_code() 
 {
     $connectdns = "test_file";
     $username = "super";
@@ -400,7 +433,7 @@ public function acctg_status_changed()
     $item_input = $this->input->post('item_input');
 
     $connection = odbc_connect($connectdns, $username, $password);
-    if (!$connection) {
+    if (!$connection) {	
         die('Not connected: ' . odbc_errormsg());
     }
 
@@ -500,6 +533,7 @@ public function get_vendor()
     $vendortable = '[ICM_SM_SERVER_POS_SQL].[dbo].[Islands City Mall - SM POS SRV$Vendor]';
     $vendor_input = $this->input->post('vendor_input');
 
+	$vendor_input = strtolower($vendor_input);
     $connection = odbc_connect($connectdns, $username, $password);
     if (!$connection) {
         die('Not connected: ' . odbc_errormsg());
@@ -508,7 +542,7 @@ public function get_vendor()
     $vendor_check_query = "
         SELECT [No_], [Name]
         FROM $vendortable
-        WHERE [No_] = '$vendor_input'";
+        WHERE LOWER([No_]) = LOWER('$vendor_input')";
 
     $vendor_check_result = odbc_exec($connection, $vendor_check_query);
     if (!$vendor_check_result) {

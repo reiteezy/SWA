@@ -15,6 +15,29 @@
                                 <!-- <div class="card-body"> -->
                                 <!-- <div class="form-group"> -->
                                 <div class="row">
+                                    <div class="col-md-6 col-xs-12">
+                                        <label class="sm-label">SWA Series No.</label>
+                                        <div style="position: relative;">
+                                            <input autocomplete="off" type="text" id="swa_series_no"
+                                                name="swa_series_no" class="form-control">
+                                            <div class="swaDropdown" id="swaDropdown"
+                                                style="position: absolute; width: 100%; max-height: 200px; overflow-y: auto; border: 1px solid #d1d3e2; background-color: #F5F5F5; display: none; z-index: 999;">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-xs-12">
+                                        <label>&nbsp;</label>
+                                        <input type="hidden" class="form-control">
+                                    </div>
+                                    <div class="col-md-3 col-xs-12">
+                                        <label class="sm-label">Control No.</label>
+                                        <input type="text" readonly="readonly" id="control_no" name="control_no"
+                                            class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top: 5px;">
                                     <div class="col-md-3 col-xs-12">
                                         <label class="sm-label">Subsidiary</label>
                                         <div class="input-group">
@@ -27,22 +50,7 @@
                                         <input type="text" readonly="readonly" id="sub_descript" name="sub_descript"
                                             class="form-control">
                                     </div>
-                                    <div class="col-md-3 col-xs-12">
-                                        <label>&nbsp;</label>
-                                        <input type="hidden" class="form-control">
-                                    </div>
-                                    <div class="col-md-3 col-xs-12">
-                                        <label class="sm-label">Control No.</label>
-                                        <input type="text" readonly="readonly" id="control_no" name="control_no"
-                                            class="form-control">
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-top: -15px;">
-                                    <div class="col-md-6 col-xs-12">
-                                        <label class="sm-label">Promo Title</label>
-                                        <input type="text" readonly="readonly" id="promo_title" name="promo_title"
-                                            class="form-control">
-                                    </div>
+
                                     <div class="col-md-3 col-xs-12">
                                         <label>&nbsp;</label>
                                         <input type="hidden" class="form-control">
@@ -54,36 +62,10 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row" style="margin-top: -12px;">
                                     <div class="col-md-6 col-xs-12">
-                                        <label class="sm-label">Mechanics</label>
-                                        <input autocomplete="off" type="text" readonly="readonly" id="mechanics"
-                                            name="mechanics" class="form-control">
-                                    </div>
-                                    <div class="col-md-3 col-xs-12">
-                                        <label>&nbsp;</label>
-                                        <input type="hidden" class="form-control">
-                                    </div>
-                                    <div class="col-md-3 col-xs-12">
-                                        <label class="sm-label">SWA Series No.</label>
-                                        <div style="position: relative;">
-                                            <input autocomplete="off" type="text" id="swa_series_no"
-                                                name="swa_series_no" class="form-control">
-                                            <div class="swaDropdown" id="swaDropdown"
-                                                style="position: absolute; width: 100%; max-height: 200px; overflow-y: auto; border: 1px solid #d1d3e2; background-color: #F5F5F5; display: none; z-index: 999;">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3 col-xs-12">
-                                        <label class="sm-label">Promo Period</label>
-                                        <input type="date" readonly="readonly" id="promo_start" name="promo_start"
-                                            class="form-control">
-                                    </div>
-                                    <div class="col-md-3 col-xs-12">
-                                        <label>&nbsp;</label>
-                                        <input type="date" readonly="readonly" value="" id="promo_end" name="promo_end"
+                                        <label class="sm-label">Promo Title</label>
+                                        <input type="text" readonly="readonly" id="promo_title" name="promo_title"
                                             class="form-control">
                                     </div>
                                     <div class="col-md-3 col-xs-12">
@@ -96,13 +78,13 @@
                                             name="mis_ref_1" class="form-control">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-3 col-xs-12">
-                                        <label class="sm-label">Sponsor</label>
-                                        <input type="text" readonly="readonly" value="" id="sup_code" name="sup_code"
-                                            class="form-control">
-                                    </div>
+                                <div class="row" style="margin-top: 5px;">
                                     <div class="col-md-6 col-xs-12">
+                                        <label class="sm-label">Mechanics</label>
+                                        <input autocomplete="off" type="text" readonly="readonly" id="mechanics"
+                                            name="mechanics" class="form-control">
+                                    </div>
+                                    <div class="col-md-3 col-xs-12">
                                         <label>&nbsp;</label>
                                         <input type="hidden" class="form-control">
                                     </div>
@@ -112,12 +94,18 @@
                                             name="mis_ref_2" class="form-control">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6 col-xs-12">
-                                        <label>&nbsp;</label>
-                                        <input autocomplete="off" readonly="readonly" type="text" id="sup_name"
-                                            name="sup_name" class="form-control">
+                                <div class="row" style="margin-top: 5px;">
+                                    <div class="col-md-3 col-xs-12">
+                                        <label class="sm-label">Promo Period</label>
+                                        <input type="date" readonly="readonly" id="promo_start" name="promo_start"
+                                            class="form-control">
                                     </div>
+                                    <div class="col-md-3 col-xs-12">
+                                        <label>&nbsp;</label>
+                                        <input type="date" readonly="readonly" value="" id="promo_end" name="promo_end"
+                                            class="form-control">
+                                    </div>
+                                    
                                     <div class="col-md-3 col-xs-12">
                                         <label>&nbsp;</label>
                                         <input type="hidden" class="form-control">
@@ -126,6 +114,22 @@
                                         <label class="sm-label">MIS Ref. No. 3</label>
                                         <input autocomplete="off" readonly="readonly" type="text" id="mis_ref_3"
                                             name="mis_ref_3" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 5px;">
+                                    <div class="col-md-3 col-xs-12">
+                                        <label class="sm-label">Sponsor</label>
+                                        <input type="text" readonly="readonly" value="" id="sup_code" name="sup_code"
+                                            class="form-control">
+                                    </div>
+                                    <div class="col-md-3 col-xs-12">
+                                        <label>&nbsp;</label>
+                                        <input autocomplete="off" readonly="readonly" type="text" id="sup_name"
+                                            name="sup_name" class="form-control">
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                        <label>&nbsp;</label>
+                                        <input type="hidden" class="form-control">
                                     </div>
                                 </div>
                                 <hr class="rounded">
@@ -370,6 +374,11 @@
                         title="Clear form">
                 </div>
                 <div class="ms-auto">
+                <a id="printLink" href=""
+                            target="_blank">
+                            <button type="button" class="btn btn-info waves-effect waves-light me-2 printView">
+                                Print</button>
+                        </a>
                     <button type="button" class="btn btn-default waves-effect me-2" data-dismiss="modal">Close</button>
                     <!-- <button type="button" class="btn btn-primary waves-effect waves-light" id="">Save
                         changes</button> -->

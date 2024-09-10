@@ -28,9 +28,9 @@ function valafclog()
     $check = $this->Admin_model->checkLogin($username, $password);
     
     if ($check == 'active_user') {
-        echo json_encode(array('status' => 'success', 'redirect_url' => base_url() . 'admincontroller/index'));
+        echo json_encode(array('status' => 'success', 'message' => 'Successfully logged in!', 'redirect_url' => base_url() . 'admincontroller/index'));
     } else {
-        echo json_encode(array('status' => 'error', 'message' => 'Invalid Credentials'));
+        echo json_encode(array('status' => 'error', 'message' => 'Invalid Credentials!'));
     }
 }
 

@@ -96,13 +96,10 @@
                                                                 class="icon feather icon-slash f-w-600 f-16 m-r-15"
                                                                 style="color: #fff"></i><span
                                                                 style="color: #fff; font-size: 13px; margin-left: -8px;">Cancel</span></button> -->
-                                                        <button type="button" class="mis-confirm-btn action-btn-c-green"
+                                                        <button type="button" class="mis-confirm-btn  btn waves-effect waves-light btn-primary btn-icon" <?php echo (!empty($data->SWA_TRANS_NO3)) ? 'disabled' : '';?>
                                                             data-swa-id="<?php echo $data->SWA_ID; ?>"
                                                             data-toggle="modal" title="Confirm"
-                                                            data-target="#misConfirmModal"><i
-                                                                class="icon feather icon-check-square f-w-600 f-16 m-r-15"
-                                                                style="color: #fff"></i><span
-                                                                style="color: #fff; font-size: 13px; margin-left: -8px;">Confirm</span></button>
+                                                            data-target="#misConfirmModal"><i class="icofont icofont-ui-check" style="padding-left: 5px;"></i></button>
 
                                                         <!-- <button type="button" class="mis_status" id="<?php #echo $data->SWA_ID?>"
                                         style="background: transparent; border: none;"
