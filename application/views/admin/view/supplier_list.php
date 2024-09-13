@@ -35,11 +35,11 @@
 
 
                             <div class="card table-card">
-                                <div class="card-header">
+                                <!-- <div class="card-header">
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#addSupModal"><i class="feather icon-plus"></i>Add New
                                         Supplier</button>
-                                </div>
+                                </div> -->
                                 <div class="card-block">
                                     <div class="table-responsive">
                                         <table id="suptable" class="table table-hover m-b-0">
@@ -93,4 +93,7 @@
         </div>
     </div>
 </div>
-
+<a href="#" data-toggle="modal"
+data-target="#addSupModal" class="float">
+<i class="fa fa-plus my-float"></i>
+</a>

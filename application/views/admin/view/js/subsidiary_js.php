@@ -56,18 +56,15 @@ $(document).ready(function() {
     });
 
     $('.editSubsidiaryButton').on('click', function() {
-        // Get the data attributes from the clicked button
         var subsidiaryId = $(this).data('sub-id');
         var subsidiaryCode = $(this).data('sub-code');
         var subsidiaryDescription = $(this).data('sub-descript');
 
-        // Populate the modal form fields with the data
         $('#sub_id').val(subsidiaryId);
         $('#sub_editcode').val(subsidiaryCode);
         $('#sub_editdescript').val(subsidiaryDescription);
     });
 
-    // Optionally, handle the save button click if you need to perform validation or AJAX submit
     var saveEditButton = $('#saveEditButton');
     var subEditForm = $('#subEditForm');
     var formChanged = false;

@@ -34,14 +34,13 @@
                         <div class="col-sm-12">
 
                             <div class="card table-card">
-                                <div class="card-header">
+                                <!-- <div class="card-header">
                                     <?php if ($this->session->userdata('priv_swaf') == 1): ?>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#swaFormModal"><i class="feather icon-plus"></i>Add New
                                         SWA</button>
                                     <?php endif; ?>
-                                    <!-- <h5>SWA List</h5> -->
-                                </div>
+                                </div> -->
 
                                 <div class="card-block">
                                     <div class="table-responsive">
@@ -107,8 +106,7 @@
         </div>
     </div>
 </div>
-
-
-
-
-<!------------------------ END OF SWA MODAL------------------>
+<a href="#" data-toggle="modal"
+data-target="#swaFormModal" class="float">
+<i class="fa fa-plus my-float"></i>
+</a>

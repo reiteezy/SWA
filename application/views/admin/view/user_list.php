@@ -30,11 +30,11 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card table-card">
-                                <div class="card-header">
+                                <!-- <div class="card-header">
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#addUserModal"><i class="feather icon-plus"></i>Add New
                                         User</button>
-                                </div>
+                                </div> -->
                                 <div class="card-block" style="padding-bottom: 50px;">
                                     <div class="table-responsive">
                                         <table id="usertable" class="table table-hover m-b-0">
@@ -113,3 +113,7 @@
             </div>
         </div>
     </div>
+    <a href="#" data-toggle="modal"
+data-target="#addUserModal" class="float">
+<i class="fa fa-plus my-float"></i>
+</a>

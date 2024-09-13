@@ -33,12 +33,11 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card table-card">
-                                <div class="card-header">
+                                <!-- <div class="card-header">
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#addSubModal"><i class="feather icon-plus"></i>Add New
                                         Subsidiary</button>
-                                    <!-- <h5>Subsidiary List</h5> -->
-                                </div>
+                                </div> -->
                                 <!-- <div class="card-block" style="padding-top: 50px;">
                                 </div> -->
                                 <div class="card-block">
@@ -90,4 +89,7 @@
         </div>
     </div>
 </div>
-
+<a href="#" data-toggle="modal"
+data-target="#addSubModal" class="float">
+<i class="fa fa-plus my-float"></i>
+</a>
