@@ -7,7 +7,7 @@
                     <i class="feather icon-check bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>MIS Confirmation</h5>
-                        <span>Stock Withdrawal Advice System</span>
+                        <span>Stock Withdrawal Advise System</span>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
 
                                 <div class="card-block">
                                     <div class="table-responsive">
-                                        <table class="table table-hover m-b-0" id="mistable">
+                                        <table class="table table-hover m-b-0" id="mistable" style="width: 100%;">
                                             <thead>
                                                 <tr>
                                                     <!-- <th>#</th> -->
@@ -59,21 +59,21 @@
                                             <tbody>
                                             <!-- <pre><?php #print_r($swa_datas)?></pre> -->
                                                
-                                                <?php  
+                                                <!-- <?php  
                               $count = 1;
                               foreach ($swa_datas as $data): 
                               ?>
                              
-                                                <tr>
+                                                <tr> -->
                                                     <!-- <td><?php #echo $count++; ?></td> -->
-                                                    <td style="text-align: center;"><?php echo $data->SWA_ID; ?></td>
+                                                    <!-- <td style="text-align: center;"><?php echo $data->SWA_ID; ?></td>
                                                     <td><?php echo date("F j, Y", strtotime($data->DOCUMENT_DATE)); ?>
                                                     </td>
                                                     <td><?php echo $data->LOCATION; ?></td>
                                                     <td><?php echo $data->DESCRIPTION; ?></td>
                                                     <td><?php echo $data->SWA_TRANS_NO1;?></td>
                                                     <td><?php echo $data->SWA_TRANS_NO2; ?></td>
-                                                    <td><?php echo $data->SWA_TRANS_NO3; ?></td>
+                                                    <td><?php echo $data->SWA_TRANS_NO3; ?></td> -->
                                                     <!-- <td>
                                                         <?php  #if ($data->SWA_MIS_STATUS == 'cancelled') { ?>
                                                         <span class="form-label badge badge-inverse-danger mis-status"
@@ -86,7 +86,7 @@
                                                             sid="<?php #echo $data->SWA_ID?>">Confirmed</span>
                                                         <?php #}  ?>
                                                     </td> -->
-                                                    <td style="text-align: center;">
+                                                    <!-- <td style="text-align: center;"> -->
                                                         <!-- <button type="button" class="mis_status action-btn-c-red"
                                                             id="<?php #echo $data->SWA_ID; ?>"
                                                             sid="<?php #echo $data->SWA_ID; ?>"
@@ -96,10 +96,10 @@
                                                                 class="icon feather icon-slash f-w-600 f-16 m-r-15"
                                                                 style="color: #fff"></i><span
                                                                 style="color: #fff; font-size: 13px; margin-left: -8px;">Cancel</span></button> -->
-                                                        <button type="button" class="mis-confirm-btn  btn waves-effect waves-light btn-primary btn-icon" <?php echo (!empty($data->SWA_TRANS_NO3)) ? 'disabled' : '';?>
+                                                        <!-- <button type="button" class="mis-confirm-btn  btn waves-effect waves-light btn-primary btn-icon" <?php echo (!empty($data->SWA_TRANS_NO3)) ? 'disabled' : '';?>
                                                             data-swa-id="<?php echo $data->SWA_ID; ?>"
                                                             data-toggle="modal" title="Confirm"
-                                                            data-target="#misConfirmModal"><i class="icofont icofont-ui-check" style="padding-left: 5px;"></i></button>
+                                                            data-target="#misConfirmModal"><i class="icofont icofont-ui-check" style="padding-left: 5px;"></i></button> -->
 
                                                         <!-- <button type="button" class="mis_status" id="<?php #echo $data->SWA_ID?>"
                                         style="background: transparent; border: none;"
@@ -114,10 +114,10 @@
                                             src="<?php #echo base_url('')?>assets/backend/img/icons/confirm.png"
                                             alt="View" style="width: 20px;"></button> -->
 
-                                                    </td>
+                                                    <!-- </td>
                                                 </tr>
                                                 <?php  
-                              endforeach;     ?>
+                              endforeach;     ?> -->
 
 
                                             </tbody>

@@ -18,7 +18,7 @@ class UserController extends CI_Controller
 
     public function users() 
 	{
-		$data['users'] = $this->User_model->get_user_list();
+		// $data['users'] = $this->User_model->get_user_list();
 		$data['classes'] = $this->Class_model->get_class_data();
 		$data['menu'] = 'Users';
 
@@ -46,7 +46,32 @@ class UserController extends CI_Controller
 
     public function new_user() 
 	{
-		$response = $this->User_model->add_user();
+		$username = $this->input->post('username');
+        // $password = $this->input->post('password');
+        $emp_name = $this->input->post('emp_name');
+        $emp_id = $this->input->post('emp_id');
+        $emp_pos = $this->input->post('emp_pos');
+        $emp_dept = $this->input->post('emp_dept');
+        $emp_bu = $this->input->post('emp_bu');
+        $user_class_id = $this->input->post('user_class');
+        $emp_photo = $this->input->post('emp_photo');
+        $class_data = $this->Admin_model->get_user_class($user_class_id);
+        // $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+        // var_dump($emp_pos);
+        $password = $this->security->xss_clean(password_hash('alturas2024', PASSWORD_DEFAULT));
+        $user_data = array(
+            'USERNAME' => $username,
+            'CLASS_ID' => $user_class_id,
+            'PASSWORD' => $hashed_password,
+            'EMP_NAME' => $emp_name,
+            'EMP_ID' => $emp_id,
+            'EMP_POS' => $emp_pos,
+            'EMP_DEPT' => $emp_dept,
+            'EMP_BU' => $emp_bu,
+            'EMP_PHOTO' => $emp_photo
+        );
+
+		$response = $this->User_model->add_user($user_data);
 		$notification_data = array(
 			'message' => 'A new user has been added',
 			'header' => 'New User',
@@ -85,6 +110,59 @@ class UserController extends CI_Controller
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 	
+	
+	function get_users_list(){
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
+		$memory_limit = ini_get('memory_limit');
+		ini_set('memory_limit',-1);
+		ini_set('max_execution_time', 0);
+	
+		$tab           = $this->input->post('tab');
+		$start         = $this->input->post('start'); 
+		$length        = $this->input->post('length'); 
+		$searchValue   = $this->input->post('search')['value'];
+	
+	
+		$users = $this->User_model->get_users();
+	
+		$result = array();
+		 // var_dump($po_headers);
+		 // exit();
+		foreach($users as $user){
+		   $user_id = $user["ID"];
+		 //   $log_details = $this->Po_model->getPoLog($hd_id);
+	
+		   
+		   if($searchValue=='')
+			  $result[] = $user;
+		   else{
+			  if((strpos(strtolower($sub["EMP_NAME"]), strtolower($searchValue)) !== false || 
+				 strpos(strtolower($sub["USERNAME"]), strtolower($searchValue)) !== false || 
+				 strpos(strtolower($sub["CLASS"]), strtolower($searchValue)) !== false|| 
+				 strpos(strtolower($sub["STATUS"]), strtolower($searchValue)) !== false)){
+					
+				 $result[] = $user;
+			  }
+		   }
+		   
+		}
+	
+	
+		$totalRecords = count($result);
+		$slice = array_slice($result, $start, $length);
+		
+		$data = array(
+					   'draw'            => $this->input->post('draw'), 
+					   'recordsTotal'    => $totalRecords,
+					   'recordsFiltered' => $totalRecords,
+					   'data'            => $slice
+					);
+	
+		echo json_encode($data);  
+		ini_set('memory_limit',$memory_limit);  
+	
+	 }
 	
 
 

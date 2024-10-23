@@ -7,7 +7,7 @@
                     <i class="feather icon-file-text bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>Promo Execution Report</h5>
-                        <span>Stock Withdrawal Advice System</span>
+                        <span>Stock Withdrawal Advise System</span>
                     </div>
                 </div>
             </div>
@@ -35,19 +35,18 @@
 
 
                             <div class="card table-card">
-                                <!-- <div class="card-header">
+                                <div class="card-header">
                                     <?php if ($this->session->userdata('priv_per') == 1): ?>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    <button type="button" class="btn btn-primary custom-btn-db" data-toggle="modal"
                                         data-target="#perFormModal"><i class="feather icon-plus"></i>Add New
                                         PER</button>
                                     <?php endif; ?>
-                                </div> -->
+                                </div>
                                 <div class="card-block">
                                     <div class="table-responsive">
-                                        <table id="pertable" class="table table-hover m-b-0">
+                                        <table id="pertable" class="table table-hover m-b-0" style="width: 100%">
                                             <thead>
                                                 <tr>
-                                                    <!-- <th></th> -->
                                                     <th style="width: 10%;">Control Number</th>
                                                     <th>Document Date</th>
                                                     <th>Subsidiary</th>
@@ -56,11 +55,10 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php
+                                                <!-- <?php
                               foreach ($per_datas as $data):
                               ?>
                                                 <tr>
-                                                    <!-- <td></td> -->
                                                     <td><?php echo $data->PER_ID; ?></td>
                                                     <td><?php echo $data->DOCUMENT_DATE; ?></td>
                                                     <td><?php echo $data->SUB_DESCRIPT; ?></td>
@@ -73,7 +71,7 @@
                                                 </tr>
                                                 <?php  
                               endforeach;
-                              ?>
+                              ?> -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -88,8 +86,8 @@
     </div>
 </div>
 
-<a href="#" data-toggle="modal"
+<!-- <a href="#" data-toggle="modal"
 data-target="#perFormModal" class="float">
 <i class="fa fa-plus my-float"></i>
-</a>
+</a> -->
 

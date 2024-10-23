@@ -2,9 +2,17 @@
 <div class="modal fade" id="perFormModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <!-- <div class="modal-header">
                 <h4 class="modal-title">Promo Execution Report Form</h4>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div> -->
+            <div class="row form-header text-center mt-4">
+                <div class="col-11">
+                    <h4 style="font-weight: bold;">Promo Execution Report Form</h4>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
             </div>
             <form class="perForm" role="form" id="perForm" method="POST" action="" enctype="multipart/form-data">
                 <div class="modal-body">
@@ -105,7 +113,7 @@
                                         <input type="date" readonly="readonly" value="" id="promo_end" name="promo_end"
                                             class="form-control">
                                     </div>
-                                    
+
                                     <div class="col-md-3 col-xs-12">
                                         <label>&nbsp;</label>
                                         <input type="hidden" class="form-control">
@@ -178,16 +186,17 @@
                 </div>
                 <div class="modal-footer">
                     <div class="d-flex justify-content-start">
-                        <button type="button" class="btn btn-info waves-effect waves-light me-2" data-toggle="modal"
-                            data-target="#assignSignatoriesModal">Signatories</button>
-                        <input type="reset" value="Clear" id="clearForm"
+                        <button type="button" class="btn btn-info waves-effect waves-light me-2 custom-btn-db"
+                            data-toggle="modal" data-target="#assignSignatoriesModal">Signatories</button>
+                        <!-- <input type="reset" value="Clear" id="clearForm"
                             class="btn btn-secondary waves-effect waves-light me-2" data-toggle="tooltip"
-                            title="Clear form">
+                            title="Clear form"> -->
                     </div>
                     <div class="ms-auto">
                         <button type="button" class="btn btn-default waves-effect me-2"
                             data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary waves-effect waves-light" id="saveButton">Save
+                        <button type="button" class="btn btn-primary waves-effect waves-light custom-btn-db"
+                            id="saveButton">Save
                             changes</button>
                     </div>
                 </div>
@@ -202,9 +211,17 @@
 <div class="modal fade" id="viewPerFormModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <!-- <div class="modal-header">
                 <h4 class="modal-title">Promo Execution Report Form</h4>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div> -->
+            <div class="row form-header text-center mt-4">
+                <div class="col-11">
+                    <h4 style="font-weight: bold;">Promo Execution Report Form</h4>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
             </div>
             <div class="modal-body">
                 <div class="card-block">
@@ -322,8 +339,9 @@
                                     </div>
                                 </div>
                                 <hr class="rounded">
-                                <span style="font-style: italic">Enter actual execution quantity
-                                    value</span><span style="color: red">*</span>
+                                <span style="color: red">*</span><span style="font-style: italic">Enter actual execution
+                                    quantity
+                                    value</span>
                                 <table class="table table-bordered table-per" id="viewPerTable" style="width: 100%;">
                                     <thead style="position: sticky; top: 0; text-align: center">
                                         <tr style="background-color: #6b95b0;">
@@ -367,18 +385,19 @@
             </div>
             <div class="modal-footer">
                 <div class="d-flex justify-content-start">
-                    <button type="button" class="btn btn-info waves-effect waves-light me-2 viewSignatoriesButton"
+                    <button type="button"
+                        class="btn btn-info waves-effect waves-light me-2 custom-btn-db viewSignatoriesButton"
                         data-toggle="modal" data-target="#viewSignatoriesModal">Signatories</button>
-                    <input type="reset" value="Clear" id="clearForm"
+                    <!-- <input type="reset" value="Clear" id="clearForm"
                         class="btn btn-secondary waves-effect waves-light me-2" data-toggle="tooltip"
-                        title="Clear form">
+                        title="Clear form"> -->
                 </div>
                 <div class="ms-auto">
-                <a id="printLink" href=""
-                            target="_blank">
-                            <button type="button" class="btn btn-info waves-effect waves-light me-2 printView">
-                                Print</button>
-                        </a>
+                    <a id="printLink" href="" target="_blank">
+                        <button type="button"
+                            class="btn btn-info waves-effect waves-light me-2 custom-btn-db printView">
+                            Print</button>
+                    </a>
                     <button type="button" class="btn btn-default waves-effect me-2" data-dismiss="modal">Close</button>
                     <!-- <button type="button" class="btn btn-primary waves-effect waves-light" id="">Save
                         changes</button> -->
@@ -403,41 +422,42 @@
                 <div class="card-block">
                     <form role="form" method="POST" action="<?php echo base_url() ?>#" enctype="multipart/form-data">
                         <div class="card-body">
-                            <div class="form-group">
+                            <div class="form-group" style="margin-bottom: 20px;">
                                 <label class="sm-label">Submitted by</label>
                                 <input autocomplete="on" value="<?php ?>" type="text" id="sub_by" name="sub_by"
-                                    class="form-control" placeholder="Submitted by">
+                                    class="form-control" placeholder="Submitted by" style="margin-bottom: -10px">
                                 <label></label>
                                 <input autocomplete="on" type="date" value="<?php  ?>" id="sub_date" name="sub_date"
                                     class="form-control" placeholder="Date">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="margin-bottom: 20px;">
                                 <label class="sm-label">Reviewed by</label>
                                 <input autocomplete="on" value="<?php ?>" type="text" id="rev_by" name="rev_by"
-                                    class="form-control" placeholder="Reviewed by">
+                                    class="form-control" placeholder="Reviewed by" style="margin-bottom: -10px">
                                 <label></label>
                                 <input autocomplete="on" type="date" value="<?php  ?>" id="rev_date" name="rev_date"
                                     class="form-control" placeholder="Date">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="margin-bottom: 20px;">
                                 <label class="sm-label">Audited by</label>
                                 <input autocomplete="on" value="<?php ?>" type="text" id="audit_by" name="audit_by"
-                                    class="form-control" placeholder="Audited by">
+                                    class="form-control" placeholder="Audited by" style="margin-bottom: -10px">
                                 <label></label>
                                 <input autocomplete="on" type="date" value="<?php  ?>" id="audit_date" name="audit_date"
                                     class="form-control" placeholder="Date">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="margin-bottom: 20px;">
                                 <label class="sm-label">Noted by</label>
                                 <input autocomplete="on" value="<?php ?>" type="text" id="note_by" name="note_by"
-                                    class="form-control" placeholder="Noted by">
+                                    class="form-control" placeholder="Noted by" style="margin-bottom: -10px">
                                 <label></label>
                                 <input autocomplete="on" type="date" value="<?php  ?>" id="note_date" name="note_date"
                                     class="form-control" placeholder="Date">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" data-dismiss="modal"
-                                    class="btn btn-primary waves-effect waves-light" id="saveSignatoriesValues">Save
+                                    class="btn btn-primary waves-effect waves-light custom-btn-db"
+                                    id="saveSignatoriesValues">Save
                                     changes</button>
                             </div>
                         </div>
@@ -460,34 +480,34 @@
                 <div class="card-block">
                     <form role="form" method="POST" action="<?php echo base_url() ?>#" enctype="multipart/form-data">
                         <div class="card-body">
-                            <div class="form-group">
+                            <div class="form-group" style="margin-bottom: 20px;">
                                 <label class="sm-label">Submitted by</label>
                                 <input autocomplete="on" value="<?php ?>" type="text" id="view_sub_by" name=""
-                                    class="form-control" placeholder="Submitted by">
+                                    class="form-control" placeholder="Submitted by" style="margin-bottom: -10px">
                                 <label></label>
                                 <input autocomplete="on" type="date" value="<?php  ?>" id="view_sub_date" name=""
                                     class="form-control" placeholder="Date">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="margin-bottom: 20px;">
                                 <label class="sm-label">Reviewed by</label>
                                 <input autocomplete="on" value="<?php ?>" type="text" id="view_rev_by" name=""
-                                    class="form-control" placeholder="Reviewed by">
+                                    class="form-control" placeholder="Reviewed by" style="margin-bottom: -10px">
                                 <label></label>
                                 <input autocomplete="on" type="date" value="<?php  ?>" id="view_rev_date" name=""
                                     class="form-control" placeholder="Date">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="margin-bottom: 20px;">
                                 <label class="sm-label">Audited by</label>
                                 <input autocomplete="on" value="<?php ?>" type="text" id="view_audit_by" name=""
-                                    class="form-control" placeholder="Audited by">
+                                    class="form-control" placeholder="Audited by" style="margin-bottom: -10px">
                                 <label></label>
                                 <input autocomplete="on" type="date" value="<?php  ?>" id="view_audit_date" name=""
                                     class="form-control" placeholder="Date">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="margin-bottom: 20px;">
                                 <label class="sm-label">Noted by</label>
                                 <input autocomplete="on" value="<?php ?>" type="text" id="view_note_by" name=""
-                                    class="form-control" placeholder="Noted by">
+                                    class="form-control" placeholder="Noted by" style="margin-bottom: -10px">
                                 <label></label>
                                 <input autocomplete="on" type="date" value="<?php  ?>" id="view_note_date" name=""
                                     class="form-control" placeholder="Date">

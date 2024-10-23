@@ -124,6 +124,7 @@ $(document).ready(function() {
                     processData: false,
                     contentType: false,
                     success: function(response) {
+                        dataTable_user.ajax.reload();
                         console.log(response);
                         var responseData = response;
 
@@ -134,7 +135,7 @@ $(document).ready(function() {
                             icon: responseData.status === 'success' ?
                                 'success' : 'error'
                         }).then(function() {
-                            location.reload(true);
+                            dataTable_user.ajax.reload();
                         });
                     },
                     error: function(error) {
@@ -180,11 +181,110 @@ $(document).ready(function() {
         });
     };
 
-    $('#usertable').DataTable({
+    function reload_table() {
+        dataTable_user.ajax.reload();
+    }
+
+    var dataTable_user = $('#usertable').DataTable({
+        processing: true,
+        serverSide: true,
+        searching: true,
         lengthChange: false,
+        ordering: false,
+        ajax: {
+            url: "<?php echo base_url(); ?>UserController/get_users_list",
+            type: "POST",
+            data: function(d) {
+                d.start = d.start || 0;
+                d.length = d.length || 10;
+            }
+        },
+        columns: [{
+                data: null,
+                orderable: false,
+                render: function(data, type, row) {
+                    const photoUrl = `http://172.16.161.34:8080/hrms${row.EMP_PHOTO.substr(2)}`;
+                    const empName = row.EMP_NAME;
+                    const empPos = row.EMP_POS;
+
+                    return `
+                        <div class="d-inline-block align-middle">
+                            <img src="${photoUrl}" alt="user image" class="img-radius img-40 align-top m-r-15">
+                            <div class="d-inline-block">
+                                <h6>${empName}</h6>
+                                <p class="text-muted m-b-0">${empPos}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            },
+            {
+                data: 'USERNAME'
+            },
+            {
+                data: 'CLASS'
+            },
+            // {
+            //     data: 'PASSWORD'
+            // },
+            {
+                data: null,
+                orderable: false,
+                render: function(data, type, row) {
+                    return `
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" 
+                            type="checkbox" 
+                            id="user_status" 
+                            data-user-id="${row.ID}" 
+                            ${row.STATUS === '1' ? 'checked' : ''}>
+                    </div> 
+                `;
+                }
+            },
+            {
+                data: null,
+                orderable: false,
+                render: function(data, type, row) {
+                    return `
+                        <button type="button" id="${row.ID}" 
+                            class="viewUserButton btn waves-effect waves-light btn-primary custom-btn-db" 
+                            data-user-id="${row.ID}" 
+                            data-toggle="modal" 
+                            data-target="#viewUserModal" 
+                            title="View"
+                            style="margin-left: 5px;">
+                            <i class="icofont icofont-folder-open" style="padding-left: 5px;"></i>
+                            </button>
+                            <button type="button" class="editUserButton btn waves-effect waves-light btn-primary custom-btn-db" style=""
+                            title="edit" 
+                            data-user-id="${row.ID}"
+                            data-user-empname="${row.EMP_NAME}"
+                            data-user-name="${row.USERNAME}"
+                            data-user-class="${row.CLASS}"
+                            data-user-descript="${row.CLASS_DESCRIPT}"
+                            data-user-password="${row.PASSWORD}"
+                            data-class-id="${row.CID}"
+                            data-toggle="modal" 
+                            data-target="#editUserModal">
+                            <i class="icofont icofont-edit-alt" style="padding-left: 5px;"></i>
+                        </button>
+                    `;
+                }
+            }
+        ],
+
+        paging: true,
+        pagingType: "full_numbers",
+        lengthMenu: [
+            [10, 25, 50, 1000],
+            [10, 25, 50, "Max"]
+        ],
+        pageLength: 10,
         language: {
             search: '',
-            searchPlaceholder: 'Search...'
+            searchPlaceholder: ' Search...',
+            processing: '<div class="table-loader"></div>'
         }
     });
 
@@ -195,14 +295,19 @@ $(document).ready(function() {
         'box-sizing': 'border-box'
     });
 
+
+
     //get user status
 
     //----------------------------------------------------------------------------------user status toggle
     $(document).on('change', '#user_status', function() {
         console.log("clicked");
         var $checkbox = $(this);
-        var userId = $(this).data('user-id');
-        var userStatus = $(this).is(':checked') ? '0' : '1';
+        var userId = $checkbox.data('user-id');
+        var userStatus = $checkbox.is(':checked') ? '0' : '1';
+
+        var currentState = $checkbox.is(':checked');
+        console.log(currentState);
         Swal.fire({
             title: (userStatus == '1' ? 'Deactivate' : 'Activate'),
             text: (userStatus == '1' ?
@@ -223,6 +328,7 @@ $(document).ready(function() {
                         user_id: userId
                     },
                     success: function(response) {
+                        dataTable_user.ajax.reload();
                         Swal.fire({
                             title: response.status === 'success' ?
                                 'Success' : 'Error',
@@ -235,13 +341,16 @@ $(document).ready(function() {
                         console.error("Error updating toggle value:", error);
                     }
                 });
-                // } else {
-                // $('#user_status').prop('checked', false);
             } else {
-                $checkbox.prop('checked', initialCheckedState);
+                if (currentState == false) {
+                    $checkbox.prop('checked', true);
+                } else {
+                    $checkbox.prop('checked', false);
+                }
             }
         });
     });
+
     // EDIT USER
 
     $(document).on('input', '#username_edit', function() {
@@ -328,6 +437,7 @@ $(document).ready(function() {
 
                     $('#userId').text(data.ID);
                     $('#name').text(data.EMP_NAME);
+                    $('#userPhoto').attr('src', 'http://172.16.161.34:8080/hrms/' + data.EMP_PHOTO.substr(2));
                     $('#userName').text(data.USERNAME);
                     $('#class').text(data.CLASS);
                     $('#classDescript').text(data.DESCRIPTION);
@@ -453,8 +563,7 @@ $(document).ready(function() {
                                 'success' ?
                                 'success' : 'error'
                         }).then(() => {
-                            window.location.href =
-                                '<?php echo base_url() ?>UserController/users';
+                            dataTable_user.ajax.reload();
                         });
                     },
                     error: function(error) {

@@ -1,8 +1,9 @@
 <link rel="stylesheet" type="text/css"
     href="<?= base_url('assets/'); ?>bower_components/sweetalert/css/sweetalert2.css">
 <div class="loader-bg">
-    <div class="loader-bar"></div>
+  <img src="<?php echo base_url() ?>assets/assets/images/swalogo.png" alt="Loading..." class="loader-image">
 </div>
+
 
 <div id="pcoded" class="pcoded">
     <div class="pcoded-overlay-box"></div>
@@ -333,24 +334,20 @@
             updateClock();
 
             var login_class = <?php echo json_encode($this->session->userdata('login_class')); ?>;
-    var misPrivilege = <?php echo json_encode($this->session->userdata('priv_swamis')); ?>;
-    var accountingPrivilege = <?php echo json_encode($this->session->userdata('priv_swaaccounting')); ?>;
-    var swaPrivilege = <?php echo json_encode($this->session->userdata('priv_swaf')); ?>;
-    var perPrivilege = <?php echo json_encode($this->session->userdata('priv_per')); ?>;
+            var misPrivilege = <?php echo json_encode($this->session->userdata('priv_swamis')); ?>;
+            var accountingPrivilege = <?php echo json_encode($this->session->userdata('priv_swaaccounting')); ?>;
+            var swaPrivilege = <?php echo json_encode($this->session->userdata('priv_swaf')); ?>;
+            var perPrivilege = <?php echo json_encode($this->session->userdata('priv_per')); ?>;
     
-    var url;
+            var url;
 
-    if (login_class === 'ADMIN') {
-        url = '<?php echo base_url('NotificationController/get_unread_notifications'); ?>';
-    } else if(misPrivilege === '1') {
-        url = '<?php echo base_url('NotificationController/get_swa_notifications'); ?>';
-    } else if(accountingPrivilege === '1') {
-        url = '<?php echo base_url('NotificationController/get_swa_notifications'); ?>';
-    } else if(swaPrivilege === '1') {
-        url = '<?php echo base_url('NotificationController/get_swa_notifications'); ?>';
-    } else if(perPrivilege === '1') {
-        url = '<?php echo base_url('NotificationController/get_per_notifications'); ?>';
-    }
+            if (login_class === 'ADMIN') {
+                url = '<?php echo base_url('NotificationController/get_unread_notifications'); ?>';
+            } else if(misPrivilege === '1') {
+                url = '<?php echo base_url('NotificationController/get_swa_notifications'); ?>';
+            } else if(accountingPrivilege === '1') {
+                url = '<?php echo base_url('NotificationController/get_swa_notifications'); ?>';
+            }
     
             function load_notifications() {
                 $.ajax({

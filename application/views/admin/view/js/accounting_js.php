@@ -121,6 +121,10 @@ $(document).ready(function() {
                         crfcv_amount: crfcv_amount
                     },
                     success: function(response) {
+                        dataTable_accounting.ajax.reload();
+                        $('input[name="crfcvNo"]').val('');
+                        $('input[name="crfcvDate"]').val('');
+                        $('input[name="crfcvAmount"]').val('');
                         console.log("Response: " + response);
                         var responseData = JSON.parse(response);
                         Swal.fire({
@@ -129,8 +133,6 @@ $(document).ready(function() {
                             text: responseData.message,
                             icon: responseData.status === 'success' ?
                                 'success' : 'error'
-                        }).then(() => {
-                            location.reload(true);
                         });
 
                         $("#acctgConfirmModal").modal("hide");
@@ -148,13 +150,79 @@ $(document).ready(function() {
         });
     });
 
-    $('#acctgtable').DataTable({
+    function reload_table() {
+        dataTable_accounting.ajax.reload();
+}
+
+    var dataTable_accounting = $('#acctgtable').DataTable({
+        processing: true,
+        serverSide: true,
+        searching: true,
         lengthChange: false,
+        ordering: false,
+        ajax: {
+            url: "<?php echo base_url(); ?>SwaController/get_swa_list",
+            type: "POST",
+            data: function(d) {
+                d.start = d.start || 0;
+                d.length = d.length || 10;
+            }
+        },
+        columns: [{
+                data: 'SWA_ID'
+            },
+            {
+                data: 'DOCUMENT_DATE'
+            },
+            {
+                data: 'LOCATION'
+            },
+            {
+                data: 'DESCRIPTION'
+            },
+            {
+                data: 'SWA_CRFCV_NO'
+            },
+            {
+                data: null,
+                orderable: false,
+                render: function(data, type, row) {
+                    if(row.SWA_CRFCV_NO == '' || row.SWA_CRFCV_NO == null){
+                    return `
+                                <button type="button" class="acctg-confirm-btn  btn waves-effect waves-light btn-primary custom-btn-db" 
+                                data-swa-id="${row.SWA_ID}"
+                                data-toggle="modal" 
+                                title="Confirm"
+                                data-target="#acctgConfirmModal">
+                                <i class="icofont icofont-check" style="padding-left: 5px;"></i>
+                                </button>
+                            `;
+                        } else {
+                            return `
+                                <button type="button" class="acctg-confirm-btn btn waves-effect waves-light btn-primary custom-btn-db" disabled
+                                data-swa-id="${row.SWA_ID}" 
+                                data-toggle="modal" 
+                                title="Confirm" 
+                                data-target="#acctgConfirmModal">
+                                <i class="icofont icofont-check" style="padding-left: 5px;"></i>
+                                </button>
+                            `;
+                        }
+                }
+            }
+        ],
+        paging: true,
+        pagingType: "full_numbers",
+        lengthMenu: [
+            [10, 25, 50, 1000],
+            [10, 25, 50, "Max"]
+        ],
+        pageLength: 10,
         language: {
             search: '',
-            searchPlaceholder: 'Search...'
-        },
-        ordering: false
+            searchPlaceholder: ' Search...',
+            processing: '<div class="table-loader"></div>'
+        }
     });
 
 

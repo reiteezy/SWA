@@ -6,8 +6,8 @@
                 <div class="page-header-title">
                     <i class="feather icon-file bg-c-yellow"></i>
                     <div class="d-inline">
-                        <h5>Stock Withdrawal Advice</h5>
-                        <span>Stock Withdrawal Advice System</span>
+                        <h5>Stock Withdrawal Advise</h5>
+                        <span>Stock Withdrawal Advise System</span>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                             <div class="card table-card">
                                 <!-- <div class="card-header">
                                     <?php if ($this->session->userdata('priv_swaf') == 1): ?>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    <button type="button" class="btn btn-primary custom-btn-db" data-toggle="modal"
                                         data-target="#swaFormModal"><i class="feather icon-plus"></i>Add New
                                         SWA</button>
                                     <?php endif; ?>
@@ -44,7 +44,7 @@
 
                                 <div class="card-block">
                                     <div class="table-responsive">
-                                        <table id="swatable" class="table table-hover m-b-0">
+                                        <table id="swatable" class="table table-hover m-b-0" style="width: 100%;">
                                             <thead>
                                                 <tr>
                                                     <!-- <th></th> -->
@@ -57,14 +57,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php
+                                                <!-- <?php
                               foreach ($swa_datas as $data):
                               ?>
-                                                <tr>
+                                                <tr> -->
                                                     <!-- <td></td> -->
-                                                    <td><?php echo $data->SWA_ID; ?></td>
+                                                    <!-- <td><?php echo $data->SWA_ID; ?></td>
                                                     <td><?php echo $data->DOCUMENT_DATE; ?></td>
-                                                    <td><?php echo $data->SUP_NAME; ?></td>
+                                                    <td><?php echo $data->SUP_NAME; ?></td> -->
                                                     <!-- <td> <?php  #if($data->SWA_MIS_STATUS == 'cancelled'){ ?>
                                                         <label class="user-status form-label badge badge-inverse-danger"
                                                             data-user-id="<?php #echo $data->SWA_ID?>">Cancelled</label>
@@ -83,7 +83,7 @@
                                                             data-user-id="<?php #echo $data->SWA_ID?>">Received</label>
                                                         <?php #} ?>
                                                     </td> -->
-                                                    <td><button type="button" class="viewSwaButton  btn waves-effect waves-light btn-primary btn-icon"
+                                                    <!-- <td><button type="button" class="viewSwaButton  btn waves-effect waves-light btn-primary btn-icon"
                                                             title="View" data-swa-id="<?php echo $data->SWA_ID?>"
                                                             data-toggle="modal" data-target="#viewSwaFormModal"
                                                             title="View"><i class="icofont icofont-eye-alt" style="padding-left: 5px;"></i></button>
@@ -92,7 +92,7 @@
                                                 </tr>
                                                 <?php  
                               endforeach;
-                              ?>
+                              ?> -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -106,7 +106,7 @@
         </div>
     </div>
 </div>
-<a href="#" data-toggle="modal"
+<!-- <a href="#" data-toggle="modal"
 data-target="#swaFormModal" class="float">
 <i class="fa fa-plus my-float"></i>
-</a>
+</a> -->

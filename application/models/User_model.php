@@ -9,31 +9,9 @@ class User_model extends CI_Model
         parent::__construct(); 
     }
 
-    function add_user()
+    function add_user($user_data)
     {
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
-        $emp_name = $this->input->post('emp_name');
-        $emp_id = $this->input->post('emp_id');
-        $emp_pos = $this->input->post('emp_pos');
-        $emp_dept = $this->input->post('emp_dept');
-        $emp_bu = $this->input->post('emp_bu');
-        $user_class_id = $this->input->post('user_class');
-        $emp_photo = $this->input->post('emp_photo');
-        $class_data = $this->Admin_model->get_user_class($user_class_id);
-        // $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-        // var_dump($emp_pos);
-        $user_data = array(
-            'USERNAME' => $username,
-            'CLASS_ID' => $user_class_id,
-            'PASSWORD' => $password,
-            'EMP_NAME' => $emp_name,
-            'EMP_ID' => $emp_id,
-            'EMP_POS' => $emp_pos,
-            'EMP_DEPT' => $emp_dept,
-            'EMP_BU' => $emp_bu,
-            'EMP_PHOTO' => $emp_photo
-        );
+        
         $response = $this->db->insert('users_tbl', $user_data);
         if($response){
             return $this->db->insert_id();
@@ -44,14 +22,14 @@ class User_model extends CI_Model
             return FALSE;
         }
     }
-    public function get_user_list() 
+    public function get_users() 
     {
         $this->db->select('users_tbl.*, class_tbl.CID, class_tbl.CLASS, class_tbl.DESCRIPTION AS CLASS_DESCRIPT, sub_tbl.CODE, sub_tbl.DESCRIPTION as SUB_DESCRIPT');
         $this->db->from('users_tbl');
         $this->db->join('class_tbl', 'users_tbl.CLASS_ID = class_tbl.CID', 'left');
         $this->db->join('sub_tbl', 'users_tbl.SUB_ID = sub_tbl.ID', 'left');
         $query = $this->db->get();
-        return $query->result(); 
+        return $query->result_array(); 
     }
 
     public function get_status($user_id) 

@@ -18,17 +18,36 @@ class SwaController extends CI_Controller
         }
     }
 
+	
+	public function nesa_list()
+	{
+		if ($this->session->userdata('priv_um') == 1){
+		$data['menu'] = 'nesa';			
+		$this->load->view('admin/require/header');
+		$this->load->view('admin/require/navbar');
+		$this->load->view('admin/require/sidebar', $data);
+		$this->load->view('admin/view/nesa_view');
+		$this->load->view('admin/view/js/nesa_js');
+        $this->load->view('admin/view/modals/nesa_modal');
+		$this->load->view('admin/require/footer');
+		} else {
+		$this->load->view('admin/error');
+		}
+	}
+
+
+
     public function swa_list() 
 	{
 		if ($this->session->userdata('priv_swa') == 1)
 		{
 		$data['menu'] = 'Swa';
-		$data['swa_datas'] = $this->Swa_model->view_swa_data();
+		// $data['swa_datas'] = $this->Swa_model->view_swa_data();
 
 		$this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
         $this->load->view('admin/require/sidebar', $data);
-        $this->load->view('admin/view/swa_list', $data);
+        $this->load->view('admin/view/swa_list');
         $this->load->view('admin/view/js/swa_js');
         $this->load->view('admin/view/modals/swa_modal');
         $this->load->view('admin/require/footer');
@@ -42,7 +61,7 @@ class SwaController extends CI_Controller
 		if ($this->session->userdata('priv_per') == 1)
 		{
 		$data['menu'] = 'per';
-		$data['per_datas'] = $this->Swa_model->view_per_data();
+		// $data['per_datas'] = $this->Swa_model->view_per_data();
 
 		$this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
@@ -56,22 +75,250 @@ class SwaController extends CI_Controller
 	}
 	}
 
-	public function get_daterange_data() {
-        $start_date = $this->input->post('start_date');
+function get_nesa_list(){
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
+		$memory_limit = ini_get('memory_limit');
+		ini_set('memory_limit',-1);
+		ini_set('max_execution_time', 0);
+	
+		$vendor_filter         = $this->input->post('vendor_filter'); 
+		$start_date         = $this->input->post('start_date'); 
+		$end_date         = $this->input->post('end_date'); 
+		$start         = $this->input->post('start'); 
+		$length        = $this->input->post('length'); 
+		$searchValue   = $this->input->post('search')['value'];
+	
+	
+		$nesas = $this->Swa_model->get_nesa($vendor_filter, $start_date, $end_date);
+	
+		$result = array();
+		foreach($nesas as $nesa){
+		   $nesa_id = $nesa['nesa_id'];
+	
+		   
+		   if($searchValue=='')
+			  $result[] = $nesa;
+		   else{
+			  if((strpos(strtolower($nesa["nesa_id"]), strtolower($searchValue)) !== false || 
+			  	strpos(strtolower($nesa["document_date"]), strtolower($searchValue)) !== false || 
+			  	strpos(strtolower($nesa["location"]), strtolower($searchValue)) !== false || 
+			  	strpos(strtolower($nesa["sup_name"]), strtolower($searchValue)) !== false )){
+					
+				 $result[] = $nesa;
+			  }
+		   }
+		   
+		}
+	
+	
+		$totalRecords = count($result);
+		$slice = array_slice($result, $start, $length);
+		
+		$data = array(
+					   'draw'            => $this->input->post('draw'), 
+					   'recordsTotal'    => $totalRecords,
+					   'recordsFiltered' => $totalRecords,
+					   'data'            => $slice
+					);
+	
+		echo json_encode($data);  
+		ini_set('memory_limit',$memory_limit);  
+	
+	 }
+
+
+	function get_swa_list(){
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
+		$memory_limit = ini_get('memory_limit');
+		ini_set('memory_limit',-1);
+		ini_set('max_execution_time', 0);
+	
+		$tab           = $this->input->post('tab');
+		$start         = $this->input->post('start'); 
+		$length        = $this->input->post('length'); 
+		$searchValue   = $this->input->post('search')['value'];
+	
+	
+		$swas = $this->Swa_model->get_swa();
+	
+		$result = array();
+		foreach($swas as $swa){
+		   $swa_id = $swa["SWA_ID"];
+	
+		   
+		   if($searchValue=='')
+			  $result[] = $swa;
+		   else{
+			  if((strpos(strtolower($swa["SWA_ID"]), strtolower($searchValue)) !== false || 
+			  	strpos(strtolower($swa["DOCUMENT_DATE"]), strtolower($searchValue)) !== false || 
+			  	strpos(strtolower($swa["LOCATION"]), strtolower($searchValue)) !== false || 
+			  	strpos(strtolower($swa["DESCRIPTION"]), strtolower($searchValue)) !== false || 
+			  	strpos(strtolower($swa["SWA_TRANS_NO1"]), strtolower($searchValue)) !== false || 
+			  	strpos(strtolower($swa["SWA_TRANS_NO2"]), strtolower($searchValue)) !== false || 
+			  	strpos(strtolower($swa["SWA_TRANS_NO3"]), strtolower($searchValue)) !== false || 
+			  	strpos(strtolower($swa["SWA_CRFCV_NO"]), strtolower($searchValue)) !== false || 
+				 strpos(strtolower($swa["SUP_NAME"]), strtolower($searchValue)) !== false )){
+					
+				 $result[] = $swa;
+			  }
+		   }
+		   
+		}
+	
+	
+		$totalRecords = count($result);
+		$slice = array_slice($result, $start, $length);
+		
+		$data = array(
+					   'draw'            => $this->input->post('draw'), 
+					   'recordsTotal'    => $totalRecords,
+					   'recordsFiltered' => $totalRecords,
+					   'data'            => $slice
+					);
+	
+		echo json_encode($data);  
+		ini_set('memory_limit',$memory_limit);  
+	
+	 }
+	
+
+	 function get_per_list(){
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
+		$memory_limit = ini_get('memory_limit');
+		ini_set('memory_limit',-1);
+		ini_set('max_execution_time', 0);
+	
+		$tab           = $this->input->post('tab');
+		$start         = $this->input->post('start'); 
+		$length        = $this->input->post('length'); 
+		$searchValue   = $this->input->post('search')['value'];
+	
+	
+		$pers = $this->Swa_model->get_per();
+	
+		$result = array();
+		 // var_dump($po_headers);
+		 // exit();
+		foreach($pers as $per){
+		   $per_id = $per["PER_ID"];
+		 //   $log_details = $this->Po_model->getPoLog($hd_id);
+	
+		   
+		   if($searchValue=='')
+			  $result[] = $per;
+		   else{
+			  if((strpos(strtolower($per["PER_ID"]), strtolower($searchValue)) !== false || 
+			  	strpos(strtolower($per["DOCUMENT_DATE"]), strtolower($searchValue)) !== false || 
+			  	strpos(strtolower($per["SUB_CODE"]), strtolower($searchValue)) !== false || 
+			  	strpos(strtolower($per["PER_PROMO_TITLE"]), strtolower($searchValue)) !== false || 
+				 strpos(strtolower($per["PER_PROMO_TITLE"]), strtolower($searchValue)) !== false )){
+					
+				 $result[] = $per;
+			  }
+		   }
+		   
+		}
+	
+	
+		$totalRecords = count($result);
+		$slice = array_slice($result, $start, $length);
+		
+		$data = array(
+					   'draw'            => $this->input->post('draw'), 
+					   'recordsTotal'    => $totalRecords,
+					   'recordsFiltered' => $totalRecords,
+					   'data'            => $slice
+					);
+	
+		echo json_encode($data);  
+		ini_set('memory_limit',$memory_limit);  
+	
+	 }
+	
+
+
+
+	// public function get_daterange_data() {
+    //     $start_date = $this->input->post('start_date');
+    //     $end_date = $this->input->post('end_date');
+
+    //     $data = $this->Swa_model->get_swa_daterange($start_date, $end_date);
+
+    //     echo json_encode(['data' => $data]);
+    // }
+
+	function get_daterange_data(){
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
+		$memory_limit = ini_get('memory_limit');
+		ini_set('memory_limit',-1);
+		ini_set('max_execution_time', 0);
+	
+		$tab           = $this->input->post('tab');
+		$start         = $this->input->post('start'); 
+		$length        = $this->input->post('length'); 
+		$searchValue   = $this->input->post('search')['value'];
+		$start_date = $this->input->post('start_date');
         $end_date = $this->input->post('end_date');
-
-        $data = $this->Swa_model->get_swa_daterange($start_date, $end_date);
-
-        echo json_encode(['data' => $data]);
-    }
+	
+		$swa_datas = $this->Swa_model->get_swa_daterange($start_date, $end_date);
+	
+		$result = array();
+		foreach($swa_datas as $swa_data){
+		   $swa_id = $swa_data["SWA_ID"];
+	
+		   
+		   if($searchValue=='')
+			  $result[] = $swa_data;
+		   else{
+			  if((strpos(strtolower($swa_data["SWA_ID"]), strtolower($searchValue)) !== false || 
+			  strpos(strtolower($swa_data["DOCUMENT_DATE"]), strtolower($searchValue)) !== false || 
+			  strpos(strtolower($swa_data["SUP_NAME"]), strtolower($searchValue)) !== false || 
+			  strpos(strtolower($swa_data["SWA_ACCOUNTING_INSTRUCT"]), strtolower($searchValue)) !== false || 
+			  strpos(strtolower($swa_data["LOCATION"]), strtolower($searchValue)) !== false || 
+			  strpos(strtolower($swa_data["SUB_CODE"]), strtolower($searchValue)) !== false || 
+			  strpos(strtolower($swa_data["SWA_REMARK"]), strtolower($searchValue)) !== false || 
+			  strpos(strtolower($swa_data["SWA_TOTAL"]), strtolower($searchValue)) !== false || 
+			  strpos(strtolower($swa_data["SWA_TRANS_NO1"]), strtolower($searchValue)) !== false || 
+			  strpos(strtolower($swa_data["SWA_TRANS_NO1_DATE"]), strtolower($searchValue)) !== false || 
+			  strpos(strtolower($swa_data["SWA_TRANS_NO1_AMOUNT"]), strtolower($searchValue)) !== false || 
+			  strpos(strtolower($swa_data["SWA_CRFCV_NO"]), strtolower($searchValue)) !== false || 
+			  strpos(strtolower($swa_data["SWA_CRFCV_DATE"]), strtolower($searchValue)) !== false || 
+				 strpos(strtolower($swa_data["SWA_CRFCV_AMOUNT"]), strtolower($searchValue)) !== false )){
+					
+				 $result[] = $swa_data;
+			  }
+		   }
+		   
+		}
+	
+	
+		$totalRecords = count($result);
+		$slice = array_slice($result, $start, $length);
+		
+		$data = array(
+					   'draw'            => $this->input->post('draw'), 
+					   'recordsTotal'    => $totalRecords,
+					   'recordsFiltered' => $totalRecords,
+					   'data'            => $slice
+					);
+	
+		echo json_encode($data);  
+		ini_set('memory_limit',$memory_limit);  
+	
+	 }
+	
 
 	public function swa_mis() 
 	{
 		if ($this->session->userdata('priv_swamis') == 1)
 		{
 		$data['menu'] = 'swa_mis';
-		$swa_data = $this->Swa_model->view_swa_data();
-		$data['swa_datas'] = $swa_data;
+		// $swa_data = $this->Swa_model->view_swa_data();
+		// $data['swa_datas'] = $swa_data;
 		$this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
         $this->load->view('admin/require/sidebar', $data);
@@ -89,8 +336,8 @@ class SwaController extends CI_Controller
 		if ($this->session->userdata('priv_swaacctg') == 1)
 		{
 		$data['menu'] = 'swa_accounting';
-		$swa_data = $this->Swa_model->view_swa_data();
-		$data['swa_datas'] = $swa_data;
+		// $swa_data = $this->Swa_model->view_swa_data();
+		// $data['swa_datas'] = $swa_data;
 		$this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
         $this->load->view('admin/require/sidebar', $data);
@@ -102,6 +349,27 @@ class SwaController extends CI_Controller
 		redirect(base_url() . 'AdminController/error_page');
 	}
 	}
+
+
+	public function new_nesa()
+	{
+		$nesa_id = $this->Swa_model->add_nesa();
+		$notification_data = array(
+			'message' => 'A new NESA has been added',
+			'header' => 'New NESA',
+			'target_url' => base_url('SwaController/nesa_list')
+		);
+		if ($nesa_id) {
+			$this->Notification_model->add_notification($notification_data);
+			$response = array('status' => 'success', 'message' => 'Data saved successfully!', 'nesaId' => $nesa_id);
+		} else {
+			$response = array('status' => 'error', 'message' => 'Error saving data.');
+		}
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode($response));
+	}
+
 
 	public function new_swa()
 	{
@@ -121,6 +389,8 @@ class SwaController extends CI_Controller
 			->set_content_type('application/json')
 			->set_output(json_encode($response));
 	}
+
+
 	public function new_per()
 	{
 		$per_id = $this->Swa_model->add_per();
@@ -140,6 +410,7 @@ class SwaController extends CI_Controller
 			->set_output(json_encode($response));
 	}
 
+
 	public function view_swa_reports()
 	{
 		if ($this->session->userdata('priv_reports') == 1)
@@ -156,9 +427,23 @@ class SwaController extends CI_Controller
 	}
 	}
 
+	public function view_nesa_form($nesa_id)
+	{
+		$response['data'] = $this->Swa_model->get_nesa_data($nesa_id);
+		echo json_encode($response);
+	}
+
+
 	public function view_swa_form($swa_id)
 	{
 		$response['data'] = $this->Swa_model->get_swa_data($swa_id);
+		echo json_encode($response);
+	}
+
+
+	public function get_nesa_signatories($nesa_id)
+	{
+		$response['data'] = $this->Swa_model->get_nesa_signatories_data($nesa_id);
 		echo json_encode($response);
 	}
 
@@ -234,6 +519,13 @@ class SwaController extends CI_Controller
 		$response['data'] = $this->Subsidiary_model->get_swa_subsidiary();
 		echo json_encode($response);
 	}	
+
+
+	public function get_nesa_details($nesa_id) {
+        $response['data'] = $this->Swa_model->get_nesa_details($nesa_id);
+        echo json_encode($response);
+    }
+
 
 	public function get_swa_details($swa_id) {
         $response['data'] = $this->Swa_model->get_swa_details($swa_id);
@@ -423,13 +715,19 @@ public function acctg_status_changed()
 		$mpdf->Output();
 	}
 
+public function get_nesa_vendor(){
+	$vendor_code = $this->input->post('vendor_code');	
+	$vendor_list = $this->Swa_model->get_nesa_vendor($vendor_code);
+	echo json_encode($vendor_list);
+}
+
 	public function get_item_code() 
 {
     $connectdns = "test_file";
     $username = "super";
     $password = "fsasya1941";
-    $barcodetable = '[ICM_SM_SERVER_POS_SQL].[dbo].[Islands City Mall - SM POS SRV$Barcodes]';
-    $pricetable = '[ICM_SM_SERVER_POS_SQL].[dbo].[Islands City Mall - SM POS SRV$Sales Price]';
+    $barcodetable = '[ICM_SM_SERVER_POS_02292024].[dbo].[ICM - SM POS SRV 02-29-2024$Barcodes]';
+    $pricetable = '[ICM_SM_SERVER_POS_02292024].[dbo].[ICM - SM POS SRV 02-29-2024$Sales Price]';
     $item_input = $this->input->post('item_input');
 
     $connection = odbc_connect($connectdns, $username, $password);
@@ -530,7 +828,7 @@ public function get_vendor()
     $connectdns = "test_file";
     $username = "super";
     $password = "fsasya1941";
-    $vendortable = '[ICM_SM_SERVER_POS_SQL].[dbo].[Islands City Mall - SM POS SRV$Vendor]';
+    $vendortable = '[ICM_SM_SERVER_POS_02292024].[dbo].[ICM - SM POS SRV 02-29-2024$Vendor]';
     $vendor_input = $this->input->post('vendor_input');
 
 	$vendor_input = strtolower($vendor_input);
@@ -562,6 +860,43 @@ public function get_vendor()
     echo json_encode($data);
 }
 
+// public function get_nesa_vendor()
+// {
+//     $connectdns = "test_file";
+//     $username = "super";
+//     $password = "fsasya1941";
+//     $vendortable = '[ICM_SM_SERVER_POS_02292024].[dbo].[ICM - SM POS SRV 02-29-2024$Vendor]';
+// 	$vendor_code = $this->input->post('vendor_code');	
+
+// 	$vendor_code = strtolower($vendor_code);
+//     $connection = odbc_connect($connectdns, $username, $password);
+//     if (!$connection) {
+//         die('Not connected: ' . odbc_errormsg());
+//     }
+
+//     $vendor_check_query = "
+//         SELECT [No_], [Name]
+//         FROM $vendortable
+//         WHERE [No_] LIKE '$vendor_code'";
+
+//     $vendor_check_result = odbc_exec($connection, $vendor_check_query);
+//     if (!$vendor_check_result) {
+//         die('Error in SQL query: ' . odbc_errormsg());
+//     }
+
+//     $data['vendors'] = array();
+
+//     while ($row = odbc_fetch_array($vendor_check_result)) {
+//         $data['vendors'][] = $row;
+		
+//     }
+//     odbc_free_result($vendor_check_result);
+//     odbc_close($connection);
+
+//     header('Content-Type: application/json');
+// 	echo json_encode($data);
+// }
+
 
     public function get_swa_mis_count() {
         $this->db->where('SWA_MIS_STATUS', 'pending');
@@ -569,4 +904,41 @@ public function get_vendor()
         echo json_encode(['count' => $swaCount]);
     }
 
+
+	public function generate_pdf() {
+
+    // Get the selected rows data
+    $rows = json_decode($this->input->post('rows'), true); // Decode JSON data
+
+    // Initialize mPDF
+    $mpdf = new \Mpdf\Mpdf();
+    $mpdf->SetTitle('Selected Data PDF');
+
+    // Create the HTML content
+    $html = '<h1>Selected Data</h1>';
+    $html .= '<table border="1" cellspacing="0" cellpadding="4">';
+    $html .= '<tr><th>NESID</th><th>Location</th></tr>'; // Table headers
+
+    foreach ($rows as $row) {
+        $html .= '<tr>';
+        $html .= '<td>' . htmlspecialchars($row['nesa_id']) . '</td>'; // Sanitize output
+        $html .= '<td>' . htmlspecialchars($row['location']) . '</td>';
+        $html .= '</tr>';
+    }
+
+    $html .= '</table>';
+
+    // Write the HTML to the PDF
+    $mpdf->WriteHTML($html);
+
+    // Output PDF as a response
+    $pdfOutput = $mpdf->Output('', 'I'); // Output to a string
+
+    // Set the response headers to download the PDF
+    // $this->output
+    //     ->set_content_type('application/pdf')
+    //     ->set_output($pdfOutput);
+}
+
+	
 }

@@ -53,11 +53,8 @@ class Admin_model extends CI_Model
                     'priv_ut' => $row->userType,
                     'priv_users' => $row->systemUser,
                     'priv_um' => $row->userMenu,
-                    'priv_ms' => $row->menuSetting,
-                    'priv_utilities' => $row->systemUtilities,  
-                    'priv_sw' => $row->systemWallpaper,
+                    'priv_utilities' => $row->systemUtilities, 
                     'priv_as' => $row->aboutSystem,
-                    'priv_genreport' => $row->generateReport,
                     'logged_in' => true
                 );
                 $this->session->set_userdata($session_data);
@@ -96,7 +93,6 @@ class Admin_model extends CI_Model
                     'priv_utilities' => $row->systemUtilities,  
                     'priv_sw' => $row->systemWallpaper,
                     'priv_as' => $row->aboutSystem,
-                    'priv_genreport' => $row->generateReport,
                     'logged_in' => true
                 );   
                 $this->session->unset_userdata($session_data);

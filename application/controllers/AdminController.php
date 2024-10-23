@@ -230,12 +230,14 @@ public function acctg_status_changed()
 	{
 		if ($this->session->userdata('priv_um') == 1){
 		$data['menu'] = 'User_menu';			
-		$data['classes'] = $this->Admin_model->view_class_privilege();
+		// $data['classes'] = $this->Admin_model->view_class_privilege();
 		$this->load->view('admin/require/header');
 		$this->load->view('admin/require/navbar');
 		$this->load->view('admin/require/sidebar', $data);
 		$this->load->view('admin/view/user_menu', $data);
+        $this->load->view('admin/view/modals/class_modal');
         $this->load->view('admin/view/js/user_menu_js');
+        $this->load->view('admin/view/modals/class_modal');
         $this->load->view('admin/view/modals/user_menu_modal');
 		$this->load->view('admin/require/footer');
 		} else {

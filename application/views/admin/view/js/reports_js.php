@@ -27,69 +27,97 @@ $(document).ready(function() {
     cb(start, end);
 
     function fetchTableData(startDate, endDate) {
-        $('.report-loader').show();
-        // var loaderMinimumTime = 2000; // 3 seconds
-        // var startTime = Date.now();
-
-        $.ajax({
-            url: '<?= base_url("SwaController/get_daterange_data") ?>',
-            method: 'POST',
-            data: {
-                start_date: startDate,
-                end_date: endDate
-            },
-            success: function(response) {
-                try {
-                    response = JSON.parse(response);
-                } catch (e) {
-                    console.error('Invalid JSON response:', response);
-                    alert('Failed to load data: Invalid JSON response.');
-                    $('.report-loader').hide();
-                    return;
-                }
-
-                setTimeout(function() {
-                    var tbody = $('#report-table tbody');
-                    tbody.empty();
-                    console.log(response);
-                    response.data.forEach(function(row) {
-                        tbody.append(
-                            '<tr>' +
-                            '<td>' + (row.SWA_ID || '') + '</td>' +
-                            '<td>' + (row.DOCUMENT_DATE || '') + '</td>' +
-                            '<td>' + (row.SUP_NAME || '') + '</td>' +
-                            '<td>' + (row.SWA_ACCOUNTING_INSTRUCT || '') +'</td>' +
-                            '<td>' + (row.LOCATION || '') + '</td>' +
-                            '<td>' + (row.SUB_CODE || '') + '</td>' +
-                            '<td>' + (row.SWA_REMARK || '') + '</td>' +
-                            '<td>' + (row.SWA_TOTAL || '') + '</td>' +
-                            '<td>' + (row.SWA_TRANS_NO1 || '') + '</td>' +
-                            '<td>' + (row.SWA_TRANS_NO1_DATE || '') + '</td>' +
-                            '<td>' + (row.SWA_TRANS_NO1_AMOUNT || '') + '</td>' +
-                            '<td>' + (row.SWA_CRFCV_NO || '') + '</td>' +
-                            '<td>' + (row.SWA_CRFCV_DATE || '') + '</td>' +
-                            '<td>' + (row.SWA_CRFCV_AMOUNT || '') + '</td>' +
-                            '<td></td>' +
-                            '</tr>'
-                        );
-                    });
-                    $('.report-loader').hide();
-                });
-            },
-            error: function() {
-                // var elapsedTime = Date.now() - startTime;
-                // var remainingTime = loaderMinimumTime - elapsedTime;
-                setTimeout(function() {
-                    $('.report-loader').hide();
-                    alert('Failed to fetch data.');
-                });
+        if ($.fn.DataTable.isDataTable('#report-table')) {
+        // Destroy the existing DataTable instance
+        $('#report-table').DataTable().clear().destroy();
+    }
+        var dataTable_mis = $('#report-table').DataTable({
+        processing: true,
+        serverSide: true,
+        searching: true,
+        autoWidth: true,
+        lengthChange: false,
+        ordering: false,
+        ajax: {
+            url: "<?php echo base_url(); ?>SwaController/get_daterange_data",
+            type: "POST",
+            data: function(d) {
+                d.start = d.start || 0;
+                d.length = d.length || 10;
+                d.start_date = startDate;
+                d.end_date = endDate;
             }
-        });
+        },
+        columns: [{
+                data: 'SWA_ID'
+            },
+            {
+                data: 'DOCUMENT_DATE'
+            },
+            {
+                data: 'SUP_NAME'
+            },
+            {
+                data: 'SWA_ACCOUNTING_INSTRUCT'
+            },
+            {
+                data: 'LOCATION'
+            },
+            {
+                data: 'SUB_CODE'
+            },
+            {
+                data: 'SWA_REMARK'
+            },
+            {
+                data: 'SWA_TOTAL'
+            },
+            {
+                data: 'SWA_TRANS_NO1'
+            },
+            {
+                data: 'SWA_TRANS_NO1_DATE'
+            },
+            {
+                data: 'SWA_TRANS_NO1_AMOUNT'
+            },
+            {
+                data: 'SWA_CRFCV_NO'
+            },
+            {
+                data: 'SWA_CRFCV_DATE'
+            },
+            {
+                data: 'SWA_CRFCV_AMOUNT'
+            },
+            {
+                data: null,
+                orderable: false,
+                render: function(data, type, row) {
+                    return ``;
+                }
+            },
+            
+        ],
+        paging: true,
+        pagingType: "full_numbers",
+        lengthMenu: [
+            [10, 25, 50, 1000],
+            [10, 25, 50, "Max"]
+        ],
+        pageLength: 10,
+        language: {
+            search: '',
+            searchPlaceholder: ' Search...',
+            processing: '<div class="table-loader"></div>'
+        }
+    });
+
     }
 
     $('#generate-pdf-btn').on('click', function() {
         $('.generate-loader').show();
-        setTimeout(generatePDF, 5000);
+        setTimeout(generatePDF);
     });
 
     // $('#generate-excel-btn').on('click', function() {

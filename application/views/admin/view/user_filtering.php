@@ -6,7 +6,7 @@
                     <i class="feather icon-users bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>User Filtering</h5>
-                        <span>Stock Withdrawal Advice System</span>
+                        <span>Stock Withdrawal Advise System</span>
                     </div>
                 </div>
             </div>

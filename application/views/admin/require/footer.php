@@ -78,5 +78,10 @@
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/moment.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/daterangepicker.js"></script>
 
+
+
+<script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/dataTables.js"></script>
+<script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/dataTables.select.js"></script>
+<script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/select.dataTables.js"></script>
 </body>
 </html>

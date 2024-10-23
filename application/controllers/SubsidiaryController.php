@@ -35,6 +35,58 @@ else {
 }
 }
 
+ 
+function get_subsidiary_list(){
+	error_reporting(E_ALL);
+	ini_set('display_errors', 1);
+	$memory_limit = ini_get('memory_limit');
+	ini_set('memory_limit',-1);
+	ini_set('max_execution_time', 0);
+
+	$tab           = $this->input->post('tab');
+	$start         = $this->input->post('start'); 
+	$length        = $this->input->post('length'); 
+	$searchValue   = $this->input->post('search')['value'];
+
+
+	$subs = $this->Subsidiary_model->get_subsidiaries();
+
+	$result = array();
+	 // var_dump($po_headers);
+	 // exit();
+	foreach($subs as $sub){
+	   $sub_id = $sub["ID"];
+	 //   $log_details = $this->Po_model->getPoLog($hd_id);
+
+	   
+	   if($searchValue=='')
+		  $result[] = $sub;
+	   else{
+		  if((strpos(strtolower($sub["CODE"]), strtolower($searchValue)) !== false || 
+			 strpos(strtolower($sub["DESCRIPTION"]), strtolower($searchValue)) !== false )){
+				
+			 $result[] = $sub;
+		  }
+	   }
+	   
+	}
+
+
+	$totalRecords = count($result);
+	$slice = array_slice($result, $start, $length);
+	
+	$data = array(
+				   'draw'            => $this->input->post('draw'), 
+				   'recordsTotal'    => $totalRecords,
+				   'recordsFiltered' => $totalRecords,
+				   'data'            => $slice
+				);
+
+	echo json_encode($data);  
+	ini_set('memory_limit',$memory_limit);  
+
+ }
+
 
     public function subsidiary_ajax()
 	{
@@ -69,19 +121,14 @@ public function new_subsidiary()
 		'DESCRIPTION' => $this->input->post('update_subdescript')
 		);
 
-		$response = $this->Subsidiary_model->update_subsidiary($sub_id, $update_data);
-
-		if ($response) {
-			$result = array('status' => 'success', 'message' => 'Data updated successfully!', 'data' => $response);
-		} else {
-			$result = array('status' => 'error', 'message' => 'Failed to update data.');
-		}
+		$this->Subsidiary_model->update_subsidiary($sub_id, $update_data);
+		$response = array('status' => 'success', 'message' => 'User updated successfully!');
 	
-		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+		$this->output->set_content_type('application/json')->set_output(json_encode($response));
 	}
 		
 	public function del_subsidiary($sub_id) 
-	{
+	{	
 		$del_subsidiary = $this->Subsidiary_model->del_subsidiary($sub_id); 
 		if($del_subsidiary['deleted']=='done'){
 			$result = array('status' => 'success', 'message' => 'Data deleted successfully!');

@@ -7,7 +7,7 @@
                     <i class="feather icon-flag bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>Generate Report</h5>
-                        <span>Stock Withdrawal Advice System</span>
+                        <span>Stock Withdrawal Advise System</span>
                     </div>
                 </div>
             </div>
@@ -15,7 +15,8 @@
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title breadcrumb-padding">
                         <li class="breadcrumb-item">
-                            <a href="<?php echo base_url() ?>AdminController/index"><i class="feather icon-home"></i></a>
+                            <a href="<?php echo base_url() ?>AdminController/index"><i
+                                    class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item"><a href="#!">Generate Report</a>
                         </li>
@@ -34,13 +35,9 @@
                 <div class="page-body">
                     <div class="row">
                         <div class="col-sm-12">
-
                             <div class="card table-card">
-                                <!-- <div class="card-header">
-                                    <h5>Generate Report</h5>
-                                </div>  -->
-                                <div class="card-block" style="padding-top: 50px; padding-bottom: 50px">
-                                    <div class="row" style="margin-bottom: 20px;">
+                                <div class="card-block" style="">
+                                    <div class="row" style="">
                                         <div class="col-auto">
                                             <div id="reportrange"
                                                 style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 400x;">
@@ -60,9 +57,14 @@
                                             <div class="generate-loader"></div>
                                         </div>
                                     </div>
+
+                                </div>
+                            </div>
+                            <div class="card table-card">
+                                <div class="card-block">
                                     <div class="table-responsive">
                                         <div class="report-loader"></div>
-                                        <table id="report-table" class="table table-hover table-bordered m-b-0">
+                                        <table id="report-table" class="table table-hover m-b-0" style="width: 100%;">
                                             <thead>
                                                 <tr>
                                                     <th style="width: 1%">SWA#</th>
@@ -98,4 +100,3 @@
         </div>
     </div>
 </div>
-

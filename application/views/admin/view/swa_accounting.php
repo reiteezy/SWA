@@ -7,7 +7,7 @@
                     <i class="feather icon-check bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>Accounting Confirmation</h5>
-                        <span>Stock Withdrawal Advice System</span>
+                        <span>Stock Withdrawal Advise System</span>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
 
                                 <div class="card-block" style="padding-bottom: 50px;">
                                     <div class="table-responsive">
-                                        <table class="table table-hover m-b-0" id="acctgtable">
+                                        <table class="table table-hover m-b-0" id="acctgtable" style="width: 100%;">
                                             <thead>
                                                 <tr>
                                                     <!-- <th>#</th> -->
@@ -55,15 +55,16 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach ($swa_datas as $data): ?>
-                                                <tr>
-                                                    <td style="width: 10%;"><?php echo $data->SWA_ID; ?></td><!-- to be changed to actual control number-->
+                                                <!-- <?php #foreach ($swa_datas as $data): ?>
+                                                <tr> -->
+                                                    <!-- to be changed to actual control number-->
+                                                    <!-- <td style="width: 10%;"><?php echo $data->SWA_ID; ?></td>
                                                     <td style="width: 10%;">
                                                         <?php echo date("F j, Y", strtotime($data->DOCUMENT_DATE)); ?>
                                                     </td>
                                                     <td><?php echo $data->LOCATION; ?></td>
                                                     <td><?php echo $data->DESCRIPTION; ?></td>
-                                                    <td><?php echo $data->SWA_CRFCV_NO; ?></td>
+                                                    <td><?php echo $data->SWA_CRFCV_NO; ?></td> -->
                                                     <!-- <td>
                                                         <?php #if(!empty($data->SWA_CRFCV_NO)) { ?>
                                                         <label class="form-label badge badge-inverse-success acctg-status"
@@ -73,7 +74,7 @@
                                                             sid="<?php #echo $data->SWA_ID?>">Pending</label>
                                                         <?php #} ?>
                                                     </td> -->
-                                                    <td>
+                                                    <!-- <td>
                                                         <button type="button" class="acctg-confirm-btn  btn waves-effect waves-light btn-primary btn-icon" <?php echo (!empty($data->SWA_CRFCV_NO)) ? 'disabled' : '';?> title="Confirm"
                                                             data-swa-id="<?php echo $data->SWA_ID; ?>"
                                                             data-control-no="<?php echo $data->SWA_CONTROL_NO; ?>"
@@ -82,9 +83,9 @@
                                                             <i class="icofont icofont-ui-check" style="padding-left: 5px;"></i>
                                                         </button>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
                                                 <?php  
-                              endforeach;
+                              #endforeach;
                             #}
                               ?>
                                             </tbody>

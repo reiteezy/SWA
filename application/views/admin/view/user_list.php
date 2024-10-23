@@ -6,7 +6,7 @@
                     <i class="feather icon-users bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>System Users</h5>
-                        <span>Stock Withdrawal Advice System</span>
+                        <span>Stock Withdrawal Advise System</span>
                     </div>
                 </div>
             </div>
@@ -30,26 +30,26 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card table-card">
-                                <!-- <div class="card-header">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                <div class="card-header">
+                                    <button type="button" class="btn btn-primary custom-btn-db" data-toggle="modal"
                                         data-target="#addUserModal"><i class="feather icon-plus"></i>Add New
                                         User</button>
-                                </div> -->
+                                </div>
                                 <div class="card-block" style="padding-bottom: 50px;">
                                     <div class="table-responsive">
-                                        <table id="usertable" class="table table-hover m-b-0">
+                                        <table id="usertable" class="table table-hover m-b-0" style="width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th style="width: 20%">Employee Name</th>
+                                                    <th style="width: 30%">Employee</th>
                                                     <th>Username</th>
                                                     <th>User Class</th>
-                                                    <th>Password</th>
+                                                    <!-- <th>Password</th> -->
                                                     <th>Status</th>
-                                                    <th style="width: 10%;"></th>
+                                                    <th style="width: 10%;">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php
+                                                <!-- <?php
                               foreach ($users as $user):
                               ?>
                                                 <tr>
@@ -100,7 +100,7 @@
                                                 </tr>
                                                 <?php
                         endforeach;
-                        ?>
+                        ?> -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -113,7 +113,7 @@
             </div>
         </div>
     </div>
-    <a href="#" data-toggle="modal"
+    <!-- <a href="#" data-toggle="modal"
 data-target="#addUserModal" class="float">
 <i class="fa fa-plus my-float"></i>
-</a>
+</a> -->

@@ -30,7 +30,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light" id="classSaveButton">Save changes</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light custom-btn-db" id="classSaveButton">Save changes</button>
             </div>
         </div>
     </div>
@@ -69,7 +69,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light" id="saveEditButton">Save changes</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light custom-btn-db" id="saveEditButton">Save changes</button>
             </div>
         </div>
     </div>

@@ -7,7 +7,7 @@
                     <i class="feather icon-inbox bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>View Profile</h5>
-                        <span>Stock Withdrawal Advice System</span>
+                        <span>Stock Withdrawal Advise System</span>
                     </div>
                 </div>
             </div>
@@ -88,6 +88,7 @@
                                             <td>
                                                 <span
                                                     style="color: #1d8899;"><?php echo ($info['STATUS'] == 1) ? 'Active' : 'Inactive'; ?>
+                                                </span>
                                             </td>
                                         </tr>
                                         <tr>

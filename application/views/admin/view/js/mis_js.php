@@ -109,6 +109,10 @@ $(document).ready(function() {
                         transactAmount: transactAmount
                     },
                     success: function(response) {
+                        dataTable_mis.ajax.reload();
+                        $('input[name="transactNo"]').val('');
+                        $('input[name="transactDate"]').val('');
+                        $('input[name="transactAmount"]').val('');
                         console.log("Response: " + response);
                         var responseData = JSON.parse(response);
 
@@ -118,8 +122,6 @@ $(document).ready(function() {
                             text: responseData.message,
                             icon: responseData.status === 'success' ?
                                 'success' : 'error'
-                        }).then(() => {
-                            location.reload(true);
                         });
                     },
 
@@ -136,15 +138,90 @@ $(document).ready(function() {
             }
         });
     });
-    $('#mistable').DataTable({
+    function reload_table() {
+        dataTable_mis.ajax.reload();
+}
+
+    var dataTable_mis = $('#mistable').DataTable({
+        processing: true,
+        serverSide: true,
+        searching: true,
         lengthChange: false,
+        ordering: false,
+        ajax: {
+            url: "<?php echo base_url(); ?>SwaController/get_swa_list",
+            type: "POST",
+            data: function(d) {
+                d.start = d.start || 0;
+                d.length = d.length || 10;
+            }
+        },
+        columns: [{
+                data: 'SWA_ID'
+            },
+            {
+                data: 'DOCUMENT_DATE'
+            },
+            {
+                data: 'LOCATION'
+            },
+            {
+                data: 'DESCRIPTION'
+            },
+            {
+                data: 'SWA_TRANS_NO1'
+            },
+            {
+                data: 'SWA_TRANS_NO2'
+            },
+            {
+                data: 'SWA_TRANS_NO3'
+            },
+            {
+                data: null,
+                orderable: false,
+                render: function(data, type, row) {
+                    if(row.SWA_TRANS_NO3 == '' || row.SWA_TRANS_NO3 == null){
+                    return `
+                                <button 
+                                    type="button" 
+                                    class="mis-confirm-btn btn waves-effect waves-light btn-primary custom-btn-db"
+                                    data-swa-id="${row.SWA_ID}" 
+                                    data-toggle="modal" 
+                                    title="Confirm" 
+                                    data-target="#misConfirmModal">
+                                    <i class="icofont icofont-check" style="padding-left: 5px;"></i>
+                                </button>
+                            `;
+                        } else {
+                            return `
+                                <button 
+                                    type="button" 
+                                    class="mis-confirm-btn btn waves-effect waves-light btn-primary custom-btn-db" disabled
+                                    data-swa-id="${row.SWA_ID}" 
+                                    data-toggle="modal" 
+                                    title="Confirm" 
+                                    data-target="#misConfirmModal">
+                                    <i class="icofont icofont-check" style="padding-left: 5px;"></i>
+                                </button>
+                            `;
+                        }
+                }
+            }
+        ],
+        paging: true,
+        pagingType: "full_numbers",
+        lengthMenu: [
+            [10, 25, 50, 1000],
+            [10, 25, 50, "Max"]
+        ],
+        pageLength: 10,
         language: {
             search: '',
-            searchPlaceholder: 'Search...'
-        },
-        ordering: false
+            searchPlaceholder: ' Search...',
+            processing: '<div class="table-loader"></div>'
+        }
     });
-
 
 
 $('.dataTables_filter input[type="search"]').css({
@@ -153,5 +230,6 @@ $('.dataTables_filter input[type="search"]').css({
     'padding': '5px',
     'box-sizing': 'border-box'
 });
+
 });
 </script>

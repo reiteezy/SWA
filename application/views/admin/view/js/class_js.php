@@ -15,7 +15,6 @@
             return;
         }
 
-        // Check if values have changed
         if (classInput.val() === initialClassValue && descriptionInput.val() ===
             initialDescriptionValue) {
             // Display a Swal message for no changes
@@ -47,6 +46,8 @@
                     processData: false,
                     contentType: false,
                     success: function(response) {
+                        
+                        dataTable_class.ajax.reload();
                         console.log("Response:", response);
                         var responseData = response;
 
@@ -57,7 +58,8 @@
                             icon: responseData.status === 'success' ?
                                 'success' : 'error'
                         }).then(() => {
-                            location.reload(true);
+                            $('[name="user_class"]').val('');
+                            $('[name="user_descript"]').val('');
                         });
                     },
                     error: function(error) {
@@ -81,8 +83,7 @@
         $('#user_editclass').val(classCode);
         $('#user_editdescript').val(classDescript);
     });
-
-    // Optionally, handle the save button click if you need to perform validation or AJAX submit
+    
     var saveEditButton = $('#saveEditButton');
     var classEditForm = $('#classEditForm');
     var formChanged = false;
@@ -92,14 +93,33 @@
         formChanged = true;
     });
 
-    saveEditButton.on('click', function() {
+   saveEditButton.on('click', function() {
         var classId = $('#class_id').val();
+        var classCode = $('#user_editclass').val();
+        var classDescription = $('#user_editdescript').val();
+    
         if (!formChanged) {
             Swal.fire({
                 title: 'No Changes Made',
                 text: 'There are no changes to save.',
                 icon: 'info'
             });
+            return;
+        }
+        if (classCode == "") {
+            Swal.fire({
+                        title: 'Error',
+                        text: 'Subsidiary code required.',
+                        icon: 'warning'
+                    })
+            return;
+        }
+        if (classDescription == "") {
+            Swal.fire({
+                        title: 'Error',
+                        text: 'Subsidiary description required.',
+                        icon: 'warning'
+                    })
             return;
         }
 
@@ -114,36 +134,48 @@
         }).then(function(result) {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "<?php echo base_url(); ?>ClassController/edit_type/" +
-                        classId,
-                    type: classEditForm.attr('method'),
-                    data: new FormData(classEditForm[0]),
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        console.log("Response:", response);
-                        var responseData = response;
-
-                        Swal.fire({
-                            title: responseData.status === 'success' ?
-                                'Success' : 'Error',
-                            text: responseData.message,
-                            icon: responseData.status === 'success' ?
-                                'success' : 'error'
-                        }).then(function() {
-                            window.location.href =
-                                '<?php echo base_url() ?>ClassController/class_list';
-                        });
+                    type: "POST",
+                    url: "<?php echo base_url(); ?>ClassController/edit_type/",
+                    data: {
+                        class_id: classId,
+                        class_code: classCode,
+                        class_descript: classDescription
                     },
-                    error: function(error) {
-                        console.log("Error: " + error);
+                    dataType: 'json',
+                    success: function(response) {
+                    if (response.status === 'success') {
+                        dataTable_class.ajax.reload();
+                        Swal.fire({
+                            title: 'success',
+                            text: 'Successfully updated.',
+                            icon: 'success'
+                        }).then(() => {
+                          
+                            $("#editClassModal").modal('hide');
+                        });
+                    
+                    } else if(response.status === 'error') {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.message || 'An error occurred. Please try again later.',
+                            icon: 'error'
+                        });
+                    }
+                    }, error: function(xhr, status, error) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'There was an issue with the request. Please try again.',
+                            icon: 'error'
+                        });
                     }
                 });
             }
         });
     });
 
-    $('.deleteButton').on('click', function() {
+   
+
+    $(document).on('click', '.deleteButton', function() {
         var deleteUrl = $(this).data('delete-url');
 
         Swal.fire({
@@ -160,6 +192,8 @@
                     url: deleteUrl,
                     type: 'GET',
                     success: function(response) {
+                        
+                        dataTable_class.ajax.reload();
                         console.log("Response:", response);
                         var responseData = response;
 
@@ -169,8 +203,6 @@
                             text: responseData.message,
                             icon: responseData.status === 'success' ?
                                 'success' : 'error'
-                        }).then(() => {
-                            location.reload(true);
                         });
                     },
                     error: function(error) {
@@ -182,13 +214,69 @@
     });
 
 
-            $('#classtable').DataTable({
-                lengthChange: false,
-                language: {
-                    search: '',
-                    searchPlaceholder: 'Search...'
+var baseUrl = "<?php echo base_url(); ?>"
+function reload_table() {
+    dataTable_class.ajax.reload();
+}
+
+    var dataTable_class = $('#classtable').DataTable({
+        processing: true,
+        serverSide: true,
+        searching: true,
+        lengthChange: false,
+        ordering: false,
+        ajax: {
+            url: "<?php echo base_url(); ?>ClassController/get_class_list",
+            type: "POST",
+            data: function(d) {
+                d.start = d.start || 0;
+                d.length = d.length || 10;
+            }
+        },
+        columns: [{
+                data: 'CLASS'
+            },
+            {
+                data: 'DESCRIPTION'
+            },
+            {
+                data: null,
+                orderable: false,
+                render: function(data, type, row) {
+                    return `
+                            <button type="button" class="editClassButton btn waves-effect waves-light btn-primary btn-icon" 
+                            title="Edit" 
+                            style="border:none; background-color: #02838d;" 
+                            data-class-id="${row.CID}" 
+                            data-class-code="${row.CLASS}" 
+                            data-class-descript="${row.DESCRIPTION}" 
+                            data-toggle="modal" 
+                            data-target="#editClassModal">
+                            <i class="icofont icofont-edit" style="padding-left: 5px;"></i>
+                            </button>
+                            <button type="button" class="deleteButton btn waves-effect waves-light btn-primary btn-icon" 
+                            title="Delete" 
+                            style="border:none; background-color: #f0533a;" 
+                            data-delete-url="${baseUrl}ClassController/del_type/${row.CID}">
+                            <i class="icofont icofont-ui-delete" style="padding-left: 5px;"></i>
+                            </button>
+                        `;
                 }
-            });
+            }
+        ],
+        paging: true,
+        pagingType: "full_numbers",
+        lengthMenu: [
+            [10, 25, 50, 1000],
+            [10, 25, 50, "Max"]
+        ],
+        pageLength: 10,
+        language: {
+            search: '',
+            searchPlaceholder: ' Search...',
+            processing: '<div class="upload-loader"></div>'
+        }
+    });
 
 
         $('.dataTables_filter input[type="search"]').css({
@@ -197,5 +285,10 @@
             'padding': '5px',
             'box-sizing': 'border-box'
         });
+
+
+  
     });
+
+
     </script>

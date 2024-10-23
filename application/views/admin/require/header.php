@@ -62,6 +62,9 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>assets/css/daterangepicker.css">
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>assets/css/toastr.css">
 
+
+<link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>assets/css/dataTables.dataTables.css">
+<link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>assets/css/select.dataTables.css">
 <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> -->
 </head>

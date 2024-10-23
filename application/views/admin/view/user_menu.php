@@ -7,7 +7,7 @@
                     <i class="feather icon-user-check bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>User Menu</h5>
-                        <span>Stock Withdrawal Advice System</span>
+                        <span>Stock Withdrawal Advise System</span>
                     </div>
                 </div>
             </div>
@@ -34,19 +34,24 @@
                         <div class="col-sm-12">
 
                             <div class="card table-card">
+                            <div class="card-header">
+                                <button type="button" class="btn btn-primary custom-btn-db" data-toggle="modal"
+                                        data-target="#addTypeModal"><i class="feather icon-plus"></i>Add New User
+                                        Type</button>
+                                </div>
                                 <div class="card-block" style="padding-bottom: 50px;">
                                     <div class="table-responsive">
                                         <table class="table table-hover" id="classtable" style="width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
+                                                    <!-- <th>#</th> -->
                                                     <th style="width: 40%;">Class</th>
                                                     <th style="width: 40%;">Description</th>
-                                                    <th style="width: 16%; text-align: center;">Action</th>
+                                                    <th style="width: 16%;">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php
+                                                <!-- <?php
                               $count = 1;
                               foreach ($classes as $class):
                               ?>
@@ -65,7 +70,7 @@
                                                 </tr>
                                                 <?php
                               endforeach;
-                              ?>
+                              ?> -->
                                             </tbody>
                                         </table>
                                     </div>

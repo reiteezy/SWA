@@ -9,8 +9,36 @@ class Swa_model extends CI_Model
         parent::__construct(); 
     }
 
-   
-    public function view_swa_data() 
+    public function get_nesa($vendor_filter, $start_date, $end_date) 
+    {
+        $this->db->order_by('nesa_id', 'DESC');
+        $this->db->select('nesa_tbl.*');
+        $this->db->from('nesa_tbl');
+        $this->db->like('sup_code', $vendor_filter);
+        if (!empty($start_date) && !empty($end_date)) {
+            $this->db->where('document_date >=', $start_date);
+            $this->db->where('document_date <=', $end_date);
+        }
+
+        $query = $this->db->get();
+        return $query->result_array(); 
+       
+    }
+
+    public function get_nesa_vendor($vendor_code) 
+    {
+        $this->db->select('nesa_tbl.nesa_id, nesa_tbl.sup_code');
+        $this->db->from('nesa_tbl');
+        $this->db->like('sup_code', $vendor_code);
+        $this->db->group_by('nesa_tbl.nesa_id, nesa_tbl.sup_code');
+
+        $query = $this->db->get();
+        return $query->result_array(); 
+       
+    }
+
+
+    public function get_swa() 
     {
         $this->db->order_by('SWA_ID', 'DESC');
         $this->db->select('swa_tbl.*, sub_tbl.CODE as SUB_CODE,  sub_tbl.DESCRIPTION');
@@ -18,28 +46,38 @@ class Swa_model extends CI_Model
         $this->db->from('swa_tbl');
         $this->db->join('sub_tbl', 'swa_tbl.SUB_ID = sub_tbl.ID', 'left');
         // $this->db->join('sup_tbl', 'swa_tbl.SUP_ID = sup_tbl.ID', 'left');
+
         $query = $this->db->get();
-    
-        if ($query) {
-            return $query->result(); 
-        } else {
-            return array(); 
-        }
+        return $query->result_array(); 
+       
     }
     
-    public function view_per_data() 
+
+    public function get_per() 
     {
         $this->db->order_by('PER_ID', 'DESC');
         $this->db->select('per_tbl.*');
         $this->db->from('per_tbl');
         $query = $this->db->get();
-    
-        if ($query) {
-            return $query->result(); 
-        } else {
-            return array(); 
-        }
+
+        return $query->result_array(); 
     } 
+
+
+    public function get_nesa_data($nesa_id) 
+    {
+        $this->db->select('nesa_tbl.*, nesa_details_tbl.item_code, nesa_details_tbl.item_descript, nesa_details_tbl.uom, nesa_details_tbl.qty, nesa_details_tbl.expiry'); 
+        $this->db->from('nesa_tbl');
+        $this->db->join('nesa_details_tbl', 'nesa_tbl.nesa_id = nesa_details_tbl.nesa_id', 'left');
+        $this->db->where('nesa_tbl.nesa_id', $nesa_id);
+        $query = $this->db->get();
+
+    if ($query->num_rows() > 0) {
+        return $query->row_array();
+    } else {
+        return false;
+    }
+    }
 
     public function get_swa_data($swa_id) 
     {
@@ -50,6 +88,21 @@ class Swa_model extends CI_Model
         $this->db->join('sub_tbl', 'swa_tbl.SUB_ID = sub_tbl.ID', 'left');
         // $this->db->join('sup_tbl', 'swa_tbl.SUP_ID = sup_tbl.ID', 'left');
         $this->db->where('swa_tbl.SWA_ID', $swa_id);
+        $query = $this->db->get();
+
+    if ($query->num_rows() > 0) {
+        return $query->row_array();
+    } else {
+        return false;
+    }
+    }
+
+    
+    public function get_nesa_signatories_data($nesa_id) 
+    {
+        $this->db->select('nesa_tbl.sub_by, nesa_tbl.sub_date, nesa_tbl.sub_time, nesa_tbl.check_by, nesa_tbl.check_date, nesa_tbl.check_time, nesa_tbl.rev_by, nesa_tbl.rev_date, nesa_tbl.rev_time, nesa_tbl.app_by, nesa_tbl.app_date, nesa_tbl.app_time, nesa_tbl.rec_by, nesa_tbl.rec_date, nesa_tbl.rec_time');
+        $this->db->from('nesa_tbl');
+        $this->db->where('nesa_tbl.nesa_id', $nesa_id);
         $query = $this->db->get();
 
     if ($query->num_rows() > 0) {
@@ -117,6 +170,7 @@ class Swa_model extends CI_Model
         return $query->result_array();
     }
 
+
     public function get_per_data($per_id) 
     {
         $this->db->select('per_tbl.*, per_details_tbl.PER_QUANTITY, per_details_tbl.PER_UNIT, per_details_tbl.PER_ITEM_DESCRIPTION, per_details_tbl.PER_ACTUAL_EXECUTE_QTY, per_details_tbl.PER_UNUSED_ALLOCATION');
@@ -162,6 +216,21 @@ class Swa_model extends CI_Model
             return array(); 
         }
     }
+
+    public function get_nesa_details($nesa_id) 
+    {
+        $this->db->select('nesa_details_tbl.*');
+        $this->db->from('nesa_details_tbl');
+        $this->db->where('nesa_id', $nesa_id); 
+        $query = $this->db->get();
+
+        if ($query) {
+            return $query->result(); 
+        } else {
+            return array(); 
+        }
+    }
+
 
     public function get_swa_details($swa_id) 
     {
@@ -214,28 +283,105 @@ class Swa_model extends CI_Model
             return false;
         }
     }
+
+
+    function add_nesa()
+    {
+        $loc = $this->input->post('nesa_location');
+        $document_date = $this->input->post('nesa_date');
+        $control_no = $this->input->post('control_no');
+        $course_of_action = $this->input->post('course_of_action');
+        $sub_by = $this->input->post('sub_by');
+        $sub_date = $this->input->post('sub_date');
+        $sub_time = $this->input->post('sub_time');
+        $check_by = $this->input->post('check_by');
+        $check_date = $this->input->post('check_date');
+        $check_time = $this->input->post('check_time');
+        $rev_by = $this->input->post('rev_by');
+        $rev_date = $this->input->post('rev_date');
+        $rev_time = $this->input->post('rev_time');
+        $app_by = $this->input->post('app_by');
+        $app_date = $this->input->post('app_date');
+        $app_time = $this->input->post('app_time');
+        $rec_by = $this->input->post('rec_by');
+        $rec_date = $this->input->post('rec_date');
+        $rec_time = $this->input->post('rec_time');
+        $sup_code = $this->input->post('sup_code');
+        $sup_name = $this->input->post('sup_name');
+
+        
+        $nesa_data = array(
+            'location' => $loc,
+            'document_date' => $document_date,
+            'nesa_id' => $control_no,
+            'course_of_action' => $course_of_action,
+            'sub_by' => $sub_by,
+            'sub_date' => $sub_date,
+            'sub_time' => $sub_time,
+            'check_by' => $check_by,
+            'check_date' => $check_date,
+            'check_time' => $check_time,
+            'rev_by' => $rev_by,
+            'rev_date' => $rev_date,
+            'rev_time' => $rev_time,
+            'app_by' => $app_by,
+            'app_date' => $app_date,
+            'app_time' => $app_time,
+            'rec_by' => $rec_by,
+            'rec_date' => $rec_date,
+            'rec_time' => $rec_time,
+            'sup_code' => $sup_code,
+            'sup_name' => $sup_name
+        );
+        $this->db->insert('nesa_tbl', $nesa_data);
+        $nesa_id = $this->db->insert_id();
+        $table_data = $this->input->post('datas');
+        $nesa_table_data = array();
+        
+        foreach ($table_data as $row) {
+            if (!empty($row['item_code']) || !empty($row['item_descript']) || !empty($row['unit']) || !empty($row['unit_cost']) || !empty($row['qty']) || !empty($row['expiry'])) {
+                $nesa_table_data[] = array(
+                    'nesa_id' => $nesa_id,
+                    'item_code' => $row['item_code'],
+                    'item_descript' => $row['item_descript'],
+                    'uom' => $row['unit'],
+                    'unit_cost' => $row['unit_cost'],
+                    'qty' => $row['qty'],
+                    'expiry' => $row['expiry']
+                );
+            }
+        }
+        
+        if (!empty($nesa_table_data)) {
+            $this->db->insert_batch('nesa_details_tbl', $nesa_table_data);
+        }
+        
+        return $nesa_id;
+        }
+
+
    
     function add_swa()
     {
-        $loc = ($this->input->post('loc') === 'Others') ? $this->input->post('otherDetails') : $this->input->post('loc');
+        $loc = $this->input->post('loc');
         $document_date = $this->input->post('document_date');
-        $control_no = $this->input->post('control_no');
+        // $control_no = $this->input->post('control_no');
         // $trans_no = $this->input->post('trans_no');
         $per_no = $this->input->post('per_no');
         // $crfcv_no = $this->input->post('crfcv_no');
-        $table_data = $this->input->post('datas');
+        // $table_data = $this->input->post('datas');
         $acct_instruct = $this->input->post('acct_instruct');
         $remark = $this->input->post('remark');
-        $req_by = $this->input->post('req_by');
-        $req_date = $this->input->post('req_date');
-        $rev_by = $this->input->post('rev_by');
-        $rev_date = $this->input->post('rev_date');
-        $app_by = $this->input->post('app_by');
-        $app_date = $this->input->post('app_date');
-        $rel_by = $this->input->post('rel_by');
-        $rel_date = $this->input->post('rel_date');
-        $rec_by = $this->input->post('rec_by');
-        $rec_date = $this->input->post('rec_date');
+        $req_by = $this->input->post('swa_req_by');
+        $req_date = $this->input->post('swa_req_date');
+        $rev_by = $this->input->post('swa_rev_by');
+        $rev_date = $this->input->post('swa_rev_date');
+        $app_by = $this->input->post('swa_app_by');
+        $app_date = $this->input->post('swa_app_date');
+        $rel_by = $this->input->post('swa_rel_by');
+        $rel_date = $this->input->post('swa_rel_date');
+        $rec_by = $this->input->post('swa_rec_by');
+        $rec_date = $this->input->post('swa_rec_date');
         $promo_title = $this->input->post('promo_title');
         $promo_mechanics = $this->input->post('promo_mechanics');
         $promo_start = $this->input->post('promo_start');
@@ -243,8 +389,8 @@ class Swa_model extends CI_Model
         $sub_id = $this->input->post('sub_id');
         // $sup_id = $this->input->post('sup_id');
         $total_amt = $this->input->post('total');
-        $sup_code = $this->input->post('sup_code');
-        $sup_name = $this->input->post('sup_name');
+        $sup_code = $this->input->post('swa_sup_code');
+        $sup_name = $this->input->post('swa_sup_name');
 
         $sub_data = $this->Admin_model->get_swa_sub($sub_id);
         // $sup_data = $this->Admin_model->get_swa_sup($sup_id);
@@ -255,7 +401,7 @@ class Swa_model extends CI_Model
             'SUP_CODE' => $sup_code,
             'SUP_NAME' => $sup_name,
             'LOCATION' => $loc,
-            'SWA_CONTROL_NO' => $control_no,
+            // 'SWA_CONTROL_NO' => $control_no,
             'DOCUMENT_DATE' => $document_date,
             'SWA_PER_NO' => $per_no,
             'SWA_ACCOUNTING_INSTRUCT' => $acct_instruct,
@@ -279,19 +425,21 @@ class Swa_model extends CI_Model
         $this->db->insert('swa_tbl', $swa_data);
         $swa_id = $this->db->insert_id();
         $table_data = $this->input->post('datas');
+        // var_dump($table_data);
+        // exit;
         $swa_table_data = array();
         
         foreach ($table_data as $row) {
-            if (!empty($row['item_code']) || !empty($row['barcode']) || !empty($row['qty']) || !empty($row['unit']) || !empty($row['descript']) || !empty($row['unit_cost']) || !empty($row['amt'])) {
+            if (!empty($row['item_code']) || !empty($row['qty']) || !empty($row['uom']) || !empty($row['item_desript']) || !empty($row['unit_cost']) || !empty($row['total_amount'])) {
                 $swa_table_data[] = array(
                     'SWA_ID' => $swa_id,
                     'SWA_ITEM_CODE' => $row['item_code'],
-                    'SWA_BARCODE' => $row['barcode'],
+                    // 'SWA_BARCODE' => $row['barcode'],
                     'SWA_QUANTITY' => $row['qty'],
-                    'SWA_UNIT' => $row['unit'],
-                    'SWA_DESCRIPTION' => $row['descript'],
+                    'SWA_UNIT' => $row['uom'],
+                    'SWA_DESCRIPTION' => $row['item_descript'],
                     'SWA_UNIT_COST' => $row['unit_cost'],
-                    'SWA_AMOUNT' => $row['amt'],
+                    'SWA_AMOUNT' => $row['total_amount'],
                 );
             }
         }
@@ -301,6 +449,8 @@ class Swa_model extends CI_Model
         }
         
         return $swa_id;
+
+
         }
 
     function add_per()

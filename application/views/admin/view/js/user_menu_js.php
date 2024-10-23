@@ -3,7 +3,19 @@ $(document).ready(function() {
     var selectedClassId = null;
     var selectedPrivileges = {};
 
-    $(".assign-privilege-btn").on("click", function(event) {
+
+    var modal = $('#rightsModal');
+    var user_classSpan = $('#selectedUserClass');
+    var user_descriptionSpan = $('#selectedUserDescription');
+
+    
+        $(document).on('click', '.assign-privilege-btn', function() {
+        var user_class = $(this).data("user-class");
+        var user_description = $(this).data("user-description");
+
+        user_classSpan.text(user_class);
+        user_descriptionSpan.text(user_description);
+
         event.preventDefault();
         selectedClassId = $(this).data("class-id");
         console.log(selectedClassId);
@@ -13,8 +25,6 @@ $(document).ready(function() {
             type: 'GET',
             dataType: 'json',
             success: function(data) {
-                $('#fileMaintenance').prop('checked', parseInt(data.classes
-                    .fileMaintenance));
                 $('#subsidiary').prop('checked', parseInt(data.classes.subsidiary));
                 $('#supplier').prop('checked', parseInt(data.classes.supplier));
                 $('#userFiltering').prop('checked', parseInt(data.classes.userFiltering));
@@ -50,35 +60,7 @@ $(document).ready(function() {
 
         selectedPrivileges[checkboxId] = isChecked;
 
-        if (checkboxId === 'subsidiary' || checkboxId === 'supplier' || checkboxId ===
-            'userFiltering') {
-            if (isChecked) {
-                $('#fileMaintenance').prop('checked', true);
-                selectedPrivileges['fileMaintenance'] = 1;
-            } else {
-                if (!$('#subsidiary').prop('checked') && !$('#supplier').prop('checked') && !$(
-                        '#userFiltering').prop('checked')) {
-                    $('#fileMaintenance').prop('checked', false);
-                    selectedPrivileges['fileMaintenance'] = 0;
-                }
-            }
-        } else if (checkboxId === 'fileMaintenance') {
-            if (isChecked) {
-                $('#subsidiary').prop('checked', true);
-                $('#supplier').prop('checked', true);
-                $('#userFiltering').prop('checked', true);
-                selectedPrivileges['subsidiary'] = 1;
-                selectedPrivileges['supplier'] = 1;
-                selectedPrivileges['userFiltering'] = 1;
-            } else {
-                $('#subsidiary').prop('checked', false);
-                $('#supplier').prop('checked', false);
-                $('#userFiltering').prop('checked', false);
-                selectedPrivileges['subsidiary'] = 0;
-                selectedPrivileges['supplier'] = 0;
-                selectedPrivileges['userFiltering'] = 0;
-            }
-        }
+      
         if (checkboxId === 'swaVo' || checkboxId === 'swaMis' || checkboxId === 'perVo' ||
             checkboxId === 'swaAcctg' || checkboxId === 'per' || checkboxId === 'swaForm' ||
             checkboxId === 'swaReports') {
@@ -127,13 +109,15 @@ $(document).ready(function() {
             }
         }
         if (checkboxId === 'userType' || checkboxId === 'systemUser' || checkboxId === 'userMenu' ||
-            checkboxId === 'menuSetting') {
+            checkboxId === 'menuSetting' || checkboxId === 'subsidiary' || checkboxId === 'supplier' || checkboxId ===
+            'userFiltering') {
             if (isChecked) {
                 $('#systemManager').prop('checked', true);
                 selectedPrivileges['systemManager'] = 1;
             } else {
                 if (!$('#userType').prop('checked') && !$('#systemUser').prop('checked') && !$(
-                        '#userMenu').prop('checked') && !$('#menuSetting').prop('checked')) {
+                        '#userMenu').prop('checked') && !$('#menuSetting').prop('checked') && !$('#subsidiary').prop('checked') && !$('#supplier').prop('checked') && !$(
+                            '#userFiltering').prop('checked') ) {
                     $('#systemManager').prop('checked', false);
                     selectedPrivileges['systemManager'] = 0;
                 }
@@ -144,48 +128,50 @@ $(document).ready(function() {
                 $('#systemUser').prop('checked', true);
                 $('#userMenu').prop('checked', true);
                 $('#menuSetting').prop('checked', true);
+                $('#subsidiary').prop('checked', true);
+                $('#supplier').prop('checked', true);
+                $('#userFiltering').prop('checked', true);
                 selectedPrivileges['userType'] = 1;
                 selectedPrivileges['systemUser'] = 1;
                 selectedPrivileges['userMenu'] = 1;
                 selectedPrivileges['menuSetting'] = 1;
+                selectedPrivileges['subsidiary'] = 1;
+                selectedPrivileges['supplier'] = 1;
+                selectedPrivileges['userFiltering'] = 1;
             } else {
                 $('#userType').prop('checked', false);
                 $('#systemUser').prop('checked', false);
                 $('#userMenu').prop('checked', false);
                 $('#menuSetting').prop('checked', false);
+                $('#subsidiary').prop('checked', false);
+                $('#supplier').prop('checked', false);
+                $('#userFiltering').prop('checked', false);
+                selectedPrivileges['subsidiary'] = 0;
+                selectedPrivileges['supplier'] = 0;
+                selectedPrivileges['userFiltering'] = 0;
                 selectedPrivileges['userType'] = 0;
                 selectedPrivileges['systemUser'] = 0;
                 selectedPrivileges['userMenu'] = 0;
                 selectedPrivileges['menuSetting'] = 0;
             }
         }
-        if (checkboxId === 'systemWallpaper' || checkboxId === 'aboutSystem' || checkboxId ===
-            'generateReport') {
+        if (checkboxId === 'aboutSystem') {
             if (isChecked) {
                 $('#systemUtilities').prop('checked', true);
                 selectedPrivileges['systemUtilities'] = 1;
             } else {
-                if (!$('#systemWallpaper').prop('checked') && !$('#aboutSystem').prop('checked') && !$(
-                        '#generateReport').prop('checked')) {
+                if (!$('#aboutSystem').prop('checked')) {
                     $('#systemUtilities').prop('checked', false);
                     selectedPrivileges['systemUtilities'] = 0;
                 }
             }
         } else if (checkboxId === 'systemUtilities') {
             if (isChecked) {
-                $('#systemWallpaper').prop('checked', true);
                 $('#aboutSystem').prop('checked', true);
-                $('#generateReport').prop('checked', true);
-                selectedPrivileges['systemWallpaper'] = 1;
                 selectedPrivileges['aboutSystem'] = 1;
-                selectedPrivileges['generateReport'] = 1;
             } else {
-                $('#systemWallpaper').prop('checked', false);
                 $('#aboutSystem').prop('checked', false);
-                $('#generateReport').prop('checked', false);
-                selectedPrivileges['systemWallpaper'] = 0;
                 selectedPrivileges['aboutSystem'] = 0;
-                selectedPrivileges['generateReport'] = 0;
             }
         }
     });
@@ -193,7 +179,7 @@ $(document).ready(function() {
     var initialPrivileges = {
         ...selectedPrivileges
     };
-    $("#save-changes-button").on("click", function() {
+    $(document).on('click', '#save-changes-button', function() {
         var changesMade = Object.keys(selectedPrivileges).some(key => initialPrivileges[key] !==
             selectedPrivileges[key]);
         if (!changesMade) {
@@ -246,27 +232,293 @@ $(document).ready(function() {
         });
     });
 
-    var modal = $('#rightsModal');
-    var user_classSpan = $('#selectedUserClass');
-    var user_descriptionSpan = $('#selectedUserDescription');
+   
 
-    $(".assign-privilege-btn").on("click", function() {
-        var user_class = $(this).data("user-class");
-        var user_description = $(this).data("user-description");
+    var classForm = $('#classForm');
+    var classSaveButton = $('#classSaveButton');
+    var initialClassValue = $('[name="user_class"]').val();
+    var initialDescriptionValue = $('[name="user_descript"]').val();
 
-        user_classSpan.text(user_class);
-        user_descriptionSpan.text(user_description);
+    classSaveButton.on('click', function() {
+        var classInput = $('[name="user_class"]');
+        var descriptionInput = $('[name="user_descript"]');
+        var validationMessage = $('#validationMessage');
 
+        if (classInput.val().trim() === '' || descriptionInput.val().trim() === '') {
+            validationMessage.text('Please fill in all required fields.');
+            return;
+        }
+
+        if (classInput.val() === initialClassValue && descriptionInput.val() ===
+            initialDescriptionValue) {
+            // Display a Swal message for no changes
+            Swal.fire({
+                title: 'No changes made',
+                text: 'You haven\'t made any changes.',
+                icon: 'info',
+            });
+            return;
+        }
+
+        validationMessage.text('');
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You want to save this data?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit the form using AJAX
+                $.ajax({
+                    url: classForm.attr('action'),
+                    type: classForm.attr('method'),
+                    data: new FormData(classForm[0]),
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        
+                        dataTable_class.ajax.reload();
+                        console.log("Response:", response);
+                        var responseData = response;
+
+                        Swal.fire({
+                            title: responseData.status === 'success' ?
+                                'Success' : 'Error',
+                            text: responseData.message,
+                            icon: responseData.status === 'success' ?
+                                'success' : 'error'
+                        }).then(() => {
+                            $('[name="user_class"]').val('');
+                            $('[name="user_descript"]').val('');
+                        });
+                    },
+                    error: function(error) {
+                        console.log("Error: " + error);
+                    }
+                });
+            }
+        });
+    });
+
+    $(document).on('click', '.editClassButton', function() {
+        // Get the data attributes from the clicked button
+        var classId = $(this).data('class-id');
+        var classCode = $(this).data('class-code');
+        var classDescript = $(this).data('class-descript');
+        // Populate the modal form fields with the data
+        
+        console.log(classId);
+        console.log(classDescript);
+        $('#class_id').val(classId);
+        $('#user_editclass').val(classCode);
+        $('#user_editdescript').val(classDescript);
+    });
+    
+    var saveEditButton = $('#saveEditButton');
+    var classEditForm = $('#classEditForm');
+    var formChanged = false;
+
+    var formInputs = classEditForm.find('input, textarea, select');
+    formInputs.on('input', function() {
+        formChanged = true;
+    });
+
+   saveEditButton.on('click', function() {
+        var classId = $('#class_id').val();
+        var classCode = $('#user_editclass').val();
+        var classDescription = $('#user_editdescript').val();
+    
+        if (!formChanged) {
+            Swal.fire({
+                title: 'No Changes Made',
+                text: 'There are no changes to save.',
+                icon: 'info'
+            });
+            return;
+        }
+        if (classCode == "") {
+            Swal.fire({
+                        title: 'Error',
+                        text: 'Subsidiary code required.',
+                        icon: 'warning'
+                    })
+            return;
+        }
+        if (classDescription == "") {
+            Swal.fire({
+                        title: 'Error',
+                        text: 'Subsidiary description required.',
+                        icon: 'warning'
+                    })
+            return;
+        }
+
+        Swal.fire({
+            title: 'Confirm Changes',
+            text: 'Are you sure you want to save these changes?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then(function(result) {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url(); ?>ClassController/edit_type/",
+                    data: {
+                        class_id: classId,
+                        class_code: classCode,
+                        class_descript: classDescription
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                    if (response.status === 'success') {
+                        dataTable_class.ajax.reload();
+                        Swal.fire({
+                            title: 'success',
+                            text: 'Successfully updated.',
+                            icon: 'success'
+                        }).then(() => {
+                          
+                            $("#editClassModal").modal('hide');
+                        });
+                    
+                    } else if(response.status === 'error') {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.message || 'An error occurred. Please try again later.',
+                            icon: 'error'
+                        });
+                    }
+                    }, error: function(xhr, status, error) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'There was an issue with the request. Please try again.',
+                            icon: 'error'
+                        });
+                    }
+                });
+            }
+        });
+    });
+
+   
+
+    $(document).on('click', '.deleteButton', function() {
+        var deleteUrl = $(this).data('delete-url');
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You want to delete this data?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: deleteUrl,
+                    type: 'GET',
+                    success: function(response) {
+                        
+                        dataTable_class.ajax.reload();
+                        console.log("Response:", response);
+                        var responseData = response;
+
+                        Swal.fire({
+                            title: responseData.status === 'success' ?
+                                'Success' : 'Error',
+                            text: responseData.message,
+                            icon: responseData.status === 'success' ?
+                                'success' : 'error'
+                        });
+                    },
+                    error: function(error) {
+                        console.log("Error: " + error);
+                    }
+                });
+            }
+        });
     });
 
 
-    $('#classtable').DataTable({
+var baseUrl = "<?php echo base_url(); ?>"
+function reload_table() {
+    dataTable_class.ajax.reload();
+}
+
+    var dataTable_class = $('#classtable').DataTable({
+        processing: true,
+        serverSide: true,
+        searching: true,
         lengthChange: false,
+        ordering: false,
+        ajax: {
+            url: "<?php echo base_url(); ?>ClassController/get_class_list",
+            type: "POST",
+            data: function(d) {
+                d.start = d.start || 0;
+                d.length = d.length || 10;
+            }
+        },
+        columns: [{
+                data: 'CLASS'
+            },
+            {
+                data: 'DESCRIPTION'
+            },
+            {
+                data: null,
+                orderable: false,
+                render: function(data, type, row) {
+                    return `
+                            <button type="button"
+                            class="assign-privilege-btn btn waves-effect waves-light btn-primary custom-btn-db"
+                            data-class-id="${row.CID}"
+                            title="access"
+                            data-toggle="modal" data-target="#rightsModal"
+                            data-user-description="${row.DESCRIPTION}"
+                            data-user-class="${row.CLASS}"><i class="icofont icofont-unlock" style="padding-left: 5px;"></i></button>
+                            <button type="button" class="editClassButton btn waves-effect waves-light btn-primary custom-btn-db" 
+                            title="Edit" 
+                            style="" 
+                            data-class-id="${row.CID}" 
+                            data-class-code="${row.CLASS}" 
+                            data-class-descript="${row.DESCRIPTION}" 
+                            data-toggle="modal" 
+                            data-target="#editClassModal">
+                            <i class="icofont icofont-edit-alt" style="padding-left: 5px;"></i>
+                            </button>
+                            <button type="button" class="deleteButton btn waves-effect waves-light btn-primary custom-btn-db" 
+                            title="Delete" 
+                            style="" 
+                            data-delete-url="${baseUrl}ClassController/del_type/${row.CID}">
+                            <i class="icofont icofont-ui-delete" style="padding-left: 5px;"></i>
+                            </button>
+                        `;
+                }
+            }
+        ],
+        paging: true,
+        pagingType: "full_numbers",
+        lengthMenu: [
+            [10, 25, 50, 1000],
+            [10, 25, 50, "Max"]
+        ],
+        pageLength: 10,
         language: {
             search: '',
-            searchPlaceholder: 'Search...'
+            searchPlaceholder: ' Search...',
+            processing: '<div class="upload-loader"></div>'
         }
     });
+
     $('#privilegetable').DataTable({
         lengthChange: false,
         searching: false,

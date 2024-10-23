@@ -43,10 +43,9 @@ class Class_model extends CI_Model
     function edit_type($class_id, $update_data)
     {
         $this->db->where('CID', $class_id);
-        $response = $this->db->update('class_tbl', $update_data);
-        return $response;
+        $this->db->update('class_tbl', $update_data);
     }
-        
+            
     function del_type($class_id)
     {
         $this->db->where('CID', $class_id);
@@ -58,7 +57,7 @@ class Class_model extends CI_Model
 
     public function view_type() 
     {
-        $result = $this->db->get('class_tbl')->result();
+        $result = $this->db->get('class_tbl')->result_array();
         return $result;
     }
 

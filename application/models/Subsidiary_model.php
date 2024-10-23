@@ -64,14 +64,6 @@ class Subsidiary_model extends CI_Model
         $this->db->where('ID', $sub_id);
         $this->db->update('sub_tbl', $update_data);
     
-        $this->db->where('ID', $sub_id);
-        $query = $this->db->get('sub_tbl');
-        
-        if ($query->num_rows() > 0) {
-            return $query->row_array();
-        } else {
-            return null; 
-        }
     }
     
 

@@ -7,7 +7,7 @@
                     <i class="feather icon-home bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5><?= ($this->session->userdata('login_class')=='ADMIN') ? 'Admin ':'' ; ?>Dashboard</h5>
-                        <span>Stock Withdrawal Advice System</span>
+                        <span>Stock Withdrawal Advise System</span>
                     </div>
                 </div>
             </div>
@@ -72,7 +72,7 @@
                                     <p class="m-b-30 bg-c-green lbl-card"><i class="feather icon-file"></i> Total SWA</p>
                                     <div class="text-center">
                                         <h2 class="m-b-0 d-inline-block text-c-green"><?php $swaCount = $this->db->count_all('swa_tbl'); echo $swaCount; ?></h2>
-                                        <p class="m-b-0 d-inline-block">Stock Withdrawal Advice</p>
+                                        <p class="m-b-0 d-inline-block">Stock Withdrawal Advise</p>
                                         <p class="m-b-0 m-t-15"><i
                                                 class="fas fa-caret-up m-r-10 f-18 text-c-green"></i>From
                                             Previous Month</p>

@@ -1,3 +1,6 @@
+<!-- <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/jquery/js/jquery-3.7.1.min.js"></script> -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script> -->
+<!-- <script src="<?= base_url('assets/'); ?>bower_components/datatables.net/js/jquery.dataTables.min.js"></script> -->
 <script>
 $(document).ready(function() {
     
@@ -35,6 +38,7 @@ $(document).ready(function() {
                         console.log("Response:", response);
                         var responseData = response;
 
+                            dataTable_sub.ajax.reload();
                         Swal.fire({
                             title: responseData.status === 'success' ?
                                 'Success' : 'Error',
@@ -42,7 +46,9 @@ $(document).ready(function() {
                             icon: responseData.status === 'success' ?
                                 'success' : 'error'
                         }).then(() => {
-                            location.reload(true);
+                            $('[name="sub_code"]').val('');
+                            $('[name="sub_descript"]').val('');
+                            // $("#addSubModal").modal('hide');
                         });
                     },
                     error: function(error) {
@@ -54,12 +60,16 @@ $(document).ready(function() {
             }
         });
     });
+    
 
-    $('.editSubsidiaryButton').on('click', function() {
+    $(document).on('click', '.editSubsidiaryButton', function() {
         var subsidiaryId = $(this).data('sub-id');
         var subsidiaryCode = $(this).data('sub-code');
         var subsidiaryDescription = $(this).data('sub-descript');
 
+        console.log(subsidiaryId);
+        console.log(subsidiaryCode);
+        console.log(subsidiaryDescription);
         $('#sub_id').val(subsidiaryId);
         $('#sub_editcode').val(subsidiaryCode);
         $('#sub_editdescript').val(subsidiaryDescription);
@@ -114,8 +124,8 @@ $(document).ready(function() {
                             icon: responseData.status === 'success' ?
                                 'success' : 'error'
                         }).then(function() {
-                            window.location.href =
-                                '<?php echo base_url() ?>SubsidiaryController/subsidiary';
+                           
+                            dataTable_sub.ajax.reload();
                         });
                     },
                     error: function(error) {
@@ -126,9 +136,9 @@ $(document).ready(function() {
         });
     });
 
-    $('.deleteButton').click(function() {
+    $(document).on('click', '.deleteButton', function() {
         var deleteUrl = $(this).data('delete-url');
-
+console.log(deleteUrl);
         Swal.fire({
             title: 'Are you sure?',
             text: 'You want to delete this data?',
@@ -153,7 +163,8 @@ $(document).ready(function() {
                             icon: responseData.status ===
                                 'success' ? 'success' : 'error'
                         }).then(() => {
-                            location.reload(true);
+                            
+                            dataTable_sub.ajax.reload();
                         });
                     },
                     error: function(error) {
@@ -163,19 +174,71 @@ $(document).ready(function() {
             }
         });
     });
-});
 
-$(document).ready(function() {
-    $('#subtable').DataTable({
+
+var baseUrl = "<?php echo base_url(); ?>"
+function reload_table() {
+    dataTable_sub.ajax.reload();
+}
+
+    var dataTable_sub = $('#subtable').DataTable({
+        processing: true,
+        serverSide: true,
+        searching: true,
         lengthChange: false,
+        ordering: false,
+        ajax: {
+            url: "<?php echo base_url(); ?>SubsidiaryController/get_subsidiary_list",
+            type: "POST",
+            data: function(d) {
+                d.start = d.start || 0;
+                d.length = d.length || 10;
+                // d.tab = getSelectedTab();
+            }
+        },
+        columns: [{
+                data: 'CODE'
+            },
+            {
+                data: 'DESCRIPTION'
+            },
+            {
+                data: null,
+                orderable: false,
+                render: function(data, type, row) {
+                    return `  
+                            <button type="button" class="editSubsidiaryButton btn waves-effect waves-light btn-primary custom-btn-db" style="" 
+                            title="Edit" 
+                            data-sub-id="${row.ID}" 
+                            data-sub-code="${row.CODE}" 
+                            data-sub-descript="${row.DESCRIPTION}" 
+                            data-toggle="modal" 
+                            data-target="#editSubsidiaryModal">
+                            <i class="icofont icofont-edit-alt" style="padding-left: 5px;"></i>
+                            </button>
+                            <button type="button" class="deleteButton btn waves-effect waves-light btn-primary custom-btn-db" title="Delete" 
+                            style="" 
+                            data-delete-url="${baseUrl}SubsidiaryController/del_subsidiary/${row.ID}">
+                            <i class="icofont icofont-ui-delete" style="padding-left: 5px;"></i>
+                            </button>
+                            
+                          `;
+                }
+            }
+        ],
+        paging: true,
+        pagingType: "full_numbers",
+        lengthMenu: [
+            [10, 25, 50, 1000],
+            [10, 25, 50, "Max"]
+        ],
+        pageLength: 10,
         language: {
             search: '',
-            searchPlaceholder: 'Search...'
-        },
-        ordering: false
+            searchPlaceholder: ' Search...',
+            processing: '<div class="table-loader"></div>'
+        }
     });
-});
-
 
 $('.dataTables_filter input[type="search"]').css({
     'width': '300px',
@@ -183,4 +246,11 @@ $('.dataTables_filter input[type="search"]').css({
     'padding': '5px',
     'box-sizing': 'border-box'
 });
+
+
+
+});
+
+
+
 </script>

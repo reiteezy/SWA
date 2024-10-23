@@ -16,9 +16,9 @@ class ClassController extends CI_Controller
 
     public function class_list()
 	{
-		$class = $this->Class_model->view_type();
+		// $class = $this->Class_model->view_type();
 		$data['menu'] = 'Type';
-		$data['classes'] = $class;
+		// $data['classes'] = $class;
 		
         $this->load->view('admin/require/header');
         $this->load->view('admin/require/navbar');
@@ -29,14 +29,62 @@ class ClassController extends CI_Controller
         $this->load->view('admin/require/footer');
 	}
 
-    public function add_class()
-	{
-        $this->load->view('admin/require/header');
-        $this->load->view('admin/require/navbar');
-        $this->load->view('admin/require/sidebar');
-        $this->load->view('admin/view/add_class');
-        $this->load->view('admin/require/footer');
-	}
+	function get_class_list(){
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
+		$memory_limit = ini_get('memory_limit');
+		ini_set('memory_limit',-1);
+		ini_set('max_execution_time', 0);
+	
+		$tab           = $this->input->post('tab');
+		$start         = $this->input->post('start'); 
+		$length        = $this->input->post('length'); 
+		$searchValue   = $this->input->post('search')['value'];
+	
+	
+		$types = $this->Class_model->view_type();
+	
+		$result = array();
+		foreach($types as $type){
+		   $type_id = $type["CID"];
+	
+		   
+		   if($searchValue=='')
+			  $result[] = $type;
+		   else{
+			  if((strpos(strtolower($type["CLASS"]), strtolower($searchValue)) !== false || 
+				 strpos(strtolower($type["DESCRIPTION"]), strtolower($searchValue)) !== false )){
+					
+				 $result[] = $type;
+			  }
+		   }
+		   
+		}
+	
+	
+		$totalRecords = count($result);
+		$slice = array_slice($result, $start, $length);
+		
+		$data = array(
+					   'draw'            => $this->input->post('draw'), 
+					   'recordsTotal'    => $totalRecords,
+					   'recordsFiltered' => $totalRecords,
+					   'data'            => $slice
+					);
+	
+		echo json_encode($data);  
+		ini_set('memory_limit',$memory_limit);  
+	
+	 }
+
+    // public function add_class()
+	// {
+    //     $this->load->view('admin/require/header');
+    //     $this->load->view('admin/require/navbar');
+    //     $this->load->view('admin/require/sidebar');
+    //     $this->load->view('admin/view/add_class');
+    //     $this->load->view('admin/require/footer');
+	// }
 
 	public function new_type() 
 	{
@@ -44,7 +92,7 @@ class ClassController extends CI_Controller
 		$notification_data = array(
 			'message' => 'A new class has been added',
 			'header' => 'User Class',
-			'target_url' => base_url('ClassController/class_list')
+			'target_url' => base_url('AdminController/view_privilege')
 		);
 		
 		if ($response) {
@@ -61,25 +109,21 @@ class ClassController extends CI_Controller
 	{
 		$class_id = $this->input->post('class_id');
 		$update_data = array(
-		'CLASS' => $this->input->post('update_userclass'),
-		'DESCRIPTION' => $this->input->post('update_userdescript')
+		'CLASS' => $this->input->post('class_code'),
+		'DESCRIPTION' => $this->input->post('class_descript')
 		);
-
-		$response = $this->Class_model->edit_type($class_id, $update_data);
-
-		if ($response) {
-			$result = array('status' => 'success', 'message' => 'Data updated successfully!');
-		} else {
-			$result = array('status' => 'error', 'message' => 'Failed to update data.');
-		}
+		
+		$this->Class_model->edit_type($class_id, $update_data);
+		$response = array('status' => 'success', 'message' => 'User updated successfully!');
 	
-		$this->output->set_content_type('application/json')->set_output(json_encode($result));
+		$this->output->set_content_type('application/json')->set_output(json_encode($response));
+	
 	}
 
 	public function del_type($class_id)
 	{
 		$del_type = $this->Class_model->del_type($class_id); 
-		if($del_type['deleted']=='done'){
+		if($del_type){
 			$result = array('status' => 'success', 'message' => 'Data deleted successfully!');
 		}  else {
 			$result = array('status' => 'error', 'message' => 'Failed to delete data.');

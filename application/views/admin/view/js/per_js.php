@@ -428,16 +428,37 @@ $(document).ready(function() {
             cancelButtonText: 'Not Now'
         }).then((result) => {
             if (result.isConfirmed) {
+
                 var numberOfCopies = 3;
                 var pdfUrl = '<?php echo base_url() ?>SwaController/printPer/' + recordId + '?copies=' + numberOfCopies;
                 var printWindow = window.open(pdfUrl, '_blank');
 
-                location.reload();
+                $('#perForm')[0].reset();
+                clearTable();
+                $('#sub_by').val('');
+                $('#sub_date').val('');
+                $('#rev_by').val('');
+                $('#rev_date').val('');
+                $('#audit_by').val('');
+                $('#audit_date').val('');
+                $('#note_by').val('');
+                $('#note_date').val('');
+                dataTable_per.ajax.reload();
                 printWindow.onload = function() {
                     printWindow.print();
                 };
             } else {
-                location.reload();
+                $('#perForm')[0].reset();
+                clearTable();
+                $('#sub_by').val('');
+                $('#sub_date').val('');
+                $('#rev_by').val('');
+                $('#rev_date').val('');
+                $('#audit_by').val('');
+                $('#audit_date').val('');
+                $('#note_by').val('');
+                $('#note_date').val('');
+                dataTable_per.ajax.reload();
             }
         });
     }
@@ -527,16 +548,64 @@ $(document).ready(function() {
     });
 
 
+    function reload_table() {
+        dataTable_per.ajax.reload();
+}
 
-
-    $('#pertable').DataTable({
+    var dataTable_per = $('#pertable').DataTable({
+        processing: true,
+        serverSide: true,
+        searching: true,
         lengthChange: false,
+        ordering: false,
+        ajax: {
+            url: "<?php echo base_url(); ?>SwaController/get_per_list",
+            type: "POST",
+            data: function(d) {
+                d.start = d.start || 0;
+                d.length = d.length || 10;
+            }
+        },
+        columns: [{
+                data: 'PER_ID'
+            },
+            {
+                data: 'DOCUMENT_DATE'
+            },
+            {
+                data: 'SUB_CODE'
+            },
+            {
+                data: 'PER_PROMO_TITLE'
+            },
+            {
+                data: null,
+                orderable: false,
+                render: function(data, type, row) {
+                    return `  
+                           <button type="button" class=" btn waves-effect waves-light btn-primary custom-btn-db"
+                            id="viewPerButton" title="View"
+                            data-per-id="${row.PER_ID}" data-toggle="modal"
+                            data-target="#viewPerFormModal"><i class="icofont icofont-folder-open" style="padding-left: 5px;"></i></button>
+                            
+                          `;
+                }
+            }
+        ],
+        paging: true,
+        pagingType: "full_numbers",
+        lengthMenu: [
+            [10, 25, 50, 1000],
+            [10, 25, 50, "Max"]
+        ],
+        pageLength: 10,
         language: {
             search: '',
-            searchPlaceholder: 'Search...'
-        },
-        ordering: false
+            searchPlaceholder: ' Search...',
+            processing: '<div class="table-loader"></div>'
+        }
     });
+
 
 
 

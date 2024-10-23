@@ -7,7 +7,7 @@
                     <i class="fa fa-truck bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>Supplier</h5>
-                        <span>Stock Withdrawal Advice System</span>
+                        <span>Stock Withdrawal Advise System</span>
                     </div>
                 </div>
             </div>

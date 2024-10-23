@@ -17,45 +17,9 @@
                                 <th class="text-center">Access</th>
                             </tr>
                         </thead>
-                        <tbody id="myTable">
+                        <tbody>
                             <tr>
-                                <td style="background-color: #DCDCDC;">File Maintenance</td>
-                                <td class="text-center" style="background-color: #DCDCDC;">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input1" id="fileMaintenance">
-                                        <label class="form-check-label1" name for="fileMaintenance"></label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Subsidiary</td>
-                                <td class="text-center">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input1" id="subsidiary">
-                                        <label class="form-check-label1" name for="subsidiary"></label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Supplier</td>
-                                <td class="text-center">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input1" id="supplier">
-                                        <label class="form-check-label1" name for="supplier"></label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>User Filtering</td>
-                                <td class="text-center">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input1" id="userFiltering">
-                                        <label class="form-check-label1" name for="userFiltering"></label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="background-color: #DCDCDC;">Stock Withdrawal Advice</td>
+                                <td style="background-color: #DCDCDC;">Stock Withdrawal Advise</td>
                                 <td style="background-color: #DCDCDC;" class="text-center">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input1" id="swa">
@@ -64,7 +28,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Stock Withdrawal Advice Form</td>
+                                <td>Stock Withdrawal Advise Form</td>
                                 <td class="text-center">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input1" id="swaForm">
@@ -73,7 +37,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Stock Withdrawal Advice - View Only</td>
+                                <td>Stock Withdrawal Advise - View Only</td>
                                 <td class="text-center">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input1" id="swaVo">
@@ -136,6 +100,33 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td>Subsidiary</td>
+                                <td class="text-center">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input1" id="subsidiary">
+                                        <label class="form-check-label1" name for="subsidiary"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Supplier</td>
+                                <td class="text-center">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input1" id="supplier">
+                                        <label class="form-check-label1" name for="supplier"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>User Filtering</td>
+                                <td class="text-center">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input1" id="userFiltering">
+                                        <label class="form-check-label1" name for="userFiltering"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>User Type</td>
                                 <td class="text-center">
                                     <div class="form-check">
@@ -180,7 +171,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>System Wallpaper</td>
                                 <td class="text-center">
                                     <div class="form-check">
@@ -188,7 +179,7 @@
                                         <label class="form-check-label1" name for="systemWallpaper"></label>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td>About the System</td>
                                 <td class="text-center">
@@ -198,7 +189,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>File Import</td>
                                 <td class="text-center">
                                     <div class="form-check">
@@ -206,15 +197,15 @@
                                         <label class="form-check-label1" name for="generateReport"></label>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light" id="save-changes-button">Save
+                <button type="button" class="btn btn-primary waves-effect waves-light custom-btn-db" id="save-changes-button">Save
                     changes</button>
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

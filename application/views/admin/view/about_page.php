@@ -7,7 +7,7 @@
                     <i class="feather icon-info bg-c-yellow"></i>
                     <div class="d-inline">
                         <h5>About Us</h5>
-                        <span>Stock Withdrawal Advice System</span>
+                        <span>Stock Withdrawal Advise System</span>
                     </div>
                 </div>
             </div>
