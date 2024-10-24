@@ -34,8 +34,9 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-primary waves-effect waves-light custom-btn-db"
+                    id="saveButton">Save</button>
                 <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light" id="saveButton">Save</button>
             </div>
         </div>
     </div>
@@ -64,7 +65,7 @@
                         <div class="mb-3 row">
                             <label class="form-label col-sm-2 col-form-label sm-label">Description</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="update_subdescript" id="sub_editdescript" 
+                                <input type="text" class="form-control" name="update_subdescript" id="sub_editdescript"
                                     placeholder="Enter description">
                             </div>
                         </div>
@@ -73,9 +74,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light"
+                <button type="button" class="btn btn-primary waves-effect waves-light custom-btn-db"
                     id="saveEditButton">Update</button>
+                <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

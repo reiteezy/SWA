@@ -27,6 +27,14 @@
                                 <span class="pcoded-mtext">NESA Form</span>
                             </a>
                         </li>
+                        <li class="<?php echo ($menu=='email') ? 'active' : ''; ?>">
+                            <a href="<?php echo base_url() ?>SwaController/compose_email" class="waves-effect waves-dark">
+                                <span class="pcoded-micon">
+                                    <i class="feather icon-mail"></i>
+                                </span>
+                                <span class="pcoded-mtext">Email</span>
+                            </a>
+                        </li>
                         <?php #endif ?>
                     </ul>
                     <?php #endif; ?>

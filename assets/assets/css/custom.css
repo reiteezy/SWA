@@ -187,3 +187,24 @@ table.dataTable > tbody > tr.selected > * {
   color: rgb(255, 255, 255) !important;
   color: rgb(var(--dt-row-selected-text));
 }
+
+.compose-modal {
+  font-family: Arial, sans-serif;
+}
+.toolbar-box {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #fff;
+}
+#editor1 {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.add-bcc .btn {
+  margin-left: 5px;
+}
+.collapse {
+  margin-top: 10px;
+}

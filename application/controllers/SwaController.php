@@ -35,6 +35,21 @@ class SwaController extends CI_Controller
 		}
 	}
 
+	public function compose_email()
+	{
+		// if ($this->session->userdata('priv_um') == 1){
+		$data['menu'] = 'email';			
+		$this->load->view('admin/require/header');
+		$this->load->view('admin/require/navbar');
+		$this->load->view('admin/require/sidebar', $data);
+		$this->load->view('admin/view/email_page');
+		$this->load->view('admin/view/js/email_js');
+        $this->load->view('admin/view/modals/email_modal');
+		$this->load->view('admin/require/footer');
+		// } else {
+		// $this->load->view('admin/error');
+		// }
+	}
 
 
     public function swa_list() 
@@ -905,40 +920,75 @@ public function get_vendor()
     }
 
 
-	public function generate_pdf() {
+	public function generate_nesa_pdf() {
+		$rows = json_decode($this->input->post('rows'), true); 
 
-    // Get the selected rows data
-    $rows = json_decode($this->input->post('rows'), true); // Decode JSON data
+		$row = $rows[0];
+		var_dump($row['nesa_id']);
+		$row_details = $this->Swa_model->get_nesa_details($row['nesa_id']);
+		if (empty($rows)) {
+			echo "No data available";
+			return;
+		}
+		var_dump($row_details);
+		$mpdf = new \Mpdf\Mpdf([
+			'mode' => 'utf-8', 
+			'format' => 'Letter', 
+			'orientation' => 'L',
+			'default_font_size' => 12,
+			'default_font' => 'Arial' 
+		]);
+		$mpdf->SetTitle($row['sup_name'] . ' ' . $row['nesa_id']);
+		$html = '<div style="text-align: center; border-bottom: 20px;"><h4>Near Expiry Stock Advise (Nesa)</h4></div>';
+		// Start the table
+		$html .= '<table border="0" cellspacing="0" cellpadding="4" style="width: 100%; margin-bottom: 20px;">';
+		$html .= '<tr>';
+		$html .= '<td style="width: 50%;"></td>'; 
+		$html .= '<td style="width: 50%; text-align: right;"><h5>Nesa No.: ' . htmlspecialchars($row['nesa_id']) . '</h5></td>';
+		$html .= '</tr>';
+		$html .= '<tr>';
+		$html .= '<td style="width: 50%;"><h5>Supplier Code: ' . htmlspecialchars($row['sup_code']) . '</h5></td>';
+		$html .= '<td style="width: 50%; text-align: right;"><h5>Date: ' . htmlspecialchars($row['document_date']) . '</h5></td>';
+		$html .= '</tr>';
+		$html .= '<tr>';
+		$html .= '<td style="width: 50%;"><h5>Supplier Name: ' . htmlspecialchars($row['sup_name']) . '</h5></td>';
+		$html .= '<td style="width: 50%; text-align: right;"><h5>Location: ' . htmlspecialchars($row['location']) . '</h5></td>';
+		$html .= '</tr>';
+		$html .= '</table>';
+		$html .= '<table border="1" cellspacing="0" cellpadding="4" style="width: 100%;">';
+		$html .= '<tr><th style="font-size: 12px;">Item Code</th><th style="font-size: 12px;">Item Description</th><th style="font-size: 12px;">Unit</th><th style="font-size: 12px;">Quantity</th><th style="font-size: 12px;">Expiry</th></tr>'; 
 
-    // Initialize mPDF
-    $mpdf = new \Mpdf\Mpdf();
-    $mpdf->SetTitle('Selected Data PDF');
+			foreach ($row_details as $detail) {
+			$html .= '<tr>';
+			$html .= '<td style="font-size: 12px;">' . htmlspecialchars($detail->item_code) . '</td>';
+			$html .= '<td style="font-size: 12px;">' . htmlspecialchars($detail->item_descript) . '</td>';
+			$html .= '<td style="font-size: 12px;">' . htmlspecialchars($detail->uom) . '</td>';
+			$html .= '<td style="font-size: 12px;">' . htmlspecialchars($detail->qty) . '</td>';
+			$html .= '<td style="font-size: 12px;">' . htmlspecialchars($detail->expiry) . '</td>';
+			
+		$html .= '</tr>';
+		}
 
-    // Create the HTML content
-    $html = '<h1>Selected Data</h1>';
-    $html .= '<table border="1" cellspacing="0" cellpadding="4">';
-    $html .= '<tr><th>NESID</th><th>Location</th></tr>'; // Table headers
-
-    foreach ($rows as $row) {
-        $html .= '<tr>';
-        $html .= '<td>' . htmlspecialchars($row['nesa_id']) . '</td>'; // Sanitize output
-        $html .= '<td>' . htmlspecialchars($row['location']) . '</td>';
-        $html .= '</tr>';
-    }
-
-    $html .= '</table>';
-
-    // Write the HTML to the PDF
-    $mpdf->WriteHTML($html);
-
-    // Output PDF as a response
-    $pdfOutput = $mpdf->Output('', 'I'); // Output to a string
-
-    // Set the response headers to download the PDF
-    // $this->output
-    //     ->set_content_type('application/pdf')
-    //     ->set_output($pdfOutput);
-}
+		$html .= '</table>';
+		$html .= '<table border="0" cellspacing="0" cellpadding="4" style="width: 100%; margin-top: 20px;">';
+		$html .= '<tr>';
+		$html .= '<td style="width: 50%;"><h5>Submitted by: ' . htmlspecialchars($row['sub_by']) . '</h5></td>';
+		$html .= '<td style="width: 50%;"><h5>Checked by: ' . htmlspecialchars($row['check_by']) . '</h5></td>';
+		$html .= '</tr>';
+		$html .= '<tr>';
+		$html .= '<td style="width: 50%;"><h5>Date: ' . htmlspecialchars($row['sub_date']) . '</h5></td>';
+		$html .= '<td style="width: 50%;"><h5>Date: ' . htmlspecialchars($row['check_date']) . '</h5></td>';
+		$html .= '</tr>';
+		$html .= '</table>';
+	
+		$mpdf->WriteHTML($html);
+	
+		$pdfOutput = $mpdf->Output('selected_data.pdf', 'S'); 
+		$this->output
+			->set_content_type('application/pdf')
+			->set_output($pdfOutput);
+	}
+	
 
 	
 }

@@ -46,7 +46,7 @@
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <button class="btn btn-primary" id="generate-pdf-btn">Generate PDF</button>
+                                            <button class="btn btn-primary custom-btn-db" id="generate-pdf-btn"><i class="icofont icofont-file-pdf"></i> Generate PDF</button>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <button class="btn btn-primary"

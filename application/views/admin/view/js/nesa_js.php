@@ -206,39 +206,57 @@ $(document).ready(function() {
         $('#generatePdfButton').on('click', function() {
             var selectedData = [];
 
-            // Get data for selected rows
             dataTable_nesa.rows({
                 selected: true
             }).every(function() {
                 selectedData.push(this.data());
             });
 
-            if (selectedData.length > 0) {
+            console.log(selectedData);
+
+            selectedData.forEach(function(rowData) {
                 $.ajax({
-                    url: "<?php echo base_url(); ?>SwaController/generate_pdf",
+                    url: "<?php echo base_url(); ?>SwaController/generate_nesa_pdf",
                     type: "POST",
                     data: {
-                        rows: JSON.stringify(selectedData)
-                    }, // Send selected data as a JSON string
+                        rows: JSON.stringify([
+                            rowData
+                        ]) 
+                    },
+                    xhrFields: {
+                        responseType: 'blob' 
+                    },
                     success: function(response) {
-                        // Assuming the response includes a PDF blob, create a link to download
                         var blob = new Blob([response], {
                             type: 'application/pdf'
                         });
+
                         var link = document.createElement('a');
                         link.href = window.URL.createObjectURL(blob);
-                        link.download = 'Selected_Data.pdf';
+                        link.download = rowData.sup_name + '_nesa_' + rowData
+                            .nesa_id +
+                            '.pdf';
+
+                        document.body.appendChild(link);
                         link.click();
+                        document.body.removeChild(
+                            link); 
+                        // window.location.href =
+                        //     "<?php echo base_url(); ?>SwaController/compose_email";
                     },
                     error: function(xhr, status, error) {
-                        console.error("PDF generation error: ", error);
-                        alert("Error generating PDF: " + error); // Notify user
+                        console.error("Error generating PDF for NESA ID " +
+                            rowData.nesa_id + ": ", error);
+                        alert("Error generating PDF for NESA ID " + rowData
+                            .nesa_id + ": " + error);
                     }
                 });
-            } else {
-                alert("Please select at least one row.");
-            }
+            });
+
         });
+
+
+
 
 
     }
