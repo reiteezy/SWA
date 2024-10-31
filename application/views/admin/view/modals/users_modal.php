@@ -1,5 +1,5 @@
  <!------------------------ USERS MODAL------------------>
- <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog">
+ <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" data-backdrop="static">
      <div class="modal-dialog-centered modal-dialog modal-lg" role="document">
          <div class="modal-content">
              <div class="modal-header">
@@ -82,7 +82,7 @@
                              <label class="form-label col-sm-2 col-form-label sm-label">Default Password</label>
                              <div class="col-sm-10">
                                  <input type="password" class="form-control" id="password" name="password"
-                                     placeholder="">
+                                     placeholder="" disabled>
                              </div>
                          </div>
                          <input type="text" readonly="readonly" id="emp_photo" name="emp_photo" class="form-control"
@@ -104,7 +104,7 @@
  </div>
  <!------------------------ END OF ADD USERS MODAL------------------>
  <!----------------------------MODAL for user view---------------------------------------------->
- <div class="modal fade" id="viewUserModal" tabindex="-1" role="dialog">
+ <div class="modal fade" id="viewUserModal" tabindex="-1" role="dialog" data-backdrop="static">
      <div class="modal-dialog-centered modal-dialog modal-lg" role="document">
          <div class="modal-content">
              <div class="modal-header">
@@ -181,7 +181,7 @@
  </div>
  <!------------------------ END OF VIEW USERS MODAL------------------>
  <!------------------------ UPDATE USERS MODAL------------------>
- <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog">
+ <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" data-backdrop="static">
      <div class="modal-dialog-centered modal-dialog modal-lg" role="document">
          <div class="modal-content">
              <div class="modal-header">

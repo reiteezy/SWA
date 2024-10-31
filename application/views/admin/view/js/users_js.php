@@ -135,6 +135,16 @@ $(document).ready(function() {
                             icon: responseData.status === 'success' ?
                                 'success' : 'error'
                         }).then(function() {
+                            $("#emp_name").val("");
+                            $("#user_class").val("");
+                            $("#class_description").val("");
+                            $("#emp_pos").val("");
+                            $("#emp_dept").val("");
+                            $("#emp_bu").val("");
+                            $("#emp_id").val("");
+                            $("#username").val("");
+                            $("#password").val("");
+                            $("#emp_photo").val("");
                             dataTable_user.ajax.reload();
                         });
                     },
@@ -437,7 +447,8 @@ $(document).ready(function() {
 
                     $('#userId').text(data.ID);
                     $('#name').text(data.EMP_NAME);
-                    $('#userPhoto').attr('src', 'http://172.16.161.34:8080/hrms/' + data.EMP_PHOTO.substr(2));
+                    $('#userPhoto').attr('src', 'http://172.16.161.34:8080/hrms/' + data
+                        .EMP_PHOTO.substr(2));
                     $('#userName').text(data.USERNAME);
                     $('#class').text(data.CLASS);
                     $('#classDescript').text(data.DESCRIPTION);
@@ -471,7 +482,7 @@ $(document).ready(function() {
         var classId = $(this).data('class-id');
         var userClass = $(this).data('user-class');
         var userDescript = $(this).data('user-descript');
-        var userPassword = $(this).data('user-password');
+        // var userPassword = $(this).data('user-password');
         console.log("User class is: ", userClass);
         console.log("User class description is: ", userDescript);
         console.log("class id is: ", classId);
@@ -481,7 +492,7 @@ $(document).ready(function() {
         $('.user_editclass').text(userClass);
         $('#user_editclass').val(classId);
         $('#user_editdescript').val(userDescript);
-        $('#password_edit').val(userPassword);
+        // $('#password_edit').val(userPassword);
     });
 
     $("#user_editclass").change(function() {
@@ -563,6 +574,7 @@ $(document).ready(function() {
                                 'success' ?
                                 'success' : 'error'
                         }).then(() => {
+                             $('#password_edit').val('');
                             dataTable_user.ajax.reload();
                         });
                     },

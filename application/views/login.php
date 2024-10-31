@@ -99,7 +99,10 @@
     .login-form button:hover {
         background-color: #333;
     }
+
     </style>
+
+    <!-- <link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>bower_components/bootstrap/css/bootstrap-4.5.2.min.css"> -->
 </head>
 
 <body>
@@ -118,18 +121,21 @@
                 <input type="password" id="password" name="password" placeholder="" autocomplete="off" required>
                 <label for="password">Password</label>
             </div>
+            <div class="form-field">
+                <input type="checkbox" id="togglePassword" class="" style="width: auto">
+                <label for="togglePassword" class="form-check-label" style="margin-left: -10px;">Show Password</label>
+            </div>
+
             <!-- <div id="capslockMessage" style="color: white; background: red;"></div> -->
             <button type="button" id="loginBtn">SIGN IN</button>
         </form>
-        <!-- <div class="forgot-password">
-            <a href="#">Forgot password?</a>
-        </div> -->
     </div>
 </body>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/jquery/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/toastr.js"></script>
-<script>
 
+<!-- <script type="text/javascript" src="<?= base_url('assets/'); ?>bower_components/bootstrap/js/bootstrap-4.5.2.min.js"></script> -->
+<script>
 // var capslockMessage = document.getElementById('capslockMessage');
 
 // document.getElementById('password').addEventListener('keydown', function(e) {
@@ -142,7 +148,17 @@
 //     }
 // });
 
-document.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function() {
+    $('#togglePassword').on('change', function() {
+        const passWordField = $('#password');
+
+        if (this.checked) {
+            passWordField.attr('type', 'text');
+        } else {
+            passWordField.attr('type', 'password');
+        }
+    });
+
     function submitLoginForm() {
         var formData = $('#loginForm').serialize();
 

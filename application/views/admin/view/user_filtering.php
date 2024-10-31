@@ -33,7 +33,7 @@
                             <div class="card table-card">
                                 <div class="card-header">
                                     <!-- <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#addUserModal"><i class="feather icon-plus"></i>Add New
+                                        data-target="#addUserModal"><i class="feather icon-plus-square"></i>Add New
                                         User</button> -->
                                 </div>
                                 <div class="card-block" style="padding-bottom: 50px;">

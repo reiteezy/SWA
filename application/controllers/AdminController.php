@@ -193,13 +193,16 @@ public function acctg_status_changed()
 	public function update_password() 
 	{
 		$user_id = $this->input->post('user_id');
-		$new_password = $this->input->post('new_password'); 
-		$response = $this->Admin_model->updatePassword($user_id, $new_password);
+		$new_password = $this->input->post('new_password');
+		$hashed_password = $this->security->xss_clean(password_hash($new_password, PASSWORD_BCRYPT));
+		// var_dump($hashed_password);
+		// var_dump($user_id);
+		$response = $this->Admin_model->updatePassword($user_id, $hashed_password);
 		if ($response) {
 			$result = array('status' => 'success', 'message' => 'Password changed!');
 			
 		} else {+
-			$result = array('status' => 'error', 'message' => 'Failed change password.');
+			$result = array('status' => 'error', 'message' => 'Failed to change password.');
 		} 
 		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
@@ -262,6 +265,23 @@ public function acctg_status_changed()
 			$response = array('status' => 'error', 'message' => 'Error saving data!');
 		}
 		echo json_encode($response);
+	}
+
+
+	public function add_email_info() 
+	{
+		$user_id = $this->input->post('user_id');
+		$email_add = $this->input->post('email_add');
+		$email_pass = $this->input->post('app_email_pass');
+
+		$response = $this->Admin_model->addUserEmail($user_id, $email_add, $email_pass);
+		if ($response) {
+			$result = array('status' => 'success', 'message' => 'Email added!');
+			
+		} else {+
+			$result = array('status' => 'error', 'message' => 'Failed to add email.');
+		} 
+		$this->output->set_content_type('application/json')->set_output(json_encode($result));
 	}
 
 }

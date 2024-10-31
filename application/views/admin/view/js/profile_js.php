@@ -1,27 +1,16 @@
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     //modal password update
-    $("#modalButton1").on("click", function() {
-        $('#changePassModal').modal('show');
-    });
-    $(".toggle-password-icon").on("click", function() {
-        var passwordInput = $(this).closest(".input-group").find("input");
-        var isPasswordType = passwordInput.attr("type") === "password";
-        passwordInput.attr("type", isPasswordType ? "text" : "password");
-        $(this).toggleClass("fa-eye-slash", isPasswordType).toggleClass("fa-eye", !isPasswordType);
-    });
+    document.getElementById('togglePassword').addEventListener('change', function() {
+        const newPasswordField = document.getElementById('new_password');
+        const confirmPasswordField = document.getElementById('confirm_password');
 
-
-    $("#currentpassword").on("blur", function() {
-        var currentPassword = $(this).val();
-        var oldPassword = $('#password').val();
-        var currentPasswordValidation = document.getElementById('currentPasswordValidation');
-
-        if (currentPassword !== oldPassword) {
-            currentPasswordValidation.textContent = 'Incorrect password';
+        if (this.checked) {
+            newPasswordField.type = 'text';
+            confirmPasswordField.type = 'text';
         } else {
-            currentPasswordValidation.textContent = '';
+            newPasswordField.type = 'password';
+            confirmPasswordField.type = 'password';
         }
     });
 
@@ -52,10 +41,10 @@ document.addEventListener('DOMContentLoaded', function() {
     savePasswordButton.addEventListener('click', function() {
         event.preventDefault();
         console.log(savePasswordButton);
-        var currentPassInput = document.querySelector('[name="currentpassword"]');
+        // var currentPassInput = document.querySelector('[name="currentpassword"]');
         var newPassInput = document.querySelector('[name="new_password"]');
         var confirmPassInput = document.querySelector('[name="confirm_password"]');
-        if (currentPassInput.value.trim() === '' || newPassInput.value.trim() === '' || confirmPassInput
+        if (newPassInput.value.trim() === '' || confirmPassInput
             .value.trim() === '') {
             validationMessage.textContent = 'Please fill in all required fields.';
             //   setTimeout(function () {
@@ -65,9 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             validationMessage.textContent = '';
         }
-        if (currentPasswordValidation.textContent !== '') {
-            return;
-        }
+
         if (passwordLengthValidation.textContent !== '') {
             return;
         }
@@ -111,17 +98,65 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-});
 
-function togglePassword() {
-    var passwordField = document.getElementById('passwordDisplay');
-    var toggleButton = document.getElementById('togglePassword');
-    if (passwordField.style.webkitTextSecurity == 'disc') {
-        passwordField.style.webkitTextSecurity = 'none';
-        toggleButton.innerHTML = '<i class="fa fa-eye-slash"></i>';
-    } else {
-        passwordField.style.webkitTextSecurity = 'disc';
-        toggleButton.innerHTML = '<i class="fa fa-eye"></i>';
-    }
-}
+
+    var saveEmailBtn = document.getElementById('saveEmailInfoBtn');
+    var emailValidationMessage = document.getElementById('emailValidationMessage');
+
+    saveEmailBtn.addEventListener('click', function() {
+        event.preventDefault();
+        console.log(saveEmailBtn);
+        // var currentPassInput = document.querySelector('[name="currentpassword"]');
+        var emailAddInput = document.querySelector('[name="email_add"]');
+        var emailPassInput = document.querySelector('[name="app_email_pass"]');
+        if (emailAddInput.value.trim() === '' || emailPassInput
+            .value.trim() === '') {
+                emailValidationMessage.textContent = 'Please fill in all required fields.';
+            //   setTimeout(function () {
+            //   validationMessage.textContent = '';
+            // }, 3000);
+            return;
+        } else {
+            emailValidationMessage.textContent = '';
+        }
+
+    
+        Swal.fire({
+            title: 'Confirm Changes',
+            text: 'Are you sure you want to save these changes?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: document.getElementById('emailInfoForm').action,
+                    type: document.getElementById('emailInfoForm').method,
+                    data: new FormData(document.getElementById('emailInfoForm')),
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        console.log("Response:", response);
+                        var responseData = response;
+
+                        Swal.fire({
+                            title: responseData.status === 'success' ?
+                                'Success' : 'Error',
+                            text: responseData.message,
+                            icon: responseData.status === 'success' ?
+                                'success' : 'error'
+                        }).then(() => {
+                            location.reload();
+                        });
+                    },
+                    error: function(error) {
+                        console.log("Error: " + error);
+                    }
+                });
+            }
+        });
+    });
+});
 </script>

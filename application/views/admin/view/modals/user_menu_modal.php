@@ -1,4 +1,4 @@
-<div class="modal fade" id="rightsModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="rightsModal" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog-centered modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,8 +8,9 @@
             <div class="modal-body">
                 <div class="card-block">
                     <div class="text-center">
-                <span id="selectedUserClass" style="font-weight: bold;"></span> - <span id="selectedUserDescription" style="font-weight: bold;"></span>
-                </div>
+                        <span id="selectedUserClass" style="font-weight: bold;"></span> - <span
+                            id="selectedUserDescription" style="font-weight: bold;"></span>
+                    </div>
                     <table class="table table-hover table-bordered" id="privilegetable">
                         <thead>
                             <tr>
@@ -18,6 +19,33 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr>
+                                <td style="background-color: #DCDCDC;">Near Expiry Stock Advise</td>
+                                <td style="background-color: #DCDCDC;" class="text-center">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input1" id="nesa">
+                                        <label class="form-check-label1" name for="nesa"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Near Expiry Advise Form</td>
+                                <td class="text-center">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input1" id="nesaForm">
+                                        <label class="form-check-label1" name for="nesaForm"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td class="text-center">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input1" id="email">
+                                        <label class="form-check-label1" name for="email"></label>
+                                    </div>
+                                </td>
+                            </tr>
                             <tr>
                                 <td style="background-color: #DCDCDC;">Stock Withdrawal Advise</td>
                                 <td style="background-color: #DCDCDC;" class="text-center">
@@ -154,15 +182,6 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Menu Settings</td>
-                                <td class="text-center">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input1" id="menuSetting">
-                                        <label class="form-check-label1" name for="menuSetting"></label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
                                 <td style="background-color: #DCDCDC;">System Utilities</td>
                                 <td class="text-center" style="background-color: #DCDCDC;">
                                     <div class="form-check">
@@ -203,11 +222,11 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary waves-effect waves-light custom-btn-db" id="save-changes-button">Save
+                <button type="button" class="btn btn-primary waves-effect waves-light custom-btn-db"
+                    id="save-changes-button">Save
                     changes</button>
                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
-

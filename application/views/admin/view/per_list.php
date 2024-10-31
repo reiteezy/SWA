@@ -15,7 +15,8 @@
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title breadcrumb-padding">
                         <li class="breadcrumb-item">
-                            <a href="<?php echo base_url() ?>AdminController/index"><i class="feather icon-home"></i></a>
+                            <a href="<?php echo base_url() ?>AdminController/index"><i
+                                    class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item"><a href="#!">PER List</a>
                         </li>
@@ -32,16 +33,23 @@
                 <div class="page-body">
                     <div class="row">
                         <div class="col-sm-12">
-
-
                             <div class="card table-card">
-                                <div class="card-header">
-                                    <?php if ($this->session->userdata('priv_per') == 1): ?>
-                                    <button type="button" class="btn btn-primary custom-btn-db" data-toggle="modal"
-                                        data-target="#perFormModal"><i class="feather icon-plus"></i>Add New
-                                        PER</button>
-                                    <?php endif; ?>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <?php if ($this->session->userdata('priv_per') == 1): ?>
+                                            <button type="button" class="btn btn-primary custom-btn-db"
+                                                data-toggle="modal" data-target="#perFormModal"><i
+                                                    class="feather icon-plus"></i>Add New
+                                                PER</button>
+                                            <?php endif; ?>
+                                        </div>
+
+                                    </div>
+
                                 </div>
+                            </div>
+                            <div class="card table-card">
                                 <div class="card-block">
                                     <div class="table-responsive">
                                         <table id="pertable" class="table table-hover m-b-0" style="width: 100%">
@@ -77,8 +85,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- -->
                         </div>
+                        <!-- -->
                     </div>
                 </div>
             </div>
@@ -90,4 +98,3 @@
 data-target="#perFormModal" class="float">
 <i class="fa fa-plus my-float"></i>
 </a> -->
-

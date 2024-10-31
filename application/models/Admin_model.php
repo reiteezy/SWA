@@ -11,7 +11,8 @@ class Admin_model extends CI_Model
 
     function checkLogin($username, $password)
     {
-        $this->db->where('PASSWORD', $password);
+        
+        // $this->db->where('PASSWORD', $password);
         $this->db->where('USERNAME', $username);
         $this->db->select('users_tbl.*, class_tbl.*');
         $this->db->from('users_tbl');
@@ -20,7 +21,7 @@ class Admin_model extends CI_Model
 
         if ($query->num_rows() > 0) {
             $row = $query->row();
-            if ($row->STATUS == '1') {
+            if ($row->STATUS == '1' && password_verify($password, $row->PASSWORD)) {
                 
                 // var_dump($row->swaReports);
                 // die();
@@ -37,6 +38,9 @@ class Admin_model extends CI_Model
                     'login_class' => $row->CLASS,
                     'login_pass' => $row->PASSWORD,
                     'login_cd' => $row->DESCRIPTION,
+                    'priv_nesa' => $row->nesa,
+                    'priv_nesaf' => $row->nesaForm,
+                    'priv_email' => $row->email,
                     'priv_fm' => $row->fileMaintenance,
                     'priv_sub' => $row->subsidiary,
                     'priv_sup' => $row->supplier,
@@ -55,6 +59,8 @@ class Admin_model extends CI_Model
                     'priv_um' => $row->userMenu,
                     'priv_utilities' => $row->systemUtilities, 
                     'priv_as' => $row->aboutSystem,
+                    'login_emailadd' => $row->EMAIL,
+                    'login_emailpass' => $row->APP_PASSWORD,
                     'logged_in' => true
                 );
                 $this->session->set_userdata($session_data);
@@ -73,6 +79,9 @@ class Admin_model extends CI_Model
                     'login_class' => $row->CLASS,
                     'login_pass' => $row->PASSWORD,
                     'login_cd' => $row->DESCRIPTION,
+                    'priv_nesa' => $row->nesa,
+                    'priv_nesaf' => $row->nesaForm,
+                    'priv_email' => $row->email,
                     'priv_fm' => $row->fileMaintenance,
                     'priv_sub' => $row->subsidiary,
                     'priv_sup' => $row->supplier,
@@ -89,10 +98,10 @@ class Admin_model extends CI_Model
                     'priv_ut' => $row->userType,
                     'priv_users' => $row->systemUser,
                     'priv_um' => $row->userMenu,
-                    'priv_ms' => $row->menuSetting,
                     'priv_utilities' => $row->systemUtilities,  
-                    'priv_sw' => $row->systemWallpaper,
                     'priv_as' => $row->aboutSystem,
+                    'priv_email_add' => $row->EMAIL,
+                    'priv_email_pass' => $row->APP_PASSWORD,
                     'logged_in' => true
                 );   
                 $this->session->unset_userdata($session_data);
@@ -421,10 +430,10 @@ class Admin_model extends CI_Model
         return $per_id;
     }
     
-    public function updatePassword($user_id, $new_password) 
+    public function updatePassword($user_id, $hashed_password) 
     {
         $this->db->where('ID', $user_id);
-        $result = $this->db->update('users_tbl', array('PASSWORD' => $new_password));
+        $result = $this->db->update('users_tbl', array('PASSWORD' => $hashed_password));
         return $result;
     }
         
@@ -473,6 +482,18 @@ class Admin_model extends CI_Model
     {
         $result = $this->db->get('class_tbl')->result();
         return $result;
+    }
+
+    public function addUserEmail($user_id, $email_add, $email_pass) 
+    {
+        $this->db->where('ID', $user_id);
+        $result = $this->db->update('users_tbl', array('EMAIL' => $email_add, 'APP_PASSWORD' => $email_pass,));
+        return $result;
+    }
+
+    public function insert_email_tbl($data) 
+    {
+        return $this->db->insert('mail_tbl', $data);
     }
 
 }

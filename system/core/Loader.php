@@ -39,17 +39,17 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Loader Class
+ * loader Class
  *
  * Loads framework components.
  *
  * @package		CodeIgniter
  * @subpackage	Libraries
- * @category	Loader
+ * @category	loader
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/userguide3/libraries/loader.html
  */
-class CI_Loader {
+class CI_loader {
 
 	// All these are set automatically. Don't mess with them.
 	/**
@@ -139,7 +139,7 @@ class CI_Loader {
 		$this->_ci_ob_level = ob_get_level();
 		$this->_ci_classes =& is_loaded();
 
-		log_message('info', 'Loader Class Initialized');
+		log_message('info', 'loader Class Initialized');
 	}
 
 	// --------------------------------------------------------------------
@@ -149,7 +149,7 @@ class CI_Loader {
 	 *
 	 * @todo	Figure out a way to move this to the constructor
 	 *		without breaking *package_path*() methods.
-	 * @uses	CI_Loader::_ci_autoloader()
+	 * @uses	CI_loader::_ci_autoloader()
 	 * @used-by	CI_Controller::__construct()
 	 * @return	void
 	 */
@@ -178,7 +178,7 @@ class CI_Loader {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Library Loader
+	 * Library loader
 	 *
 	 * Loads and instantiates libraries.
 	 * Designed to be called from application controllers.
@@ -223,7 +223,7 @@ class CI_Loader {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Model Loader
+	 * Model loader
 	 *
 	 * Loads and instantiates models.
 	 *
@@ -364,7 +364,7 @@ class CI_Loader {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Database Loader
+	 * Database loader
 	 *
 	 * @param	mixed	$params		Database configuration options
 	 * @param	bool	$return 	Whether to return the database object
@@ -372,7 +372,7 @@ class CI_Loader {
 	 *					(overrides the configuration setting)
 	 *
 	 * @return	object|bool	Database object if $return is set to TRUE,
-	 *					FALSE on failure, CI_Loader instance in any other case
+	 *					FALSE on failure, CI_loader instance in any other case
 	 */
 	public function database($params = '', $return = FALSE, $query_builder = NULL)
 	{
@@ -480,7 +480,7 @@ class CI_Loader {
 	// --------------------------------------------------------------------
 
 	/**
-	 * View Loader
+	 * View loader
 	 *
 	 * Loads "view" files.
 	 *
@@ -499,7 +499,7 @@ class CI_Loader {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Generic File Loader
+	 * Generic File loader
 	 *
 	 * @param	string	$path	File path
 	 * @param	bool	$return	Whether to return the file output
@@ -545,7 +545,7 @@ class CI_Loader {
 	 *
 	 * Clears the cached variables.
 	 *
-	 * @return	CI_Loader
+	 * @return	CI_loader
 	 */
 	public function clear_vars()
 	{
@@ -585,7 +585,7 @@ class CI_Loader {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Helper Loader
+	 * Helper loader
 	 *
 	 * @param	string|string[]	$helpers	Helper name(s)
 	 * @return	object
@@ -663,7 +663,7 @@ class CI_Loader {
 	 * An alias for the helper() method in case the developer has
 	 * written the plural form of it.
 	 *
-	 * @uses	CI_Loader::helper()
+	 * @uses	CI_loader::helper()
 	 * @param	string|string[]	$helpers	Helper name(s)
 	 * @return	object
 	 */
@@ -675,7 +675,7 @@ class CI_Loader {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Language Loader
+	 * Language loader
 	 *
 	 * Loads language files.
 	 *
@@ -692,7 +692,7 @@ class CI_Loader {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Config Loader
+	 * Config loader
 	 *
 	 * Loads a config file (an alias for CI_Config::load()).
 	 *
@@ -710,7 +710,7 @@ class CI_Loader {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Driver Loader
+	 * Driver loader
 	 *
 	 * Loads a driver library.
 	 *
@@ -719,7 +719,7 @@ class CI_Loader {
 	 * @param	string		$object_name	An optional object name to assign to
 	 *
 	 * @return	object|bool	Object or FALSE on failure if $library is a string
-	 *				and $object_name is set. CI_Loader instance otherwise.
+	 *				and $object_name is set. CI_loader instance otherwise.
 	 */
 	public function driver($library, $params = NULL, $object_name = NULL)
 	{
@@ -768,9 +768,9 @@ class CI_Loader {
 	 * Prepends a parent path to the library, model, helper and config
 	 * path arrays.
 	 *
-	 * @see	CI_Loader::$_ci_library_paths
-	 * @see	CI_Loader::$_ci_model_paths
-	 * @see CI_Loader::$_ci_helper_paths
+	 * @see	CI_loader::$_ci_library_paths
+	 * @see	CI_loader::$_ci_model_paths
+	 * @see CI_loader::$_ci_helper_paths
 	 * @see CI_Config::$_config_paths
 	 *
 	 * @param	string	$path		Path to add
@@ -868,15 +868,15 @@ class CI_Loader {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Internal CI Data Loader
+	 * Internal CI Data loader
 	 *
 	 * Used to load views and files.
 	 *
 	 * Variables are prefixed with _ci_ to avoid symbol collision with
 	 * variables made available to view files.
 	 *
-	 * @used-by	CI_Loader::view()
-	 * @used-by	CI_Loader::file()
+	 * @used-by	CI_loader::view()
+	 * @used-by	CI_loader::file()
 	 * @param	array	$_ci_data	Data to load
 	 * @return	object
 	 */
@@ -1004,10 +1004,10 @@ class CI_Loader {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Internal CI Library Loader
+	 * Internal CI Library loader
 	 *
-	 * @used-by	CI_Loader::library()
-	 * @uses	CI_Loader::_ci_init_library()
+	 * @used-by	CI_loader::library()
+	 * @uses	CI_loader::_ci_init_library()
 	 *
 	 * @param	string	$class		Class name to load
 	 * @param	mixed	$params		Optional parameters to pass to the class constructor
@@ -1098,10 +1098,10 @@ class CI_Loader {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Internal CI Stock Library Loader
+	 * Internal CI Stock Library loader
 	 *
-	 * @used-by	CI_Loader::_ci_load_library()
-	 * @uses	CI_Loader::_ci_init_library()
+	 * @used-by	CI_loader::_ci_load_library()
+	 * @uses	CI_loader::_ci_init_library()
 	 *
 	 * @param	string	$library_name	Library name to load
 	 * @param	string	$file_path	Path to the library filename, relative to libraries/
@@ -1184,8 +1184,8 @@ class CI_Loader {
 	/**
 	 * Internal CI Library Instantiator
 	 *
-	 * @used-by	CI_Loader::_ci_load_stock_library()
-	 * @used-by	CI_Loader::_ci_load_library()
+	 * @used-by	CI_loader::_ci_load_stock_library()
+	 * @used-by	CI_loader::_ci_load_library()
 	 *
 	 * @param	string		$class		Class name
 	 * @param	string		$prefix		Class name prefix
@@ -1293,7 +1293,7 @@ class CI_Loader {
 	 *
 	 * Loads component listed in the config/autoload.php file.
 	 *
-	 * @used-by	CI_Loader::initialize()
+	 * @used-by	CI_loader::initialize()
 	 * @return	void
 	 */
 	protected function _ci_autoloader()

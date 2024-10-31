@@ -61,6 +61,7 @@ class User_model extends CI_Model
         return null;
     }
     }
+    
 
     public function update_user_data($user_id, $data) 
     {

@@ -14,7 +14,8 @@
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title breadcrumb-padding">
                         <li class="breadcrumb-item">
-                            <a href="<?php echo base_url() ?>AdminController/index"><i class="feather icon-home"></i></a>
+                            <a href="<?php echo base_url() ?>AdminController/index"><i
+                                    class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item"><a href="#!">Users List</a>
                         </li>
@@ -30,11 +31,20 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card table-card">
-                                <div class="card-header">
-                                    <button type="button" class="btn btn-primary custom-btn-db" data-toggle="modal"
-                                        data-target="#addUserModal"><i class="feather icon-plus"></i>Add New
-                                        User</button>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <button type="button" class="btn btn-primary custom-btn-db"
+                                                data-toggle="modal" data-target="#addUserModal"><i
+                                                    class="feather icon-user-plus"></i>Add New
+                                                User</button>
+                                        </div>
+
+                                    </div>
+
                                 </div>
+                            </div>
+                            <div class="card table-card">
                                 <div class="card-block" style="padding-bottom: 50px;">
                                     <div class="table-responsive">
                                         <table id="usertable" class="table table-hover m-b-0" style="width: 100%;">
@@ -113,7 +123,8 @@
             </div>
         </div>
     </div>
-    <!-- <a href="#" data-toggle="modal"
+</div>
+<!-- <a href="#" data-toggle="modal"
 data-target="#addUserModal" class="float">
 <i class="fa fa-plus my-float"></i>
 </a> -->

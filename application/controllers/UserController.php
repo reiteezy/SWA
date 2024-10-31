@@ -58,11 +58,11 @@ class UserController extends CI_Controller
         $class_data = $this->Admin_model->get_user_class($user_class_id);
         // $hashed_password = password_hash($password, PASSWORD_BCRYPT);
         // var_dump($emp_pos);
-        $password = $this->security->xss_clean(password_hash('alturas2024', PASSWORD_DEFAULT));
+        $password = $this->security->xss_clean(password_hash('alturas2024', PASSWORD_BCRYPT));
         $user_data = array(
             'USERNAME' => $username,
             'CLASS_ID' => $user_class_id,
-            'PASSWORD' => $hashed_password,
+            'PASSWORD' => $password,
             'EMP_NAME' => $emp_name,
             'EMP_ID' => $emp_id,
             'EMP_POS' => $emp_pos,
@@ -90,16 +90,22 @@ class UserController extends CI_Controller
 	public function edit_user()
 	{
 		$user_class_id = $this->input->post('update_userclass');
-        $class_data = $this->User_model->get_user_data($user_class_id);
 		$user_id = $this->input->post('user_id');
-
+		$user_data = $this->User_model->get_user_data($user_id);
+		$password = $this->input->post('update_password');
+		// var_dump($user_data['PASSWORD']);
+		if($password != ''){
+		$update_pass = $this->security->xss_clean(password_hash($password, PASSWORD_BCRYPT));
+		} else{
+			$update_pass = $this->security->xss_clean($user_data['PASSWORD']);
+		}
+		// var_dump($update_pass);
 			$data = array(
 			'USERNAME' => $this->input->post('update_username'),
 			'CLASS_ID' => $user_class_id,
-			'PASSWORD' => $this->input->post('update_password'),
-		
+			'PASSWORD' => $update_pass
 		);
-			
+		// var_dump($data);
 		$response = $this->User_model->update_user_data($user_id, $data);
 		if ($response) {
 			$result = array('status' => 'success', 'message' => 'Data updated successfully!');

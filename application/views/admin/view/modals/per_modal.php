@@ -1,5 +1,5 @@
 <!--------------------------- PER MODAL-------------------------->
-<div class="modal fade" id="perFormModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="perFormModal" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <!-- <div class="modal-header">
@@ -208,7 +208,7 @@
 
 <!------------------------ END OF PER MODAL------------------>
 <!---------------------------  VIEW PER MODAL-------------------------->
-<div class="modal fade" id="viewPerFormModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="viewPerFormModal" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <!-- <div class="modal-header">

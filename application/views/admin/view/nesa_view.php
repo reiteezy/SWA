@@ -34,15 +34,13 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card table-card">
-
-
                                 <div class="card-block">
                                     <div class="row">
                                         <div class="col-auto">
                                             <?php #if ($this->session->userdata('priv_swaf') == 1): ?>
                                             <button type="button" class="btn btn-primary custom-btn-db"
                                                 data-toggle="modal" data-target="#nesaFormModal"><i
-                                                    class="feather icon-plus"></i>Add New
+                                                    class="feather icon-plus-square"></i>Add New
                                                 NESA</button>
                                             <?php #endif; ?>
                                         </div>
@@ -92,7 +90,8 @@
                                 </div>
                                 <div class="card-block">
                                     <button type="button" class="btn btn-primary custom-btn-db" style="display: none;"
-                                        id="generatePdfButton"><i class="icofont icofont-file-pdf"></i> Generate PDF</button>
+                                        id="generatePdfButton"><i class="icofont icofont-file-pdf"></i> Generate
+                                        PDF</button>
                                 </div>
                             </div>
                         </div>

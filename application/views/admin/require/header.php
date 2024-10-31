@@ -65,6 +65,12 @@
 
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>assets/css/dataTables.dataTables.css">
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/'); ?>assets/css/select.dataTables.css">
+
+
+<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.css">
+
+
+
 <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> -->
 </head>

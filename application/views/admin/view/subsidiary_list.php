@@ -15,7 +15,8 @@
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title breadcrumb-padding">
                         <li class="breadcrumb-item">
-                            <a href="<?php echo base_url() ?>AdminController/index"><i class="feather icon-home"></i></a>
+                            <a href="<?php echo base_url() ?>AdminController/index"><i
+                                    class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item"><a href="#!">Subsidiary</a>
                         </li>
@@ -33,16 +34,23 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card table-card">
-                                <div class="card-header">
-                                    <button type="button" class="btn btn-primary custom-btn-db" data-toggle="modal"
-                                        data-target="#addSubModal"><i class="feather icon-plus"></i>Add New
-                                        Subsidiary</button>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <button type="button" class="btn btn-primary custom-btn-db"
+                                                data-toggle="modal" data-target="#addSubModal"><i
+                                                    class="feather icon-plus"></i>Add New
+                                                Subsidiary</button>
+                                        </div>
+
+                                    </div>
+
                                 </div>
-                                <!-- <div class="card-block" style="padding-top: 50px;">
-                                </div> -->
+                            </div>
+                            <div class="card table-card">
                                 <div class="card-block">
                                     <div class="table-responsive">
-                                        <table id="subtable" class="table table-hover m-b-0"  style="width:100%;">
+                                        <table id="subtable" class="table table-hover m-b-0" style="width:100%;">
                                             <thead>
                                                 <tr>
                                                     <th>Code</th>

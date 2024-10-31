@@ -562,4 +562,18 @@ class Swa_model extends CI_Model
         $this->db->update('per_tbl');
     }
 
+    
+    public function get_sent_emails() 
+    {
+        $sent_by = $this->session->userdata('login_empname');
+        $this->db->order_by('id', 'DESC');
+        $this->db->select('mail_tbl.*');
+        $this->db->from('mail_tbl');
+        $this->db->where('sent_by', $sent_by);
+        $query = $this->db->get();
+
+        return $query->result_array(); 
+    } 
+
+
 }

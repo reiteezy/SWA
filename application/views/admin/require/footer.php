@@ -83,5 +83,12 @@
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/dataTables.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/dataTables.select.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/'); ?>assets/js/select.dataTables.js"></script>
+
+
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.4.1/tinymce.min.js"></script> -->
+<!-- <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/43.2.0/ckeditor.js"></script>
 </body>
 </html>

@@ -274,7 +274,7 @@ function reload_table() {
         language: {
             search: '',
             searchPlaceholder: ' Search...',
-            processing: '<div class="upload-loader"></div>'
+            processing: '<div class="table-loader"></div>'
         }
     });
 

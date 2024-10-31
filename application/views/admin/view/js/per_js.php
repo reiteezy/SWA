@@ -208,7 +208,7 @@ $(document).ready(function() {
 
                 $('.printView').click(function() {
                     $('#printLink')[0]
-                .click();
+                        .click();
                 });
 
                 populateViewTable(perId);
@@ -430,7 +430,8 @@ $(document).ready(function() {
             if (result.isConfirmed) {
 
                 var numberOfCopies = 3;
-                var pdfUrl = '<?php echo base_url() ?>SwaController/printPer/' + recordId + '?copies=' + numberOfCopies;
+                var pdfUrl = '<?php echo base_url() ?>SwaController/printPer/' + recordId + '?copies=' +
+                    numberOfCopies;
                 var printWindow = window.open(pdfUrl, '_blank');
 
                 $('#perForm')[0].reset();
@@ -550,7 +551,7 @@ $(document).ready(function() {
 
     function reload_table() {
         dataTable_per.ajax.reload();
-}
+    }
 
     var dataTable_per = $('#pertable').DataTable({
         processing: true,

@@ -155,7 +155,7 @@ $(document).ready(function() {
                                 data-toggle="modal" data-target="#swaFormModal"><i class="icofont icofont-file-alt" style="padding-left: 5px;"></i> </button>
                                
                                 `;
-                        } else {
+                        } else if (row.course_of_action == 'Less 50%') {
                             return `
                                 <button type="button" class="viewNesaButton btn waves-effect waves-light btn-primary custom-btn-db"
                                 title="View" data-nesa-id="${row.nesa_id}"
@@ -165,6 +165,11 @@ $(document).ready(function() {
                                 data-toggle="modal" data-target="#"><i class="icofont icofont-file-alt" style="padding-left: 5px;"></i> </button>
                                
                                 `;
+                        } else {
+                            return `
+                                <button type="button" class="viewNesaButton btn waves-effect waves-light btn-primary custom-btn-db"
+                                title="View" data-nesa-id="${row.nesa_id}"
+                                data-toggle="modal" data-target="#viewNesaFormModal"><i class="icofont icofont-folder-open" style="padding-left: 5px;"></i> </button>`;
                         }
 
                     }
@@ -221,10 +226,10 @@ $(document).ready(function() {
                     data: {
                         rows: JSON.stringify([
                             rowData
-                        ]) 
+                        ])
                     },
                     xhrFields: {
-                        responseType: 'blob' 
+                        responseType: 'blob'
                     },
                     success: function(response) {
                         var blob = new Blob([response], {
@@ -240,7 +245,7 @@ $(document).ready(function() {
                         document.body.appendChild(link);
                         link.click();
                         document.body.removeChild(
-                            link); 
+                            link);
                         // window.location.href =
                         //     "<?php echo base_url(); ?>SwaController/compose_email";
                     },

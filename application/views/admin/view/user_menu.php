@@ -15,7 +15,8 @@
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title breadcrumb-padding">
                         <li class="breadcrumb-item">
-                            <a href="<?php echo base_url() ?>AdminController/index"><i class="feather icon-home"></i></a>
+                            <a href="<?php echo base_url() ?>AdminController/index"><i
+                                    class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item"><a href="#!">Users List</a>
                         </li>
@@ -32,14 +33,22 @@
                 <div class="page-body">
                     <div class="row">
                         <div class="col-sm-12">
-
                             <div class="card table-card">
-                            <div class="card-header">
-                                <button type="button" class="btn btn-primary custom-btn-db" data-toggle="modal"
-                                        data-target="#addTypeModal"><i class="feather icon-plus"></i>Add New User
-                                        Type</button>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <button type="button" class="btn btn-primary custom-btn-db"
+                                                data-toggle="modal" data-target="#addTypeModal"><i
+                                                    class="feather icon-plus-square"></i>Add New User
+                                                Type</button>
+                                        </div>
+
+                                    </div>
+
                                 </div>
-                                <div class="card-block" style="padding-bottom: 50px;">
+                            </div>
+                            <div class="card table-card">
+                                <div class="card-block">
                                     <div class="table-responsive">
                                         <table class="table table-hover" id="classtable" style="width: 100%;">
                                             <thead>

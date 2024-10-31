@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 // require FCPATH. 'vendor/autoload.php';
+require 'vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 class SwaController extends CI_Controller 
 {
 	function __construct() 
@@ -21,7 +25,7 @@ class SwaController extends CI_Controller
 	
 	public function nesa_list()
 	{
-		if ($this->session->userdata('priv_um') == 1){
+		if ($this->session->userdata('priv_nesaf') == 1){
 		$data['menu'] = 'nesa';			
 		$this->load->view('admin/require/header');
 		$this->load->view('admin/require/navbar');
@@ -37,7 +41,7 @@ class SwaController extends CI_Controller
 
 	public function compose_email()
 	{
-		// if ($this->session->userdata('priv_um') == 1){
+		if ($this->session->userdata('priv_email') == 1){
 		$data['menu'] = 'email';			
 		$this->load->view('admin/require/header');
 		$this->load->view('admin/require/navbar');
@@ -46,9 +50,9 @@ class SwaController extends CI_Controller
 		$this->load->view('admin/view/js/email_js');
         $this->load->view('admin/view/modals/email_modal');
 		$this->load->view('admin/require/footer');
-		// } else {
-		// $this->load->view('admin/error');
-		// }
+		} else {
+		$this->load->view('admin/error');
+		}
 	}
 
 
@@ -924,13 +928,13 @@ public function get_vendor()
 		$rows = json_decode($this->input->post('rows'), true); 
 
 		$row = $rows[0];
-		var_dump($row['nesa_id']);
+		// var_dump($row['nesa_id']);
 		$row_details = $this->Swa_model->get_nesa_details($row['nesa_id']);
 		if (empty($rows)) {
 			echo "No data available";
 			return;
 		}
-		var_dump($row_details);
+		// var_dump($row_details);
 		$mpdf = new \Mpdf\Mpdf([
 			'mode' => 'utf-8', 
 			'format' => 'Letter', 
@@ -965,8 +969,7 @@ public function get_vendor()
 			$html .= '<td style="font-size: 12px;">' . htmlspecialchars($detail->uom) . '</td>';
 			$html .= '<td style="font-size: 12px;">' . htmlspecialchars($detail->qty) . '</td>';
 			$html .= '<td style="font-size: 12px;">' . htmlspecialchars($detail->expiry) . '</td>';
-			
-		$html .= '</tr>';
+			$html .= '</tr>';
 		}
 
 		$html .= '</table>';
@@ -990,5 +993,122 @@ public function get_vendor()
 	}
 	
 
+
+	function get_sent_emails(){
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
+		$memory_limit = ini_get('memory_limit');
+		ini_set('memory_limit',-1);
+		ini_set('max_execution_time', 0);
+	
+		$start         = $this->input->post('start'); 
+		$length        = $this->input->post('length'); 
+		$searchValue   = $this->input->post('search')['value'];
+	
+	
+		$sent_emails = $this->Swa_model->get_sent_emails();
+	
+		$result = array();
+		foreach($sent_emails as $sent_email){
+		   $id = $sent_email['id'];
+	
+		   
+		   if($searchValue=='')
+			  $result[] = $sent_email;
+		   else{
+			  if((strpos(strtolower($sent_email['id']), strtolower($searchValue)) !== false || 
+			  	strpos(strtolower($sent_email['sup_name']), strtolower($searchValue)) !== false || 
+			  	strpos(strtolower($sent_email['message']), strtolower($searchValue)) !== false || 
+				 strpos(strtolower($sent_email['datetime']), strtolower($searchValue)) !== false )){
+					
+				 $result[] = $sent_email;
+			  }
+		   }
+		   
+		}
+	
+	
+		$totalRecords = count($result);
+		$slice = array_slice($result, $start, $length);
+		
+		$data = array(
+					   'draw'            => $this->input->post('draw'), 
+					   'recordsTotal'    => $totalRecords,
+					   'recordsFiltered' => $totalRecords,
+					   'data'            => $slice
+					);
+	
+		echo json_encode($data);  
+		ini_set('memory_limit',$memory_limit);  
+	
+	 }
+	
+
+
+	    public function send_email() {
+		
+			$mail = new PHPMailer(true);  // Create an instance of PHPMailer
+
+			$name = $this->session->userdata('login_empname');
+			$emp_info = $this->session->userdata('login_emppos');
+			$email_add = $this->session->userdata('login_emailadd');
+			$email_pass = htmlspecialchars($this->session->userdata('login_emailpass'));
+			$emailFrom = htmlspecialchars($this->input->post('from'), ENT_QUOTES, 'UTF-8');
+			$emailTo = htmlspecialchars($this->input->post('to'), ENT_QUOTES, 'UTF-8');
+			$cc =htmlspecialchars($this->input->post('cc'), ENT_QUOTES, 'UTF-8');
+			$bcc = htmlspecialchars($this->input->post('bcc'), ENT_QUOTES, 'UTF-8');
+			$subject = htmlspecialchars($this->input->post('subject'), ENT_QUOTES, 'UTF-8');
+			$supplier = htmlspecialchars($this->input->post('supplier'), ENT_QUOTES, 'UTF-8');
+			$body = htmlspecialchars($this->input->post('message'), ENT_QUOTES, 'UTF-8');
+
+			// var_dump($email_pass);
+			// echo "From: $emailFrom, To: $emailTo, Subject: $subject, Body: $body"; 
+			// exit;
+			try {
+				// $mail->SMTPDebug = 2;
+
+				// Server settings
+				$mail->isSMTP();
+				$mail->Host       = 'smtp.gmail.com';            // Set the SMTP server
+				$mail->SMTPAuth   = true;
+				$mail->Username   = $email_add;      // Your Gmail address
+				$mail->Password   = $email_pass;         // App Password for Gmail
+				$mail->SMTPSecure = 'tls';                       // Encryption: 'ssl' or 'tls'
+				$mail->Port       = 587;                         // 465 for SSL, 587 for TLS
+	
+				// Recipient settings
+				$mail->setFrom($emailFrom, $name);
+				$mail->addAddress($emailTo);      // Add recipient's email
+				$mail->addReplyTo($emailFrom, $emp_info);
+	
+				// Attachments (if any)
+			
+				if (!empty($_FILES['attachments']['name'][0])) {
+					foreach ($_FILES['attachments']['tmp_name'] as $key => $tmp_name) {
+						$mail->addAttachment($tmp_name, $_FILES['attachments']['name'][$key]);
+					}
+				}
+				// Email content
+				$mail->isHTML(true);
+				$mail->Subject = $subject;
+				$mail->Body    = $body;
+				// $mail->AltBody = 'This is the plain text version of the email content.';
+	
+				// Send email
+				$mail->send();
+				$data = array(
+					'sent_by' => $name,
+					'sup_name' => $supplier,
+					'message' => $body 
+				);
+				$this->Admin_model->insert_email_tbl($data);
+				$result = array('status' => 'success', 'message' => 'Email has been sent successfully!');
+				
+			} catch (Exception $e) {
+				$result = array('status' => 'error', 'message' => 'Email could not be sent.');
+
+			}
+			$this->output->set_content_type('application/json')->set_output(json_encode($result));
+		}
 	
 }

@@ -60,9 +60,9 @@ class CI_Controller {
 	private static $instance;
 
 	/**
-	 * CI_Loader
+	 * CI_loader
 	 *
-	 * @var	CI_Loader
+	 * @var	CI_loader
 	 */
 	public $load;
 
@@ -83,7 +83,7 @@ class CI_Controller {
 			$this->$var =& load_class($class);
 		}
 
-		$this->load =& load_class('Loader', 'core');
+		$this->load =& load_class('loader', 'core');
 		$this->load->initialize();
 		log_message('info', 'Controller Class Initialized');
 	}

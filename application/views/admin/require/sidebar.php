@@ -15,10 +15,10 @@
                             </a>
                         </li>
                     </ul>
-                    <?php #if ($this->session->userdata('priv_utilities') == 1): ?>
+                    <?php if ($this->session->userdata('priv_nesa') == 1): ?>
                     <div class="pcoded-navigation-label">Near Expiry Stock Advise</div>
                     <ul class="pcoded-item pcoded-left-item">
-                        <?php #if ($this->session->userdata('priv_utilities') == 1 && $this->session->userdata('priv_as') == 1): ?>
+                        <?php if ($this->session->userdata('priv_nesa') == 1 && $this->session->userdata('priv_nesaf') == 1): ?>
                         <li class="<?php echo ($menu=='nesa') ? 'active' : ''; ?>">
                             <a href="<?php echo base_url() ?>SwaController/nesa_list" class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
@@ -27,17 +27,20 @@
                                 <span class="pcoded-mtext">NESA Form</span>
                             </a>
                         </li>
+                        <?php endif ?>
+                        <?php if ($this->session->userdata('priv_nesa') == 1 && $this->session->userdata('priv_email') == 1): ?>
                         <li class="<?php echo ($menu=='email') ? 'active' : ''; ?>">
-                            <a href="<?php echo base_url() ?>SwaController/compose_email" class="waves-effect waves-dark">
+                            <a href="<?php echo base_url() ?>SwaController/compose_email"
+                                class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
                                     <i class="feather icon-mail"></i>
                                 </span>
                                 <span class="pcoded-mtext">Email</span>
                             </a>
                         </li>
-                        <?php #endif ?>
+                        <?php endif ?>
                     </ul>
-                    <?php #endif; ?>
+                    <?php endif; ?>
                     <?php if ($this->session->userdata('priv_swa') == 1): ?>
                     <div class="pcoded-navigation-label">Stock Withdrawal Advise</div>
                     <ul class="pcoded-item pcoded-left-item">
@@ -126,7 +129,7 @@
                     <?php if ($this->session->userdata('priv_sm') == 1): ?>
                     <div class="pcoded-navigation-label">System Manager</div>
                     <ul class="pcoded-item pcoded-left-item">
-                    <?php if ($this->session->userdata('priv_sm') == 1 && $this->session->userdata('priv_sub') == 1): ?>
+                        <?php if ($this->session->userdata('priv_sm') == 1 && $this->session->userdata('priv_sub') == 1): ?>
                         <li class="pcoded-hasmenu <?php echo ($menu=='Subsidiary') ? 'active pcoded-trigger' : '';?>">
                             <a href="javascript:void(0)" class="waves-effect waves-dark">
                                 <span class="pcoded-micon"><i class="fa fa-building"></i></span>
@@ -155,10 +158,10 @@
                                     <a href="<?php #echo base_url() ?>SupplierController/supplier"
                                         class="waves-effect waves-dark">
                                         <span class="pcoded-mtext">Supplier List</span> -->
-                                        <!-- <span class="pcoded-badge label label-warn ing">NEW</span> -->
-                                    <!-- </a>
+                        <!-- <span class="pcoded-badge label label-warn ing">NEW</span> -->
+                        <!-- </a>
                                 </li> -->
-                            <!-- </ul>
+                        <!-- </ul>
                         </li> -->
                         <?php #endif ?>
                         <?php if ($this->session->userdata('priv_sm') == 1 && $this->session->userdata('priv_uf') == 1): ?>
@@ -235,7 +238,8 @@
                         <?php endif ?>
                         <?php if ($this->session->userdata('priv_utilities') == 1 && $this->session->userdata('priv_as') == 1): ?>
                         <li class="<?php echo ($menu=='about') ? 'active' : ''; ?>">
-                            <a href="<?php echo base_url() ?>AdminController/about_page" class="waves-effect waves-dark">
+                            <a href="<?php echo base_url() ?>AdminController/about_page"
+                                class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
                                     <i class="feather icon-info"></i>
                                 </span>

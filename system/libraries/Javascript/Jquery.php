@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * @package		CodeIgniter
  * @subpackage	Libraries
- * @category	Loader
+ * @category	loader
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/userguide3/libraries/javascript.html
  */

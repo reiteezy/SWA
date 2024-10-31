@@ -25,6 +25,9 @@ $(document).ready(function() {
             type: 'GET',
             dataType: 'json',
             success: function(data) {
+                $('#nesa').prop('checked', parseInt(data.classes.nesa));
+                $('#nesaForm').prop('checked', parseInt(data.classes.nesaForm));
+                $('#email').prop('checked', parseInt(data.classes.email));
                 $('#subsidiary').prop('checked', parseInt(data.classes.subsidiary));
                 $('#supplier').prop('checked', parseInt(data.classes.supplier));
                 $('#userFiltering').prop('checked', parseInt(data.classes.userFiltering));
@@ -40,7 +43,6 @@ $(document).ready(function() {
                 $('#userType').prop('checked', parseInt(data.classes.userType));
                 $('#systemUser').prop('checked', parseInt(data.classes.systemUser));
                 $('#userMenu').prop('checked', parseInt(data.classes.userMenu));
-                $('#menuSetting').prop('checked', parseInt(data.classes.menuSetting));
                 $('#systemUtilities').prop('checked', parseInt(data.classes
                     .systemUtilities));
                 $('#systemWallpaper').prop('checked', parseInt(data.classes
@@ -60,6 +62,31 @@ $(document).ready(function() {
 
         selectedPrivileges[checkboxId] = isChecked;
 
+        
+      
+        if (checkboxId === 'nesaForm' || checkboxId === 'email') {
+            if (isChecked) {
+                $('#nesa').prop('checked', true);
+                selectedPrivileges['nesa'] = 1;
+            } else {
+                if (!$('#nesaForm').prop('checked') && !$('#email').prop('checked')) {
+                    $('#nesa').prop('checked', false);
+                    selectedPrivileges['nesa'] = 0;
+                }
+            }
+        } else if (checkboxId === 'nesa') {
+            if (isChecked) {
+                $('#nesaForm').prop('checked', true);
+                $('#email').prop('checked', true);
+                selectedPrivileges['nesaForm'] = 1;
+                selectedPrivileges['email'] = 1;
+            } else {
+                $('#nesaForm').prop('checked', false);
+                $('#email').prop('checked', false);
+                selectedPrivileges['nesaForm'] = 0;
+                selectedPrivileges['email'] = 0;
+            }
+        }
       
         if (checkboxId === 'swaVo' || checkboxId === 'swaMis' || checkboxId === 'perVo' ||
             checkboxId === 'swaAcctg' || checkboxId === 'per' || checkboxId === 'swaForm' ||
@@ -108,15 +135,14 @@ $(document).ready(function() {
                 selectedPrivileges['swaReports'] = 0;
             }
         }
-        if (checkboxId === 'userType' || checkboxId === 'systemUser' || checkboxId === 'userMenu' ||
-            checkboxId === 'menuSetting' || checkboxId === 'subsidiary' || checkboxId === 'supplier' || checkboxId ===
+        if (checkboxId === 'userType' || checkboxId === 'systemUser' || checkboxId === 'userMenu' || checkboxId === 'subsidiary' || checkboxId === 'supplier' || checkboxId ===
             'userFiltering') {
             if (isChecked) {
                 $('#systemManager').prop('checked', true);
                 selectedPrivileges['systemManager'] = 1;
             } else {
                 if (!$('#userType').prop('checked') && !$('#systemUser').prop('checked') && !$(
-                        '#userMenu').prop('checked') && !$('#menuSetting').prop('checked') && !$('#subsidiary').prop('checked') && !$('#supplier').prop('checked') && !$(
+                        '#userMenu').prop('checked') && !$('#subsidiary').prop('checked') && !$('#supplier').prop('checked') && !$(
                             '#userFiltering').prop('checked') ) {
                     $('#systemManager').prop('checked', false);
                     selectedPrivileges['systemManager'] = 0;
@@ -127,14 +153,12 @@ $(document).ready(function() {
                 $('#userType').prop('checked', true);
                 $('#systemUser').prop('checked', true);
                 $('#userMenu').prop('checked', true);
-                $('#menuSetting').prop('checked', true);
                 $('#subsidiary').prop('checked', true);
                 $('#supplier').prop('checked', true);
                 $('#userFiltering').prop('checked', true);
                 selectedPrivileges['userType'] = 1;
                 selectedPrivileges['systemUser'] = 1;
                 selectedPrivileges['userMenu'] = 1;
-                selectedPrivileges['menuSetting'] = 1;
                 selectedPrivileges['subsidiary'] = 1;
                 selectedPrivileges['supplier'] = 1;
                 selectedPrivileges['userFiltering'] = 1;
@@ -142,7 +166,6 @@ $(document).ready(function() {
                 $('#userType').prop('checked', false);
                 $('#systemUser').prop('checked', false);
                 $('#userMenu').prop('checked', false);
-                $('#menuSetting').prop('checked', false);
                 $('#subsidiary').prop('checked', false);
                 $('#supplier').prop('checked', false);
                 $('#userFiltering').prop('checked', false);
@@ -152,7 +175,6 @@ $(document).ready(function() {
                 selectedPrivileges['userType'] = 0;
                 selectedPrivileges['systemUser'] = 0;
                 selectedPrivileges['userMenu'] = 0;
-                selectedPrivileges['menuSetting'] = 0;
             }
         }
         if (checkboxId === 'aboutSystem') {
@@ -515,7 +537,7 @@ function reload_table() {
         language: {
             search: '',
             searchPlaceholder: ' Search...',
-            processing: '<div class="upload-loader"></div>'
+            processing: '<div class="table-loader"></div>'
         }
     });
 
@@ -523,7 +545,8 @@ function reload_table() {
         lengthChange: false,
         searching: false,
         paging: false,
-        ordering: false
+        ordering: false,
+        info: false
     });
 
     $('.dataTables_filter input[type="search"]').css({
